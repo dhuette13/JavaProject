@@ -1,9 +1,5 @@
 JavaProject
 ===========
 
-This is the Java Project
+This is a Java Project
 
-jlkfdskjfdslk
-
-
-jkfdslkjfdsalkj
