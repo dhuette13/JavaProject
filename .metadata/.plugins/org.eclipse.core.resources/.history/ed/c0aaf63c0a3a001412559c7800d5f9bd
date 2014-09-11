@@ -1,0 +1,13 @@
+package archeologyp1.shared;
+
+import java.io.File;
+
+public class Utilities {
+	public void load(String path, Coordinate map[][]){
+		
+	}
+	
+	public void save(File fileName, Coordinate map[][]){
+		
+	}
+}

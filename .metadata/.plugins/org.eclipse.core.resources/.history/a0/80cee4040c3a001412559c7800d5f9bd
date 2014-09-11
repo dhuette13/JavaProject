@@ -1,0 +1,16 @@
+package archeologyp1.shared;
+
+import java.util.ArrayList;
+
+public class Coordinate {
+	ViewingOption option;
+	boolean excavated;
+	private char currentViewableSymbol = 'g';
+	ArrayList<Pot> potFind = new ArrayList<Pot>();
+	ArrayList<MetalObject> metalFind = new ArrayList<MetalObject>();
+	ArrayList<Charcoal> charcoalFind = new ArrayList<Charcoal>();
+	
+	public void setcurrentViewableSymbol(char symbol){
+		currentViewableSymobl = sybmol;
+	}
+}

@@ -1,0 +1,11 @@
+package archeologyp1.shared;
+
+import java.util.ArrayList;
+
+public class Coordinate {
+	ViewingOption option;
+	boolean excavated;
+	ArrayList potFind = new ArrayList();
+	ArrayList metalFind = new ArrayList();
+	ArrayList charcoalFind = new ArrayList();
+}

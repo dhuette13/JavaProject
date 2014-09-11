@@ -1,0 +1,8 @@
+package archeologyp1.shared;
+
+public enum ViewingOption {
+	natural,
+	readable,
+	count,
+	
+}
