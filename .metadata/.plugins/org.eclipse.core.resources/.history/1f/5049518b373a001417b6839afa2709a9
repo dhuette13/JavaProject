@@ -56,10 +56,6 @@ public class EntryPoint {
 		
 	}
 	
-	/**
-	 * 
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		EntryPoint entry = new EntryPoint();
 		entry.go();

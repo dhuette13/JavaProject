@@ -5,13 +5,13 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * Holds a number of utilities used by both projects.
+ * 
  * @author Daniel
  *
  */
 public class Utilities {
 	/**
-	 * Generates new empty map
+	 * 
 	 * @return  2d coordinate map
 	 */
 	public static Coordinate[][] generateMap(){
@@ -19,7 +19,7 @@ public class Utilities {
 	}
 	
 	/**
-	 * Loads map from file into memory
+	 * 
 	 * @param path
 	 * @return 2d coordinate map
 	 * 
@@ -94,7 +94,7 @@ public class Utilities {
 	}
 	
 	/**
-	 * Saves map from memory into file
+	 * 
 	 * @param fileName
 	 * @param map
 	 */
@@ -105,7 +105,7 @@ public class Utilities {
 	/**
 	 * 
 	 * @param featureType
-	 * @return feature enumeration based on character input
+	 * @return Returns Feature enumeration based on character input
 	 */
 	public static Feature getFeatureType(String featureType) {
 		switch(featureType){

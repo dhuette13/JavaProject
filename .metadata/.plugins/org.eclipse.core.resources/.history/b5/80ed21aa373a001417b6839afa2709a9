@@ -2,11 +2,6 @@ package archeologyp1.shared;
 
 import java.util.ArrayList;
 
-/**
- * Represents a single coordinate on the map
- * @author dan
- *
- */
 public class Coordinate {
 	private ViewingOption option;
 	private Feature feature;

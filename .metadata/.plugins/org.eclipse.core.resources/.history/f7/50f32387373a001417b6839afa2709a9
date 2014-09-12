@@ -4,11 +4,7 @@ import java.util.Scanner;
 
 import archeologyp1.shared.Coordinate;
 import archeologyp1.shared.Utilities;
-/**
- * Main Class for Map Population Tool
- * @author dan
- *
- */
+
 public class EntryPoint {
 	Scanner input;
 	int selection;
@@ -56,10 +52,6 @@ public class EntryPoint {
 		
 	}
 	
-	/**
-	 * 
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		EntryPoint entry = new EntryPoint();
 		entry.go();

@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * Holds a number of utilities used by both projects.
+ * Holds a number of utilites used by both projects.
  * @author Daniel
  *
  */
