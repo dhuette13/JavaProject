@@ -1,0 +1,102 @@
+package archeologyp1.shared;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Utilities {
+	
+	public static Coordinate[][] generateMap(){
+		return null;
+	}
+	
+	public static Coordinate[][] load(String path){
+		int row, col;
+		Scanner scan;
+		try {
+			File myFile = new File(path);
+			scan = new Scanner(myFile);
+			String line = scan.nextLine();
+			
+			/* Get file dimensions */
+			String dimensions[] = line.split(",");
+			int y = Integer.parseInt(dimensions[0]);
+			int x = Integer.parseInt(dimensions[1]);
+			
+			String dataArray[];
+			Coordinate[][] map = new Coordinate[x][y];
+			Coordinate current;
+			int numPots, numMetal, numCharcoal, date, i = 0;
+			
+			while(scan.hasNextLine()){
+				line = scan.nextLine();
+				dataArray = line.split(",");
+				
+				/* Get integer index for row and column */ 
+				col = Character.getNumericValue(dataArray[i++].charAt(0));
+				row = Integer.parseInt(dataArray[i++]);
+				current = map[row][col];
+
+				/* Set the type of feature for coordinate, 
+				 * and the symbol to be displayed.
+				 */
+				current.setFeature(getFeatureType(dataArray[i]));
+				current.setCurrentViewableSymbol(dataArray[i++].charAt(0));
+				current.setExcavated(Boolean.parseBoolean(dataArray[i++]));
+				
+				/* Iterate through pot input */
+				numPots = Integer.parseInt(dataArray[i++]);
+				while(numPots-- != 0){
+					date = Integer.parseInt(dataArray[i++]);
+					current.addPot(new Pot(date));
+				}
+				
+				/* Iterate through metal input */
+				numMetal = Integer.parseInt(dataArray[i++]);
+				while(numMetal-- != 0){
+					date = Integer.parseInt(dataArray[i++]);
+					current.addMetal(new MetalObject(date));
+				}
+				
+				/* Iterate through charcoal input */
+				numCharcoal = Integer.parseInt(dataArray[i++]);
+				while(numCharcoal-- != 0){
+					date = Integer.parseInt(dataArray[i++]);
+					current.addCharcoal(new Charcoal(date));
+				}
+			}
+			scan.close();
+			return map;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public static void save(File fileName, Coordinate map[][]){
+		
+	}
+	
+	public static Feature getFeatureType(String featureType) {
+		switch(featureType){
+			case "Y":
+				return Feature.parchedGrass;
+			case "G":
+				return Feature.wetGrass;
+			case "N":
+				return Feature.naturalGrass;
+			case "S":
+				return Feature.stone;
+			case "P":
+				return Feature.postHole;
+			case "D":
+				return Feature.exposedDirt;
+			default:
+				System.out.println("Invalid case");
+			
+				
+		}
+		return null;
+	}
+}

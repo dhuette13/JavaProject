@@ -1,0 +1,28 @@
+package archeologyp1.mpt;
+
+import java.util.Scanner;
+
+public class EntryPoint {
+	Scanner input;
+	
+	public EntryPoint(){
+		input = new Scanner(System.in);
+	}
+
+	public void go(){
+		boolean flag = true;
+		System.out.println("1 ) Load Map ");
+		System.out.println("2 ) Generate Map ");
+		
+		while(flag){
+			System.out.println();
+			
+		}
+	}
+		
+	}
+	
+	public static void main(String[] args) {
+		EntryPoint start = new EntryPoint();
+
+}

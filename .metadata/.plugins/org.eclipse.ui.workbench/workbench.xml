@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workbench progressCount="13" version="2.0">
 <workbenchAdvisor/>
-<window height="743" maximized="true" width="1024" x="0" y="0">
+<window height="741" maximized="true" width="1024" x="1873" y="0">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -15,9 +15,11 @@
 <coolItem id="org.eclipse.debug.ui.main.toolbar" itemType="typeToolBarContribution" x="44" y="34"/>
 <coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="92" y="34"/>
 <coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="92" y="34"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="128" y="34"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="236" y="34"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
@@ -26,10 +28,67 @@
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+<part id="6"/>
+<part id="7"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.ui.internal.EditorStack@26109640" ratio="0.5" ratioLeft="784" ratioRight="784" relationship="2" relative="DefaultEditorWorkbook">
+<folder appearance="1" expanded="2">
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
 </folder>
 </info>
 </editorArea>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="EntryPoint.java" partName="EntryPoint.java" path="/home/dan/Documents/Fall2014/Java/Projects/JavaProject/MPT/src/EntryPoint.java" title="EntryPoint.java" tooltip="MPT/src/EntryPoint.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MPT/src/EntryPoint.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="159" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="EntryPoint.java" partName="EntryPoint.java" path="/home/dan/Documents/Fall2014/Java/Projects/JavaProject/ADT/src/EntryPoint.java" title="EntryPoint.java" tooltip="ADT/src/EntryPoint.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ADT/src/EntryPoint.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Pot.java" partName="Pot.java" path="/home/dan/Documents/Fall2014/Java/Projects/JavaProject/Shared/src/archeologyp1/shared/Pot.java" title="Pot.java" tooltip="Shared/src/archeologyp1/shared/Pot.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Shared/src/archeologyp1/shared/Pot.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="86" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MetalObject.java" partName="MetalObject.java" path="/home/dan/Documents/Fall2014/Java/Projects/JavaProject/Shared/src/archeologyp1/shared/MetalObject.java" title="MetalObject.java" tooltip="Shared/src/archeologyp1/shared/MetalObject.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Shared/src/archeologyp1/shared/MetalObject.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="118" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Charcoal.java" partName="Charcoal.java" path="/home/dan/Documents/Fall2014/Java/Projects/JavaProject/Shared/src/archeologyp1/shared/Charcoal.java" title="Charcoal.java" tooltip="Shared/src/archeologyp1/shared/Charcoal.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Shared/src/archeologyp1/shared/Charcoal.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="114" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Utilities.java" partName="Utilities.java" path="/home/dan/Documents/Fall2014/Java/Projects/JavaProject/Shared/src/archeologyp1/shared/Utilities.java" title="Utilities.java" tooltip="Shared/src/archeologyp1/shared/Utilities.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Shared/src/archeologyp1/shared/Utilities.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="684" selectionTopPixel="81"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ViewingOption.java" partName="ViewingOption.java" path="/home/dan/Documents/Fall2014/Java/Projects/JavaProject/Shared/src/archeologyp1/shared/ViewingOption.java" title="ViewingOption.java" tooltip="Shared/src/archeologyp1/shared/ViewingOption.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Shared/src/archeologyp1/shared/ViewingOption.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="129" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Tool.java" partName="Tool.java" path="/home/dan/Documents/Fall2014/Java/Projects/JavaProject/ADT/src/Tool.java" title="Tool.java" tooltip="ADT/src/Tool.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ADT/src/Tool.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="42" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Feature.java" partName="Feature.java" path="/home/dan/Documents/Fall2014/Java/Projects/JavaProject/Shared/src/archeologyp1/shared/Feature.java" title="Feature.java" tooltip="Shared/src/archeologyp1/shared/Feature.java" workbook="org.eclipse.ui.internal.EditorStack@26109640">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Shared/src/archeologyp1/shared/Feature.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="128" selectionTopPixel="0"/>
+</editor>
+<editor focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Coordinate.java" partName="Coordinate.java" path="/home/dan/Documents/Fall2014/Java/Projects/JavaProject/Shared/src/archeologyp1/shared/Coordinate.java" title="Coordinate.java" tooltip="Shared/src/archeologyp1/shared/Coordinate.java" workbook="org.eclipse.ui.internal.EditorStack@26109640">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Shared/src/archeologyp1/shared/Coordinate.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="507" selectionTopPixel="0"/>
+</editor>
 </editors>
 <views>
 <view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
@@ -37,7 +96,12 @@
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
-<columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="408" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
+<expanded>
+<category IMemento.internal.id="Warnings (8 items)"/>
+<category IMemento.internal.id="Errors"/>
+<category IMemento.internal.id="Warnings"/>
+</expanded>
+<columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="946" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
@@ -90,7 +154,7 @@
 </view>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.ui.internal.ide.application.ResourcePerspective" id="org.eclipse.ui.resourcePerspective" label="Resource"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -124,43 +188,30 @@
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <view id="org.eclipse.ui.views.TaskList"/>
 <fastViewBars/>
-<layout>
-<mainWindow>
-<info folder="true" part="topLeft">
-<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">
-<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="topLeft">&#x0A;<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
 <page content="org.eclipse.team.ccvs.ui.RepositoriesView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@6b84fd7" ratio="0.7495049" ratioLeft="757" ratioRight="253" relationship="2" relative="topLeft">
-<folder appearance="2" expanded="2">
-<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@6b84fd7" ratio="0.7495049" ratioLeft="757" ratioRight="253" relationship="2" relative="topLeft">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.25940594" ratioLeft="262" ratioRight="748" relationship="2" relative="topLeft"/>
-<info folder="true" part="bottomRight" ratio="0.65841585" ratioLeft="399" ratioRight="207" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.views.TaskList" appearance="2" expanded="2">
-<page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
+<info folder="true" part="bottomRight" ratio="0.65841585" ratioLeft="399" ratioRight="207" relationship="4" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="org.eclipse.ui.views.TaskList" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
 <page content="org.eclipse.team.ui.GenericHistoryView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="bottomLeft" ratio="0.5" ratioLeft="303" ratioRight="303" relationship="4" relative="topLeft">
-<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
-<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<info folder="true" part="bottomLeft" ratio="0.5" ratioLeft="303" ratioRight="303" relationship="4" relative="topLeft">&#x0A;<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
 <page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
@@ -221,7 +272,6 @@
 <view id="org.eclipse.ui.views.ProblemView"/>
 <view id="org.eclipse.jdt.ui.JavadocView"/>
 <view id="org.eclipse.jdt.ui.SourceView"/>
-<view id="org.eclipse.ui.views.ContentOutline"/>
 <fastViewBars/>
 <layout>
 <mainWindow>
@@ -262,13 +312,11 @@
 </folder>
 </info>
 <info folder="true" part="right" ratio="0.7492625" ratioLeft="762" ratioRight="255" relationship="2" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
-<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <page content="org.eclipse.ui.texteditor.TemplatesView" label="LabelNotFound"/>
 <page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
-</presentation>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 </mainWindow>
@@ -276,7 +324,166 @@
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Shared/src/archeologyp1/shared/Utilities.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Shared/src/archeologyp1/shared/Coordinate.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Shared/src/archeologyp1/shared/Feature.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Shared/src/archeologyp1/shared/Pot.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Shared/src/archeologyp1/shared/MetalObject.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Shared/src/archeologyp1/shared/Charcoal.java"/>
+</editors>
+<item historyLabel="Feature.java" index="2">
+<position info="not_deleted" x="92" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="2098" y="0"/>
+</item>
+<item historyLabel="Feature.java" index="2">
+<position info="not_deleted" x="91" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="2098" y="0"/>
+</item>
+<item historyLabel="Feature.java" index="2">
+<position info="not_deleted" x="128" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="2097" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="525" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="847" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position/>
+</item>
+<item historyLabel="Coordinate.java" index="1">
+<position info="not_deleted" x="1016" y="0"/>
+</item>
+<item historyLabel="Coordinate.java" index="1">
+<position info="not_deleted" x="575" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="608" y="0"/>
+</item>
+<item historyLabel="Coordinate.java" index="1">
+<position info="not_deleted" x="237" y="0"/>
+</item>
+<item historyLabel="Pot.java" index="3">
+<position info="not_deleted" x="107" y="0"/>
+</item>
+<item historyLabel="Pot.java" index="3">
+<position info="not_deleted" x="43" y="3"/>
+</item>
+<item historyLabel="Pot.java" index="3">
+<position info="not_deleted" x="82" y="0"/>
+</item>
+<item historyLabel="MetalObject.java" index="4">
+<position info="not_deleted" x="121" y="0"/>
+</item>
+<item historyLabel="MetalObject.java" index="4">
+<position info="not_deleted" x="43" y="11"/>
+</item>
+<item historyLabel="MetalObject.java" index="4">
+<position info="not_deleted" x="96" y="0"/>
+</item>
+<item historyLabel="Charcoal.java" index="5">
+<position info="not_deleted" x="117" y="0"/>
+</item>
+<item historyLabel="Charcoal.java" index="5">
+<position info="not_deleted" x="43" y="8"/>
+</item>
+<item historyLabel="Charcoal.java" index="5">
+<position info="not_deleted" x="114" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="732" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="1051" y="0"/>
+</item>
+<item historyLabel="Coordinate.java" index="1">
+<position info="not_deleted" x="436" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="852" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="1128" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position/>
+</item>
+<item historyLabel="Coordinate.java" index="1">
+<position info="not_deleted" x="462" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="962" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="1219" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="1781" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="1545" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="1546" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="1649" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="1650" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="1772" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="674" y="0"/>
+</item>
+<item historyLabel="Coordinate.java" index="1">
+<position info="not_deleted" x="507" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="781" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="1291" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="1292" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="208" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="1293" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="376" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="335" y="0"/>
+</item>
+<item active="true" historyLabel="Utilities.java" index="0">
+<position info="not_deleted" x="740" y="0"/>
+</item>
+</navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
@@ -292,5 +499,36 @@
 </trimArea>
 </trimLayout>
 </window>
-<mruList/>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Tool.java" tooltip="ADT/src/Tool.java">
+<persistable path="/ADT/src/Tool.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Feature.java" tooltip="Shared/src/archeologyp1/shared/Feature.java">
+<persistable path="/Shared/src/archeologyp1/shared/Feature.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ViewingOption.java" tooltip="Shared/src/archeologyp1/shared/ViewingOption.java">
+<persistable path="/Shared/src/archeologyp1/shared/ViewingOption.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Coordinate.java" tooltip="Shared/src/archeologyp1/shared/Coordinate.java">
+<persistable path="/Shared/src/archeologyp1/shared/Coordinate.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Utilities.java" tooltip="Shared/src/archeologyp1/shared/Utilities.java">
+<persistable path="/Shared/src/archeologyp1/shared/Utilities.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Charcoal.java" tooltip="Shared/src/archeologyp1/shared/Charcoal.java">
+<persistable path="/Shared/src/archeologyp1/shared/Charcoal.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="MetalObject.java" tooltip="Shared/src/archeologyp1/shared/MetalObject.java">
+<persistable path="/Shared/src/archeologyp1/shared/MetalObject.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Pot.java" tooltip="Shared/src/archeologyp1/shared/Pot.java">
+<persistable path="/Shared/src/archeologyp1/shared/Pot.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="EntryPoint.java" tooltip="ADT/src/EntryPoint.java">
+<persistable path="/ADT/src/EntryPoint.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="EntryPoint.java" tooltip="MPT/src/EntryPoint.java">
+<persistable path="/MPT/src/EntryPoint.java"/>
+</file>
+</mruList>
 </workbench>

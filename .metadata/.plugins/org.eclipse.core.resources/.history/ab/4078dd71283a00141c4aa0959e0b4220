@@ -1,0 +1,10 @@
+package archeologyp1.shared;
+
+public enum Feature {
+	parchedGrass,
+	wetGrass,
+	natural
+	stone,
+	postHole,
+	dirt,
+}

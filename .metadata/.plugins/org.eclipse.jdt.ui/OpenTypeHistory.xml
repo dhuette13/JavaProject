@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy/>
+<typeInfoHistroy>
+<typeInfo handle="=Shared/src&lt;archeologyp1.shared{Feature.java[Feature" modifiers="16385" timestamp="1410476588000"/>
+<typeInfo handle="=Shared/src&lt;archeologyp1.shared{ViewingOption.java[ViewingOption" modifiers="16385" timestamp="1410476581000"/>
+<typeInfo handle="=Shared/src&lt;archeologyp1.shared{MetalObject.java[MetalObject" modifiers="1" timestamp="1410476534000"/>
+<typeInfo handle="=Shared/src&lt;archeologyp1.shared{Coordinate.java[Coordinate" modifiers="1" timestamp="1410476961000"/>
+</typeInfoHistroy>

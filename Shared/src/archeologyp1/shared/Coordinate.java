@@ -4,13 +4,21 @@ import java.util.ArrayList;
 
 public class Coordinate {
 	private ViewingOption option;
+	private Feature feature;
 	private boolean excavated;
-	private char currentViewableSymbol = 'g';
-	private ArrayList<Pot> potFind = new ArrayList<Pot>();
-	private ArrayList<MetalObject> metalFind = new ArrayList<MetalObject>();
-	private ArrayList<Charcoal> charcoalFind = new ArrayList<Charcoal>();
+	private char currentViewableSymbol;
+	private ArrayList<Pot> potCount = new ArrayList<Pot>();
+	private ArrayList<MetalObject> metalCount = new ArrayList<MetalObject>();
+	private ArrayList<Charcoal> charcoalCount = new ArrayList<Charcoal>();
 	
-	public void setcurrentViewableSymbol(char symbol){
+	public Coordinate(){
+		feature = Feature.naturalGrass;
+		currentViewableSymbol = 'g';
+		option = ViewingOption.natural;
+		excavated = false;
+	}
+	
+	public void setCurrentViewableSymbol(char symbol){
 		currentViewableSymbol = symbol;
 	}
 	
@@ -20,5 +28,27 @@ public class Coordinate {
 	
 	public void setViewingOption(ViewingOption option){
 		this.option = option;
+	}
+	
+	public void setFeature(Feature f){
+		feature = f;
+	}
+	
+	public void addPot(Pot... pots){
+		for(Pot p: pots){
+			potCount.add(p);
+		}
+	}
+	
+	public void addMetal(MetalObject... metals){
+		for(MetalObject m: metals){
+			metalCount.add(m);
+		}
+	}
+	
+	public void addCharcoal(Charcoal... charcoals){
+		for(Charcoal c: charcoals){
+			charcoalCount.add(c);
+		}
 	}
 }

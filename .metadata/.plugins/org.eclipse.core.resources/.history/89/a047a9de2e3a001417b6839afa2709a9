@@ -1,0 +1,13 @@
+package archeology.mpt;
+public class EntryPoint {
+
+	public static void main(String[] args) {
+		boolean flag = true;
+		System.out.println("Do you want to load a map, or create one? ");
+		while(flag){
+			System.out.println();
+			
+		}
+	}
+
+}
