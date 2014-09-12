@@ -25,11 +25,13 @@ public class Coordinate {
 		currentViewableSymbol = symbol;
 	}
 	
+	public char getCurrentViewableSymbol(){
+		return currentViewableSymbol;
+	}
+	
 	public void setExcavated(boolean value){
 		excavated = value;
 	}
-	
-
 	
 	public void setFeature(Feature f){
 		feature = f;
