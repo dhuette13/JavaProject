@@ -1,0 +1,27 @@
+package archeologyp1.shared;
+
+public class Map {
+	
+	public Coordinate[][] plane;
+	private int width, height;
+	private ViewingOption option;
+	
+	public Map(int width, int height){
+		this.width = width;
+		this.height = height;
+		option = ViewingOption.natural;
+		plane = new Coordinate[width][height];
+	}
+	
+	public int getWidth(){
+		return width;
+	}
+	
+	public int getHeight(){
+		return height;
+	}
+	
+	public void setViewingOption(ViewingOption o){
+		this.option = option;
+	}
+}

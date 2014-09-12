@@ -4,11 +4,10 @@ import java.util.ArrayList;
 
 /**
  * Represents a single coordinate on the map
- * @author dan
+ * @author Daniel
  *
  */
 public class Coordinate {
-	private ViewingOption option;
 	private Feature feature;
 	private boolean excavated;
 	private char currentViewableSymbol;
@@ -19,7 +18,6 @@ public class Coordinate {
 	public Coordinate(){
 		feature = Feature.naturalGrass;
 		currentViewableSymbol = 'g';
-		option = ViewingOption.natural;
 		excavated = false;
 	}
 	
@@ -31,9 +29,7 @@ public class Coordinate {
 		excavated = value;
 	}
 	
-	public void setViewingOption(ViewingOption option){
-		this.option = option;
-	}
+
 	
 	public void setFeature(Feature f){
 		feature = f;

@@ -1,0 +1,11 @@
+package archeologyp1.shared;
+
+public class Map {
+	
+	public Coordinate[][] map;
+	
+	public Map(int width, int height){
+		
+	}
+	
+}

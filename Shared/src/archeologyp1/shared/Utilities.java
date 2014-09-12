@@ -24,9 +24,10 @@ public class Utilities {
 	 * @return 2d coordinate map
 	 * 
 	 */
-	public static Coordinate[][] load(String path){
+	public static Map load(String path){
 		int rowSize, colSize, r, c;
 		Scanner scan;
+		Map map;
 		try {
 			File myFile = new File(path);
 			scan = new Scanner(myFile);
@@ -34,14 +35,14 @@ public class Utilities {
 			
 			/* Get file dimensions */
 			String dimensions[] = line.split(",");
-			int y = Integer.parseInt(dimensions[0]);
-			int x = Integer.parseInt(dimensions[1]);
+			colSize = Integer.parseInt(dimensions[0]);
+			rowSize = Integer.parseInt(dimensions[1]);
+			map = new Map(rowSize, colSize);
 			
 			String dataArray[];
-			Coordinate[][] map = new Coordinate[x][y];
-			for(r = 0; r < x; r++)
-				for(c = 0; c < y; c++)
-					map[r][c] = new Coordinate();
+			for(r = 0; r < rowSize; r++)
+				for(c = 0; c < colSize; c++)
+					map.plane[r][c] = new Coordinate();
 			
 			Coordinate current;
 			int numPots, numMetal, numCharcoal, date, i = 0;
@@ -51,9 +52,9 @@ public class Utilities {
 				dataArray = line.split(",");
 				
 				/* Get integer index for row and column */ 
-				colSize = ((int) (dataArray[i++].charAt(0))) - 65;
-				rowSize = Integer.parseInt(dataArray[i++]);
-				current = map[rowSize][colSize];
+				c = ((int) (dataArray[i++].charAt(0))) - 65;
+				r = Integer.parseInt(dataArray[i++]);
+				current = map.plane[r][c];
 
 				/* Set the type of feature for coordinate, 
 				 * and the symbol to be displayed.
@@ -98,7 +99,7 @@ public class Utilities {
 	 * @param fileName
 	 * @param map
 	 */
-	public static void save(File fileName, Coordinate map[][]){
+	public static void save(File fileName, Map m){
 		
 	}
 	
@@ -123,8 +124,6 @@ public class Utilities {
 				return Feature.exposedDirt;
 			default:
 				System.out.println("Invalid case");
-			
-				
 		}
 		return null;
 	}

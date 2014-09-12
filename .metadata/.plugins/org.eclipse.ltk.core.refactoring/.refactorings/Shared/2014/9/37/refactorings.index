@@ -2,3 +2,5 @@
 1410492667022	Rename local variable 'size'
 1410496048580	Rename local variable 'row'
 1410496056427	Rename local variable 'col'
+1410502065134	Rename local variable 'map'
+1410502740894	Rename field 'option'

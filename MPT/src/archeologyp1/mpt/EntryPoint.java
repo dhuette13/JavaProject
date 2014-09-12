@@ -2,11 +2,11 @@ package archeologyp1.mpt;
 
 import java.util.Scanner;
 
-import archeologyp1.shared.Coordinate;
+import archeologyp1.shared.Map;
 import archeologyp1.shared.Utilities;
 /**
  * Main Class for Map Population Tool
- * @author dan
+ * @author Daniel
  *
  */
 public class EntryPoint {
@@ -14,7 +14,7 @@ public class EntryPoint {
 	int selection;
 	boolean flag;
 	String path;
-	Coordinate[][] map;
+	Map map;
 	int row, col, x, y;
 	
 	public EntryPoint(){
