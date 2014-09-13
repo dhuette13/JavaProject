@@ -1,19 +1,27 @@
-  | A B C D E F G H I J K L M N O P 
-_ + _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-01 |g g g g g g g g g g g g g g g g 
-02 |g g g g g g g g g g g g g g g g 
-03 |g g g g g g g g g g g g g g g g 
-04 |g g g g g g g g g g g g g g g g 
-05 |g g g g g g g g g g g g g g g g 
-06 |g g g g g g g g g g g g g g g g 
-07 |g g g g g g g g g g g g g g g g 
-08 |g g g g g g g g g g g g g g g g 
-09 |g g g g g g g g g g g g g g g g 
-10 |g g g g g g g g g g g g g g g g 
-11 |g g g g g g g g g g g g g g g g 
-12 |g g g g g g g g g g g g g g g g 
-13 |g g g g g g g g g g g g g g g g 
-14 |g g g g g g g g g g g g g g g g 
-15 |g g g g g g g g g g g g g g g g 
-16 |g g g g g g g g g g g g g g g g 
+  | A B C D E F G H I J K L 
+_ + _ _ _ _ _ _ _ _ _ _ _ _
+01 |g g g g g g g g g g g g 
+02 |g g g g g g g g g g g g 
+03 |g g g g g g g g g g g g 
+04 |g g g g g g g g g g g g 
+05 |g g g g g g g g g g g g 
+06 |g S g g g g g g g g g g 
+07 |g g g g g g g g g g g g 
+08 |g g g g g g g g g g g g 
+09 |g g g g g g g g g g g g 
+10 |g g g g g g g g g g g g 
+11 |g g g g g g g g g g g g 
+12 |g g g g g g g g g g g g 
+13 |g g g g g g g g g g g g 
+14 |g g g g g g g g g g g g 
+15 |g g g g g g g g g g g g 
+16 |g g g g g g g g g g g g 
+17 |g g g g g g g g g g g g 
+18 |g g g g g g g g g g g g 
+19 |g g g g g g g g g g g g 
+20 |g g g g g g g g g g g g 
+21 |g g g g g g g g g g g g 
+22 |g g g g g g g g g g g g 
+23 |g g g g g g g g g g g g 
+24 |g g g g g g g g g g g g 
 

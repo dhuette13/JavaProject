@@ -51,8 +51,7 @@ public class EntryPoint {
 				height = input.nextInt();
 				map = Utilities.generateMap(width, height);
 				//more error checking is probably needed here
-				if(map != null)
-					flag = false;
+				flag = false;
 				break;
 			default:
 				System.out.println("Invalid Choice, Try again.");

@@ -42,17 +42,20 @@ public class EntryPoint {
 				//}
 				//probably need an else-if and an else in here too, need to think more on what they'd do though
 				map = Utilities.load(path);
-				if(map != null)
-					flag = false;
+				flag = false;
 				break;
 			case 2:
 				System.out.print("Enter the desired dimensions (x, y): " );
+<<<<<<< HEAD
 				width = input.nextInt();
 				height = input.nextInt();
 				map = Utilities.generateMap(width, height);
+=======
+				x = input.nextInt();
+				y = input.nextInt();
 				//more error checking is probably needed here
-				if(map != null)
-					flag = false;
+>>>>>>> e284b87065cc9e866f385e77bbc7295008620c40
+				flag = false;
 				break;
 			default:
 				System.out.println("Invalid Choice, Try again.");

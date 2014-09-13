@@ -97,6 +97,7 @@ public class Utilities {
 			scan.close();
 			return map;
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 			System.out.println("Invalid Path specified");
 		}
 		
