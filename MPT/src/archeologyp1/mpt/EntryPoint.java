@@ -1,6 +1,7 @@
 package archeologyp1.mpt;
 
 import java.util.Scanner;
+//import java.io.File;
 
 import archeologyp1.shared.Map;
 import archeologyp1.shared.Utilities;
@@ -28,10 +29,16 @@ public class EntryPoint {
 		System.out.print("::> ");
 		do{
 			selection = input.nextInt();
-			switch(selection){
-			case 1:
+			switch(selection){ 
+			case 1: //need to make sure they enter an existing path name, maybe by exists();
 				System.out.print("Enter path name: ");
 				path = input.next();
+				//File f = new File(path);
+				//if(f.exists() == false)
+				//{
+				//   throw new FileNotFoundException("This file cannot be found. Please try again.");
+				//}
+				//probably need an else-if and an else in here too, need to think more on what they'd do though
 				map = Utilities.load(path);
 				flag = false;
 				break;
@@ -39,6 +46,7 @@ public class EntryPoint {
 				System.out.print("Enter the desired dimensions (x, y): " );
 				x = input.nextInt();
 				y = input.nextInt();
+				//more error checking is probably needed here
 				flag = false;
 				break;
 			default:
