@@ -64,7 +64,6 @@ public class EntryPoint {
 					input.nextLine();
 				}
 			} while(flag);
-			
 		/* Print map to standard out */
 		Utilities.printMap(map, System.out);
 		

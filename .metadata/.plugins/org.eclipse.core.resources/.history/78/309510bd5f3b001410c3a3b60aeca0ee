@@ -29,42 +29,41 @@ public class EntryPoint {
 	public void go(){
 			do{
 				try{
-					System.out.println("1 ) Load Map ");
-					System.out.println("2 ) Generate Map ");
-					System.out.print("::> ");
-					selection = input.nextInt();
-					switch(selection){ 
-						case 1:
-							System.out.print("Enter path name: ");
-							path = input.next();
-							//File f = new File(path);
-							//if(f.exists() == false)
-							//{
-							//   throw new FileNotFoundException("This file cannot be found. Please try again.");
-							//}
-							//probably need an else-if and an else in here too, need to think more on what they'd do though
-							map = Utilities.load(path);
-							if(map != null)
-								flag = false;
-							break;
-						case 2:
-							System.out.print("Enter the desired dimensions (width height): " );
-							// Check format of the user's input? (width height) or (width, height) 
-							width = input.nextInt();
-							height = input.nextInt();
-							map = Utilities.generateMap(width, height);
-							if(map != null)
-								flag = false;
-							break;
-						default:
-							System.out.println("Invalid Choice, Try again.");
-					}
+				System.out.println("1 ) Load Map ");
+				System.out.println("2 ) Generate Map ");
+				System.out.print("::> ");
+				selection = input.nextInt();
+				switch(selection){ 
+				case 1: //need to make sure they enter an existing path name, maybe by exists();
+					System.out.print("Enter path name: ");
+					path = input.next();
+					//File f = new File(path);
+					//if(f.exists() == false)
+					//{
+					//   throw new FileNotFoundException("This file cannot be found. Please try again.");
+					//}
+					//probably need an else-if and an else in here too, need to think more on what they'd do though
+					map = Utilities.load(path);
+					if(map != null)
+						flag = false;
+					break;
+				case 2:
+					System.out.print("Enter the desired dimensions (x, y): " );
+					width = input.nextInt();
+					height = input.nextInt();
+					map = Utilities.generateMap(width, height);
+					//more error checking is probably needed here
+					if(map != null)
+						flag = false;
+					break;
+				default:
+					System.out.println("Invalid Choice, Try again.");
+					
+				}
 				} catch (InputMismatchException e){
 					System.out.println("Incorrect input, try again.");
-					input.nextLine();
 				}
 			} while(flag);
-			
 		/* Print map to standard out */
 		Utilities.printMap(map, System.out);
 		

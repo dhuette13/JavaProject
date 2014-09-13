@@ -34,7 +34,7 @@ public class EntryPoint {
 					System.out.print("::> ");
 					selection = input.nextInt();
 					switch(selection){ 
-						case 1:
+						case 1: //need to make sure they enter an existing path name, maybe by exists();
 							System.out.print("Enter path name: ");
 							path = input.next();
 							//File f = new File(path);
@@ -49,10 +49,10 @@ public class EntryPoint {
 							break;
 						case 2:
 							System.out.print("Enter the desired dimensions (width height): " );
-							// Check format of the user's input? (width height) or (width, height) 
 							width = input.nextInt();
 							height = input.nextInt();
 							map = Utilities.generateMap(width, height);
+							//more error checking is probably needed here
 							if(map != null)
 								flag = false;
 							break;
@@ -64,7 +64,6 @@ public class EntryPoint {
 					input.nextLine();
 				}
 			} while(flag);
-			
 		/* Print map to standard out */
 		Utilities.printMap(map, System.out);
 		
