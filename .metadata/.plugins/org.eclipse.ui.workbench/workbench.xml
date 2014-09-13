@@ -20,7 +20,7 @@
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="236" y="34"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.browser.editor" itemType="typePlaceholder" x="-1" y="-1"/>
-<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -48,7 +48,7 @@
 </editorArea>
 <editor focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Utilities.java" partName="Utilities.java" path="/home/dan/Documents/Fall2014/Java/Projects/JavaProject/Shared/src/archeologyp1/shared/Utilities.java" title="Utilities.java" tooltip="Shared/src/archeologyp1/shared/Utilities.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Shared/src/archeologyp1/shared/Utilities.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2839" selectionTopPixel="1707"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="366" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Coordinate.java" partName="Coordinate.java" path="/home/dan/Documents/Fall2014/Java/Projects/JavaProject/Shared/src/archeologyp1/shared/Coordinate.java" title="Coordinate.java" tooltip="Shared/src/archeologyp1/shared/Coordinate.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Shared/src/archeologyp1/shared/Coordinate.java"/>
@@ -60,7 +60,7 @@
 </editor>
 <editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="EntryPoint.java" partName="EntryPoint.java" path="/home/dan/Documents/Fall2014/Java/Projects/JavaProject/MPT/src/archeologyp1/mpt/EntryPoint.java" title="EntryPoint.java" tooltip="MPT/src/archeologyp1/mpt/EntryPoint.java" workbook="org.eclipse.ui.internal.EditorStack@2091f2fe">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MPT/src/archeologyp1/mpt/EntryPoint.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1104" selectionTopPixel="413"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="326" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.ui.DefaultTextEditor" name="map1.txt" partName="map1.txt" path="/home/dan/Documents/Fall2014/Java/Projects/JavaProject/MPT/resources/map1.txt" title="map1.txt" tooltip="MPT/resources/map1.txt" workbook="org.eclipse.ui.internal.EditorStack@2091f2fe">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MPT/resources/map1.txt"/>
@@ -81,7 +81,7 @@
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
 <category IMemento.internal.id="Errors"/>
-<category IMemento.internal.id="Warnings"/>
+<category IMemento.internal.id="Warnings (2 items)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="946" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="502"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -145,7 +145,7 @@
 </view>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="org.eclipse.ui.console.ConsoleView" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.ui.internal.ide.application.ResourcePerspective" id="org.eclipse.ui.resourcePerspective" label="Resource"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -354,58 +354,42 @@
 <view id="org.eclipse.debug.ui.ExpressionView"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <fastViewBars/>
-<layout>
-<mainWindow>
-<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
-<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
 <page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.ui.PackageExplorer" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.ui.TypeHierarchy" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.7497382" ratioLeft="1432" ratioRight="478" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder appearance="2" expanded="2">
-<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="stickyFolderRight" ratio="0.7497382" ratioLeft="1432" ratioRight="478" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.749736" ratioLeft="710" ratioRight="237" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
-<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.749736" ratioLeft="710" ratioRight="237" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.PropertySheet" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.debug.ui.DisplayView" label="LabelNotFound"/>
 <page content="org.eclipse.search.SearchResultView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 </presentation>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.4492958" ratioLeft="319" ratioRight="391" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
-<info folder="true" part="org.eclipse.debug.internal.ui.OutlineFolderView" ratio="0.7497382" ratioLeft="1432" ratioRight="478" relationship="2" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
-<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.OutlineFolderView" ratio="0.7497382" ratioLeft="1432" ratioRight="478" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
 <page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="955" ratioRight="955" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
-<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">
-<page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="955" ratioRight="955" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="Breakpoints"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="Expressions"/>
 <page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 <part id="2"/>
 </presentation>
@@ -423,73 +407,11 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/MPT/resources/map1.txt"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/MPT/src/archeologyp1/mpt/EntryPoint.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Shared/src/archeologyp1/shared/Map.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/MPT/resources/export1.txt"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Shared/src/archeologyp1/shared/Utilities.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Shared/src/archeologyp1/shared/Map.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/Shared/src/archeologyp1/shared/Coordinate.java"/>
 </editors>
-<item historyLabel="Utilities.java" index="0">
-<position info="not_deleted" x="987" y="0"/>
-</item>
-<item historyLabel="EntryPoint.java" index="3">
-<position info="not_deleted" x="818" y="0"/>
-</item>
-<item historyLabel="map1.txt" index="2">
-<position info="not_deleted" x="32" y="0"/>
-</item>
-<item historyLabel="EntryPoint.java" index="3">
-<position info="not_deleted" x="818" y="0"/>
-</item>
-<item historyLabel="Utilities.java" index="0">
-<position info="not_deleted" x="2779" y="0"/>
-</item>
-<item historyLabel="EntryPoint.java" index="3">
-<position info="not_deleted" x="657" y="0"/>
-</item>
-<item historyLabel="Utilities.java" index="0">
-<position info="not_deleted" x="2711" y="0"/>
-</item>
-<item historyLabel="Utilities.java" index="0">
-<position info="not_deleted" x="2874" y="0"/>
-</item>
-<item historyLabel="Utilities.java" index="0">
-<position info="not_deleted" x="2880" y="0"/>
-</item>
-<item historyLabel="Utilities.java" index="0">
-<position info="not_deleted" x="2816" y="0"/>
-</item>
-<item historyLabel="EntryPoint.java" index="3">
-<position info="not_deleted" x="808" y="0"/>
-</item>
-<item historyLabel="Utilities.java" index="0">
-<position info="not_deleted" x="2903" y="0"/>
-</item>
-<item historyLabel="EntryPoint.java" index="3">
-<position info="not_deleted" x="894" y="0"/>
-</item>
-<item historyLabel="Utilities.java" index="0">
-<position info="not_deleted" x="2903" y="0"/>
-</item>
-<item historyLabel="EntryPoint.java" index="3">
-<position info="not_deleted" x="818" y="0"/>
-</item>
-<item historyLabel="Utilities.java" index="0">
-<position info="not_deleted" x="2903" y="0"/>
-</item>
-<item historyLabel="EntryPoint.java" index="3">
-<position info="not_deleted" x="1055" y="0"/>
-</item>
-<item historyLabel="Utilities.java" index="0">
-<position info="not_deleted" x="2840" y="0"/>
-</item>
-<item historyLabel="EntryPoint.java" index="3">
-<position info="not_deleted" x="1057" y="0"/>
-</item>
-<item historyLabel="Utilities.java" index="0">
-<position info="not_deleted" x="2839" y="0"/>
-</item>
-<item historyLabel="EntryPoint.java" index="3">
-<position info="not_deleted" x="1023" y="0"/>
-</item>
-<item historyLabel="Utilities.java" index="0">
-<position info="not_deleted" x="2709" y="0"/>
-</item>
 <item historyLabel="EntryPoint.java" index="3">
 <position info="not_deleted" x="1030" y="0"/>
 </item>
@@ -571,8 +493,74 @@
 <item historyLabel="Utilities.java" index="0">
 <position info="not_deleted" x="2839" y="0"/>
 </item>
-<item active="true" historyLabel="EntryPoint.java" index="3">
+<item historyLabel="EntryPoint.java" index="3">
 <position info="not_deleted" x="1104" y="0"/>
+</item>
+<item historyLabel="EntryPoint.java" index="3">
+<position/>
+</item>
+<item historyLabel="EntryPoint.java" index="3">
+<position/>
+</item>
+<item historyLabel="EntryPoint.java" index="3">
+<position/>
+</item>
+<item historyLabel="EntryPoint.java" index="3">
+<position info="not_deleted" x="1150" y="0"/>
+</item>
+<item historyLabel="EntryPoint.java" index="3">
+<position info="not_deleted" x="1346" y="0"/>
+</item>
+<item historyLabel="EntryPoint.java" index="3">
+<position info="not_deleted" x="1323" y="0"/>
+</item>
+<item historyLabel="export1.txt" index="5">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="EntryPoint.java" index="3">
+<position info="not_deleted" x="1323" y="0"/>
+</item>
+<item historyLabel="EntryPoint.java" index="3">
+<position info="not_deleted" x="955" y="0"/>
+</item>
+<item historyLabel="EntryPoint.java" index="3">
+<position info="not_deleted" x="930" y="11"/>
+</item>
+<item historyLabel="Utilities.java" index="6">
+<position info="not_deleted" x="588" y="0"/>
+</item>
+<item historyLabel="EntryPoint.java" index="3">
+<position info="not_deleted" x="975" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="6">
+<position info="not_deleted" x="350" y="0"/>
+</item>
+<item historyLabel="EntryPoint.java" index="3">
+<position info="not_deleted" x="920" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="6">
+<position info="not_deleted" x="436" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="6">
+<position info="not_deleted" x="439" y="0"/>
+</item>
+<item historyLabel="Map.java" index="7">
+<position info="not_deleted" x="395" y="0"/>
+</item>
+<item historyLabel="Coordinate.java" index="8">
+<position info="not_deleted" x="698" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="6">
+<position info="not_deleted" x="2778" y="0"/>
+</item>
+<item historyLabel="EntryPoint.java" index="3">
+<position info="not_deleted" x="646" y="0"/>
+</item>
+<item historyLabel="Utilities.java" index="6">
+<position info="not_deleted" x="366" y="0"/>
+</item>
+<item active="true" historyLabel="EntryPoint.java" index="3">
+<position info="not_deleted" x="925" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -591,6 +579,9 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="export1.txt" tooltip="MPT/resources/export1.txt">
+<persistable path="/MPT/resources/export1.txt"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="map1.txt" tooltip="MPT/resources/map1.txt">
 <persistable path="/MPT/resources/map1.txt"/>
 </file>

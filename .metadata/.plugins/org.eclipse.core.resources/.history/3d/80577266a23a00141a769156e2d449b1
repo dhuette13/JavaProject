@@ -17,7 +17,7 @@ public class EntryPoint {
 	boolean flag;
 	String path;
 	Map map;
-	int row, col, width, height;
+	int row, col, x, y;
 	
 	public EntryPoint(){
 		input = new Scanner(System.in);
@@ -25,10 +25,10 @@ public class EntryPoint {
 	}
 
 	public void go(){
+		System.out.println("1 ) Load Map ");
+		System.out.println("2 ) Generate Map ");
+		System.out.print("::> ");
 		do{
-			System.out.println("1 ) Load Map ");
-			System.out.println("2 ) Generate Map ");
-			System.out.print("::> ");
 			selection = input.nextInt();
 			switch(selection){
 			case 1:
@@ -39,13 +39,13 @@ public class EntryPoint {
 				break;
 			case 2:
 				System.out.print("Enter the desired dimensions (x, y): " );
-				width = input.nextInt();
-				height = input.nextInt();
-				map = Utilities.generateMap(width, height);
+				x = input.nextInt();
+				y = input.nextInt();
+				Utilities.generateMap(x, y);
 				flag = false;
 				break;
 			default:
-				System.out.println("Invalid Choice, Try again.");
+				System.out.println("Try again.");
 				
 			}
 		} while(flag);

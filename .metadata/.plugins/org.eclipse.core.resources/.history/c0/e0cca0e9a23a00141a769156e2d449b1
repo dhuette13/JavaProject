@@ -25,9 +25,9 @@ public class EntryPoint {
 	}
 
 	public void go(){
+		System.out.println("1 ) Load Map ");
+		System.out.println("2 ) Generate Map ");
 		do{
-			System.out.println("1 ) Load Map ");
-			System.out.println("2 ) Generate Map ");
 			System.out.print("::> ");
 			selection = input.nextInt();
 			switch(selection){

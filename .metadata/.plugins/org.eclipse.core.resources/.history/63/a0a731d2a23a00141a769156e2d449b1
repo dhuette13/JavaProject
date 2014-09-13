@@ -25,10 +25,10 @@ public class EntryPoint {
 	}
 
 	public void go(){
+		System.out.println("1 ) Load Map ");
+		System.out.println("2 ) Generate Map ");
+		System.out.print("::> ");
 		do{
-			System.out.println("1 ) Load Map ");
-			System.out.println("2 ) Generate Map ");
-			System.out.print("::> ");
 			selection = input.nextInt();
 			switch(selection){
 			case 1:
@@ -45,7 +45,7 @@ public class EntryPoint {
 				flag = false;
 				break;
 			default:
-				System.out.println("Invalid Choice, Try again.");
+				System.out.println("Try again.");
 				
 			}
 		} while(flag);

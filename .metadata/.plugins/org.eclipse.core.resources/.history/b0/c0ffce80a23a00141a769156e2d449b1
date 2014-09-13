@@ -15,22 +15,16 @@ public class Utilities {
 	 * Generates new empty map
 	 * @param height 
 	 * @param width 
-	 * @return  Map object
+	 * @return  2d coordinate map
 	 */
-	public static Map generateMap(int width, int height){
-		Map map = new Map(width, height);
-		int r, c;
-		for(r = 0; r < map.getHeight(); r++)
-			for(c = 0; c < map.getWidth(); c++)
-				map.plane[r][c] = new Coordinate();
-		
-		return map;
+	public Map generateMap(int width, int height){
+		return null;
 	}
 	
 	/**
 	 * Loads map from file into memory
 	 * @param path
-	 * @return Map object
+	 * @return 2d coordinate map
 	 * 
 	 */
 	public static Map load(String path){
@@ -108,7 +102,7 @@ public class Utilities {
 	 * @param fileName
 	 * @param map
 	 */
-	public static void save(String path, Map m){
+	public static void save(File fileName, Map m){
 		
 	}
 	

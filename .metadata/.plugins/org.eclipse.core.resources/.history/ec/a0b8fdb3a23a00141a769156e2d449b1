@@ -17,7 +17,7 @@ public class Utilities {
 	 * @param width 
 	 * @return  Map object
 	 */
-	public static Map generateMap(int width, int height){
+	public Map generateMap(int width, int height){
 		Map map = new Map(width, height);
 		int r, c;
 		for(r = 0; r < map.getHeight(); r++)
@@ -108,7 +108,7 @@ public class Utilities {
 	 * @param fileName
 	 * @param map
 	 */
-	public static void save(String path, Map m){
+	public static void save(String fileName, Map m){
 		
 	}
 	
