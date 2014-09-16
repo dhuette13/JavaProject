@@ -8,7 +8,7 @@ package archeologyp1.shared;
 public class Map {
 	
 	public Coordinate[][] plane;
-	private int rows, columns;
+	private int width, height;
 	private ViewingOption viewingOption;
 	
 	/**
@@ -16,19 +16,19 @@ public class Map {
 	 * @param width
 	 * @param height
 	 */
-	public Map(int rows, int columns){
-		this.rows = rows;
-		this.columns = columns;
+	public Map(int width, int height){
+		this.width = width;
+		this.height = height;
 		viewingOption = ViewingOption.natural;
-		plane = new Coordinate[rows][columns];
+		plane = new Coordinate[height][width];
 	}
 	
-	public int getNumRows(){
-		return rows;
+	public int getWidth(){
+		return width;
 	}
 	
-	public int getNumColumns(){
-		return columns;
+	public int getHeight(){
+		return height;
 	}
 	
 	public void setViewingOption(ViewingOption option){

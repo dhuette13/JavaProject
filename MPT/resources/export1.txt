@@ -1,19 +1,15 @@
-  | A B C D E F G H I J K L M N O P 
-_ + _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-01 |g g g g g g g g g g g g g g g g 
-02 |g g g g g g g g g g g g g g g g 
-03 |g g g g g g g g g g g g g g g g 
-04 |g g g g g g g g g g g g g g g g 
-05 |g g g g g g g g g g g g g g g g 
-06 |g g g g g g g g g g g g g g g g 
-07 |g g g g g g g g g g g g g g g g 
-08 |g g g g g g g g g g g g g g g g 
-09 |g g g g g g g g g g g g g g g g 
-10 |g g g g g g g g g g g g g g g g 
-11 |g g g g g g g g g g g g g g g g 
-12 |g g g g g g g g g g g g g g g g 
-13 |g g g g g g g g g g g g g g g g 
-14 |g g g g g g g g g g g g g g g g 
-15 |g g g g g g g g g g g g g g g g 
-16 |g g g g g g g g g g g g g g g g 
+  | A B C D E F G H I J K L M N O P Q R S T U V W X 
+_ + _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+01 |D D D D D D D D D D D D D D D D D D D D D D D D 
+02 |D P P P P P P P P P P P P P P P P P P P P P P D 
+03 |D P D D D D D D D D D D D D D D D D D D D D P D 
+04 |D P D S S S S S S S S S S S S S S S S S S D P D 
+05 |D P D S D D D D D D D D D D D D D D D D S D P D 
+06 |D P D S D D D D D D D D D D D D D D D D S D P D 
+07 |D P D S D D S S S S S S S S S S S S D D S D P D 
+08 |D P D S D D S D D D D D D D D D D S D D S D P D 
+09 |D P D S S S S D D D D D D D D D D S S S S D P D 
+10 |D P D D D D D D D D D D D D D D D D D D D D P D 
+11 |D P P P P P P P P P P P P P P P P P P P P P P D 
+12 |D D D D D D D D D D D D D D D D D D D D D D D D 
 

@@ -20,8 +20,8 @@ public class Utilities {
 	public static Map generateMap(int width, int height){
 		Map map = new Map(width, height);
 		int r, c;
-		for(r = 0; r < map.getNumRows(); r++)
-			for(c = 0; c < map.getNumColumns(); c++)
+		for(r = 0; r < map.getHeight(); r++)
+			for(c = 0; c < map.getWidth(); c++)
 				map.plane[r][c] = new Coordinate();
 		
 		return map;
@@ -44,8 +44,8 @@ public class Utilities {
 			
 			/* Get file dimensions */
 			String dimensions[] = line.split(",");
-			colSize = Integer.parseInt(dimensions[0]);
-			rowSize = Integer.parseInt(dimensions[1]);
+			rowSize = Integer.parseInt(dimensions[0]);
+			colSize = Integer.parseInt(dimensions[1]);
 			map = new Map(rowSize, colSize);
 			
 			String dataArray[];
@@ -117,18 +117,18 @@ public class Utilities {
 		int r, c;
 		Coordinate current;
 		output.format("  | ");
-		for(c = 0; c < map.getNumColumns(); c++){
+		for(c = 0; c < map.getWidth(); c++){
 			output.format("%c ", (char) (c + 65));
 		}
 		output.println();
 		output.format("_ +");
-		for(c = 0; c < map.getNumColumns(); c++){
+		for(c = 0; c < map.getWidth(); c++){
 			output.format(" _");
 		}
 		output.println();
-		for(r = 0; r < map.getNumRows(); r++){
+		for(r = 0; r < map.getHeight(); r++){
 			output.format("%02d |", r + 1);
-			for(c = 0; c < map.getNumColumns(); c++){
+			for(c = 0; c < map.getWidth(); c++){
 				current = map.plane[r][c];
 				output.format("%c ", current.getCurrentViewableSymbol());
 			}

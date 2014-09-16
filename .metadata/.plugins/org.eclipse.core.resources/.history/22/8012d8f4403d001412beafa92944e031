@@ -128,7 +128,7 @@ public class Utilities {
 		output.println();
 		for(r = 0; r < map.getNumRows(); r++){
 			output.format("%02d |", r + 1);
-			for(c = 0; c < map.getNumColumns(); c++){
+			for(c = 0; c < map.getNumRows(); c++){
 				current = map.plane[r][c];
 				output.format("%c ", current.getCurrentViewableSymbol());
 			}
