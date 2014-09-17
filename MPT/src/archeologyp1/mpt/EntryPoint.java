@@ -7,15 +7,17 @@ import java.util.Scanner;
 
 import archeologyp1.shared.Map;
 import archeologyp1.shared.Utilities;
-//import java.io.File;
+
 /**
  * Main Class for Map Population Tool
  * @author Daniel
  *
  */
+ 
 public class EntryPoint {
 	Scanner input;
 	int selection;
+	int mapselect1;
 	boolean flag;
 	String path;
 	Map map;
@@ -78,7 +80,16 @@ public class EntryPoint {
 	private void handleMenu(){
 		flag = true;
 		while(flag){
-
+			
+			System.out.println("Please pick what you would like to do.");
+			System.out.println("1 ) Change a coordinate");
+			System.out.println("2 ) Change a viewing symbol"); //Should we do it so that they have to have more than one symbol before they start changing it?
+			//We'll also have to make sure we keep track of what they use on the map so we know what to prompt them to change.
+			System.out.println("3 ) Print the map");
+			System.out.println("4 ) Export the map");
+			System.out.println("5 ) Save the map");
+			mapselect1 = input.nextInt();
+			
 			// 1) Change a coordinate
 			//  a) Change a single coordinate
 			//  b) Change a row
