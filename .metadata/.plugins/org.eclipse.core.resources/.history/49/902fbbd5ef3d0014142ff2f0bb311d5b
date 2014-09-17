@@ -15,6 +15,7 @@ import archeologyp1.shared.Utilities;
  */
 public class EntryPoint {
 	Scanner input;
+	Scanner input2;
 	int selection;
 	boolean flag;
 	String path;
@@ -75,19 +76,8 @@ public class EntryPoint {
 			System.err.println("Could not create file");
 			e.printStackTrace();
 		}
+		System.out.println("Goodbye");
 
-		// 1) Change a coordinate
-		//  a) Change a single coordinate
-		//  b) Change a row
-		//    - wizard: feature, viewing symbol, excavated?, find 
-		// 3) Change a viewing symbol
-		//  a) Whole map
-		//  b) Group of symbols
-		// 4) Print map
-		// 5) Export map
-		// 6) Save map
-		
-		
 		//		flag = true;
 		//		while(flag){
 		//			System.out.println();
@@ -102,6 +92,7 @@ public class EntryPoint {
 	 */
 	public static void main(String[] args) {
 		EntryPoint entry = new EntryPoint();
+		input2 = new Scanner();
 		entry.go();
 	}
 

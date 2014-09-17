@@ -75,19 +75,8 @@ public class EntryPoint {
 			System.err.println("Could not create file");
 			e.printStackTrace();
 		}
+		System.out.println("Goodbye");
 
-		// 1) Change a coordinate
-		//  a) Change a single coordinate
-		//  b) Change a row
-		//    - wizard: feature, viewing symbol, excavated?, find 
-		// 3) Change a viewing symbol
-		//  a) Whole map
-		//  b) Group of symbols
-		// 4) Print map
-		// 5) Export map
-		// 6) Save map
-		
-		
 		//		flag = true;
 		//		while(flag){
 		//			System.out.println();

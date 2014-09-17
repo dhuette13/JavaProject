@@ -40,8 +40,7 @@ public class Map {
 				current = plane[r][c];
 				if(current.getInspected()){
 					
-				} 
-				else{
+				} else{
 					plane[r][c].setCurrentViewableSymbol(' ');
 				}
 			}

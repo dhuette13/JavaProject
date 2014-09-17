@@ -49,13 +49,6 @@ public class Coordinate {
 		excavated = value;
 	}
 	
-	public boolean getInspected(){
-		return inspected;
-	}
-	
-	public void setInspected(boolean i){
-		inspected = i;
-	}
 	public void setFeature(Feature f){
 		feature = f;
 	}

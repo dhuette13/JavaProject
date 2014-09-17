@@ -76,13 +76,15 @@ public class EntryPoint {
 			e.printStackTrace();
 		}
 
-		// 1) Change a coordinate
+		// 1) Change a feature
 		//  a) Change a single coordinate
 		//  b) Change a row
-		//    - wizard: feature, viewing symbol, excavated?, find 
+		// 2) Change a find
+		//  a) Change a single coordinate
+		//  b) Change a row
 		// 3) Change a viewing symbol
-		//  a) Whole map
-		//  b) Group of symbols
+		//  a) Change a single coordinate
+		//  b) Change a row
 		// 4) Print map
 		// 5) Export map
 		// 6) Save map

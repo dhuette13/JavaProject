@@ -53,8 +53,9 @@ public class Coordinate {
 		return inspected;
 	}
 	
+	
 	public void setInspected(boolean i){
-		inspected = i;
+		inpected = i;
 	}
 	public void setFeature(Feature f){
 		feature = f;

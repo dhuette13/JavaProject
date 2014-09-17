@@ -33,19 +33,6 @@ public class Map {
 	
 	public void setViewingOption(ViewingOption option){
 		viewingOption = option;
-		int r,c;
-		Coordinate current;
-		for(r = 0; r < rows; r++){
-			for(c = 0; c < columns; c++){
-				current = plane[r][c];
-				if(current.getInspected()){
-					
-				} 
-				else{
-					plane[r][c].setCurrentViewableSymbol(' ');
-				}
-			}
-		}
 	}
 	
 	public ViewingOption getViewingOption(){

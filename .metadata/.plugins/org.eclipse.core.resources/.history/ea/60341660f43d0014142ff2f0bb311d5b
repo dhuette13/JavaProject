@@ -37,13 +37,9 @@ public class Map {
 		Coordinate current;
 		for(r = 0; r < rows; r++){
 			for(c = 0; c < columns; c++){
-				current = plane[r][c];
-				if(current.getInspected()){
-					
-				} 
-				else{
-					plane[r][c].setCurrentViewableSymbol(' ');
-				}
+				current = plance[r][c];
+				if(place[r][c])
+				plane[r][c].setCurrentViewableSymbol(' ');
 			}
 		}
 	}

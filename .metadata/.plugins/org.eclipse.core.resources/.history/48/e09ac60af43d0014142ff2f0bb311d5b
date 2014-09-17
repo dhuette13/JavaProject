@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class Coordinate {
 	private Feature feature;
 	private boolean excavated;
-	private boolean inspected;
 	private char currentViewableSymbol;
 	private ArrayList<Pot> potCount = new ArrayList<Pot>();
 	private ArrayList<MetalObject> metalCount = new ArrayList<MetalObject>();
@@ -49,13 +48,6 @@ public class Coordinate {
 		excavated = value;
 	}
 	
-	public boolean getInspected(){
-		return inspected;
-	}
-	
-	public void setInspected(boolean i){
-		inspected = i;
-	}
 	public void setFeature(Feature f){
 		feature = f;
 	}
