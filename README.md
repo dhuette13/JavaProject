@@ -1,5 +1,5 @@
 JavaProject
 ===========
 
-This is a Java Project
+Phase One due September 29th.
 
