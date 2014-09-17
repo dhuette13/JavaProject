@@ -18,3 +18,30 @@ import archeologyp1.shared.Utilities;
 // 4) Print map
 // 5) Export map
 // 6) Save map
+
+public class UserCoordinate{
+        
+        int userCoord;
+        int userView;
+        
+        public static changeCoordinate(){
+                
+                System.out.println("What would you like to change?");
+                System.out.println("1 ) A single coordinate");
+                System.out.println("2 ) An entire row");
+                System.out.println("::> ");
+                userCoord = input.nextInt();
+                
+        }
+        
+        pubic static changeViewing(){
+                
+                System.out.println("What would you like to change?");
+                System.out.println("1 ) The whole map");
+                System.out.println("2 ) A group of symbols");
+                System.out.println("::> ");
+                userView = input.nextInt();
+                
+        }
+        
+}
