@@ -6,4 +6,8 @@ public class Charcoal {
 	public Charcoal(int date){
 		this.date = date;
 	}
+	
+	public int getDate(){
+		return date;
+	}
 }

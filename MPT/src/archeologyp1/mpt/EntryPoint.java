@@ -27,6 +27,22 @@ public class EntryPoint {
 	}
 
 	public void go(){
+		handleLoad();
+
+		/* Print map to standard out */
+		Utilities.printMap(map, System.out);
+
+		/* Export map to new file */
+		try{
+			Utilities.printMap(map, new PrintStream(new File("resources/export1.txt")));
+		} catch (Exception e){
+			System.err.println("Could not create file");
+			e.printStackTrace();
+		}
+	}
+
+	private void handleLoad(){
+		flag = true;
 		do{
 			try{
 				System.out.println("1 ) Load Map ");
@@ -37,19 +53,12 @@ public class EntryPoint {
 				case 1:
 					System.out.print("Enter path name: ");
 					path = input.next();
-					//File f = new File(path);
-					//if(f.exists() == false)
-					//{
-					//   throw new FileNotFoundException("This file cannot be found. Please try again.");
-					//}
-					//probably need an else-if and an else in here too, need to think more on what they'd do though
 					map = Utilities.load(path);
 					if(map != null)
 						flag = false;
 					break;
 				case 2:
 					System.out.print("Enter the desired dimensions (width height): " );
-					// Check format of the user's input? (width height) or (width, height) 
 					width = input.nextInt();
 					height = input.nextInt();
 					map = Utilities.generateMap(width, height);
@@ -64,38 +73,27 @@ public class EntryPoint {
 				input.nextLine();
 			}
 		} while(flag);
-
-		/* Print map to standard out */
-		Utilities.printMap(map, System.out);
-
-		/* Export map to new file */
-		try{
-			Utilities.printMap(map, new PrintStream(new File("resources/export1.txt")));
-		} catch (Exception e){
-			System.err.println("Could not create file");
-			e.printStackTrace();
-		}
-
-		// 1) Change a coordinate
-		//  a) Change a single coordinate
-		//  b) Change a row
-		//    - wizard: feature, viewing symbol, excavated?, find 
-		// 3) Change a viewing symbol
-		//  a) Whole map
-		//  b) Group of symbols
-		// 4) Print map
-		// 5) Export map
-		// 6) Save map
-		
-		
-		//		flag = true;
-		//		while(flag){
-		//			System.out.println();
-		//			
-		//		}
-
 	}
+	
+	private void handleMenu(){
+		flag = true;
+		while(flag){
 
+			// 1) Change a coordinate
+			//  a) Change a single coordinate
+			//  b) Change a row
+			//    - wizard: feature, viewing symbol, excavated?, find 
+			// 3) Change a viewing symbol
+			//  a) Whole map
+			//  b) Group of symbols
+			// 4) Print map
+			// 5) Export map
+			// 6) Save map
+
+			System.out.println();
+
+		}
+	}
 	/**
 	 * 
 	 * @param args

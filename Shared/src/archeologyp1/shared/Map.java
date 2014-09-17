@@ -6,11 +6,11 @@ package archeologyp1.shared;
  *
  */
 public class Map {
-	
+
 	public Coordinate[][] plane;
 	private int rows, columns;
 	private ViewingOption viewingOption;
-	
+
 	/**
 	 * 
 	 * @param rows
@@ -22,15 +22,15 @@ public class Map {
 		viewingOption = ViewingOption.natural;
 		plane = new Coordinate[rows][columns];
 	}
-	
+
 	public int getNumRows(){
 		return rows;
 	}
-	
+
 	public int getNumColumns(){
 		return columns;
 	}
-	
+
 	public void setViewingOption(ViewingOption option){
 		viewingOption = option;
 		int r,c;
@@ -39,7 +39,7 @@ public class Map {
 			for(c = 0; c < columns; c++){
 				current = plane[r][c];
 				if(current.getInspected()){
-					
+
 				} 
 				else{
 					plane[r][c].setCurrentViewableSymbol(' ');
@@ -47,7 +47,7 @@ public class Map {
 			}
 		}
 	}
-	
+
 	public ViewingOption getViewingOption(){
 		return viewingOption;
 	}

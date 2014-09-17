@@ -6,4 +6,8 @@ public class Pot {
 	public Pot(int date){
 		this.date = date;
 	}
+	
+	public int getDate(){
+		return date;
+	}
 }

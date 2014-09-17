@@ -12,23 +12,24 @@ public class Coordinate {
 	private boolean excavated;
 	private boolean inspected;
 	private char currentViewableSymbol;
-	private ArrayList<Pot> potCount = new ArrayList<Pot>();
-	private ArrayList<MetalObject> metalCount = new ArrayList<MetalObject>();
-	private ArrayList<Charcoal> charcoalCount = new ArrayList<Charcoal>();
-	
+	public ArrayList<Pot> potCount = new ArrayList<Pot>();
+	public ArrayList<MetalObject> metalCount = new ArrayList<MetalObject>();
+	public ArrayList<Charcoal> charcoalCount = new ArrayList<Charcoal>();
+
 	public Coordinate(){
 		feature = Feature.naturalGrass;
 		currentViewableSymbol = 'g';
 		excavated = false;
 	}
-	
+
 	public void setCurrentViewableSymbol(char symbol){
-		if(excavated)
+		if(excavated){
 			currentViewableSymbol = symbol;
-		else{
+		}
+		else {
 			switch(symbol){
 			case 'D':
-				currentViewableSymbol = 'N';
+				currentViewableSymbol = 'g';
 				break;
 			case 'P':
 				currentViewableSymbol = 'G';
@@ -38,43 +39,71 @@ public class Coordinate {
 				break;
 			}
 		}
-			
+
 	}
-	
+
 	public char getCurrentViewableSymbol(){
 		return currentViewableSymbol;
 	}
-	
+
+	public boolean getExcavated() {
+		return excavated;
+	}
+
 	public void setExcavated(boolean value){
 		excavated = value;
 	}
-	
+
 	public boolean getInspected(){
 		return inspected;
 	}
-	
+
 	public void setInspected(boolean i){
 		inspected = i;
 	}
-	public void setFeature(Feature f){
-		feature = f;
-	}
-	
-	public void addPot(Pot... pots){
-		for(Pot p: pots){
-			potCount.add(p);
+
+	public void setFeature(char featureType){
+		switch(featureType){
+		case 'Y':
+			feature = Feature.parchedGrass;
+			break;
+		case 'G':
+			feature = Feature.wetGrass;
+			break;
+		case 'N':
+			feature = Feature.naturalGrass;
+			break;
+		case 'S':
+			feature = Feature.stone;
+			break;
+		case 'P':
+			feature = Feature.postHole;
+			break;
+		case 'D':
+			feature = Feature.exposedDirt;
+			break;
+		default:
+			System.out.println("Invalid case");
 		}
 	}
-	
-	public void addMetal(MetalObject... metals){
-		for(MetalObject m: metals){
-			metalCount.add(m);
+
+	public char getFeature(){
+		switch(feature){
+		case parchedGrass:
+			return 'Y';
+		case wetGrass:
+			return 'G';
+		case naturalGrass:
+			return 'N';
+		case stone:
+			return 'S';
+		case postHole:
+			return 'P';
+		case exposedDirt:
+			return 'D';
+		default:
+			System.out.println("Invalid case");
 		}
-	}
-	
-	public void addCharcoal(Charcoal... charcoals){
-		for(Charcoal c: charcoals){
-			charcoalCount.add(c);
-		}
+		return currentViewableSymbol;
 	}
 }
