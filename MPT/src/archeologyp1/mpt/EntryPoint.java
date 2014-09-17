@@ -18,6 +18,8 @@ public class EntryPoint {
 	Scanner input;
 	int selection;
 	int mapselect1;
+	int userCoord;
+	int userView;
 	boolean flag;
 	String path;
 	Map map;
@@ -93,10 +95,25 @@ public class EntryPoint {
 			
 			switch(mapselect1){
 			case 1:
-				//map = mpt.changeCoordinate();
+				//System.out.println("What would you like to change?");
+				//System.out.println("1 ) A single coordinate");
+				//System.out.println("2 ) An entire row");
+				//System.out.println("::> ");
+				//userCoord = input.nextInt();
+				
+				//map = mpt.changeCoordinate(userCoord);
+				
 				//flag = false;
 				break;
 			case 2:
+				//System.out.println("What would you like to change?");
+                		//System.out.println("1 ) The whole map");
+                		//System.out.println("2 ) A group of symbols");
+                		//System.out.println("::> ");
+                		//userView = input.nextInt();
+                		
+                		//map = mpt.changeViewing(userView);
+                		
 				//flag = false;
 				break;
 			case 3:
