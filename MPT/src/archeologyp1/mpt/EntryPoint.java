@@ -88,6 +88,7 @@ public class EntryPoint {
 			System.out.println("3 ) Print the map");
 			System.out.println("4 ) Export the map");
 			System.out.println("5 ) Save the map");
+			System.out.println("::> ");
 			mapselect1 = input.nextInt();
 			
 			// 1) Change a coordinate
