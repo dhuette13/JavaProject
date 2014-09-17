@@ -68,7 +68,7 @@ public class EntryPoint {
 						flag = false;
 					break;
 				default:
-					System.out.println("Invalid Choice, Try again.");
+					System.out.println("Invalid choice. Please try again.");
 				}
 			} catch (InputMismatchException e){
 				System.out.println("Incorrect input, try again.");
@@ -90,6 +90,21 @@ public class EntryPoint {
 			System.out.println("5 ) Save the map");
 			System.out.println("::> ");
 			mapselect1 = input.nextInt();
+			
+			switch(mapselect1){
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4: 
+				break;
+			case 5: 
+				break;
+			default:
+				System.out.println("That is not a valid choice. Please choose again.");
+			}
 			
 			// 1) Change a coordinate
 			//  a) Change a single coordinate
