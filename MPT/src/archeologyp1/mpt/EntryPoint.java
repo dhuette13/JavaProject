@@ -93,14 +93,20 @@ public class EntryPoint {
 			
 			switch(mapselect1){
 			case 1:
+				//map = mpt.changeCoordinate();
+				//flag = false;
 				break;
 			case 2:
+				//flag = false;
 				break;
 			case 3:
+				//flag = false;
 				break;
 			case 4: 
+				//flag = false;
 				break;
 			case 5: 
+				//flag = false;
 				break;
 			default:
 				System.out.println("That is not a valid choice. Please choose again.");
