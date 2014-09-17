@@ -7,6 +7,7 @@ import java.util.ArrayList;
  * @author Daniel
  *
  */
+ 
 public class Coordinate {
 	private Feature feature;
 	private boolean excavated;
