@@ -104,14 +104,8 @@ public class EntryPoint {
 				
 				//flag = false;
 				break;
-			case 2:
-				//System.out.println("What would you like to change?");
-                		//System.out.println("1 ) The whole map");
-                		//System.out.println("2 ) A group of symbols");
-                		//System.out.println("::> ");
-                		//userView = input.nextInt();
-                		
-                		//map = mpt.changeViewing(userView);
+			case 2:                		
+                //map = mpt.changeViewing(userView);
                 		
 				//flag = false;
 				break;
