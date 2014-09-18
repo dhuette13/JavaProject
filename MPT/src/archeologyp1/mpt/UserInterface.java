@@ -102,6 +102,7 @@ public class UserInterface {
 		char s;
 		char p;
 		char d;
+		char symbolChange;
 		
 		Scanner input = new Scanner(System.in);
 		System.out.println("What would you like to change?");
@@ -131,9 +132,33 @@ public class UserInterface {
 			System.out.println("What would you like to switch 'D' with?");
 			d = input.next().charAt(0);
 			
+			break;
+			
 		case 2:
 			
-			System.out.println("");
+			System.out.println("Which symbol would you like to change?");
+			symbolChange = input.next().charAt(0);
+			
+			switch(symbolChange){
+			case 'Y':
+				break;
+			case 'G':
+				break;
+			case 'N':
+				break;
+			case 'S':
+				break;
+			case 'P':
+				break;
+			case 'D':
+				break;
+			case 'g':
+				break;
+			default:
+				break;
+			}
+			
+			break;
 			
 		default:
 			
