@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-<typeInfo handle="=Shared/src&lt;archeologyp1.shared{Coordinate.java[Coordinate" modifiers="1" timestamp="1410921269000"/>
+<typeInfo handle="=Shared/src&lt;archeologyp1.shared{Coordinate.java[Coordinate" modifiers="1" timestamp="1410987359000"/>
 <typeInfo handle="=Shared/src&lt;archeologyp1.shared{ViewingOption.java[ViewingOption" modifiers="16385" timestamp="1410907698000"/>
 <typeInfo handle="=Shared/src&lt;archeologyp1.shared{Feature.java[Feature" modifiers="16385" timestamp="1410490662000"/>
 <typeInfo handle="=Shared/src&lt;archeologyp1.shared{Pot.java[Pot" modifiers="1" timestamp="1410920714000"/>
 <typeInfo handle="=Shared/src&lt;archeologyp1.shared{Charcoal.java[Charcoal" modifiers="1" timestamp="1410920723000"/>
 <typeInfo handle="=Shared/src&lt;archeologyp1.shared{MetalObject.java[MetalObject" modifiers="1" timestamp="1410920734000"/>
 <typeInfo handle="=Shared/src&lt;archeologyp1.shared{Utilities.java[Utilities" modifiers="1" timestamp="1410921655000"/>
-<typeInfo handle="=MPT/src&lt;archeologyp1.mpt{EntryPoint.java[EntryPoint" modifiers="1" timestamp="1410921996000"/>
 </typeInfoHistroy>

@@ -81,7 +81,7 @@ public class EntryPoint {
 
 	private void handleMenu(){
 		flag = true;
-		while(flag) {
+		while(flag){
 			System.out.println("Please pick what you would like to do.");
 			System.out.println("1 ) Change a coordinate");
 			System.out.println("2 ) Change a viewing symbol"); //Should we do it so that they have to have more than one symbol before they start changing it?

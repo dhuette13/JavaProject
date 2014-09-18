@@ -120,6 +120,7 @@ public class Utilities {
 					out.print(((char)(c + 65)) + "," + r);
 					out.print("," + current.getFeature());
 					out.print("," + Boolean.toString(current.getExcavated()).toUpperCase());
+					Boolean.
 					out.print("," + current.potCount.size());
 					for(k = 0; k < current.potCount.size(); k++){
 						out.print("," + current.potCount.get(k).getDate());

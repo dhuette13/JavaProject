@@ -119,7 +119,7 @@ public class Utilities {
 					current = m.plane[r][c];
 					out.print(((char)(c + 65)) + "," + r);
 					out.print("," + current.getFeature());
-					out.print("," + Boolean.toString(current.getExcavated()).toUpperCase());
+					out.print("," + new Boolean(current.getExcavated()).toString().toUpperCase());
 					out.print("," + current.potCount.size());
 					for(k = 0; k < current.potCount.size(); k++){
 						out.print("," + current.potCount.get(k).getDate());
