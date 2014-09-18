@@ -13,11 +13,7 @@ import java.util.Scanner;
 // 5) Export map
 // 6) Save map
 
-public class UserCoordinate {
-
-	// changeCoord case 1 variables
-	// changeCoord case 2 variables
-
+public class UserInterface {
 
 	public static void changeCoordinate(int OR){
 		Scanner input = new Scanner(System.in);
@@ -99,13 +95,51 @@ public class UserCoordinate {
 	}
 
 	public static void changeViewing(){
-		int selection;
+		int changeMap;
+		char y; 
+		char g;
+		char n;
+		char s;
+		char p;
+		char d;
+		
 		Scanner input = new Scanner(System.in);
 		System.out.println("What would you like to change?");
 		System.out.println("1 ) The whole map");
 		System.out.println("2 ) A group of symbols");
 		System.out.println("::> ");
-		selection = input.nextInt();
+		changeMap = input.nextInt();
+		
+		switch(changeMap){
+		case 1:
+			
+			System.out.println("What would you like to switch 'Y' with?");
+			y = input.next().charAt(0);
+			
+			System.out.println("What would you like to switch 'G' with?");
+			g = input.next().charAt(0);
+			
+			System.out.println("What would you like to switch 'N' with?");
+			n = input.next().charAt(0);
+			
+			System.out.println("What would you like to swtich 'S' with?");
+			s = input.next().charAt(0);
+			
+			System.out.println("What would you like to switch 'P' with?");
+			p = input.next().charAt(0);
+			
+			System.out.println("What would you like to switch 'D' with?");
+			d = input.next().charAt(0);
+			
+		case 2:
+			
+			System.out.println("");
+			
+		default:
+			
+			System.out.println("");
+			
+		}
 
 	}
 
