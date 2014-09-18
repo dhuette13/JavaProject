@@ -143,15 +143,6 @@ public class Utilities {
 	}
 
 	public static void printMap(Map map, PrintStream output){
-		int r, c;
-		Coordinate current;
-		/* Print the Column labels */
-		output.format("  |");
-		for(c = 0; c < map.getNumColumns(); c++){
-			output.format("%c", (char) (c + 65));
-		}
-
-
 
 		output.println();
 		output.format("--+");

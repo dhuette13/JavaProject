@@ -146,9 +146,9 @@ public class Utilities {
 		int r, c;
 		Coordinate current;
 		/* Print the Column labels */
-		output.format("  |");
+		output.format(" | ");
 		for(c = 0; c < map.getNumColumns(); c++){
-			output.format("%c", (char) (c + 65));
+			output.format("%c ", (char) (c + 65));
 		}
 
 
