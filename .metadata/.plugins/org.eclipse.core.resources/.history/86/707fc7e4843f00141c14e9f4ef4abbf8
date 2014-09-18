@@ -143,6 +143,30 @@ public class Utilities {
 	}
 
 	public static void printMap(Map map, PrintStream output){
+		int r, c, numRows;
+		Coordinate current;
+		String columnLabel = new String();
+		/* Print the Column labels */
+		output.format("  |");
+		numRows = (int) Math.floor(Math.log(map.getNumColumns()) / Math.log(26.0));
+		for(r = 0; r < numRows; r++) {
+			int columnChunk = (int) Math.floor(map.getNumColumns() / 26);
+			int columnLeftover = map.getNumColumns() % 26;
+			for(c = 0; c < columnChunk; c++){
+				/* If its the last row */
+				if(r % numRows == 0){
+					columnLabel += ((char) (c + 65));
+				} else {
+					for(int p = 0; p < 26 * numRows; p++){
+						columnLabel += '0';
+					}
+				}
+				if(c % 26 == 0){
+					
+				}
+			}
+			output.format("%s", columnLabel);
+		}
 
 		output.println();
 		output.format("--+");

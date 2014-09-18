@@ -13,7 +13,7 @@ import java.util.Scanner;
 // 5) Export map
 // 6) Save map
 
-public class UserInterface {
+public class UserCoordinate {
 
 	// changeCoord case 1 variables
 	// changeCoord case 2 variables
