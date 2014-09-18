@@ -14,6 +14,13 @@ import java.util.Scanner;
 // 6) Save map
 
 public class UserInterface {
+<<<<<<< HEAD
+
+	// changeCoord case 1 variables
+	// changeCoord case 2 variables
+
+=======
+>>>>>>> 6efe70cf5efe562aa83a9ef4d57769057f498ad5
 
 	public static void changeCoordinate(int OR){
 		Scanner input = new Scanner(System.in);
