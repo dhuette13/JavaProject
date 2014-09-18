@@ -111,12 +111,13 @@ public class UserCoordinate{
                                         continue;
                                 }
                         }
-                        
                         rowCoord(r1);
                         
+                default:
+                
+                        System.out.println("Not a valid option. Please try again.");
+                        
                 }
-                
-                
         }
         
         pubic static changeViewing(){
