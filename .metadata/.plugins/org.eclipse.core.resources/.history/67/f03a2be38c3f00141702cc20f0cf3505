@@ -115,8 +115,7 @@ public class Utilities {
 			Coordinate current;
 			int r, c, k;
 			/* For every element in the map array,
-			 * get the data elements and write to
-			 * data file in comma separated format.
+			 * 
 			 */
 			for(r = 0; r < m.getNumRows(); r++){
 				for(c = 0; c < m.getNumColumns(); c++){

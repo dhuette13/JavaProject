@@ -114,10 +114,6 @@ public class Utilities {
 			out.println(m.getNumColumns() + "," + m.getNumRows());
 			Coordinate current;
 			int r, c, k;
-			/* For every element in the map array,
-			 * get the data elements and write to
-			 * data file in comma separated format.
-			 */
 			for(r = 0; r < m.getNumRows(); r++){
 				for(c = 0; c < m.getNumColumns(); c++){
 					current = m.plane[r][c];
@@ -146,29 +142,15 @@ public class Utilities {
 		}
 	}
 
-	/**
-	 * 
-	 * @param map map to print or export
-	 * @param output stream to output to
-	 */
 	public static void printMap(Map map, PrintStream output){
 		int r, c;
 		Coordinate current;
 		char columnCharacter = 'A';
-		/* Print the Column labels 
-		 * 
-		 * If there are more than 26 columns, a second row
-		 * will be needed for the ruler.
-		 */
+		/* Print the Column labels */
 		if(map.getNumColumns() > 26){
 			output.println();
 			output.format("  |");
-			/* Print 0's as a buffer for first iteration of the alphabet */
 			for(int k = 0; k < 26; k++) output.print(0);
-			
-			/* Print a sequence common characters for every
-			 * 26 characters.
-			 */
 			for(int k = 1; k <= map.getNumColumns() - 26; k++){
 				if((k % 26) == 0) columnCharacter = (char) (columnCharacter + 1);
 				output.print(columnCharacter);
@@ -183,15 +165,11 @@ public class Utilities {
 				}
 			}
 			
-			/* Print the remaining characters for the last alphabet */
 			for(int k = 0; k < map.getNumColumns() % 26; k++){
 				output.print((char) ('A' + k));
 			}
 			
 		} else {
-			/* If the number of columns is less than 26,
-			 * a second row is not needed.
-			 */
 			output.format("  |");
 			for(c = 0; c < map.getNumColumns(); c++){
 				output.format("%c", (char) (c + 65));
