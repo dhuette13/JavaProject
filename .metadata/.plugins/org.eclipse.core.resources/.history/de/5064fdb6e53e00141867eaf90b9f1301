@@ -16,18 +16,20 @@ import java.util.Scanner;
 public class UserCoordinate {
 
 	// changeCoord case 1 variables
-	// changeCoord case 2 variables
+//	int a; //first user input in changeCoord
 
+	//changeCoord case 2 variables
+	
 
 	public static void changeCoordinate(int OR){
 		Scanner input = new Scanner(System.in);
 		boolean bool = true;
 		int a, a2, a3;
-		char c = 'A';
-		int r = 0;
+		char c;
+		int b;
 		int check1, check2; 
-		int r1 = 0;
-
+		int r1;
+		
 		System.out.println("What would you like to do?");
 		System.out.println("1 ) Change just one coordinate");
 		System.out.println("2 ) Change an entire row");
@@ -40,13 +42,13 @@ public class UserCoordinate {
 			while(bool){
 				System.out.println("What column?");
 				System.out.println("::> ");
-				c = input.next().charAt(0);
+				c = sc.next().charAt(0);
 
 				System.out.println("What row?");
 				System.out.println("::> ");
-				r = input.nextInt();
+				b = input.nextInt();
 
-				System.out.println("The following coordinate is what you want to change: "+c+", "+r);
+				System.out.println("The following coordinate is what you want to change: "+c+", "+b);
 				System.out.println("If this is correct, please hit 1. If it is not, please hit 0.");
 				System.out.println("::> ");
 				check1 = input.nextInt();
@@ -59,10 +61,10 @@ public class UserCoordinate {
 				}
 				else{
 					System.out.println("This input is not correct. Please try again.");
-					continue;
+							continue;
 				}
 			}
-			singleCoord(c, r);
+			singleCoord(c, b);
 
 		case 2: 
 			bool = true;
@@ -81,12 +83,12 @@ public class UserCoordinate {
 				if(check2 == 1){
 					bool = false;   
 				}
-				else if(check2 == 0){
+				else if(check 2 == 0){
 					continue;
 				}
 				else{
 					System.out.println("This input is incorrect. Please try again.");
-					continue;
+							continue;
 				}
 			}
 			rowCoord(r1);
@@ -100,7 +102,6 @@ public class UserCoordinate {
 
 	public static void changeViewing(){
 		int selection;
-		Scanner input = new Scanner(System.in);
 		System.out.println("What would you like to change?");
 		System.out.println("1 ) The whole map");
 		System.out.println("2 ) A group of symbols");
@@ -109,11 +110,11 @@ public class UserCoordinate {
 
 	}
 
-	public static void singleCoord(char col, int row1){
+	public void singleCoord(char col, int row1){
 
 	}
 
-	public static void rowCoord(int row2){
+	public void rowCoord(int row2){
 
 	}
 

@@ -17,17 +17,17 @@ public class UserCoordinate {
 
 	// changeCoord case 1 variables
 	// changeCoord case 2 variables
-
+	
 
 	public static void changeCoordinate(int OR){
 		Scanner input = new Scanner(System.in);
 		boolean bool = true;
 		int a, a2, a3;
-		char c = 'A';
+		char c;
 		int r = 0;
 		int check1, check2; 
-		int r1 = 0;
-
+		int r1;
+		
 		System.out.println("What would you like to do?");
 		System.out.println("1 ) Change just one coordinate");
 		System.out.println("2 ) Change an entire row");
@@ -59,7 +59,7 @@ public class UserCoordinate {
 				}
 				else{
 					System.out.println("This input is not correct. Please try again.");
-					continue;
+							continue;
 				}
 			}
 			singleCoord(c, r);
@@ -86,7 +86,7 @@ public class UserCoordinate {
 				}
 				else{
 					System.out.println("This input is incorrect. Please try again.");
-					continue;
+							continue;
 				}
 			}
 			rowCoord(r1);
