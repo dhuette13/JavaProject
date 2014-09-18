@@ -23,10 +23,10 @@ public class Utilities {
 		for(r = 0; r < map.getNumRows(); r++)
 			for(c = 0; c < map.getNumColumns(); c++)
 				map.plane[r][c] = new Coordinate();
-		
+
 		return map;
 	}
-	
+
 	/**
 	 * Loads map from file into memory
 	 * @param path
@@ -41,25 +41,25 @@ public class Utilities {
 			File myFile = new File(path);
 			scan = new Scanner(myFile);
 			String line = scan.nextLine();
-			
+
 			/* Get file dimensions */
 			String dimensions[] = line.split(",");
 			colSize = Integer.parseInt(dimensions[0]);
 			rowSize = Integer.parseInt(dimensions[1]);
 			map = new Map(rowSize, colSize);
-			
+
 			String dataArray[];
 			for(r = 0; r < map.getNumRows(); r++)
 				for(c = 0; c < map.getNumColumns(); c++)
 					map.plane[r][c] = new Coordinate();
-			
+
 			Coordinate current;
 			int numPots, numMetal, numCharcoal, date, i = 0;
-			
+
 			while(scan.hasNextLine()){
 				line = scan.nextLine();
 				dataArray = line.split(",");
-				
+
 				/* Get integer index for row and column */ 
 				c = ((int) (dataArray[i++].charAt(0))) - 65;
 				r = Integer.parseInt(dataArray[i++]);
@@ -71,21 +71,21 @@ public class Utilities {
 				current.setFeature(dataArray[i].charAt(0));
 				current.setCurrentViewableSymbol(dataArray[i++].charAt(0));
 				current.setExcavated(Boolean.parseBoolean(dataArray[i++]));
-				
+
 				/* Iterate through pot input */
 				numPots = Integer.parseInt(dataArray[i++]);
 				while(numPots-- != 0){
 					date = Integer.parseInt(dataArray[i++]);
 					current.potCount.add(new Pot(date));
 				}
-				
+
 				/* Iterate through metal input */
 				numMetal = Integer.parseInt(dataArray[i++]);
 				while(numMetal-- != 0){
 					date = Integer.parseInt(dataArray[i++]);
 					current.metalCount.add(new MetalObject(date));
 				}
-				
+
 				/* Iterate through charcoal input */
 				numCharcoal = Integer.parseInt(dataArray[i++]);
 				while(numCharcoal-- != 0){
@@ -99,10 +99,10 @@ public class Utilities {
 		} catch (FileNotFoundException e) {
 			System.out.println("Invalid Path specified");
 		}
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * Saves map from memory into file
 	 * @param path fileName to save to
@@ -141,29 +141,46 @@ public class Utilities {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void printMap(Map map, PrintStream output){
-		int r, c;
+		int r, c, numRows;
 		Coordinate current;
+		String columnLabel = new String();
 		/* Print the Column labels */
-		output.format("  | ");
-		for(c = 0; c < map.getNumColumns(); c++){
-			output.format("%c ", (char) (c + 65));
+		output.format("  |");
+		numRows = (int) Math.floor(Math.log(map.getNumColumns()) / Math.log(26.0));
+		for(r = 0; r < numRows; r++) {
+			int columnChunk = (int) Math.floor(map.getNumColumns() / 26);
+			int columnLeftover = map.getNumColumns() % 26;
+			for(c = 0; c < columnChunk; c++){
+				/* If its the last row */
+				if(r % numRows == 0){
+					columnLabel += ((char) (c + 65));
+				} else {
+					for(int p = 0; p < 26 * numRows; p++){
+						columnLabel += '0';
+					}
+				}
+				if(c % 26 == 0){
+					
+				}
+			}
+			output.format("%s", columnLabel);
 		}
-		
+
 		output.println();
-		output.format("_ +");
+		output.format("--+");
 		for(c = 0; c < map.getNumColumns(); c++){
-			output.format(" _");
+			output.format("-");
 		}
 		output.println();
-		
+
 		/* Print the current viewable symbol for each row */
 		for(r = 0; r < map.getNumRows(); r++){
-			output.format("%02d |", r + 1);
+			output.format("%02d|", r + 1);
 			for(c = 0; c < map.getNumColumns(); c++){
 				current = map.plane[r][c];
-				output.format("%c ", current.getCurrentViewableSymbol());
+				output.format("%c", current.getCurrentViewableSymbol());
 			}
 			output.println();
 		}

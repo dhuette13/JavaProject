@@ -1,15 +1,15 @@
-  | A B C D E F G H I J K L M N O P Q R S T U V W X 
-_ + _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-01 |g g g g g g g g g g g g g g g g g g g g g g g g 
-02 |g G G G G G G G G G G G G G G G G G G G G G G g 
-03 |g G g g g g g g g g g g g g g g g g g g g g G g 
-04 |g G g Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y Y g G g 
-05 |g G g Y g g g g g g g g g g g g g g g g Y g G g 
-06 |g G g Y g g g g g g g g g g g g g g g g Y g G g 
-07 |g G g Y g g Y Y Y Y Y Y Y Y Y Y Y Y g g Y g G g 
-08 |g G g Y g g Y g g g g g g g g g g Y g g Y g G g 
-09 |g G g Y Y Y Y g g g g g g g g g g Y Y Y Y g G g 
-10 |g G g g g g g g g g g g g g g g g g g g g g G g 
-11 |g G G G G G G G G G G G G G G G G G G G G G G g 
-12 |g g g g g g g g g g g g g g g g g g g g g g g g 
+  |ABCDEFGHIJKLMNOPQRSTUVWX
+--+------------------------
+01|gggggggggggggggggggggggg
+02|gGGGGGGGGGGGGGGGGGGGGGGg
+03|gGggggggggggggggggggggGg
+04|gGgYYYYYYYYYYYYYYYYYYgGg
+05|gGgYggggggggggggggggYgGg
+06|gGgYggggggggggggggggYgGg
+07|gGgYggYYYYYYYYYYYYggYgGg
+08|gGgYggYggggggggggYggYgGg
+09|gGgYYYYggggggggggYYYYgGg
+10|gGggggggggggggggggggggGg
+11|gGGGGGGGGGGGGGGGGGGGGGGg
+12|gggggggggggggggggggggggg
 
