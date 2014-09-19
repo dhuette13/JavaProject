@@ -113,11 +113,7 @@ public class EntryPoint {
 					System.out.print("::> ");
 					row = input.nextInt();
 					column = input.next().charAt(0);
-					System.out.println("Enter a character to change to.");
-					System.out.print("::> ");
-					char symbol = input.next().charAt(0);
-					current = map.plane[row - 1][(int) (column - 'A')];
-					current.setFeatureSymbol(symbol);
+					current = map.plane[row - 1][column - 65];
 					break;
 					/* Print map */
 				case 5:

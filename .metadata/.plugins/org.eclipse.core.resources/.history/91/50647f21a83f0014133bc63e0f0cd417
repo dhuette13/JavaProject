@@ -42,28 +42,17 @@ public class Coordinate {
 			break;
 		case postHole:
 			if(excavated) currentViewableSymbol = postHoleSymbol;
-			else currentViewableSymbol = postHoleAlias;
+			else currentViewableSymbol = 'G';
 			break;
 		case dirt:
-			if(excavated) currentViewableSymbol = dirtSymbol;
-			else currentViewableSymbol = dirtAlias;
+			if(excavated) currentViewableSymbol = 'D';
+			else currentViewableSymbol = 'g';
 			break;
 		}
 	}
 	
 	/* Sets the current viewable symbol */ 
-	public void setFeatureSymbol(char symbol){
-		switch(feature){
-		case stone:
-			stoneSymbol = symbol;
-			break;
-		case postHole:
-			postHoleSymbol = symbol;
-			break;
-		case dirt:
-			dirtSymbol = symbol;
-			break;
-		}
+	public void setCurrentViewableSymbol(char symbol){
 		currentViewableSymbol = symbol;
 	}
 
@@ -103,11 +92,7 @@ public class Coordinate {
 		}
 	}
 
-	public Feature getFeature(){
-		return feature;
-	}
-	
-	public char getFeatureChar(){
+	public char getFeature(){
 		switch(feature){
 		case stone:
 			return 'S';

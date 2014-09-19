@@ -23,12 +23,6 @@ public class Coordinate {
 		feature = Feature.dirt;
 		currentViewableSymbol = 'g';
 		excavated = false;
-		stoneSymbol = 'S';
-		postHoleSymbol = 'P';
-		dirtSymbol = 'D';
-		stoneAlias = 'Y';
-		postHoleAlias = 'G';
-		dirtAlias = 'g';
 	}
 
 	/* Updates current viewable symbol based on
@@ -37,33 +31,22 @@ public class Coordinate {
 	public void setCurrentViewableSymbol(){
 		switch(feature){
 		case stone:
-			if(excavated) currentViewableSymbol = stoneSymbol;
-			else currentViewableSymbol = stoneAlias;
+			if(excavated) currentViewableSymbol = 'S';
+			else currentViewableSymbol = 'Y';
 			break;
 		case postHole:
-			if(excavated) currentViewableSymbol = postHoleSymbol;
-			else currentViewableSymbol = postHoleAlias;
+			if(excavated) currentViewableSymbol = 'P';
+			else currentViewableSymbol = 'G';
 			break;
 		case dirt:
-			if(excavated) currentViewableSymbol = dirtSymbol;
-			else currentViewableSymbol = dirtAlias;
+			if(excavated) currentViewableSymbol = 'D';
+			else currentViewableSymbol = 'g';
 			break;
 		}
 	}
 	
 	/* Sets the current viewable symbol */ 
-	public void setFeatureSymbol(char symbol){
-		switch(feature){
-		case stone:
-			stoneSymbol = symbol;
-			break;
-		case postHole:
-			postHoleSymbol = symbol;
-			break;
-		case dirt:
-			dirtSymbol = symbol;
-			break;
-		}
+	public void setCurrentViewableSymbol(char symbol){
 		currentViewableSymbol = symbol;
 	}
 
@@ -103,11 +86,7 @@ public class Coordinate {
 		}
 	}
 
-	public Feature getFeature(){
-		return feature;
-	}
-	
-	public char getFeatureChar(){
+	public char getFeature(){
 		switch(feature){
 		case stone:
 			return 'S';

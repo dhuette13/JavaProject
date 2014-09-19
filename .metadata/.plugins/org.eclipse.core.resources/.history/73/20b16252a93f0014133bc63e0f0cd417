@@ -42,7 +42,7 @@ public class Map {
 
 				} 
 				else{
-//					plane[r][c].setCurrentViewableSymbol(' ');
+					plane[r][c].setCurrentViewableSymbol(' ');
 				}
 			}
 		}

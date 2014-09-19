@@ -68,7 +68,9 @@ public class Utilities {
 				/* Set the type of feature for coordinate, 
 				 * and the symbol to be displayed.
 				 */
+//				current.setFeature(dataArray[i].charAt(0));
 				current.setFeature(dataArray[i++].charAt(0));
+//				current.setCurrentViewableSymbol(dataArray[i++].charAt(0));
 				current.setCurrentViewableSymbol();
 				current.setExcavated(Boolean.parseBoolean(dataArray[i++]));
 
@@ -122,7 +124,7 @@ public class Utilities {
 				for(c = 0; c < m.getNumColumns(); c++){
 					current = m.plane[r][c];
 					out.print(((char)(c + 65)) + "," + r);
-					out.print("," + current.getFeatureChar());
+					out.print("," + current.getFeature());
 					out.print("," + Boolean.toString(current.getExcavated()).toUpperCase());
 					out.print("," + current.potCount.size());
 					for(k = 0; k < current.potCount.size(); k++){

@@ -52,7 +52,7 @@ public class Coordinate {
 	}
 	
 	/* Sets the current viewable symbol */ 
-	public void setFeatureSymbol(char symbol){
+	public void setFeatureSymbol(Feature feature, char symbol){
 		switch(feature){
 		case stone:
 			stoneSymbol = symbol;
@@ -103,11 +103,7 @@ public class Coordinate {
 		}
 	}
 
-	public Feature getFeature(){
-		return feature;
-	}
-	
-	public char getFeatureChar(){
+	public char getFeature(){
 		switch(feature){
 		case stone:
 			return 'S';
