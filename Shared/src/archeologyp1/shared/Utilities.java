@@ -68,8 +68,10 @@ public class Utilities {
 				/* Set the type of feature for coordinate, 
 				 * and the symbol to be displayed.
 				 */
-				current.setFeature(dataArray[i].charAt(0));
-				current.setCurrentViewableSymbol(dataArray[i++].charAt(0));
+//				current.setFeature(dataArray[i].charAt(0));
+				current.setFeature(dataArray[i++].charAt(0));
+//				current.setCurrentViewableSymbol(dataArray[i++].charAt(0));
+				current.setCurrentViewableSymbol();
 				current.setExcavated(Boolean.parseBoolean(dataArray[i++]));
 
 				/* Iterate through pot input */

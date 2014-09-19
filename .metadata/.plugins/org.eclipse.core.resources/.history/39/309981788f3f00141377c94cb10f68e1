@@ -1,0 +1,69 @@
+package archeologyp1.adt;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import archeologyp1.shared.Map;
+import archeologyp1.shared.Utilities;
+
+public class EntryPoint {
+	Scanner input;
+	int selection;
+	int mapselect1;
+	int userCoord;
+	int userView;
+	boolean flag;
+	String path;
+	Map map;
+	int row, col, width, height;
+	
+	public EntryPoint(){
+		
+	}
+	
+	public void go(){
+	}
+	/**
+	 * @param args
+	 */
+	
+	public static void main(String[] args) {
+		EntryPoint entry = new EntryPoint();
+		entry.go();
+	}
+	
+	private void handleLoad(){
+		flag = true;
+		do{
+			try{
+				System.out.println("1 ) Load Map ");
+				System.out.println("2 ) Generate Map ");
+				System.out.print("::> ");
+				selection = input.nextInt();
+				switch(selection){ 
+				case 1:
+					System.out.print("Enter path name: ");
+					path = input.next();
+					map = Utilities.load(path);
+					if(map != null)
+						flag = false;
+					break;
+				case 2:
+					System.out.print("Enter the desired dimensions (width height): " );
+					width = input.nextInt();
+					height = input.nextInt();
+					map = Utilities.generateMap(width, height);
+					if(map != null)
+						flag = false;
+					break;
+				default:
+					System.out.println("Invalid choice. Please try again.");
+				}
+			} catch (InputMismatchException e){
+				System.out.println("Incorrect input, try again.");
+				input.nextLine();
+			}
+		} while(flag);
+	}
+
+}

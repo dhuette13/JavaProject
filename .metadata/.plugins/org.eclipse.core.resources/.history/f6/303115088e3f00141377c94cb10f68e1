@@ -1,0 +1,21 @@
+package archeologyp1.adt;
+
+public class EntryPoint {
+
+	public EntryPoint(){
+		
+	}
+	
+	public void go(){
+		
+	}
+	/**
+	 * @param args
+	 */
+	
+	public static void main(String[] args) {
+		EntryPoint entry = new EntryPoint();
+		entry.go();
+	}
+
+}

@@ -38,7 +38,7 @@ public class EntryPoint {
 		System.out.println("After print");
 		/* Export map to new file */
 		try{
-			Utilities.printMap(map, new PrintStream(new File("resources/export1.txt")));
+			Utilities.printMap(map, new PrintStream(new File("res/export1.txt")));
 			System.out.println("After export");
 		} catch (Exception e){
 			System.err.println("Could not create file");

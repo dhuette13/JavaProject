@@ -1,0 +1,61 @@
+package archeologyp1.adt;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import archeologyp1.shared.Map;
+import archeologyp1.shared.Utilities;
+
+public class EntryPoint {
+	Scanner input;
+	int selection;
+	boolean flag;
+	String path;
+	Map map;
+
+	public EntryPoint(){
+		input = new Scanner(System.in);
+	}
+
+	public void go(){
+		handleLoad();
+		Utilities.printMap(map, System.out);
+		
+		flag = true;
+		/*
+		 * 1) Survey
+		 * 2) Dig
+		 * 3) Print
+		 * 4) Export
+		 */
+		while(flag){
+			System.out.println();
+			
+		}
+	}
+	/**
+	 * @param args
+	 */
+
+	public static void main(String[] args) {
+		EntryPoint entry = new EntryPoint();
+		entry.go();
+	}
+
+	private void handleLoad(){
+		flag = true;
+		while(flag){
+			try{
+				System.out.print("Enter path name of file to load: ");
+				path = input.next();
+				map = Utilities.load(path);
+				if(map != null)
+					flag = false;
+			} catch (InputMismatchException e){
+				System.out.println("Incorrect input, try again.");
+				input.nextLine();
+			}
+		}
+	}
+
+}
