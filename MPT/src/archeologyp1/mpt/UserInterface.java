@@ -175,7 +175,7 @@ public class UserInterface {
 		
 		Coordinate setSingle;
 		char newSymbol;
-		int amountFinds;
+		int amountFinds, oneFind, twoFind1, twoFind2, threeFind1, threeFind2, threeFind3;
 		
 		System.out.println("What would you like to change the viewing symbol to?");
 		System.out.println("Y: Parched, yellow vegetation");
@@ -209,13 +209,48 @@ public class UserInterface {
 			break;
 		case 1:
 			System.out.println("What type of find would you like to enter?");
-			System.out.println("");
+			System.out.println("1. Pottery");
+			System.out.println("2. Metal Work");
+			System.out.println("3. Charcoal");
+			System.out.println("::> ");
+			oneFind = input.nextInt();
 			break;
 		case 2:
-			System.out.println("");
+			System.out.println("What type of find would you like to enter first?");
+			System.out.println("1. Pottery");
+			System.out.println("2. Metal Work");
+			System.out.println("3. Charcoal");
+			System.out.println("::> ");
+			twoFind1 = input.nextInt();
+			
+			System.out.println("What type of find would you like to enter last?");
+			System.out.println("1. Pottery");
+			System.out.println("2. Metal Work");
+			System.out.println("3. Charcoal");
+			System.out.println("::> ");
+			twoFind2 = input.nextInt();
 			break;
 		case 3:
-			System.out.println("");
+			System.out.println("What type of find would you like to enter first?");
+			System.out.println("1. Pottery");
+			System.out.println("2. Metal Work");
+			System.out.println("3. Charcoal");
+			System.out.println("::> ");
+			threeFind1 = input.nextInt();
+			
+			System.out.println("What type of find would you like to enter second?");
+			System.out.println("1. Pottery");
+			System.out.println("2. Metal Work");
+			System.out.println("3. Charcoal");
+			System.out.println("::> ");
+			threeFind2 = input.nextInt();
+			
+			System.out.println("What type of find would you like to enter last?");
+			System.out.println("1. Pottery");
+			System.out.println("2. Metal Work");
+			System.out.println("3. Charcoal");
+			System.out.println("::> ");
+			threeFind3 = input.nextInt();
 			break;
 		default: 
 			System.out.println("Not a valid input. Please try again.")
