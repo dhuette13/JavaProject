@@ -22,7 +22,7 @@ public class UserInterface {
 	public static void changeCoordinate(int OR){
 		Scanner input = new Scanner(System.in);
 		boolean bool = true;
-		int a, a2, a3;
+		int a;
 		char c = 'A';
 		int r1 = 0;
 		int check1, check2; 
@@ -175,6 +175,7 @@ public class UserInterface {
 		
 		Coordinate setSingle;
 		char newSymbol;
+		int amountFinds;
 		
 		System.out.println("What would you like to change the viewing symbol to?");
 		System.out.println("Y: Parched, yellow vegetation");
@@ -196,6 +197,30 @@ public class UserInterface {
 		default: 
 			System.out.println("The change you want to make is not possible. Please try again.");
 		}
+		
+		// Inputting the amount of finds
+		System.out.println("How many finds would you like to have in this coordinate? You can have 0 finds (meaning none), up to all 3 finds.");
+		System.out.println("::> ")
+		amountFinds = input.nextInt();
+		
+		//"Prompt the user to enter the type of find and the date, and then add that find in the appropriate collection."
+		switch(amountFinds){ 
+		case 0:
+			break;
+		case 1:
+			System.out.println("What type of find would you like to enter?");
+			System.out.println("");
+			break;
+		case 2:
+			System.out.println("");
+			break;
+		case 3:
+			System.out.println("");
+			break;
+		default: 
+			System.out.println("Not a valid input. Please try again.")
+		}
+		
 	}
 
 	public static void rowCoord(int row2){
