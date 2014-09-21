@@ -175,7 +175,8 @@ public class UserInterface {
 		
 		Coordinate setSingle;
 		char newSymbol;
-		int amountFinds, oneFind, twoFind1, twoFind2, threeFind1, threeFind2, threeFind3;
+		int amountFinds, oneFind, oneDate, twoFind1, twoDate1, twoFind2, twoDate2;
+		int threeFind1, threeDate1, threeFind2, threeDate2, threeFind3, threeDate3;
 		
 		System.out.println("What would you like to change the viewing symbol to?");
 		System.out.println("Y: Parched, yellow vegetation");
@@ -206,6 +207,7 @@ public class UserInterface {
 		//"Prompt the user to enter the type of find and the date, and then add that find in the appropriate collection."
 		switch(amountFinds){ 
 		case 0:
+			continue;
 			break;
 		case 1:
 			System.out.println("What type of find would you like to enter?");
