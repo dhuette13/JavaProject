@@ -1,0 +1,12 @@
+package archeologyp1.shared;
+
+public class MetalObject {
+	int date;w
+	public MetalObject(int date){
+		this.date = date;
+	}
+	
+	public int getDate(){
+		return date;
+	}
+}

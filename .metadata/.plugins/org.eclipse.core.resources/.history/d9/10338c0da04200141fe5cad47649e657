@@ -43,27 +43,21 @@ public class Map {
 			for(r = 0; r < rows; r++){
 				for(c = 0; c < columns; c++){
 					current = plane[r][c];
-					current.setCurrentViewableSymbol();
+					current.setFeatureSymbol();
 				}
 			}
 			break;
 		case readable:
-			for(r = 0; r < rows; r++){
-				for(c = 0; c < columns; c++){
-					current = plane[r][c];
-					current.setCurrentViewableSymbol();
-				}
-			}
 			break;
 		case potCount:
 			for(r = 0; r < rows; r++){
 				for(c = 0; c < columns; c++){
 					current = plane[r][c];
-					current.setCurrentViewableSymbol(Integer.toString(current.potCount.size()).charAt(0));
+					current.setFeatureSymbol(Integer.toString(current.potCount.size()).charAt(0));
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
-//					current.setCurrentViewableSymbol();
+					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -71,11 +65,11 @@ public class Map {
 			for(r = 0; r < rows; r++){
 				for(c = 0; c < columns; c++){
 					current = plane[r][c];
-					current.setCurrentViewableSymbol(Integer.toString(current.metalCount.size()).charAt(0));
+					current.setFeatureSymbol(Integer.toString(current.metalCount.size()).charAt(0));
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
-//					current.setCurrentViewableSymbol();
+					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -83,11 +77,11 @@ public class Map {
 			for(r = 0; r < rows; r++){
 				for(c = 0; c < columns; c++){
 					current = plane[r][c];
-					current.setCurrentViewableSymbol(Integer.toString(current.charcoalCount.size()).charAt(0));
+					current.setFeatureSymbol(Integer.toString(current.charcoalCount.size()).charAt(0));
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
-//					current.setCurrentViewableSymbol();
+					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -97,17 +91,17 @@ public class Map {
 					current = plane[r][c];
 					if(current.getInspected()){
 						if(current.charcoalHidden() || current.metalHidden())
-							current.setCurrentViewableSymbol('T');
+							current.setFeatureSymbol('T');
 						else
-							current.setCurrentViewableSymbol('F');
+							current.setFeatureSymbol('F');
 					}
 					else
-						current.setCurrentViewableSymbol(' ');
+						current.setFeatureSymbol(' ');
 					
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
-//					current.setCurrentViewableSymbol();
+					current.setCurrentViewableSymbol();
 				}
 			}
 			break;

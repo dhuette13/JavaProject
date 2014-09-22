@@ -43,17 +43,13 @@ public class Map {
 			for(r = 0; r < rows; r++){
 				for(c = 0; c < columns; c++){
 					current = plane[r][c];
+//					current.setFeatureSymbol();
+					
 					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
 		case readable:
-			for(r = 0; r < rows; r++){
-				for(c = 0; c < columns; c++){
-					current = plane[r][c];
-					current.setCurrentViewableSymbol();
-				}
-			}
 			break;
 		case potCount:
 			for(r = 0; r < rows; r++){
@@ -63,7 +59,7 @@ public class Map {
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
-//					current.setCurrentViewableSymbol();
+					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -75,7 +71,7 @@ public class Map {
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
-//					current.setCurrentViewableSymbol();
+					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -87,7 +83,7 @@ public class Map {
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
-//					current.setCurrentViewableSymbol();
+					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -107,7 +103,7 @@ public class Map {
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
-//					current.setCurrentViewableSymbol();
+					current.setCurrentViewableSymbol();
 				}
 			}
 			break;

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Coordinate {
 	private Feature feature;
 	private boolean excavated, inspected;
-	private boolean charcoalHidden, metalHidden;
+	private boolean charcoalHidden, metalHidden;;
 	private char currentViewableSymbol;
 	/* For Natural Viewing Option */
 	char stoneSymbol, postHoleSymbol, dirtSymbol;
@@ -35,9 +35,6 @@ public class Coordinate {
 		dirtAlias = 'g';
 	}
 
-	public void setCurrentViewableSymbol(char symbol){
-		currentViewableSymbol = symbol;
-	}
 	/* Updates current viewable symbol based on
 	 * the Coordinate's feature type.
 	 */

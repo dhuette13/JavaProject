@@ -63,7 +63,7 @@ public class Map {
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
-//					current.setCurrentViewableSymbol();
+					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -75,7 +75,7 @@ public class Map {
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
-//					current.setCurrentViewableSymbol();
+					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -87,7 +87,7 @@ public class Map {
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
-//					current.setCurrentViewableSymbol();
+					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -107,7 +107,7 @@ public class Map {
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
-//					current.setCurrentViewableSymbol();
+					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
