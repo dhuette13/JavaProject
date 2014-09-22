@@ -7,5 +7,4 @@ public enum ViewingOption {
 	metalCount,
 	charcoalCount,
 	detectorResult,
-	excavated
 }

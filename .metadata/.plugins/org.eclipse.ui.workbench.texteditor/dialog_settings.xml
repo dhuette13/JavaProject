@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="317" key="DIALOG_WIDTH"/>
+		<item value="321" key="DIALOG_WIDTH"/>
 		<item value="261" key="DIALOG_Y_ORIGIN"/>
+		<item value="429" key="DIALOG_HEIGHT"/>
 		<item value="810" key="DIALOG_X_ORIGIN"/>
-		<item value="427" key="DIALOG_HEIGHT"/>
 		<item value="1|Sans|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="true" key="wrap"/>
-		<item value="false" key="casesensitive"/>
 		<item value="false" key="isRegEx"/>
+		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="printMap" key="selection"/>
+		<item value="Viewing Option" key="selection"/>
 		<list key="findhistory">
+			<item value="Viewing Option``"/>
+			<item value="Viewing Option"/>
+			<item value="viewing"/>
+			<item value="::&gt;"/>
 			<item value="printMap"/>
-			<item value="void print"/>
-			<item value="print"/>
-			<item value="OR"/>
-			<item value="N"/>
-			<item value="setFeature"/>
+			<item value="::&gt;`"/>
+			<item value="column"/>
+			<item value="public"/>
 		</list>
 		<list key="replacehistory">
 		</list>

@@ -10,10 +10,12 @@ import java.util.ArrayList;
 
 public class Coordinate {
 	private Feature feature;
-	private boolean excavated;
-	private boolean inspected;
+	private boolean excavated, inspected;
+	private boolean charcoalHidden, metalHidden;;
 	private char currentViewableSymbol;
+	/* For Natural Viewing Option */
 	char stoneSymbol, postHoleSymbol, dirtSymbol;
+	/* For Readable Viewing Option */
 	char stoneAlias, postHoleAlias, dirtAlias;
 	public ArrayList<Pot> potCount = new ArrayList<Pot>();
 	public ArrayList<MetalObject> metalCount = new ArrayList<MetalObject>();
@@ -23,6 +25,8 @@ public class Coordinate {
 		feature = Feature.dirt;
 		currentViewableSymbol = 'g';
 		excavated = false;
+		charcoalHidden = false;
+		metalHidden = false;
 		stoneSymbol = 'S';
 		postHoleSymbol = 'P';
 		dirtSymbol = 'D';
@@ -55,16 +59,18 @@ public class Coordinate {
 	public void setFeatureSymbol(char symbol){
 		switch(feature){
 		case stone:
-			stoneSymbol = symbol;
+			if(excavated) stoneSymbol = symbol;
+			else stoneAlias = symbol;
 			break;
 		case postHole:
-			postHoleSymbol = symbol;
+			if(excavated) postHoleSymbol = symbol;
+			else postHoleAlias = symbol;
 			break;
 		case dirt:
-			dirtSymbol = symbol;
+			if(excavated) dirtSymbol = symbol;
+			else dirtAlias = symbol;
 			break;
 		}
-		currentViewableSymbol = symbol;
 	}
 
 	public char getCurrentViewableSymbol(){
@@ -118,4 +124,22 @@ public class Coordinate {
 		}
 		return currentViewableSymbol;
 	}
+	
+	public boolean charcoalHidden(){
+		return charcoalHidden;
+	}
+	
+	public boolean metalHidden(){
+		return metalHidden;
+	}
+
+	public void setCharcoalHidden(boolean hidden) {
+		charcoalHidden = hidden;
+	}
+	
+	public void setMetalHidden(boolean hidden) {
+		metalHidden = hidden;
+	}
+	
+	
 }

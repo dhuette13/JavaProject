@@ -23,16 +23,17 @@ public class EntryPoint {
 	boolean flag;
 	String path;
 	Map map;
+	UserInterface ui;
 	int row, col, width, height;
 
 	public EntryPoint(){
+		handleLoad();
+		ui = new UserInterface(map);
 		input = new Scanner(System.in);
 		flag = true;
 	}
 
 	public void go(){
-		handleLoad();
-
 		/* Print map to standard out */
 		Utilities.printMap(map, System.out);
 		System.out.println("After print");

@@ -1,0 +1,31 @@
+package archeologyp1.adt;
+
+
+public class ToolBag {
+	
+	private Map map;
+	
+	public ToolBag(Map map){
+		this.map = map;
+	}
+	
+	public void magnetoMeter(int row, char col){
+		int r = row - 1;
+		int c = col - 'A';
+		
+	}
+	
+	public void metalDetector(int row, char col){
+			
+	}
+	public void visibleSpectrum(int row, char col){
+		
+	}
+	public void dig(int row, char col){
+		
+	}
+	
+	public int computeAverageDate(){
+		return 0;
+	}
+}

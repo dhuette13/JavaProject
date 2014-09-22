@@ -61,10 +61,10 @@
 		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;" key="WorkingSet"/>
 		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0A;&lt;History/&gt;" key="History"/>
 		<section name="DialogBoundsSettings">
-			<item value="620" key="DIALOG_WIDTH"/>
+			<item value="628" key="DIALOG_WIDTH"/>
 			<item value="39" key="DIALOG_Y_ORIGIN"/>
 			<item value="63" key="DIALOG_X_ORIGIN"/>
-			<item value="510" key="DIALOG_HEIGHT"/>
+			<item value="514" key="DIALOG_HEIGHT"/>
 			<item value="1|Sans|9.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
 		</section>
 	</section>
@@ -96,6 +96,13 @@
 		<item value="1" key="updateSimilarElementsMatchStrategy"/>
 		<item value="false" key="updateTextualMatches"/>
 		<item value="false" key="updateSimilarElements"/>
+	</section>
+	<section name="org.eclipse.jdt.internal.ui.text.QuickOutline">
+		<item value="false" key="GoIntoTopLevelTypeAction.isChecked"/>
+		<item value="true" key="org.eclipse.jdt.internal.ui.text.JavaOutlineInformationControlDIALOG_USE_PERSISTED_SIZE"/>
+		<item value="430" key="org.eclipse.jdt.internal.ui.text.JavaOutlineInformationControlDIALOG_WIDTH"/>
+		<item value="475" key="org.eclipse.jdt.internal.ui.text.JavaOutlineInformationControlDIALOG_HEIGHT"/>
+		<item value="false" key="org.eclipse.jdt.internal.ui.text.JavaOutlineInformationControlDIALOG_USE_PERSISTED_LOCATION"/>
 	</section>
 	<section name="JavadocWizardDialog">
 		<item value="606" key="DIALOG_WIDTH"/>

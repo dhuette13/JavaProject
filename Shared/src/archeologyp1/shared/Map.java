@@ -33,18 +33,74 @@ public class Map {
 
 	public void setViewingOption(ViewingOption option){
 		viewingOption = option;
+	}
+	
+	public void updateView(){
 		int r,c;
 		Coordinate current;
-		for(r = 0; r < rows; r++){
-			for(c = 0; c < columns; c++){
-				current = plane[r][c];
-				if(current.getInspected()){
-
-				} 
-				else{
-//					plane[r][c].setCurrentViewableSymbol(' ');
+		switch(viewingOption){
+		case natural:
+			break;
+		case readable:
+			break;
+		case potCount:
+			for(r = 0; r < rows; r++){
+				for(c = 0; c < columns; c++){
+					current = plane[r][c];
+					current.setFeatureSymbol(Integer.toString(current.potCount.size()).charAt(0));
+					/* Update the Current viewable symbol based on feature
+					 * symbol and excavation status.
+					 */
+					current.setCurrentViewableSymbol();
 				}
 			}
+			break;
+		case metalCount:
+			for(r = 0; r < rows; r++){
+				for(c = 0; c < columns; c++){
+					current = plane[r][c];
+					current.setFeatureSymbol(Integer.toString(current.metalCount.size()).charAt(0));
+					/* Update the Current viewable symbol based on feature
+					 * symbol and excavation status.
+					 */
+					current.setCurrentViewableSymbol();
+				}
+			}
+			break;
+		case charcoalCount:
+			for(r = 0; r < rows; r++){
+				for(c = 0; c < columns; c++){
+					current = plane[r][c];
+					current.setFeatureSymbol(Integer.toString(current.charcoalCount.size()).charAt(0));
+					/* Update the Current viewable symbol based on feature
+					 * symbol and excavation status.
+					 */
+					current.setCurrentViewableSymbol();
+				}
+			}
+			break;
+		case detectorResult:
+			for(r = 0; r < rows; r++){
+				for(c = 0; c < columns; c++){
+					current = plane[r][c];
+					if(current.getInspected()){
+						if(current.charcoalHidden() || current.metalHidden())
+							current.setFeatureSymbol('T');
+						else
+							current.setFeatureSymbol('F');
+					}
+					else
+						current.setFeatureSymbol(' ');
+					
+					/* Update the Current viewable symbol based on feature
+					 * symbol and excavation status.
+					 */
+					current.setCurrentViewableSymbol();
+				}
+			}
+			break;
+		default:
+			System.out.println("Invalid ViewingOption in Map Class");
 		}
 	}
 

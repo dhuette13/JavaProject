@@ -1,0 +1,11 @@
+package archeologyp1.shared;
+
+public enum ViewingOption {
+	natural,
+	readable,
+	potCount,
+	metalCount,
+	charcoalCount,
+	detectorResult,
+	excavated
+}
