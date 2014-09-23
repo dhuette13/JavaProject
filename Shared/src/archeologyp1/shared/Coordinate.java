@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Coordinate {
 	private Feature feature;
-	private boolean excavated, charcoalInspected, metalInspected, potInspected;
+	private boolean excavated, itemFound, charcoalInspected, metalInspected, potInspected;
 	private boolean charcoalHidden, metalHidden;
 	private char currentViewableSymbol;
 	/* For Natural Viewing Option */
@@ -42,6 +42,10 @@ public class Coordinate {
 		excavated = false;
 		charcoalHidden = false;
 		metalHidden = false;
+		itemFound = false;
+		charcoalInspected = false;
+		metalInspected = false;
+		potInspected = false;
 		stoneSymbol = defaultStoneSymbol;
 		postHoleSymbol = defaultPostHoleSymbol;
 		dirtSymbol = defaultDirtSymbol;
@@ -199,5 +203,12 @@ public class Coordinate {
 		metalHidden = hidden;
 	}
 	
+	public void setItemFound(boolean found){
+		itemFound = found;
+	}
+	
+	public boolean itemFound(){
+		return itemFound;
+	}
 	
 }

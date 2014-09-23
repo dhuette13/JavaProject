@@ -50,8 +50,7 @@ public class EntryPoint {
 			System.out.println("2 ) Dig an Area");
 			System.out.println("3 ) Find Average of Found Dates");
 			System.out.println("4 ) Change a Viewing Option");
-			System.out.println("5 ) Print the map");
-			System.out.println("6 ) Export the map");
+			System.out.println("5 ) Export the map");
 			System.out.println("0 ) Exit");
 			try{
 				System.out.print("::> ");
@@ -105,6 +104,7 @@ public class EntryPoint {
 					row = input.nextInt();
 					column = Character.toUpperCase(input.next().charAt(0));
 					toolBag.dig(row, column);
+					map.updateView();
 					break;
 					/* Find Average of Found Dates */
 				case 3:
@@ -175,12 +175,8 @@ public class EntryPoint {
 						System.out.println("\tInvalid selection");
 					}
 					break;
-					/* Print map */
-				case 5:
-					Utilities.printMap(map, System.out);
-					break;
 					/* Export map */
-				case 6:
+				case 5:
 					System.out.print("Enter a path name to export to: ");
 					path = input.next();
 					Utilities.printMap(map, new PrintStream(new File(path)));

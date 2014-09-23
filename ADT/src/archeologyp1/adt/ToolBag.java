@@ -1,7 +1,10 @@
 package archeologyp1.adt;
 
+import archeologyp1.shared.Charcoal;
 import archeologyp1.shared.Coordinate;
 import archeologyp1.shared.Map;
+import archeologyp1.shared.MetalObject;
+import archeologyp1.shared.Pot;
 
 
 public class ToolBag {
@@ -47,10 +50,34 @@ public class ToolBag {
 		int c = col - 'A';
 		current = map.plane[r][c];
 		current.setExcavated(true);
-		map.updateView();
+		if((current.potCount.size() != 0) || (current.charcoalCount.size() != 0) || (current.metalCount.size() != 0)){
+			current.setItemFound(true);
+		}
 	}
 
 	public int computeAverageDate(){
+		int r, c, itemCount = 0;
+		double average = 0;
+		for(r = 0; r < map.getNumRows(); r++){
+			for(c = 0; c < map.getNumColumns(); c++){
+				current = map.plane[r][c];
+				if(current.itemFound()){
+					for(Pot p : current.potCount){
+						average += p.getDate();
+						itemCount++;
+					}
+					for(Charcoal ch : current.charcoalCount){
+						average += ch.getDate();
+						itemCount++;
+					}
+					for(MetalObject m : current.metalCount){
+						average += m.getDate();
+						itemCount++;
+					}
+					average = average / itemCount;
+				}
+			}
+		}
 		return 0;
 	}
 }
