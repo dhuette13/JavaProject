@@ -6,5 +6,6 @@ public enum ViewingOption {
 	potCount,
 	metalCount,
 	charcoalCount,
-	detectorResult,
+	magnetometerResult,
+	metalDetectorResult,
 }

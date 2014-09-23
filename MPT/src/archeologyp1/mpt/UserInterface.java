@@ -171,9 +171,10 @@ public class UserInterface {
 	}
 
 	public static void singleCoord(char col, int row1){
-		//ask person about features, finds, excavated, date, etcetc
+		//ask person about features, finds, excavated, date, etc etc
 		
 		Coordinate setSingle;
+		Scanner input = new Scanner(System.in);
 		char newSymbol;
 		int amountFinds, oneFind, oneDate, twoFind1, twoDate1, twoFind2, twoDate2;
 		int threeFind1, threeDate1, threeFind2, threeDate2, threeFind3, threeDate3;

@@ -139,7 +139,8 @@ public class EntryPoint {
 						System.out.println("\t\t3) PotCount option");
 						System.out.println("\t\t4) MetalCount option");
 						System.out.println("\t\t5) CharcoalCount option");
-						System.out.println("\t\t6) Detector Results option");
+						System.out.println("\t\t6) Magnetometer Results option");
+						System.out.println("\t\t7) Metal Detector Results option");
 						System.out.print("::> ");
 						selection = input.nextInt();
 						switch(selection){
@@ -159,8 +160,10 @@ public class EntryPoint {
 							option = ViewingOption.charcoalCount;
 							break;
 						case 6:
-							option = ViewingOption.detectorResult;
+							option = ViewingOption.magnetometerResult;
 							break;
+						case 7:
+							option = ViewingOption.metalDetectorResult;
 						default:
 							System.out.println("\tInvalid Selection");
 							break;

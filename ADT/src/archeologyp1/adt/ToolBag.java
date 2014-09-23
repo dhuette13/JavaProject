@@ -1,6 +1,5 @@
 package archeologyp1.adt;
 
-import archeologyp1.shared.Charcoal;
 import archeologyp1.shared.Coordinate;
 import archeologyp1.shared.Map;
 
@@ -18,7 +17,7 @@ public class ToolBag {
 		int r = row - 1;
 		int c = col - 'A';
 		current = map.plane[r][c];
-		current.setInspected(true);
+		current.setCharcoalInspected(true);
 		if(current.charcoalCount.size() != 0)
 			current.setCharcoalHidden(true);
 		else
@@ -29,7 +28,7 @@ public class ToolBag {
 		int r = row - 1;
 		int c = col - 'A';
 		current = map.plane[r][c];
-		current.setInspected(true);
+		current.setMetalInspected(true);
 		if(current.metalCount.size() != 0)
 			current.setMetalHidden(true);
 		else
@@ -37,10 +36,18 @@ public class ToolBag {
 	}
 	
 	public void visibleSpectrum(int row, char col){
+		int r = row - 1;
+		int c = col - 'A';
+		current = map.plane[r][c];
+		current.setPotInspected(true);
 	}
 	
 	public void dig(int row, char col){
-
+		int r = row - 1;
+		int c = col - 'A';
+		current = map.plane[r][c];
+		current.setExcavated(true);
+		map.updateView();
 	}
 
 	public int computeAverageDate(){

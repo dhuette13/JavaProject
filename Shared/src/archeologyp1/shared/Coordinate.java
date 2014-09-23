@@ -10,29 +10,44 @@ import java.util.ArrayList;
 
 public class Coordinate {
 	private Feature feature;
-	private boolean excavated, inspected;
+	private boolean excavated, charcoalInspected, metalInspected, potInspected;
 	private boolean charcoalHidden, metalHidden;
 	private char currentViewableSymbol;
 	/* For Natural Viewing Option */
-	char stoneSymbol, postHoleSymbol, dirtSymbol;
+	private char stoneSymbol, postHoleSymbol, dirtSymbol;
 	/* For Readable Viewing Option */
-	char stoneAlias, postHoleAlias, dirtAlias;
+	private char stoneAlias, postHoleAlias, dirtAlias;
 	public ArrayList<Pot> potCount = new ArrayList<Pot>();
 	public ArrayList<MetalObject> metalCount = new ArrayList<MetalObject>();
 	public ArrayList<Charcoal> charcoalCount = new ArrayList<Charcoal>();
 
+	private static final char defaultStoneSymbol = 'S';
+	private static final char defaultPostHoleSymbol = 'P';
+	private static final char defaultDirtSymbol = 'D';
+	private static final char defaultStoneAlias = 'Y';
+	private static final char defaultPostHoleAlias = 'G';
+	private static final char defaultDirtAlias = 'g';
+	
+	private static final char readableStoneSymbol = '$';
+	private static final char readablePostHoleSymbol = '-';
+	private static final char readableDirtSymbol = ',';
+	private static final char readableStoneAlias = '#';
+	private static final char readablePostHoleAlias = '*';
+	private static final char readableDirtAlias = '.';
+	
+	
 	public Coordinate(){
 		feature = Feature.dirt;
-		currentViewableSymbol = 'g';
+		currentViewableSymbol = defaultDirtAlias;
 		excavated = false;
 		charcoalHidden = false;
 		metalHidden = false;
-		stoneSymbol = 'S';
-		postHoleSymbol = 'P';
-		dirtSymbol = 'D';
-		stoneAlias = 'Y';
-		postHoleAlias = 'G';
-		dirtAlias = 'g';
+		stoneSymbol = defaultStoneSymbol;
+		postHoleSymbol = defaultPostHoleSymbol;
+		dirtSymbol = defaultDirtSymbol;
+		stoneAlias = defaultStoneAlias;
+		postHoleAlias = defaultPostHoleAlias;
+		dirtAlias = defaultDirtAlias;
 	}
 
 	public void setCurrentViewableSymbol(char symbol){
@@ -55,6 +70,29 @@ public class Coordinate {
 			if(excavated) currentViewableSymbol = dirtSymbol;
 			else currentViewableSymbol = dirtAlias;
 			break;
+		}
+	}
+	
+	public void setFeatureSymbol(ViewingOption option){
+		switch(option){
+		case natural:
+			stoneSymbol = defaultStoneSymbol;
+			postHoleSymbol = defaultPostHoleSymbol;
+			dirtSymbol = defaultDirtSymbol;
+			stoneAlias = defaultStoneAlias;
+			postHoleAlias = defaultPostHoleAlias;
+			dirtAlias = defaultDirtAlias;
+			break;
+		case readable:
+			stoneSymbol = readableStoneSymbol;
+			postHoleSymbol = readablePostHoleSymbol;
+			dirtSymbol = readableDirtSymbol;
+			stoneAlias = readableStoneAlias;
+			postHoleAlias = readablePostHoleAlias;
+			dirtAlias = readableDirtAlias;
+			break;
+		default:
+			System.out.println("Invalid viewing option");
 		}
 	}
 	
@@ -88,12 +126,27 @@ public class Coordinate {
 		excavated = value;
 	}
 
-	public boolean getInspected(){
-		return inspected;
+	public boolean getPotInspected(){
+		return potInspected;
+	}
+	
+	public void setPotInspected(boolean i){
+		potInspected = i;
+	}
+	public boolean getCharcoalInspected(){
+		return charcoalInspected;
 	}
 
-	public void setInspected(boolean i){
-		inspected = i;
+	public void setCharcoalInspected(boolean i){
+		charcoalInspected = i;
+	}
+
+	public boolean getMetalInspected(){
+		return metalInspected;
+	}
+	
+	public void setMetalInspected(boolean i){
+		metalInspected = i;
 	}
 
 	/* For use by load method */

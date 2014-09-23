@@ -43,6 +43,7 @@ public class Map {
 			for(r = 0; r < rows; r++){
 				for(c = 0; c < columns; c++){
 					current = plane[r][c];
+					current.setFeatureSymbol(ViewingOption.natural);
 					current.setCurrentViewableSymbol();
 				}
 			}
@@ -51,6 +52,7 @@ public class Map {
 			for(r = 0; r < rows; r++){
 				for(c = 0; c < columns; c++){
 					current = plane[r][c];
+					current.setFeatureSymbol(ViewingOption.readable);
 					current.setCurrentViewableSymbol();
 				}
 			}
@@ -59,7 +61,10 @@ public class Map {
 			for(r = 0; r < rows; r++){
 				for(c = 0; c < columns; c++){
 					current = plane[r][c];
-					current.setCurrentViewableSymbol(Integer.toString(current.potCount.size()).charAt(0));
+					if(current.getExcavated())
+						current.setCurrentViewableSymbol(Integer.toString(current.potCount.size()).charAt(0));
+					else
+						current.setCurrentViewableSymbol(' ');
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
@@ -71,7 +76,10 @@ public class Map {
 			for(r = 0; r < rows; r++){
 				for(c = 0; c < columns; c++){
 					current = plane[r][c];
-					current.setCurrentViewableSymbol(Integer.toString(current.metalCount.size()).charAt(0));
+					if(current.getExcavated())
+						current.setCurrentViewableSymbol(Integer.toString(current.metalCount.size()).charAt(0));
+					else
+						current.setCurrentViewableSymbol(' ');
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
@@ -83,7 +91,10 @@ public class Map {
 			for(r = 0; r < rows; r++){
 				for(c = 0; c < columns; c++){
 					current = plane[r][c];
-					current.setCurrentViewableSymbol(Integer.toString(current.charcoalCount.size()).charAt(0));
+					if(current.getExcavated())
+						current.setCurrentViewableSymbol(Integer.toString(current.charcoalCount.size()).charAt(0));
+					else 
+						current.setCurrentViewableSymbol(' ');
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
@@ -91,12 +102,32 @@ public class Map {
 				}
 			}
 			break;
-		case detectorResult:
+		case magnetometerResult:
 			for(r = 0; r < rows; r++){
 				for(c = 0; c < columns; c++){
 					current = plane[r][c];
-					if(current.getInspected()){
-						if(current.charcoalHidden() || current.metalHidden())
+					if(current.getCharcoalInspected()){
+						if(current.charcoalHidden())
+							current.setCurrentViewableSymbol('T');
+						else
+							current.setCurrentViewableSymbol('F');
+					}
+					else
+						current.setCurrentViewableSymbol(' ');
+					
+					/* Update the Current viewable symbol based on feature
+					 * symbol and excavation status.
+					 */
+//					current.setCurrentViewableSymbol();
+				}
+			}
+			break;
+		case metalDetectorResult:
+			for(r = 0; r < rows; r++){
+				for(c = 0; c < columns; c++){
+					current = plane[r][c];
+					if(current.getMetalInspected()){
+						if(current.metalHidden())
 							current.setCurrentViewableSymbol('T');
 						else
 							current.setCurrentViewableSymbol('F');
