@@ -55,9 +55,9 @@ public class ToolBag {
 		}
 	}
 
-	public double computeAverageDate(){
+	public int computeAverageDate(){
 		int r, c, itemCount = 0;
-		double average = 0.0d;
+		double average = 0;
 		for(r = 0; r < map.getNumRows(); r++){
 			for(c = 0; c < map.getNumColumns(); c++){
 				current = map.plane[r][c];
@@ -78,32 +78,6 @@ public class ToolBag {
 				}
 			}
 		}
-		return average;
-	}
-	
-	public double standaredDeviation(double average){
-		int r, c, itemCount = 0;
-		double sum = 0.0d;
-		for(r = 0; r < map.getNumRows(); r++){
-			for(c = 0; c < map.getNumColumns(); c++){
-				current = map.plane[r][c];
-				if(current.itemFound()){
-					for(Pot p : current.potCount){
-						sum += p.getDate();
-						itemCount++;
-					}
-					for(Charcoal ch : current.charcoalCount){
-						average += ch.getDate();
-						itemCount++;
-					}
-					for(MetalObject m : current.metalCount){
-						average += m.getDate();
-						itemCount++;
-					}
-					average = average / itemCount;
-				}
-			}
-		}
-		return average;
+		return 0;
 	}
 }

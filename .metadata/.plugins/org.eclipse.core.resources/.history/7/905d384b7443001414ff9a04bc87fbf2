@@ -83,7 +83,7 @@ public class ToolBag {
 	
 	public double standaredDeviation(double average){
 		int r, c, itemCount = 0;
-		double sum = 0.0d;
+		double sum;
 		for(r = 0; r < map.getNumRows(); r++){
 			for(c = 0; c < map.getNumColumns(); c++){
 				current = map.plane[r][c];

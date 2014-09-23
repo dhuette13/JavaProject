@@ -83,13 +83,12 @@ public class ToolBag {
 	
 	public double standaredDeviation(double average){
 		int r, c, itemCount = 0;
-		double sum = 0.0d;
 		for(r = 0; r < map.getNumRows(); r++){
 			for(c = 0; c < map.getNumColumns(); c++){
 				current = map.plane[r][c];
 				if(current.itemFound()){
 					for(Pot p : current.potCount){
-						sum += p.getDate();
+						average += p.getDate();
 						itemCount++;
 					}
 					for(Charcoal ch : current.charcoalCount){

@@ -17,7 +17,7 @@ public class EntryPoint {
 	boolean flag;
 	int row;
 	char column;
-	double average;
+	int average;
 	String path;
 	Map map;
 	ToolBag toolBag;

@@ -218,13 +218,12 @@ public class Utilities {
 		output.println();
 	}
 	
-	public static int columnToIndex(String column){
-		int index = 0;
-		int k = 0;
+	public int columnToIndex(String column){
+		int index;
 		if(column.length() == 1){
 			index = column.charAt(0) - 'A';
 		} else {
-			index = ((column.charAt(0) - 'A' + 1) * 25) + (column.charAt(1) - 'A');
+			index = (column.charAt(0) - 'A' + i * 25) + (column.charAt(0) - 'A');
 		}
 		return index;
 	}
