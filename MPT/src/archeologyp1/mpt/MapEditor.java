@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 import archeologyp1.shared.Coordinate;
 import archeologyp1.shared.Map;
-import archeologyp1.shared.Pot;
 import archeologyp1.shared.Utilities;
+import archeologyp1.shared.Pot;
 
 public class MapEditor {
 	
