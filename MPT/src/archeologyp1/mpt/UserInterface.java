@@ -2,6 +2,8 @@ package archeologyp1.mpt;
 
 import java.util.Scanner;
 
+import archeologyp1.shared.Map;
+
 // 1) Change a coordinate
 // a) Change a single coordinate
 // b) Change a row
@@ -14,6 +16,7 @@ import java.util.Scanner;
 // 6) Save map
 
 public class UserInterface {
+	private Map map;
 
 	private MapEditor mapEditor;
 	private Scanner input;
@@ -103,9 +106,11 @@ public class UserInterface {
 	}
 
 	public void changeViewing(){
+		int amountFinds;
 		int changeMap;
 		char y, g1, g2, n, s, p ,d;
 		char symbolChange;
+		int oneFind, twoFind1, twoFind2, threeFind1, threeFind2, threeFind3;
 
 		Scanner input = new Scanner(System.in);
 		System.out.println("What would you like to change?");
@@ -168,9 +173,74 @@ public class UserInterface {
 			break;
 
 		default:
-
 			System.out.println("");
-
 		}
+		// Inputting the amount of finds
+		System.out.println("How many finds would you like to have in this coordinate? You can have 0 finds (meaning none), up to all 3 finds.");
+		System.out.println("::> ");
+		amountFinds = input.nextInt();
+		
+		//"Prompt the user to enter the type of find and the date, and then add that find in the appropriate collection."
+		switch(amountFinds){ 
+		case 0:
+			break;
+		case 1:
+			System.out.println("What type of find would you like to enter?");
+			System.out.println("1. Pottery");
+			System.out.println("2. Metal Work");
+			System.out.println("3. Charcoal");
+			System.out.println("::> ");
+			oneFind = input.nextInt();
+			break;
+		case 2:
+			System.out.println("What type of find would you like to enter first?");
+			System.out.println("1. Pottery");
+			System.out.println("2. Metal Work");
+			System.out.println("3. Charcoal");
+			System.out.println("::> ");
+			twoFind1 = input.nextInt();
+			
+			System.out.println("What type of find would you like to enter last?");
+			System.out.println("1. Pottery");
+			System.out.println("2. Metal Work");
+			System.out.println("3. Charcoal");
+			System.out.println("::> ");
+			twoFind2 = input.nextInt();
+			break;
+		case 3:
+			System.out.println("What type of find would you like to enter first?");
+			System.out.println("1. Pottery");
+			System.out.println("2. Metal Work");
+			System.out.println("3. Charcoal");
+			System.out.println("::> ");
+			threeFind1 = input.nextInt();
+			
+			System.out.println("What type of find would you like to enter second?");
+			System.out.println("1. Pottery");
+			System.out.println("2. Metal Work");
+			System.out.println("3. Charcoal");
+			System.out.println("::> ");
+			threeFind2 = input.nextInt();
+			
+			System.out.println("What type of find would you like to enter last?");
+			System.out.println("1. Pottery");
+			System.out.println("2. Metal Work");
+			System.out.println("3. Charcoal");
+			System.out.println("::> ");
+			threeFind3 = input.nextInt();
+			break;
+		default: 
+			System.out.println("Not a valid input. Please try again.");
+		}
+		
+	}
+
+	public static void rowCoord(int row2){
+		
+		Scanner input = new Scanner(System.in);
+		int changeRow;
+		System.out.println("What row would you like to change?");
+		System.out.println("::> ");
+		changeRow = input.nextInt();
 	}
 }

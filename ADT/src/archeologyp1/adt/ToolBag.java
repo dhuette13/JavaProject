@@ -12,6 +12,9 @@ public class ToolBag {
 
 	private Map map;
 	private Coordinate current;
+	private static Pot p; 
+	private static MetalObject m;
+	private static Charcoal ch;
 
 	public ToolBag(Map map){
 		this.map = map;
@@ -79,11 +82,12 @@ public class ToolBag {
 				}
 			}
 		}
+		computeStandardDeviation(average);
 		return 0;
 	}
 	
 	
-	public int computeStandardDeviation(int avg){
+	public int computeStandardDeviation(double avg){
 		
 		int r, c, n = 0;
 		
@@ -117,17 +121,17 @@ public class ToolBag {
 				if(current.itemFound()){
 					
 					if(current.potCount.size() != 0){
-						Pot p;
+						//Pot p;
 						sub = p.getDate() - avg;
 						power = Math.pow(sub, sub);
 					} 
 					else if(current.charcoalCount.size() != 0){
-						Charcoal ch;
+						//Charcoal ch;
 						sub = ch.getDate() - avg;
 						power = Math.pow(sub, sub);
 					}
 					else if(current.metalCount.size() != 0){
-						MetalObject m;
+						//MetalObject m;
 						sub = m.getDate() - avg;
 						power = Math.pow(sub, sub);
 					}
@@ -150,5 +154,9 @@ public class ToolBag {
 		
 		System.out.println("The average minus standard deviation is "+minus+" and the average plus the standard deviation is "+plus+".");
 		return 0;
+<<<<<<< HEAD
+=======
+			
+>>>>>>> 0b610b1b9d42da5fe1f8770419e5b433a77188ef
 	}
 }
