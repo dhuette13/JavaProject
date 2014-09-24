@@ -1,5 +1,7 @@
 package archeologyp1.mpt;
 
+import java.util.Scanner;
+
 import archeologyp1.shared.Coordinate;
 import archeologyp1.shared.Map;
 import archeologyp1.shared.Pot;
@@ -14,12 +16,20 @@ public class MapEditor {
 		this.map = map;
 	}
 	
-	public void editSingleCoordinate(int row, char col){
-		//ask person about features, finds, excavated, date, etc etc
+	public void editSingleCoordinate(int row, char col, int type, int amount){
+		Scanner input = new Scanner(System.in);
+		int date = 0;
 		int r = row - 1;
-		int c = Utilities.columnToIndex(Character.toString(col));
+		int c = Utilities.columnToIndex(Character.toString(col)); 
 		current = map.plane[r][c];
-		current.potCount.add(new Pot(300));
+		
+		//Inputting the dates
+		for(int i=0; i<amount-1; i++){
+			System.out.println("What date would you like your " + (i+1) + " find to have?");
+			System.out.println("::> ");
+			date = input.nextInt();
+			current.potCount.add(new Pot(date));
+		}
 	}
 
 	public void editRow(int row){
