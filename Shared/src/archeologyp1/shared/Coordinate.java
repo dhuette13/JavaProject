@@ -77,19 +77,6 @@ public class Coordinate {
 		}
 	}
 	
-	public void setFeatureSymbol(Feature feature){
-		switch(feature){
-		case dirt:
-			
-			break;
-		case postHole:
-			break;
-		case stone:
-			break;
-			
-		}
-	}
-	
 	public void setFeatureSymbol(ViewingOption option){
 		switch(option){
 		case natural:
@@ -117,16 +104,27 @@ public class Coordinate {
 	public void setFeatureSymbol(char symbol){
 		switch(feature){
 		case stone:
-			if(excavated) stoneSymbol = symbol;
-			else stoneAlias = symbol;
+			stoneSymbol = symbol;
 			break;
 		case postHole:
-			if(excavated) postHoleSymbol = symbol;
-			else postHoleAlias = symbol;
+			postHoleSymbol = symbol;
 			break;
 		case dirt:
-			if(excavated) dirtSymbol = symbol;
-			else dirtAlias = symbol;
+			dirtSymbol = symbol;
+			break;
+		}
+	}
+
+	public void setFeatureAlias(char symbol){
+		switch(feature){
+		case stone:
+			stoneAlias = symbol;
+			break;
+		case postHole:
+			postHoleAlias = symbol;
+			break;
+		case dirt:
+			dirtAlias = symbol;
 			break;
 		}
 	}

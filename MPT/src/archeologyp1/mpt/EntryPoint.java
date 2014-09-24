@@ -6,8 +6,10 @@ import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import archeologyp1.shared.Feature;
 import archeologyp1.shared.Map;
 import archeologyp1.shared.Utilities;
+import archeologyp1.shared.ViewingOption;
 
 /**
  * Main Class for Map Population Tool
@@ -26,6 +28,7 @@ public class EntryPoint {
 	UserInterface ui;
 	MapEditor mapEditor;
 	int row, col, width, height;
+	ViewingOption option;
 
 	public EntryPoint(){
 		input = new Scanner(System.in);
@@ -94,7 +97,79 @@ public class EntryPoint {
 					break;
 					/* Change the Viewing Options */
 				case 2:                		
-					ui.changeViewing();
+//					ui.changeViewing();
+					System.out.println("\t1) Change group of elements");
+					System.out.println("\t2) Change whole map");
+					System.out.print("::> ");
+					selection = input.nextInt();
+					switch(selection){
+					/* Switch an individual element */
+					case 1:
+						char symbol;
+						map.setViewingOption(ViewingOption.userModified);
+						System.out.println("\t1) Change Natural Surface");
+						System.out.println("\t2) Change Post Hole");
+						System.out.println("\t3) Change Stone");
+						System.out.print("::> ");
+						selection = input.nextInt();
+						System.out.print("\tEnter symbol to change to: ");
+						symbol = input.next().charAt(0);
+						switch(selection){
+						case 1:
+							map.updateView(Feature.dirt, symbol);
+							break;
+						case 2:
+							map.updateView(Feature.postHole, symbol);
+							break;
+						case 3:
+							map.updateView(Feature.stone, symbol);
+							break;
+						default:
+							System.out.println("Invalid selection");
+						}
+						break;
+						/* Change the map's viewing option*/
+					case 2:
+						System.out.println("\t\t1) Natual option");
+						System.out.println("\t\t2) User Modified option");
+						System.out.println("\t\t3) PotCount option");
+						System.out.println("\t\t4) MetalCount option");
+						System.out.println("\t\t5) CharcoalCount option");
+						System.out.println("\t\t6) Magnetometer Results option");
+						System.out.println("\t\t7) Metal Detector Results option");
+						System.out.print("::> ");
+						selection = input.nextInt();
+						switch(selection){
+						case 1:
+							option = ViewingOption.natural;
+							break;
+						case 2:
+							option = ViewingOption.userModified;
+							break;
+						case 3:
+							option = ViewingOption.potCount;
+							break;
+						case 4:
+							option = ViewingOption.metalCount;
+							break;
+						case 5:
+							option = ViewingOption.charcoalCount;
+							break;
+						case 6:
+							option = ViewingOption.magnetometerResult;
+							break;
+						case 7:
+							option = ViewingOption.metalDetectorResult;
+						default:
+							System.out.println("\tInvalid Selection");
+							break;
+						}
+						map.setViewingOption(option);
+						map.updateView();
+						break;
+					default:
+						System.out.println("\tInvalid selection");
+					}
 					break;
 					/* Export map */
 				case 3:

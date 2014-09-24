@@ -36,10 +36,10 @@ public class Map {
 	}
 
 	public void updateView(){
-		updateView(null, '\0');
+		updateView(null, '\0', false);
 	}
 
-	public void updateView(Feature feature, char symbol){
+	public void updateView(Feature feature, char symbol, boolean alias){
 		int r,c;
 		Coordinate current;
 		switch(viewingOption){
@@ -70,10 +70,13 @@ public class Map {
 				for(c = 0; c < columns; c++){
 					current = plane[r][c];
 					if(current.getFeature() == feature){
-						current.setFeatureSymbol(symbol);
+						if(alias){
+							current.setFeatureAlias(symbol);
+						} else {
+							current.setFeatureSymbol(symbol);
+						}
 						current.setCurrentViewableSymbol();
 					}
-					current.setCurrentViewableSymbol();
 				}
 			}
 			break;

@@ -127,19 +127,31 @@ public class EntryPoint {
 						System.out.println("\t1) Change Natural Surface");
 						System.out.println("\t2) Change Post Hole");
 						System.out.println("\t3) Change Stone");
+						System.out.println("\t4) Change Excavated Natural Surface");
+						System.out.println("\t5) Change Excavated Post Hole");
+						System.out.println("\t6) Change Excavated Stone");
 						System.out.print("::> ");
 						selection = input.nextInt();
 						System.out.print("\tEnter symbol to change to: ");
 						symbol = input.next().charAt(0);
 						switch(selection){
 						case 1:
-							map.updateView(Feature.dirt, symbol);
+							map.updateView(Feature.dirt, symbol, true);
 							break;
 						case 2:
-							map.updateView(Feature.postHole, symbol);
+							map.updateView(Feature.postHole, symbol, true);
 							break;
 						case 3:
-							map.updateView(Feature.stone, symbol);
+							map.updateView(Feature.stone, symbol, true);
+							break;
+						case 4:
+							map.updateView(Feature.dirt, symbol, false);
+							break;
+						case 5:
+							map.updateView(Feature.postHole, symbol, false);
+							break;
+						case 6:
+							map.updateView(Feature.stone, symbol, false);
 							break;
 						default:
 							System.out.println("Invalid selection");
