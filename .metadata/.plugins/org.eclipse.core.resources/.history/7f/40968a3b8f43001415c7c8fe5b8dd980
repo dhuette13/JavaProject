@@ -117,16 +117,12 @@ public class ToolBag {
 		double sub = 0;
 		double sum = 0;
 		
-		/* The variance equation is 
+		/* Variance equation is 
 		 * s^2 = (x1-xbar)^2+(x2-xbar)^2+...+(xn-xbar)^2 / n-1
-		 * where n-1 is the degrees of freedom and represents the
-		 * amount of data points currently
 		 */
 		for(r = 0; r < map.getNumRows(); r++){
 			for(c = 0; c < map.getNumColumns(); c++){
 				current = map.plane[r][c];
-				
-				//To Do: Instantiate
 				if(current.itemFound()){
 					if(current.potCount.size() != 0){
 						sub = p.getDate() - avg;

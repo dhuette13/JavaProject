@@ -86,11 +86,6 @@ public class ToolBag {
 	}
 	
 	
-	/* Computing the standard deviation first by going
-	 * through and getting the variance, before
-	 * taking the square root of that, which is the
-	 * standard deviation
-	 */
 	public int computeStandardDeviation(double avg){
 		
 		int r, c, n = 0;
@@ -98,7 +93,6 @@ public class ToolBag {
 		//Computes the amount of things needed to divide by to get the variance
 		for(r = 0; r < map.getNumRows(); r++){
 			for(c = 0; c < map.getNumColumns(); c++){
-				current = map.plane[r][c];
 				if(current.getExcavated() && current.itemFound()){ //If it's excavated and if there's an object inside it
 					n += c;
 				}
@@ -117,17 +111,14 @@ public class ToolBag {
 		double sub = 0;
 		double sum = 0;
 		
-		/* The variance equation is 
-		 * s^2 = (x1-xbar)^2+(x2-xbar)^2+...+(xn-xbar)^2 / n-1
-		 * where n-1 is the degrees of freedom and represents the
-		 * amount of data points currently
-		 */
 		for(r = 0; r < map.getNumRows(); r++){
+			
 			for(c = 0; c < map.getNumColumns(); c++){
+				
 				current = map.plane[r][c];
 				
-				//To Do: Instantiate
 				if(current.itemFound()){
+					
 					if(current.potCount.size() != 0){
 						sub = p.getDate() - avg;
 						power = Math.pow(sub, sub);
@@ -140,6 +131,7 @@ public class ToolBag {
 						sub = m.getDate() - avg;
 						power = Math.pow(sub, sub);
 					}
+					
 					sum += power;
 				}
 			}

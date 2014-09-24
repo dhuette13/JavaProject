@@ -125,8 +125,9 @@ public class ToolBag {
 		for(r = 0; r < map.getNumRows(); r++){
 			for(c = 0; c < map.getNumColumns(); c++){
 				current = map.plane[r][c];
-				
-				//To Do: Instantiate
+				p = ;
+				ch = ;
+				m = ;
 				if(current.itemFound()){
 					if(current.potCount.size() != 0){
 						sub = p.getDate() - avg;
