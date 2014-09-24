@@ -46,7 +46,7 @@ public class UserInterface {
 				System.out.println("::> ");
 				r1 = input.nextInt();
 
-				System.out.println("The following coordinate is what you want to change: "+c+", "+r);
+				System.out.println("The following coordinate is what you want to change: "+c+", "+r1);
 				System.out.println("If this is correct, please hit 1. If it is not, please hit 0.");
 				System.out.println("::> ");
 				check1 = input.nextInt();
@@ -62,7 +62,7 @@ public class UserInterface {
 					continue;
 				}
 			}
-			singleCoord(c, r);
+			singleCoord(c, r1);
 
 		case 2: 		//Figuring out the row the user wants to change on the map
 			bool = true;
@@ -202,7 +202,7 @@ public class UserInterface {
 		
 		// Inputting the amount of finds
 		System.out.println("How many finds would you like to have in this coordinate? You can have 0 finds (meaning none), up to all 3 finds.");
-		System.out.println("::> ")
+		System.out.println("::> ");
 		amountFinds = input.nextInt();
 		
 		//"Prompt the user to enter the type of find and the date, and then add that find in the appropriate collection."
@@ -256,13 +256,14 @@ public class UserInterface {
 			threeFind3 = input.nextInt();
 			break;
 		default: 
-			System.out.println("Not a valid input. Please try again.")
+			System.out.println("Not a valid input. Please try again.");
 		}
 		
 	}
 
 	public static void rowCoord(int row2){
 		
+		Scanner input = new Scanner(System.in);
 		int changeRow;
 		System.out.println("What row would you like to change?");
 		System.out.println("::> ");
