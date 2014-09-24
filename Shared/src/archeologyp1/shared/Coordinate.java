@@ -21,12 +21,12 @@ public class Coordinate {
 	public ArrayList<MetalObject> metalCount = new ArrayList<MetalObject>();
 	public ArrayList<Charcoal> charcoalCount = new ArrayList<Charcoal>();
 
-	private static final char defaultStoneSymbol = 'S';
-	private static final char defaultPostHoleSymbol = 'P';
-	private static final char defaultDirtSymbol = 'D';
-	private static final char defaultStoneAlias = 'Y';
-	private static final char defaultPostHoleAlias = 'G';
-	private static final char defaultDirtAlias = 'g';
+	public static final char defaultStoneSymbol = 'S';
+	public static final char defaultPostHoleSymbol = 'P';
+	public static final char defaultDirtSymbol = 'D';
+	public static final char defaultStoneAlias = 'Y';
+	public static final char defaultPostHoleAlias = 'G';
+	public static final char defaultDirtAlias = 'g';
 	
 	private static final char readableStoneSymbol = '$';
 	private static final char readablePostHoleSymbol = '-';
@@ -77,6 +77,19 @@ public class Coordinate {
 		}
 	}
 	
+	public void setFeatureSymbol(Feature feature){
+		switch(feature){
+		case dirt:
+			
+			break;
+		case postHole:
+			break;
+		case stone:
+			break;
+			
+		}
+	}
+	
 	public void setFeatureSymbol(ViewingOption option){
 		switch(option){
 		case natural:
@@ -87,7 +100,7 @@ public class Coordinate {
 			postHoleAlias = defaultPostHoleAlias;
 			dirtAlias = defaultDirtAlias;
 			break;
-		case readable:
+		case userModified:
 			stoneSymbol = readableStoneSymbol;
 			postHoleSymbol = readablePostHoleSymbol;
 			dirtSymbol = readableDirtSymbol;

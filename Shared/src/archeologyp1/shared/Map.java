@@ -34,8 +34,12 @@ public class Map {
 	public void setViewingOption(ViewingOption option){
 		viewingOption = option;
 	}
-	
+
 	public void updateView(){
+		updateView(null, '\0');
+	}
+
+	public void updateView(Feature feature, char symbol){
 		int r,c;
 		Coordinate current;
 		switch(viewingOption){
@@ -43,16 +47,32 @@ public class Map {
 			for(r = 0; r < rows; r++){
 				for(c = 0; c < columns; c++){
 					current = plane[r][c];
-					current.setFeatureSymbol(ViewingOption.natural);
-					current.setCurrentViewableSymbol();
+					switch(current.getFeature()){
+					case stone:
+						if(current.getExcavated()) current.setCurrentViewableSymbol(Coordinate.defaultStoneSymbol);
+						else current.setCurrentViewableSymbol(Coordinate.defaultStoneAlias);
+						break;
+					case postHole:
+						if(current.getExcavated()) current.setCurrentViewableSymbol(Coordinate.defaultPostHoleSymbol);
+						else current.setCurrentViewableSymbol(Coordinate.defaultPostHoleAlias);
+						break;
+					case dirt:
+						if(current.getExcavated()) current.setCurrentViewableSymbol(Coordinate.defaultDirtSymbol);
+						else current.setCurrentViewableSymbol(Coordinate.defaultDirtAlias);
+						break;
+					}
+					//					current.setFeatureSymbol(ViewingOption.natural);
 				}
 			}
 			break;
-		case readable:
+		case userModified:
 			for(r = 0; r < rows; r++){
 				for(c = 0; c < columns; c++){
 					current = plane[r][c];
-					current.setFeatureSymbol(ViewingOption.readable);
+					if(current.getFeature() == feature){
+						current.setFeatureSymbol(symbol);
+						current.setCurrentViewableSymbol();
+					}
 					current.setCurrentViewableSymbol();
 				}
 			}
@@ -68,7 +88,7 @@ public class Map {
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
-//					current.setCurrentViewableSymbol();
+					//					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -83,7 +103,7 @@ public class Map {
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
-//					current.setCurrentViewableSymbol();
+					//					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -98,7 +118,7 @@ public class Map {
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
-//					current.setCurrentViewableSymbol();
+					//					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -114,11 +134,11 @@ public class Map {
 					}
 					else
 						current.setCurrentViewableSymbol(' ');
-					
+
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
-//					current.setCurrentViewableSymbol();
+					//					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -134,11 +154,11 @@ public class Map {
 					}
 					else
 						current.setCurrentViewableSymbol(' ');
-					
+
 					/* Update the Current viewable symbol based on feature
 					 * symbol and excavation status.
 					 */
-//					current.setCurrentViewableSymbol();
+					//					current.setCurrentViewableSymbol();
 				}
 			}
 			break;

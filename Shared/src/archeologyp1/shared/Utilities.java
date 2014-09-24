@@ -221,6 +221,7 @@ public class Utilities {
 	public static int columnToIndex(String column){
 		int index = 0;
 		int k = 0;
+		column = column.toUpperCase();
 		if(column.length() == 1){
 			index = column.charAt(0) - 'A';
 		} else {

@@ -5,6 +5,7 @@ import archeologyp1.shared.Coordinate;
 import archeologyp1.shared.Map;
 import archeologyp1.shared.MetalObject;
 import archeologyp1.shared.Pot;
+import archeologyp1.shared.Utilities;
 
 
 public class ToolBag {
@@ -18,7 +19,7 @@ public class ToolBag {
 
 	public void magnetoMeter(int row, char col){
 		int r = row - 1;
-		int c = col - 'A';
+		int c = Utilities.columnToIndex(Character.toString(col));
 		current = map.plane[r][c];
 		current.setCharcoalInspected(true);
 		if(current.charcoalCount.size() != 0)
@@ -29,7 +30,7 @@ public class ToolBag {
 
 	public void metalDetector(int row, char col){
 		int r = row - 1;
-		int c = col - 'A';
+		int c = Utilities.columnToIndex(Character.toString(col));
 		current = map.plane[r][c];
 		current.setMetalInspected(true);
 		if(current.metalCount.size() != 0)
@@ -40,14 +41,14 @@ public class ToolBag {
 	
 	public void visibleSpectrum(int row, char col){
 		int r = row - 1;
-		int c = col - 'A';
+		int c = Utilities.columnToIndex(Character.toString(col));
 		current = map.plane[r][c];
 		current.setPotInspected(true);
 	}
 	
 	public void dig(int row, char col){
 		int r = row - 1;
-		int c = col - 'A';
+		int c = Utilities.columnToIndex(Character.toString(col));
 		current = map.plane[r][c];
 		current.setExcavated(true);
 		if((current.potCount.size() != 0) || (current.charcoalCount.size() != 0) || (current.metalCount.size() != 0)){

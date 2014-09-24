@@ -28,7 +28,6 @@ public class EntryPoint {
 
 	public EntryPoint(){
 		handleLoad();
-		ui = new UserInterface(map);
 		input = new Scanner(System.in);
 		flag = true;
 	}

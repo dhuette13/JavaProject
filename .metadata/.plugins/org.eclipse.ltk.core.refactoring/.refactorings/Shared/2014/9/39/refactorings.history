@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename enum constant &apos;readable&apos; of &apos;archeologyp1.shared.ViewingOption&apos; to &apos;userModified&apos;&#x0A;- Original project: &apos;Shared&apos;&#x0A;- Original element: &apos;archeologyp1.shared.ViewingOption.readable&apos;&#x0A;- Renamed element: &apos;archeologyp1.shared.ViewingOption.userModified&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" delegate="false" deprecate="false" description="Rename enum constant &apos;readable&apos;" flags="589830" getter="false" id="org.eclipse.jdt.ui.rename.enum.constant" input="/src&lt;archeologyp1.shared{ViewingOption.java[ViewingOption^readable" name="userModified" references="true" setter="false" stamp="1411519417205" textual="false" version="1.0"/>
+</session>
