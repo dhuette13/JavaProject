@@ -78,12 +78,11 @@ public class ToolBag {
 				}
 			}
 		}
-		computeStandardDeviation(average);
 		return 0;
 	}
 	
 	
-	public int computeStandardDeviation(double avg){
+	public int computeStandardDeviation(int avg){
 		
 		int r, c, n = 0;
 		
@@ -149,7 +148,6 @@ public class ToolBag {
 		plus = avg + sd;
 		
 		System.out.println("The average minus standard deviation is "+minus+" and the average plus the standard deviation is "+plus+".");
-		return 0;
 			
 	}
 }

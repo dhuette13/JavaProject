@@ -19,7 +19,7 @@ import archeologyp1.shared.Utilities;
 
 public class UserInterface {
 	
-	private static Map map;
+	private Map map;
 
 	public static void changeCoordinate(int OR){
 		Scanner input = new Scanner(System.in);
@@ -210,6 +210,7 @@ public class UserInterface {
 		//"Prompt the user to enter the type of find and the date, and then add that find in the appropriate collection."
 		switch(amountFinds){ 
 		case 0:
+			continue;
 			break;
 		case 1:
 			System.out.println("What type of find would you like to enter?");
