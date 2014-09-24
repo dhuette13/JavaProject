@@ -59,7 +59,7 @@ public class EntryPoint {
 						flag = false;
 					break;
 				case 2:
-					System.out.print("Enter the desired dimensions (width height): " );
+					System.out.print("Enter the desired dimensions (height width): " );
 					width = input.nextInt();
 					height = input.nextInt();
 					map = Utilities.generateMap(width, height);
@@ -190,6 +190,10 @@ public class EntryPoint {
 					break;
 					/* Save map */
 				case 4: 
+					
+					System.out.print("Enter a path name to save to: ");
+					path = input.next();
+					Utilities.save(map, path);
 					break;
 					/* Exit */
 				case 0:

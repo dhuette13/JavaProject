@@ -12,9 +12,6 @@ public class ToolBag {
 
 	private Map map;
 	private Coordinate current;
-	private static Pot p; 
-	private static MetalObject m;
-	private static Charcoal ch;
 
 	public ToolBag(Map map){
 		this.map = map;
