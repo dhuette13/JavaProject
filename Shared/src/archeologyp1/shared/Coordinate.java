@@ -7,7 +7,6 @@ import java.util.ArrayList;
  * @author Daniel
  *
  */
-
 public class Coordinate {
 	private Feature feature;
 	private char currentViewableSymbol;
@@ -23,12 +22,13 @@ public class Coordinate {
 	public ArrayList<Charcoal> charcoalCount = new ArrayList<Charcoal>();
 
 	/* Default symbols to use */
-	public static final char defaultStoneSymbol = 'S';
-	public static final char defaultPostHoleSymbol = 'P';
 	public static final char defaultDirtSymbol = 'D';
+	public static final char defaultStoneSymbol = 'R';
+	public static final char defaultPostHoleSymbol = 'H';
+	
+	public static final char defaultDirtAlias = 'g';
 	public static final char defaultStoneAlias = 'Y';
 	public static final char defaultPostHoleAlias = 'G';
-	public static final char defaultDirtAlias = 'g';
 
 	/**
 	 * Initialize member variables
@@ -132,14 +132,14 @@ public class Coordinate {
 	 */
 	public void setFeature(char featureType){
 		switch(featureType){
+		case 'N':
+			feature = Feature.dirt;
+			break;
 		case 'S':
 			feature = Feature.stone;
 			break;
 		case 'P':
 			feature = Feature.postHole;
-			break;
-		case 'D':
-			feature = Feature.dirt;
 			break;
 		default:
 			System.out.println("Invalid case");
@@ -151,14 +151,14 @@ public class Coordinate {
 	 */
 	public char getFeatureChar(){
 		switch(feature){
+		case dirt:
+			return 'N';
 		case stone:
 			return 'S';
 		case postHole:
 			return 'P';
-		case dirt:
-			return 'D';
 		}
-		return 'S';
+		return ' ';
 	}
 	/********************************************************************/
 	/**

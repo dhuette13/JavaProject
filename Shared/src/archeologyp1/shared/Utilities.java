@@ -1,8 +1,9 @@
 package archeologyp1.shared;
 
-import java.io.File; 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -61,7 +62,7 @@ public class Utilities {
 				dataArray = line.split(",");
 
 				/* Get integer index for row and column */ 
-				c = ((int) (dataArray[i++].charAt(0))) - 65;
+				c = columnToIndex(dataArray[i++]);
 				r = Integer.parseInt(dataArray[i++]);
 				current = map.plane[r][c];
 
@@ -121,7 +122,7 @@ public class Utilities {
 			for(r = 0; r < m.getNumRows(); r++){
 				for(c = 0; c < m.getNumColumns(); c++){
 					current = m.plane[r][c];
-					out.print(((char)(c + 65)) + "," + r);
+					out.print(indexToColumn(c) + "," + r);
 					out.print("," + current.getFeatureChar());
 					out.print("," + Boolean.toString(current.getExcavated()).toUpperCase());
 					out.print("," + current.potCount.size());
@@ -220,13 +221,59 @@ public class Utilities {
 	
 	public static int columnToIndex(String column){
 		int index = 0;
-		int k = 0;
 		column = column.toUpperCase();
 		if(column.length() == 1){
 			index = column.charAt(0) - 'A';
 		} else {
 			index = ((column.charAt(0) - 'A' + 1) * 25) + (column.charAt(1) - 'A');
 		}
-		return index;
+		return index + 1;
+	}
+	
+	public static String indexToColumn(int index){
+		String result=null;
+		ArrayList <Integer> tempArray = new ArrayList<Integer>();
+		int value=index;
+		int modulus=0;
+//		int iTemp1=0;
+//		int iTemp2=0;
+		char temp=' ';	
+		
+		
+		
+		result=new String();
+		boolean flag=true;
+		
+
+		//Convert from Base 10 to Base 26
+		while (flag)
+		{
+			modulus=value%26;
+			value=value/26;
+			tempArray.add(modulus);
+			if (value<1)
+				flag=false;
+		}
+
+		//Convert Base 26 to Character SEt 
+		int loop=0;
+		for (loop=0;loop<tempArray.size();loop++)
+		{
+			int iTemp3=tempArray.get(loop);
+
+			//If the current character is higher than the first significant column.
+			if (loop>0)
+			{	temp=(char)('A'+iTemp3-1);
+
+			}
+			//Else, we want there to be a blank, not an '@'
+			else
+			{
+				temp=(char)('A'+iTemp3);
+			}
+			result=temp+result;
+			
+		}
+		return result;
 	}
 }

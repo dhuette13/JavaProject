@@ -12,17 +12,14 @@ public class ToolBag {
 
 	private Map map;
 	private Coordinate current;
-	private static Pot p; 
-	private static MetalObject m;
-	private static Charcoal ch;
 
 	public ToolBag(Map map){
 		this.map = map;
 	}
 
-	public void magnetoMeter(int row, char col){
+	public void magnetoMeter(int row, String col){
 		int r = row - 1;
-		int c = Utilities.columnToIndex(Character.toString(col)); 
+		int c = Utilities.columnToIndex(col); 
 		current = map.plane[r][c];
 		current.setCharcoalInspected(true);
 		if(current.charcoalCount.size() != 0)
@@ -31,9 +28,9 @@ public class ToolBag {
 			current.setCharcoalHidden(false);
 	}
 
-	public void metalDetector(int row, char col){
+	public void metalDetector(int row, String col){
 		int r = row - 1;
-		int c = Utilities.columnToIndex(Character.toString(col));
+		int c = Utilities.columnToIndex(col);
 		current = map.plane[r][c];
 		current.setMetalInspected(true);
 		if(current.metalCount.size() != 0)
@@ -42,16 +39,16 @@ public class ToolBag {
 			current.setMetalHidden(false);
 	}
 
-	public void visibleSpectrum(int row, char col){
+	public void visibleSpectrum(int row, String col){
 		int r = row - 1;
-		int c = Utilities.columnToIndex(Character.toString(col));
+		int c = Utilities.columnToIndex(col);
 		current = map.plane[r][c];
 		current.setPotInspected(true);
 	}
 
-	public void dig(int row, char col){
+	public void dig(int row, String col){
 		int r = row - 1;
-		int c = Utilities.columnToIndex(Character.toString(col));
+		int c = Utilities.columnToIndex(col);
 		current = map.plane[r][c];
 		current.setExcavated(true);
 		if((current.potCount.size() != 0) || (current.charcoalCount.size() != 0) || (current.metalCount.size() != 0)){
@@ -139,8 +136,6 @@ public class ToolBag {
 				}
 			}
 		}
-
-
 		double variance = 0;
 		variance = sum / n;
 

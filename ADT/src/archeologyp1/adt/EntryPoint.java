@@ -17,7 +17,7 @@ public class EntryPoint {
 	int selection;
 	boolean flag;
 	int row;
-	char column;
+	String column;
 	double average;
 	String path;
 	Map map;
@@ -72,7 +72,7 @@ public class EntryPoint {
 						System.out.println("\tPlease specify a row and column.");
 						System.out.print("::> ");
 						row = input.nextInt();
-						column = input.next().charAt(0);
+						column = input.next();
 						toolBag.visibleSpectrum(row, column);
 						map.updateView();
 						break;
@@ -81,7 +81,7 @@ public class EntryPoint {
 						System.out.println("\tPlease specify a row and column.");
 						System.out.print("::> ");
 						row = input.nextInt();
-						column = input.next().charAt(0);
+						column = input.next();
 						toolBag.metalDetector(row, column);
 						map.updateView();
 						break;
@@ -90,7 +90,7 @@ public class EntryPoint {
 						System.out.println("\tPlease specify a row and column.");
 						System.out.print("::> ");
 						row = input.nextInt();
-						column = input.next().charAt(0);
+						column = input.next();
 						toolBag.magnetoMeter(row, column);
 						map.updateView();
 						break;
@@ -103,7 +103,7 @@ public class EntryPoint {
 					System.out.println("\tPlease specify a row and column.");
 					System.out.print("::> ");
 					row = input.nextInt();
-					column = input.next().charAt(0);
+					column = input.next();
 					toolBag.dig(row, column);
 					map.updateView();
 					break;
