@@ -75,8 +75,8 @@ public class Map {
 						} else {
 							current.setFeatureSymbol(symbol);
 						}
-						current.updateCurrentViewableSymbol();
 					}
+					current.updateCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -88,10 +88,6 @@ public class Map {
 						current.setCurrentViewableSymbol(Integer.toString(current.potCount.size()).charAt(0));
 					else
 						current.setCurrentViewableSymbol(' ');
-					/* Update the Current viewable symbol based on feature
-					 * symbol and excavation status.
-					 */
-					//					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -103,10 +99,6 @@ public class Map {
 						current.setCurrentViewableSymbol(Integer.toString(current.metalCount.size()).charAt(0));
 					else
 						current.setCurrentViewableSymbol(' ');
-					/* Update the Current viewable symbol based on feature
-					 * symbol and excavation status.
-					 */
-					//					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -118,10 +110,6 @@ public class Map {
 						current.setCurrentViewableSymbol(Integer.toString(current.charcoalCount.size()).charAt(0));
 					else 
 						current.setCurrentViewableSymbol(' ');
-					/* Update the Current viewable symbol based on feature
-					 * symbol and excavation status.
-					 */
-					//					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -137,11 +125,6 @@ public class Map {
 					}
 					else
 						current.setCurrentViewableSymbol(' ');
-
-					/* Update the Current viewable symbol based on feature
-					 * symbol and excavation status.
-					 */
-					//					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
@@ -157,11 +140,6 @@ public class Map {
 					}
 					else
 						current.setCurrentViewableSymbol(' ');
-
-					/* Update the Current viewable symbol based on feature
-					 * symbol and excavation status.
-					 */
-					//					current.setCurrentViewableSymbol();
 				}
 			}
 			break;
