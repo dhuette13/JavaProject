@@ -115,15 +115,18 @@ public class ToolBag {
 				
 				if(current.itemFound()){
 					
-					if(){
+					if(current.potCount.size() != 0){
+						Pot p;
 						sub = p.getDate() - avg;
 						power = Math.pow(sub, sub);
 					} 
-					else if(){
+					else if(current.charcoalCount.size() != 0){
+						Charcoal ch;
 						sub = ch.getDate() - avg;
 						power = Math.pow(sub, sub);
 					}
-					else if(){
+					else if(current.metalCount.size() != 0){
+						MetalObject m;
 						sub = m.getDate() - avg;
 						power = Math.pow(sub, sub);
 					}
