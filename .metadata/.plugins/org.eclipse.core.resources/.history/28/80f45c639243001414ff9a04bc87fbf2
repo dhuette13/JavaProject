@@ -17,7 +17,6 @@ import archeologyp1.shared.Map;
 
 public class UserInterface {
 	private Map map;
-	private int selection;
 
 	private MapEditor mapEditor;
 	private Scanner input;
@@ -27,22 +26,6 @@ public class UserInterface {
 		input = new Scanner(System.in);
 	}
 
-	public void addFeatureorFind(){
-		System.out.println("\t1) Change a Feature");
-		System.out.println("\t2) Change a Find");
-		System.out.print("::> ");
-		selection = input.nextInt();
-		switch(selection){
-		/* Feature */
-		case 1:
-			break;
-		/* Find */
-		case 2:
-			break;
-		default:
-			System.out.println("Invalid input.");
-		}
-	}
 	public void changeCoordinate() {
 		boolean bool = true;
 		int selection;
@@ -50,17 +33,13 @@ public class UserInterface {
 		int r1 = 0;
 		int check1, check2; 
 		int r2 = 0;
-		int amountFinds, oneFind, oneDate, twoFind1, twoDate1, twoFind2, twoDate2;
-		int threeFind1, threeDate1, threeFind2, threeDate2, threeFind3, threeDate3;
 
 		System.out.println("What would you like to do?");
 		System.out.println("1 ) Change just one coordinate");
 		System.out.println("2 ) Change an entire row");
-		System.out.print("::> ");
+		System.out.println("::> ");
 		selection = input.nextInt();
 
-		// Change Feature?
-		// Change Finds?
 		switch(selection){
 		/* Change a single coordinate */
 		case 1: 		// Figuring out the specific coordinate the user wants to change
@@ -89,65 +68,6 @@ public class UserInterface {
 					System.out.println("This input is not correct. Please try again.");
 					continue;
 				}
-				
-				//***********************************************************************
-				// Inputting the amount of finds
-				System.out.println("How many finds would you like to have in this coordinate? You can have 0 finds (meaning none), up to all 3 finds.");
-				System.out.println("::> ");
-				amountFinds = input.nextInt();
-
-				//"Prompt the user to enter the type of find and the date, and then add that find in the appropriate collection."
-				switch(amountFinds){ 
-				case 0:
-					break;
-				case 1:
-					System.out.println("What type of find would you like to enter?");
-					System.out.println("1. Pottery");
-					System.out.println("2. Metal Work");
-					System.out.println("3. Charcoal");
-					System.out.println("::> ");
-					oneFind = input.nextInt();
-					break;
-				case 2:
-					System.out.println("What type of find would you like to enter first?");
-					System.out.println("1. Pottery");
-					System.out.println("2. Metal Work");
-					System.out.println("3. Charcoal");
-					System.out.println("::> ");
-					twoFind1 = input.nextInt();
-
-					System.out.println("What type of find would you like to enter last?");
-					System.out.println("1. Pottery");
-					System.out.println("2. Metal Work");
-					System.out.println("3. Charcoal");
-					System.out.println("::> ");
-					twoFind2 = input.nextInt();
-					break;
-				case 3:
-					System.out.println("What type of find would you like to enter first?");
-					System.out.println("1. Pottery");
-					System.out.println("2. Metal Work");
-					System.out.println("3. Charcoal");
-					System.out.println("::> ");
-					threeFind1 = input.nextInt();
-
-					System.out.println("What type of find would you like to enter second?");
-					System.out.println("1. Pottery");
-					System.out.println("2. Metal Work");
-					System.out.println("3. Charcoal");
-					System.out.println("::> ");
-					threeFind2 = input.nextInt();
-
-					System.out.println("What type of find would you like to enter last?");
-					System.out.println("1. Pottery");
-					System.out.println("2. Metal Work");
-					System.out.println("3. Charcoal");
-					System.out.println("::> ");
-					threeFind3 = input.nextInt();
-					break;
-				default: 
-					System.out.println("Not a valid input. Please try again.");
-				}
 			}
 			mapEditor.editSingleCoordinate(r1, c);
 			break;
@@ -161,7 +81,7 @@ public class UserInterface {
 				System.out.println("::> ");
 				r2 = input.nextInt();
 
-				System.out.println("The row you entered to edit is: " + r2);
+				System.out.println("The row you entered to edit is: "+r2);
 				System.out.println("If correct, please enter 1. If not, please hit 0.");
 				System.out.println("::> ");
 				check2 = input.nextInt();

@@ -17,7 +17,6 @@ import archeologyp1.shared.Map;
 
 public class UserInterface {
 	private Map map;
-	private int selection;
 
 	private MapEditor mapEditor;
 	private Scanner input;
@@ -28,20 +27,7 @@ public class UserInterface {
 	}
 
 	public void addFeatureorFind(){
-		System.out.println("\t1) Change a Feature");
-		System.out.println("\t2) Change a Find");
-		System.out.print("::> ");
-		selection = input.nextInt();
-		switch(selection){
-		/* Feature */
-		case 1:
-			break;
-		/* Find */
-		case 2:
-			break;
-		default:
-			System.out.println("Invalid input.");
-		}
+		
 	}
 	public void changeCoordinate() {
 		boolean bool = true;
@@ -65,6 +51,10 @@ public class UserInterface {
 		/* Change a single coordinate */
 		case 1: 		// Figuring out the specific coordinate the user wants to change
 
+			System.out.println("\t1) Change a Feature");
+			System.out.println("\t2) Change a Find");
+			System.out.print("::> ");
+			selection = input.nextInt();
 			while(bool){
 				System.out.println("What column?");
 				System.out.println("::> ");

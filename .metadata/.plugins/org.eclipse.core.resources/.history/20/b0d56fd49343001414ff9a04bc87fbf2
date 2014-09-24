@@ -32,16 +32,6 @@ public class UserInterface {
 		System.out.println("\t2) Change a Find");
 		System.out.print("::> ");
 		selection = input.nextInt();
-		switch(selection){
-		/* Feature */
-		case 1:
-			break;
-		/* Find */
-		case 2:
-			break;
-		default:
-			System.out.println("Invalid input.");
-		}
 	}
 	public void changeCoordinate() {
 		boolean bool = true;

@@ -87,7 +87,7 @@ public class ToolBag {
 	}
 	
 	
-	public double computeStandardDeviation(double avg){
+	public int computeStandardDeviation(double avg){
 		
 		int r, c, n = 0;
 		
