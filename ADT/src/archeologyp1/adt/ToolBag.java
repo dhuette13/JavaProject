@@ -57,7 +57,7 @@ public class ToolBag {
 		if((current.potCount.size() != 0) || (current.charcoalCount.size() != 0) || (current.metalCount.size() != 0)){
 			current.setItemFound(true);
 		}
-		current.setCurrentViewableSymbol();
+		current.updateCurrentViewableSymbol();
 	}
 
 	public double computeAverageDate(){

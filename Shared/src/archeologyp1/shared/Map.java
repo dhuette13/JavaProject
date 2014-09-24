@@ -75,7 +75,7 @@ public class Map {
 						} else {
 							current.setFeatureSymbol(symbol);
 						}
-						current.setCurrentViewableSymbol();
+						current.updateCurrentViewableSymbol();
 					}
 				}
 			}

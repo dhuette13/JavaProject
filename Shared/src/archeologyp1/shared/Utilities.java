@@ -69,7 +69,7 @@ public class Utilities {
 				 * and the symbol to be displayed.
 				 */
 				current.setFeature(dataArray[i++].charAt(0));
-				current.setCurrentViewableSymbol();
+				current.updateCurrentViewableSymbol();
 				current.setExcavated(Boolean.parseBoolean(dataArray[i++]));
 
 				/* Iterate through pot input */

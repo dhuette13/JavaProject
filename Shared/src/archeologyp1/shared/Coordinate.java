@@ -10,42 +10,38 @@ import java.util.ArrayList;
 
 public class Coordinate {
 	private Feature feature;
-	private boolean excavated, itemFound, charcoalInspected, metalInspected, potInspected;
-	private boolean charcoalHidden, metalHidden;
 	private char currentViewableSymbol;
-	/* For Natural Viewing Option */
+	private boolean excavated, itemFound;
+	private boolean charcoalHidden, metalHidden;
+	private boolean charcoalInspected, metalInspected, potInspected;
+	/* For Excavated Coordinates */
 	private char stoneSymbol, postHoleSymbol, dirtSymbol;
-	/* For Readable Viewing Option */
+	/* For Not Excavated Coordinates */
 	private char stoneAlias, postHoleAlias, dirtAlias;
 	public ArrayList<Pot> potCount = new ArrayList<Pot>();
 	public ArrayList<MetalObject> metalCount = new ArrayList<MetalObject>();
 	public ArrayList<Charcoal> charcoalCount = new ArrayList<Charcoal>();
 
+	/* Default symbols to use */
 	public static final char defaultStoneSymbol = 'S';
 	public static final char defaultPostHoleSymbol = 'P';
 	public static final char defaultDirtSymbol = 'D';
 	public static final char defaultStoneAlias = 'Y';
 	public static final char defaultPostHoleAlias = 'G';
 	public static final char defaultDirtAlias = 'g';
-	
-	private static final char readableStoneSymbol = '$';
-	private static final char readablePostHoleSymbol = '-';
-	private static final char readableDirtSymbol = ',';
-	private static final char readableStoneAlias = '#';
-	private static final char readablePostHoleAlias = '*';
-	private static final char readableDirtAlias = '.';
-	
-	
+
+	/**
+	 * Initialize member variables
+	 */
 	public Coordinate(){
 		feature = Feature.dirt;
 		currentViewableSymbol = defaultDirtAlias;
+		
 		excavated = false;
-		charcoalHidden = false;
-		metalHidden = false;
 		itemFound = false;
-		charcoalInspected = false;
-		metalInspected = false;
-		potInspected = false;
+		charcoalHidden = false; metalHidden = false;
+		charcoalInspected = false; metalInspected = false; potInspected = false;
+		
 		stoneSymbol = defaultStoneSymbol;
 		postHoleSymbol = defaultPostHoleSymbol;
 		dirtSymbol = defaultDirtSymbol;
@@ -54,13 +50,21 @@ public class Coordinate {
 		dirtAlias = defaultDirtAlias;
 	}
 
-	public void setCurrentViewableSymbol(char symbol){
-		currentViewableSymbol = symbol;
-	}
-	/* Updates current viewable symbol based on
-	 * the Coordinate's feature type.
+	/**
+	 * @return currentViewableSymbol
+	 * For use by printing method
 	 */
-	public void setCurrentViewableSymbol(){
+	public char getCurrentViewableSymbol() { return currentViewableSymbol; }
+	/**
+	 * @param symbol sets currentViewableSymbol
+	 * currentViewableSymbol used by printing method
+	 */
+	public void setCurrentViewableSymbol(char symbol) { currentViewableSymbol = symbol; }
+	/**
+	 * Updates current viewable symbol based on the Coordinate's
+	 * current feature type.
+	 */
+	public void updateCurrentViewableSymbol(){
 		switch(feature){
 		case stone:
 			if(excavated) currentViewableSymbol = stoneSymbol;
@@ -76,31 +80,11 @@ public class Coordinate {
 			break;
 		}
 	}
-	
-	public void setFeatureSymbol(ViewingOption option){
-		switch(option){
-		case natural:
-			stoneSymbol = defaultStoneSymbol;
-			postHoleSymbol = defaultPostHoleSymbol;
-			dirtSymbol = defaultDirtSymbol;
-			stoneAlias = defaultStoneAlias;
-			postHoleAlias = defaultPostHoleAlias;
-			dirtAlias = defaultDirtAlias;
-			break;
-		case userModified:
-			stoneSymbol = readableStoneSymbol;
-			postHoleSymbol = readablePostHoleSymbol;
-			dirtSymbol = readableDirtSymbol;
-			stoneAlias = readableStoneAlias;
-			postHoleAlias = readablePostHoleAlias;
-			dirtAlias = readableDirtAlias;
-			break;
-		default:
-			System.out.println("Invalid viewing option");
-		}
-	}
-	
-	/* Sets the current viewable symbol */ 
+	/********************************************************************/
+	/**
+	 * @param symbol sets either the stoneSymbol, postHoleSymbol, or dirtSymbol
+	 * Based on the current Coordinate's feature type
+	 */
 	public void setFeatureSymbol(char symbol){
 		switch(feature){
 		case stone:
@@ -114,7 +98,10 @@ public class Coordinate {
 			break;
 		}
 	}
-
+	/**
+	 * @param symbol sets either the stoneAlias, postHoleAlias, or dirtAlias
+	 * Based on the current Coordinate's feature type
+	 */
 	public void setFeatureAlias(char symbol){
 		switch(feature){
 		case stone:
@@ -128,43 +115,21 @@ public class Coordinate {
 			break;
 		}
 	}
+	/********************************************************************/
+	/**
+	 * @return feature the Coordinate's current stored feature type
+	 */
+	public Feature getFeature() { return feature;}
+	/**
+	 * @param f sets feature
+	 */
+	public void setFeature(Feature f) { feature = f; }
 
-	public char getCurrentViewableSymbol(){
-		return currentViewableSymbol;
-	}
-
-	public boolean getExcavated() {
-		return excavated;
-	}
-
-	public void setExcavated(boolean value){
-		excavated = value;
-	}
-
-	public boolean getPotInspected(){
-		return potInspected;
-	}
-	
-	public void setPotInspected(boolean i){
-		potInspected = i;
-	}
-	public boolean getCharcoalInspected(){
-		return charcoalInspected;
-	}
-
-	public void setCharcoalInspected(boolean i){
-		charcoalInspected = i;
-	}
-
-	public boolean getMetalInspected(){
-		return metalInspected;
-	}
-	
-	public void setMetalInspected(boolean i){
-		metalInspected = i;
-	}
-
-	/* For use by load method */
+	/********************************************************************/
+	/**
+	 * @param featureType
+	 * For use by the load method
+	 */
 	public void setFeature(char featureType){
 		switch(featureType){
 		case 'S':
@@ -180,12 +145,10 @@ public class Coordinate {
 			System.out.println("Invalid case");
 		}
 	}
-
-	public Feature getFeature(){
-		return feature;
-	}
-	
-	/* For use by save method */
+	/**
+	 * @return Character to write to save file
+	 * For use by the save method
+	 */
 	public char getFeatureChar(){
 		switch(feature){
 		case stone:
@@ -195,31 +158,86 @@ public class Coordinate {
 		case dirt:
 			return 'D';
 		}
-		return currentViewableSymbol;
+		return 'S';
 	}
-	
-	public boolean charcoalHidden(){
-		return charcoalHidden;
-	}
-	
-	public boolean metalHidden(){
-		return metalHidden;
-	}
+	/********************************************************************/
+	/**
+	 * @return charcoalHidden if a charCoal Object is hidden in Coordinate
+	 */
+	public boolean charcoalHidden() { return charcoalHidden; }
+	/**
+	 * @return metalHidden if a metalObject is hidden in Coordinate
+	 */
+	public boolean metalHidden() { return metalHidden; }
 
-	public void setCharcoalHidden(boolean hidden) {
-		charcoalHidden = hidden;
-	}
-	
-	public void setMetalHidden(boolean hidden) {
-		metalHidden = hidden;
-	}
-	
-	public void setItemFound(boolean found){
-		itemFound = found;
-	}
-	
-	public boolean itemFound(){
-		return itemFound;
-	}
-	
+	/**
+	 * @param hidden
+	 * Sets charcoalHidden variable for use by scanning methods
+	 */
+	public void setCharcoalHidden(boolean hidden) { charcoalHidden = hidden; }
+	/**
+	 * @param hidden
+	 * Sets metalHidden variable for use by scanning methods
+	 */
+	public void setMetalHidden(boolean hidden) { metalHidden = hidden; }
+	/**
+	 * @param found
+	 * Sets itemFound variable, if excavated Coordinate has a hidden find.
+	 */
+	public void setItemFound(boolean found) { itemFound = found; }
+	/**
+	 * @return itemFound
+	 * Indicate whether an item has been found by excavating
+	 */
+	public boolean itemFound(){ return itemFound; }
+	/**
+	 * @return excavated
+	 * Indicates whether the current Coordinate has been dug previously
+	 */
+	public boolean getExcavated() { return excavated; }
+	/**
+	 * @param e set value of excavated
+	 * For use by digging method
+	 */
+	public void setExcavated(boolean e) { excavated = e; }
+	/**
+	 * @return potInspected
+	 * Indicates whether visible spectrum has been previously used on this Coordinate
+	 */
+	public boolean getPotInspected() { return potInspected; }
+	/**
+	 * @return charCoalInspected
+	 * Indicates whether magnetometer has been previously used on this Coordinate
+	 */
+	public boolean getCharcoalInspected() { return charcoalInspected; }
+	/**
+	 * @return metalInspected
+	 * Indicates whether metal detector has been previously used on this Coordinate
+	 */
+	public boolean getMetalInspected() { return metalInspected; }
+
+	/**
+	 * @param i set value of potInspected
+	 * For use by scanning methods
+	 */
+	public void setPotInspected(boolean i) { potInspected = i; }
+	/**
+	 * @param i set value of charcoalInspected
+	 * For use by scanning methods
+	 */
+	public void setCharcoalInspected(boolean i) { charcoalInspected = i; }
+	/**
+	 * @param i set value of metalInspected
+	 * For use by scanning methods
+	 */
+	public void setMetalInspected(boolean i) { metalInspected = i; }
 }
+
+
+
+
+
+
+
+
+
