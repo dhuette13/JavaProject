@@ -1,6 +1,6 @@
 package archeologyp1.mpt;
 
-import java.util.Scanner;
+import java.util.Scanner; 
 
 import archeologyp1.shared.Map;
 import archeologyp1.shared.Coordinate;
@@ -15,6 +15,14 @@ import archeologyp1.shared.Coordinate;
 // 4) Print map
 // 5) Export map
 // 6) Save map
+
+
+
+//Becker's UI: Loops through this file until you exit
+//1. Load File
+//2. Make Map
+//3. Show Map
+//4. Quit
 
 
 
