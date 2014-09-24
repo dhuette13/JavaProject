@@ -110,7 +110,8 @@ public class EntryPoint {
 					/* Find Average of Found Dates */
 				case 3:
 					average = toolBag.computeAverageDate();
-					System.out.println("The average was: " + average);
+					double sd = toolBag.computeStandardDeviation(average);
+					System.out.println("-" + sd + " " + average + " " +  "+" + sd);
 					break;
 					/* Change Viewing Option */
 				case 4:

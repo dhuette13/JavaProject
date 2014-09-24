@@ -41,14 +41,14 @@ public class ToolBag {
 		else
 			current.setMetalHidden(false);
 	}
-	
+
 	public void visibleSpectrum(int row, char col){
 		int r = row - 1;
 		int c = Utilities.columnToIndex(Character.toString(col));
 		current = map.plane[r][c];
 		current.setPotInspected(true);
 	}
-	
+
 	public void dig(int row, char col){
 		int r = row - 1;
 		int c = Utilities.columnToIndex(Character.toString(col));
@@ -59,13 +59,13 @@ public class ToolBag {
 		}
 	}
 
-	public int computeAverageDate(){
+	public double computeAverageDate(){
 		int r, c, itemCount = 0;
 		double average = 0;
 		for(r = 0; r < map.getNumRows(); r++){
 			for(c = 0; c < map.getNumColumns(); c++){
 				current = map.plane[r][c];
-				if(current.itemFound()){
+				if(current.getExcavated() && current.itemFound()){
 					for(Pot p : current.potCount){
 						average += p.getDate();
 						itemCount++;
@@ -78,14 +78,13 @@ public class ToolBag {
 						average += m.getDate();
 						itemCount++;
 					}
-					average = average / itemCount;
 				}
 			}
 		}
-		computeStandardDeviation(average);
-		return 0;
+		average = average / itemCount;
+		return average;
 	}
-	
+
 	/* Computing the standard deviation first by going
 	 * through and getting the variance, before
 	 * taking the square root of that, which is the
@@ -93,29 +92,24 @@ public class ToolBag {
 	 */
 	public double computeStandardDeviation(double avg){
 		int r, c, n = 0;
-		
+
 		//Computes the amount of things needed to divide by to get the variance
 		for(r = 0; r < map.getNumRows(); r++){
 			for(c = 0; c < map.getNumColumns(); c++){
 				current = map.plane[r][c];
 				if(current.getExcavated() && current.itemFound()){ //If it's excavated and if there's an object inside it
-					n += c;
+					for(int k = 0; k < current.potCount.size() + current.metalCount.size() + current.charcoalCount.size(); k++)
+						n++;
 				}
 			}
-			if(current.getExcavated() && current.itemFound()){
-				n += r;
-			}
 		}
-		
+
 		n -= 1; //Degrees of freedom as per the variance equation
-		
-		int copy;
-		copy = n + 1;
-		
+
 		double power = 0;
 		double sub = 0;
 		double sum = 0;
-		
+
 		/* The variance equation is 
 		 * s^2 = (x1-xbar)^2+(x2-xbar)^2+...+(xn-xbar)^2 / n-1
 		 * where n-1 is the degrees of freedom and represents the
@@ -124,44 +118,39 @@ public class ToolBag {
 		for(r = 0; r < map.getNumRows(); r++){
 			for(c = 0; c < map.getNumColumns(); c++){
 				current = map.plane[r][c];
-				
+
 				if(current.itemFound()){
-					if(current.potCount.size() != 0){
-						for(Pot p : current.potCount){
-							sub = p.getDate() - avg;
-							power = Math.pow(sub, 2);
-						}
-					} 
-					else if(current.charcoalCount.size() != 0){
-						for(Charcoal ch : current.charcoalCount){
-							sub = ch.getDate() - avg;
-							power = Math.pow(sub, 2);
-						}
-					}
-					else if(current.metalCount.size() != 0){
-						for(MetalObject m : current.metalCount){
-							sub = m.getDate() - avg;
-							power = Math.pow(sub, 2);
-						}
+					for(Pot p : current.potCount){
 						sub = p.getDate() - avg;
 						power = Math.pow(sub, 2);
-					} 
-					sum += power;
+						sum += power;
+					}
+					for(Charcoal ch : current.charcoalCount){
+						sub = ch.getDate() - avg;
+						power = Math.pow(sub, 2);
+						sum += power;
+					}
+					for(MetalObject m : current.metalCount){
+						sub = m.getDate() - avg;
+						power = Math.pow(sub, 2);
+						sum += power;
+					}
 				}
 			}
 		}
-		
+
+
 		double variance = 0;
 		variance = sum / n;
-		
+
 		double sd = 0;
 		sd = Math.sqrt(variance);
-		
+
 		double minus = 0;
 		minus = avg - sd;
 		double plus = 0;
 		plus = avg + sd;
-		
+
 		System.out.println("The average minus standard deviation is " + minus + " and the average plus the standard deviation is " + plus + ".");
 		return sd;
 	}
