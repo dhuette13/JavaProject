@@ -1,6 +1,6 @@
 package archeologyp1.shared;
 
-import java.io.File; 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ public class Utilities {
 				dataArray = line.split(",");
 
 				/* Get integer index for row and column */ 
-				c = ((int) (dataArray[i++].charAt(0))) - 65;
+				c = columnToIndex(dataArray[i++]);
 				r = Integer.parseInt(dataArray[i++]);
 				current = map.plane[r][c];
 
@@ -227,7 +227,7 @@ public class Utilities {
 		} else {
 			index = ((column.charAt(0) - 'A' + 1) * 25) + (column.charAt(1) - 'A');
 		}
-		return index;
+		return index + 1;
 	}
 	
 	public static String indexToColumn(int index){
