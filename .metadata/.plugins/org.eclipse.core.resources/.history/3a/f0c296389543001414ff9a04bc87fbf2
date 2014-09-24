@@ -128,6 +128,7 @@ public class ToolBag {
 				//To Do: Instantiate
 				if(current.itemFound()){
 					if(current.potCount.size() != 0){
+<<<<<<< HEAD
 						for(Pot p : current.potCount){
 							sub = p.getDate() - avg;
 							power = Math.pow(sub, 2);
@@ -147,6 +148,14 @@ public class ToolBag {
 						sub = p.getDate() - avg;
 						power = Math.pow(sub, 2);
 					} 
+					else if(current.charcoalCount.size() != 0){
+						sub = ch.getDate() - avg;
+						power = Math.pow(sub, 2);
+					}
+					else if(current.metalCount.size() != 0){
+						sub = m.getDate() - avg;
+						power = Math.pow(sub, 2);
+					}
 					sum += power;
 				}
 			}

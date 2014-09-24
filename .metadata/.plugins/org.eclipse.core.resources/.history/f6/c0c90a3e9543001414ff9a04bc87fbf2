@@ -128,6 +128,7 @@ public class ToolBag {
 				//To Do: Instantiate
 				if(current.itemFound()){
 					if(current.potCount.size() != 0){
+<<<<<<< HEAD
 						for(Pot p : current.potCount){
 							sub = p.getDate() - avg;
 							power = Math.pow(sub, 2);
