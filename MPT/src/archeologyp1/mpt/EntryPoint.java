@@ -86,7 +86,7 @@ public class EntryPoint {
 			System.out.println("3 ) Export the map");
 			System.out.println("4 ) Save the map");
 			System.out.println("0 ) Exit");
-			System.out.println("::> ");
+			System.out.print("::> ");
 			try{
 				selection = input.nextInt();
 				
@@ -97,7 +97,6 @@ public class EntryPoint {
 					break;
 					/* Change the Viewing Options */
 				case 2:                		
-//					ui.changeViewing();
 					System.out.println("\t1) Change group of elements");
 					System.out.println("\t2) Change whole map");
 					System.out.print("::> ");
@@ -110,19 +109,31 @@ public class EntryPoint {
 						System.out.println("\t1) Change Natural Surface");
 						System.out.println("\t2) Change Post Hole");
 						System.out.println("\t3) Change Stone");
+						System.out.println("\t4) Change Excavated Natural Surface");
+						System.out.println("\t5) Change Excavated Post Hole");
+						System.out.println("\t6) Change Excavated Stone");
 						System.out.print("::> ");
 						selection = input.nextInt();
 						System.out.print("\tEnter symbol to change to: ");
 						symbol = input.next().charAt(0);
 						switch(selection){
 						case 1:
-							map.updateView(Feature.dirt, symbol);
+							map.updateView(Feature.dirt, symbol, true);
 							break;
 						case 2:
-							map.updateView(Feature.postHole, symbol);
+							map.updateView(Feature.postHole, symbol, true);
 							break;
 						case 3:
-							map.updateView(Feature.stone, symbol);
+							map.updateView(Feature.stone, symbol, true);
+							break;
+						case 4:
+							map.updateView(Feature.dirt, symbol, false);
+							break;
+						case 5:
+							map.updateView(Feature.postHole, symbol, false);
+							break;
+						case 6:
+							map.updateView(Feature.stone, symbol, false);
 							break;
 						default:
 							System.out.println("Invalid selection");
@@ -170,8 +181,8 @@ public class EntryPoint {
 					default:
 						System.out.println("\tInvalid selection");
 					}
-					break;
-					/* Export map */
+					break;					
+				/* Export map */
 				case 3:
 					System.out.print("Enter a path name to export to: ");
 					path = input.next();
