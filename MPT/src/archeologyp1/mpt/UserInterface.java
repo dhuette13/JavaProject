@@ -62,6 +62,7 @@ public class UserInterface {
 			System.out.println("::> ");
 			changeFeature = input.next().charAt(0);
 			
+			//how to parameter
 			mapEditor.editFeature(row, col, changeFeature);
 			
 			break;
@@ -80,6 +81,7 @@ public class UserInterface {
 			System.out.println("::> ");
 			findCollection = input.nextInt();
 			
+			//how to parameter
 			mapEditor.editSingleCoordinate(row, col, findType, findCollection);
 			
 			break;
