@@ -214,7 +214,6 @@ public class UserInterface {
 			System.out.println("2. Metal Work");
 			System.out.println("3. Charcoal");
 			System.out.println("::> ");
-			
 			threeFind1 = input.nextInt();
 			
 			System.out.println("What type of find would you like to enter second?");
