@@ -91,6 +91,7 @@ public class ToolBag {
 	 * taking the square root of that, which is the
 	 * standard deviation
 	 */
+	
 	public double computeStandardDeviation(double avg){
 		int r, c, n = 0;
 		

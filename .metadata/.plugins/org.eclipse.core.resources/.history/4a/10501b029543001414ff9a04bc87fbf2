@@ -86,12 +86,18 @@ public class ToolBag {
 		return 0;
 	}
 	
+	
+<<<<<<< HEAD
+	public double computeStandardDeviation(double avg){
+=======
 	/* Computing the standard deviation first by going
 	 * through and getting the variance, before
 	 * taking the square root of that, which is the
 	 * standard deviation
 	 */
-	public double computeStandardDeviation(double avg){
+	public int computeStandardDeviation(double avg){
+>>>>>>> eeeb4f738248dc5db7fd0398b73110aab98648a6
+		
 		int r, c, n = 0;
 		
 		//Computes the amount of things needed to divide by to get the variance
