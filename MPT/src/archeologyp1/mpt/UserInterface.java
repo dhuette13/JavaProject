@@ -2,9 +2,7 @@ package archeologyp1.mpt;
 
 import java.util.Scanner;
 
-import archeologyp1.shared.Coordinate;
 import archeologyp1.shared.Map;
-import archeologyp1.shared.Utilities;
 
 // 1) Change a coordinate
 // a) Change a single coordinate
@@ -18,13 +16,19 @@ import archeologyp1.shared.Utilities;
 // 6) Save map
 
 public class UserInterface {
-	
-	private static Map map;
+	private Map map;
 
-	public static void changeCoordinate(int OR){
-		Scanner input = new Scanner(System.in);
+	private MapEditor mapEditor;
+	private Scanner input;
+
+	public UserInterface(MapEditor mapEditor){
+		this.mapEditor = mapEditor;
+		input = new Scanner(System.in);
+	}
+
+	public void changeCoordinate() {
 		boolean bool = true;
-		int a;
+		int selection;
 		char c = 'A';
 		int r1 = 0;
 		int check1, check2; 
@@ -34,9 +38,10 @@ public class UserInterface {
 		System.out.println("1 ) Change just one coordinate");
 		System.out.println("2 ) Change an entire row");
 		System.out.println("::> ");
-		a = input.nextInt();
+		selection = input.nextInt();
 
-		switch(a){
+		switch(selection){
+		/* Change a single coordinate */
 		case 1: 		// Figuring out the specific coordinate the user wants to change
 
 			while(bool){
@@ -64,9 +69,10 @@ public class UserInterface {
 					continue;
 				}
 			}
-			singleCoord(c, r1);
-
-		case 2: 		//Figuring out the row the user wants to change on the map
+			mapEditor.editSingleCoordinate(r1, c);
+			break;
+		/* Change a whole row */
+		case 2: 
 			bool = true;
 
 			while(bool){
@@ -86,62 +92,64 @@ public class UserInterface {
 				else if(check2 == 0){
 					continue;
 				}
-				else{
+				else {
 					System.out.println("This input is incorrect. Please try again.");
 					continue;
 				}
 			}
-			rowCoord(r1);
-
+			mapEditor.editRow(r1);
+			break;
 		default:
 			System.out.println("Not a valid option. Please try again.");
 
 		}
 	}
 
-	public static void changeViewing(){
+	public void changeViewing(){
+		int amountFinds;
 		int changeMap;
 		char y, g1, g2, n, s, p ,d;
 		char symbolChange;
-		
+		int oneFind, twoFind1, twoFind2, threeFind1, threeFind2, threeFind3;
+
 		Scanner input = new Scanner(System.in);
 		System.out.println("What would you like to change?");
 		System.out.println("1 ) The whole map");
 		System.out.println("2 ) A group of symbols");
 		System.out.println("::> ");
 		changeMap = input.nextInt();
-		
+
 		switch(changeMap){
 		case 1:
-			
+
 			System.out.println("What would you like to switch 'g' with?");
 			g1 = input.next().charAt(0);
-			
+
 			System.out.println("What would you like to switch 'Y' with?");
 			y = input.next().charAt(0);
-			
+
 			System.out.println("What would you like to switch 'G' with?");
 			g2 = input.next().charAt(0);
-			
+
 			System.out.println("What would you like to switch 'N' with?");
 			n = input.next().charAt(0);
-			
+
 			System.out.println("What would you like to swtich 'S' with?");
 			s = input.next().charAt(0);
-			
+
 			System.out.println("What would you like to switch 'P' with?");
 			p = input.next().charAt(0);
-			
+
 			System.out.println("What would you like to switch 'D' with?");
 			d = input.next().charAt(0);
-			
+
 			break;
-			
+
 		case 2:
-			
+
 			System.out.println("Which symbol would you like to change?");
 			symbolChange = input.next().charAt(0);
-			
+
 			switch(symbolChange){
 			case 'Y':
 				System.out.println("What symbol would you like to change "+symbolChange+" to?");
@@ -161,47 +169,12 @@ public class UserInterface {
 			default:
 				break;
 			}
-			
+
 			break;
-			
+
 		default:
-			
 			System.out.println("");
-			
 		}
-
-	}
-
-	public static void singleCoord(char col, int row1){
-		//ask person about features, finds, excavated, date, etc etc
-		
-		Coordinate setSingle;
-		Scanner input = new Scanner(System.in);
-		char newSymbol;
-		int amountFinds, oneFind, oneDate, twoFind1, twoDate1, twoFind2, twoDate2;
-		int threeFind1, threeDate1, threeFind2, threeDate2, threeFind3, threeDate3;
-		
-		System.out.println("What would you like to change the viewing symbol to?");
-		System.out.println("Y: Parched, yellow vegetation");
-		System.out.println("G: Wet, bright green vegetation");
-		System.out.println("N: Natural green vegetation");
-		System.out.println("::> ");
-		newSymbol = input.next().charAt(0);
-		
-		switch(newSymbol){
-		case 'Y':
-			setSingle = map.plane[row1 - 1][(int) (col - 'A')];
-			setSingle.setFeatureSymbol(newSymbol);
-		case 'G': 
-			setSingle = map.plane[row1 - 1][(int) (col - 'A')];
-			setSingle.setFeatureSymbol(newSymbol);
-		case 'N':
-			setSingle = map.plane[row1 - 1][(int) (col - 'A')];
-			setSingle.setFeatureSymbol(newSymbol);
-		default: 
-			System.out.println("The change you want to make is not possible. Please try again.");
-		}
-		
 		// Inputting the amount of finds
 		System.out.println("How many finds would you like to have in this coordinate? You can have 0 finds (meaning none), up to all 3 finds.");
 		System.out.println("::> ");
@@ -269,7 +242,5 @@ public class UserInterface {
 		System.out.println("What row would you like to change?");
 		System.out.println("::> ");
 		changeRow = input.nextInt();
-		
-
 	}
 }

@@ -7,6 +7,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import archeologyp1.shared.Coordinate;
+import archeologyp1.shared.Feature;
 import archeologyp1.shared.Map;
 import archeologyp1.shared.Utilities;
 import archeologyp1.shared.ViewingOption;
@@ -71,7 +72,7 @@ public class EntryPoint {
 						System.out.println("\tPlease specify a row and column.");
 						System.out.print("::> ");
 						row = input.nextInt();
-						column = Character.toUpperCase(input.next().charAt(0));
+						column = input.next().charAt(0);
 						toolBag.visibleSpectrum(row, column);
 						map.updateView();
 						break;
@@ -80,7 +81,7 @@ public class EntryPoint {
 						System.out.println("\tPlease specify a row and column.");
 						System.out.print("::> ");
 						row = input.nextInt();
-						column = Character.toUpperCase(input.next().charAt(0));
+						column = input.next().charAt(0);
 						toolBag.metalDetector(row, column);
 						map.updateView();
 						break;
@@ -89,7 +90,7 @@ public class EntryPoint {
 						System.out.println("\tPlease specify a row and column.");
 						System.out.print("::> ");
 						row = input.nextInt();
-						column = Character.toUpperCase(input.next().charAt(0));
+						column = input.next().charAt(0);
 						toolBag.magnetoMeter(row, column);
 						map.updateView();
 						break;
@@ -102,7 +103,7 @@ public class EntryPoint {
 					System.out.println("\tPlease specify a row and column.");
 					System.out.print("::> ");
 					row = input.nextInt();
-					column = Character.toUpperCase(input.next().charAt(0));
+					column = input.next().charAt(0);
 					toolBag.dig(row, column);
 					map.updateView();
 					break;
@@ -113,29 +114,40 @@ public class EntryPoint {
 					break;
 					/* Change Viewing Option */
 				case 4:
-					System.out.println("\t1) Change individual element");
+					System.out.println("\t1) Change group of elements");
 					System.out.println("\t2) Change whole map");
 					System.out.print("::> ");
 					selection = input.nextInt();
 					switch(selection){
 					/* Switch an individual element */
 					case 1:
-						System.out.println("\tPlease specify a row and column.");
+						char symbol;
+						map.setViewingOption(ViewingOption.userModified);
+						System.out.println("\t1) Change Natural Surface");
+						System.out.println("\t2) Change Post Hole");
+						System.out.println("\t3) Change Stone");
 						System.out.print("::> ");
-						row = input.nextInt();
-						column = Character.toUpperCase(input.next().charAt(0));
-						System.out.println("\tEnter a character to change to.");
-						System.out.print("::> ");
-						char symbol = input.next().charAt(0);
-						
-						current = map.plane[row - 1][(int) (column - 'A')];
-						current.setFeatureSymbol(symbol);
-						current.setCurrentViewableSymbol();
+						selection = input.nextInt();
+						System.out.print("\tEnter symbol to change to: ");
+						symbol = input.next().charAt(0);
+						switch(selection){
+						case 1:
+							map.updateView(Feature.dirt, symbol);
+							break;
+						case 2:
+							map.updateView(Feature.postHole, symbol);
+							break;
+						case 3:
+							map.updateView(Feature.stone, symbol);
+							break;
+						default:
+							System.out.println("Invalid selection");
+						}
 						break;
-					/* Change the map's viewing option*/
+						/* Change the map's viewing option*/
 					case 2:
 						System.out.println("\t\t1) Natual option");
-						System.out.println("\t\t2) Readable option");
+						System.out.println("\t\t2) User Modified option");
 						System.out.println("\t\t3) PotCount option");
 						System.out.println("\t\t4) MetalCount option");
 						System.out.println("\t\t5) CharcoalCount option");
@@ -148,7 +160,7 @@ public class EntryPoint {
 							option = ViewingOption.natural;
 							break;
 						case 2:
-							option = ViewingOption.readable;
+							option = ViewingOption.userModified;
 							break;
 						case 3:
 							option = ViewingOption.potCount;

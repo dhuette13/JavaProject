@@ -2,7 +2,7 @@ package archeologyp1.shared;
 
 public enum ViewingOption {
 	natural,
-	readable,
+	userModified,
 	potCount,
 	metalCount,
 	charcoalCount,

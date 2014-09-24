@@ -1,0 +1,14 @@
+package archeologyp1.mpt;
+
+import archeologyp1.shared.Map;
+
+public class MapEditor {
+	
+	private Map map;
+	
+	public MapEditor(Map map){
+		this.map = map;
+	}
+	
+	
+}
