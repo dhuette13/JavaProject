@@ -89,9 +89,13 @@ public class ToolBag {
 		//Computes the amount of things needed to divide by to get the variance
 		for(r = 0; r < map.getNumRows(); r++){
 			for(c = 0; c < map.getNumColumns(); c++){
-				n += c;
+				if(current.getExcavated() && current.itemFound()){ //If it's excavated and if there's an object inside it
+					n += c;
+				}
 			}
-			n += r;
+			if(current.getExcavated() && current.itemFound()){
+				n += r;
+			}
 		}
 		
 		n -= 1; //Degrees of freedom as per the variance equation
