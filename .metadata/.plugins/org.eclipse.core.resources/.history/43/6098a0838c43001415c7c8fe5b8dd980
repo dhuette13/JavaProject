@@ -11,9 +11,9 @@ public class ToolBag {
 
 	private Map map;
 	private Coordinate current;
-	private static Pot p; 
-	private static MetalObject m;
-	private static Charcoal ch;
+	private Pot p;
+	private MetalObject m;
+	private Charcoal ch;
 
 	public ToolBag(Map map){
 		this.map = map;
@@ -120,17 +120,17 @@ public class ToolBag {
 				if(current.itemFound()){
 					
 					if(current.potCount.size() != 0){
-						//Pot p;
+						Pot p;
 						sub = p.getDate() - avg;
 						power = Math.pow(sub, sub);
 					} 
 					else if(current.charcoalCount.size() != 0){
-						//Charcoal ch;
+						Charcoal ch;
 						sub = ch.getDate() - avg;
 						power = Math.pow(sub, sub);
 					}
 					else if(current.metalCount.size() != 0){
-						//MetalObject m;
+						MetalObject m;
 						sub = m.getDate() - avg;
 						power = Math.pow(sub, sub);
 					}
