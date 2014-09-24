@@ -16,12 +16,13 @@ public class MapEditor {
 		this.map = map;
 	}
 	
-	public void editSingleCoordinate(int row, char col, int type, int amount){
+	//how to parameter
+	public void editSingleCoordinate(int row, char col, int type, int amount, char featureChange){
 		Scanner input = new Scanner(System.in);
 		int date = 0;
 		int r = row - 1;
 		int c = Utilities.columnToIndex(Character.toString(col)); 
-		current = map.plane[r][c];
+		current = map.plane[row][col];
 		
 		//Inputting the dates
 		for(int i=0; i<amount-1; i++){
@@ -30,14 +31,23 @@ public class MapEditor {
 			date = input.nextInt();
 			current.potCount.add(new Pot(date));
 		}
+		
+		//current.setFeature(char)
 	}
 
 	public void editRow(int row){
 		int r = row - 1;
 		for(int c = 0; c < map.getNumColumns(); c++){
-			current = map.plane[r][c];
+			current = map.plane[row][c];
 		}
-
-
+	}
+	
+	//?!?!?!?!?!
+	public void editDates(){
+		
+	}
+	
+	public void editFeatures(){
+		
 	}
 }

@@ -46,6 +46,7 @@ public class UserInterface {
 	public void addFeatureorFind(int row, char col){
 		Scanner input = new Scanner(System.in);
 		int findType, findCollection;
+		char changeFeature;
 		
 		System.out.println("\t1) Change a Feature");
 		System.out.println("\t2) Change a Find");
@@ -56,7 +57,12 @@ public class UserInterface {
 		/* Feature */
 		case 1:
 			
-			System.out.println("What feature would you like to change?");
+			System.out.println("What feature would you like to change? Please select either Y, G, or N.");
+			//current.setFeature(char)
+			System.out.println("::> ");
+			changeFeature = input.next().charAt(0);
+			
+			mapEditor.editFeature(row, col, changeFeature);
 			
 			break;
 			
