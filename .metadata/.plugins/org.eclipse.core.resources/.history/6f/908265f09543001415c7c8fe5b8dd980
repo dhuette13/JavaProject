@@ -22,7 +22,7 @@ public class ToolBag {
 
 	public void magnetoMeter(int row, char col){
 		int r = row - 1;
-		int c = Utilities.columnToIndex(Character.toString(col)); 
+		int c = Utilities.columnToIndex(Character.toString(col));
 		current = map.plane[r][c];
 		current.setCharcoalInspected(true);
 		if(current.charcoalCount.size() != 0)

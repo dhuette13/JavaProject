@@ -32,16 +32,6 @@ public class UserInterface {
 		System.out.println("\t2) Change a Find");
 		System.out.print("::> ");
 		selection = input.nextInt();
-		switch(selection){
-		/* Feature */
-		case 1:
-			break;
-		/* Find */
-		case 2:
-			break;
-		default:
-			System.out.println("Invalid input.");
-		}
 	}
 	public void changeCoordinate() {
 		boolean bool = true;
@@ -286,7 +276,6 @@ public class UserInterface {
 			System.out.println("3. Charcoal");
 			System.out.println("::> ");
 			twoFind2 = input.nextInt();
-			
 			break;
 		case 3:
 			System.out.println("What type of find would you like to enter first?");
@@ -294,7 +283,6 @@ public class UserInterface {
 			System.out.println("2. Metal Work");
 			System.out.println("3. Charcoal");
 			System.out.println("::> ");
-			
 			threeFind1 = input.nextInt();
 			
 			System.out.println("What type of find would you like to enter second?");

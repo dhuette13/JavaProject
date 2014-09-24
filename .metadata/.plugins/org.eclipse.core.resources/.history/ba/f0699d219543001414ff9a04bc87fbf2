@@ -22,7 +22,7 @@ public class ToolBag {
 
 	public void magnetoMeter(int row, char col){
 		int r = row - 1;
-		int c = Utilities.columnToIndex(Character.toString(col)); 
+		int c = Utilities.columnToIndex(Character.toString(col));
 		current = map.plane[r][c];
 		current.setCharcoalInspected(true);
 		if(current.charcoalCount.size() != 0)
@@ -125,8 +125,10 @@ public class ToolBag {
 			for(c = 0; c < map.getNumColumns(); c++){
 				current = map.plane[r][c];
 				
+				//To Do: Instantiate
 				if(current.itemFound()){
 					if(current.potCount.size() != 0){
+<<<<<<< HEAD
 						for(Pot p : current.potCount){
 							sub = p.getDate() - avg;
 							power = Math.pow(sub, 2);
@@ -143,9 +145,19 @@ public class ToolBag {
 							sub = m.getDate() - avg;
 							power = Math.pow(sub, 2);
 						}
+=======
 						sub = p.getDate() - avg;
 						power = Math.pow(sub, 2);
 					} 
+					else if(current.charcoalCount.size() != 0){
+						sub = ch.getDate() - avg;
+						power = Math.pow(sub, 2);
+					}
+					else if(current.metalCount.size() != 0){
+						sub = m.getDate() - avg;
+						power = Math.pow(sub, 2);
+>>>>>>> eeeb4f738248dc5db7fd0398b73110aab98648a6
+					}
 					sum += power;
 				}
 			}
@@ -162,7 +174,12 @@ public class ToolBag {
 		double plus = 0;
 		plus = avg + sd;
 		
+<<<<<<< HEAD
 		System.out.println("The average minus standard deviation is " + minus + " and the average plus the standard deviation is " + plus + ".");
 		return sd;
+=======
+		System.out.println("The average minus standard deviation is "+minus+" and the average plus the standard deviation is "+plus+".");
+		return 0;
+>>>>>>> eeeb4f738248dc5db7fd0398b73110aab98648a6
 	}
 }
