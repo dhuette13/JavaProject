@@ -29,6 +29,9 @@ public class UserInterface {
 	
 	
 	
+	
+	
+	
 	public UserInterface(MapEditor mapEditor){
 		this.mapEditor = mapEditor;
 		input = new Scanner(System.in);
@@ -40,9 +43,9 @@ public class UserInterface {
 	
 	
 	
-	public void addFeatureorFind(int row, int col){
+	public void addFeatureorFind(int row, char col){
 		Scanner input = new Scanner(System.in);
-		int findtype, findcollection;
+		int findType, findCollection;
 		
 		System.out.println("\t1) Change a Feature");
 		System.out.println("\t2) Change a Find");
@@ -52,6 +55,8 @@ public class UserInterface {
 		
 		/* Feature */
 		case 1:
+			
+			System.out.println("What feature would you like to change?");
 			
 			break;
 			
@@ -63,13 +68,13 @@ public class UserInterface {
 			System.out.println("2 ) Charcoal");
 			System.out.println("3 ) A metal object");
 			System.out.println("::> ");
-			findtype = input.nextInt();
+			findType = input.nextInt();
 			
 			System.out.println("How many of these finds would you like to have? Please input an integer.");
 			System.out.println("::> ");
-			findcollection = input.nextInt();
+			findCollection = input.nextInt();
 			
-			//Loop through the amount findcollection-1 and keep asking for dates
+			mapEditor.editSingleCoordinate(row, col, findType, findCollection);
 			
 			break;
 			
