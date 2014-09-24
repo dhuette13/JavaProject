@@ -55,9 +55,9 @@ public class ToolBag {
 		}
 	}
 
-	public double computeAverageDate(){
+	public int computeAverageDate(){
 		int r, c, itemCount = 0;
-		double average = 0.0d;
+		double average = 0;
 		for(r = 0; r < map.getNumRows(); r++){
 			for(c = 0; c < map.getNumColumns(); c++){
 				current = map.plane[r][c];
@@ -78,32 +78,69 @@ public class ToolBag {
 				}
 			}
 		}
-		return average;
+		return 0;
 	}
 	
-	public double standaredDeviation(double average){
-		int r, c, itemCount = 0;
-		double sum = 0.0d;
+	
+	public int computeStandardDeviation(int avg){
+		
+		int r, c, n = 0;
+		
+		//Computes the amount of things needed to divide by to get the variance
 		for(r = 0; r < map.getNumRows(); r++){
 			for(c = 0; c < map.getNumColumns(); c++){
+				n += c;
+			}
+			n += r;
+		}
+		
+		n -= 1; //Degrees of freedom as per the variance equation
+		
+		int copy;
+		copy = n + 1;
+		
+		double power = 0;
+		double sub = 0;
+		double sum = 0;
+		
+		for(r = 0; r < map.getNumRows(); r++){
+			
+			for(c = 0; c < map.getNumColumns(); c++){
+				
 				current = map.plane[r][c];
+				
 				if(current.itemFound()){
-					for(Pot p : current.potCount){
-						sum += p.getDate();
-						itemCount++;
+					
+					if(){
+						sub = p.getDate() - avg;
+						power = Math.pow(sub, sub);
+					} 
+					else if(){
+						sub = ch.getDate() - avg;
+						power = Math.pow(sub, sub);
 					}
-					for(Charcoal ch : current.charcoalCount){
-						average += ch.getDate();
-						itemCount++;
+					else if(){
+						sub = m.getDate() - avg;
+						power = Math.pow(sub, sub);
 					}
-					for(MetalObject m : current.metalCount){
-						average += m.getDate();
-						itemCount++;
-					}
-					average = average / itemCount;
+					
+					sum += power;
 				}
 			}
 		}
-		return average;
+		
+		double variance = 0;
+		variance = sum / n;
+		
+		double sd = 0;
+		sd = Math.sqrt(variance);
+		
+		double minus = 0;
+		minus = avg - sd;
+		double plus = 0;
+		plus = avg + sd;
+		
+		System.out.println("The average minus standard deviation is "+minus+" and the average plus the standard deviation is "+plus+".");
+			
 	}
 }
