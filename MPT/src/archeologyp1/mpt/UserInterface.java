@@ -18,14 +18,6 @@ import archeologyp1.shared.Coordinate;
 
 
 
-//Becker's UI: Loops through this file until you exit
-//1. Load File
-//2. Make Map
-//3. Show Map
-//4. Quit
-
-
-
 
 public class UserInterface {
 	private Map map;
@@ -90,7 +82,7 @@ public class UserInterface {
 			findCollection = input.nextInt();
 			
 			//how to parameter
-//			mapEditor.editSingleCoordinate(row, col, findType, findCollection);
+			mapEditor.changeDate(row, col, findType, findCollection);
 			
 			break;
 			
@@ -131,67 +123,16 @@ public class UserInterface {
 			System.out.println("::> ");
 			c = input.next().charAt(0);
 			cUpper = Character.toUpperCase(c);
-
 			System.out.println("What row?");
 			System.out.println("::> ");
 			r1 = input.nextInt();
 
 			addFeatureorFind(r1, cUpper);
 
-			//"Prompt the user to enter the type of find and the date, 
-			//and then add that find in the appropriate collection."
-//				switch(amountFinds){ 
-//				case 0:
-//					break;
-//				case 1:
-//					System.out.println("What type of find would you like to enter?");
-//					System.out.println("1. Pottery");
-//					System.out.println("2. Metal Work");
-//					System.out.println("3. Charcoal");
-//					System.out.println("::> ");
-//					oneFind = input.nextInt();
-//					break;
-//				case 2:
-//					System.out.println("What type of find would you like to enter first?");
-//					System.out.println("1. Pottery");
-//					System.out.println("2. Metal Work");
-//					System.out.println("3. Charcoal");
-//					System.out.println("::> ");
-//					twoFind1 = input.nextInt();
-//
-//					System.out.println("What type of find would you like to enter last?");
-//					System.out.println("1. Pottery");
-//					System.out.println("2. Metal Work");
-//					System.out.println("3. Charcoal");
-//					System.out.println("::> ");
-//					twoFind2 = input.nextInt();
-//					break;
-//				case 3:
-//					System.out.println("What type of find would you like to enter first?");
-//					System.out.println("1. Pottery");
-//					System.out.println("2. Metal Work");
-//					System.out.println("3. Charcoal");
-//					System.out.println("::> ");
-//					threeFind1 = input.nextInt();
-//
-//					System.out.println("What type of find would you like to enter second?");
-//					System.out.println("1. Pottery");
-//					System.out.println("2. Metal Work");
-//					System.out.println("3. Charcoal");
-//					System.out.println("::> ");
-//					threeFind2 = input.nextInt();
-//
-//					System.out.println("What type of find would you like to enter last?");
-//					System.out.println("1. Pottery");
-//					System.out.println("2. Metal Work");
-//					System.out.println("3. Charcoal");
-//					System.out.println("::> ");
-//					threeFind3 = input.nextInt();
-//					break;
-//				default: 
-//					System.out.println("Not a valid input. Please try again.");
-//				}
-//			break;
+			//********************************** #2 in notepad
+			
+			break;
+			
 		/* Change a whole row */
 		case 2: 
 			bool = true;
