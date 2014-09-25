@@ -15,38 +15,23 @@ import archeologyp1.shared.Coordinate;
 // 4) Print map
 // 5) Export map
 // 6) Save map
-
-
-
-
 public class UserInterface {
 	private Map map;
 	private int selection;
 
 	private MapEditor mapEditor;
 	private Scanner input;
-
-	
-	
-	
-	
-	
 	
 	public UserInterface(MapEditor mapEditor){
 		this.mapEditor = mapEditor;
 		input = new Scanner(System.in);
 	}
 
-	
-	
-	
-	
-	
-	
-	public void addFeatureorFind(int row, char col){
+	public void addFeatureorFind(int row, String col){
 		Scanner input = new Scanner(System.in);
 		int findType, findCollection;
 		char changeFeature;
+		int date;
 		
 		System.out.println("\t1) Change a Feature");
 		System.out.println("\t2) Change a Find");
@@ -56,14 +41,13 @@ public class UserInterface {
 		
 		/* Feature */
 		case 1:
+			System.out.println("\t\t1) Natural Surface");
+			System.out.println("\t\t2) Stone");
+			System.out.println("\t\t3) Post Hole");
+			System.out.print("::> ");
+			selection = input.nextInt();
 			
-			System.out.println("What feature would you like to change? Please select either Y, G, or N.");
-			//current.setFeature(char)
-			System.out.println("::> ");
-			changeFeature = input.next().charAt(0);
-			
-			//how to parameter
-			//mapEditor.editFeature(row, col, changeFeature);
+			mapEditor.changeFeature(row, col, selection);
 			
 			break;
 			
@@ -80,9 +64,15 @@ public class UserInterface {
 			System.out.println("How many of these finds would you like to have? Please input an integer.");
 			System.out.println("::> ");
 			findCollection = input.nextInt();
-			
+			int amount;
+			for(int i=0; i<amount; i++){
+				System.out.println("What date would you like your " + (i+1) + " find to have?");
+				System.out.println("::> ");
+				date = input.nextInt();
+				mapEditor.changeDate(row, col, findType, findCollection, date);
+			}
+
 			//how to parameter
-			mapEditor.changeDate(row, col, findType, findCollection);
 			
 			break;
 			
@@ -223,10 +213,6 @@ public class UserInterface {
 		
 	}
 
-	
-	
-	
-	
 	
 	public static void rowCoord(int row2){
 		

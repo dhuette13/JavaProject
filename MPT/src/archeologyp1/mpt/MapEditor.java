@@ -1,11 +1,10 @@
 package archeologyp1.mpt;
 
-import java.util.Scanner; 
-
 import archeologyp1.shared.Coordinate;
+import archeologyp1.shared.Feature;
 import archeologyp1.shared.Map;
-import archeologyp1.shared.Utilities;
 import archeologyp1.shared.Pot;
+import archeologyp1.shared.Utilities;
 
 public class MapEditor {
 	
@@ -16,24 +15,30 @@ public class MapEditor {
 		this.map = map;
 	}
 	
-	public void changeFeature(){
-		//current.setFeature(char)
+	public void changeFeature(int row, String col, int feature){
+		int r = row - 1;
+		int c = Utilities.columnToIndex(col);
+		current = map.plane[r][c];
+		switch(feature){
+		case 1:
+			current.setFeature(Feature.dirt);
+			break;
+		case 2:
+			current.setFeature(Feature.stone);
+			break;
+		case 3:
+			current.setFeature(Feature.postHole);
+			break;
+		}
 	}
 	
-	public void changeDate(int row, char col, int type, int amount){
-		Scanner input = new Scanner(System.in);
-		int date = 0;
+	public void changeDate(int row, char col, int type, int amount, int date){
 		int r = row - 1;
 		int c = Utilities.columnToIndex(Character.toString(col)); 
 		current = map.plane[r][c];
 		
 		//Inputting the dates
-		for(int i=0; i<amount; i++){
-			System.out.println("What date would you like your " + (i+1) + " find to have?");
-			System.out.println("::> ");
-			date = input.nextInt();
-			current.potCount.add(new Pot(date));
-		}
+		current.potCount.add(new Pot(date));
 	}
 
 	public void editRow(int row){
