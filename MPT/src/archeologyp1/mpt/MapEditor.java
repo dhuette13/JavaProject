@@ -39,7 +39,7 @@ public class MapEditor {
 	public void editRow(int row){
 		int r = row - 1;
 		for(int c = 0; c < map.getNumColumns(); c++){
-			current = map.plane[row][c];
+			current = map.plane[r][c];
 		}
 	}
 }

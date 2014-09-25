@@ -63,7 +63,7 @@ public class UserInterface {
 			changeFeature = input.next().charAt(0);
 			
 			//how to parameter
-//			mapEditor.editFeature(row, col, changeFeature);
+			//mapEditor.editFeature(row, col, changeFeature);
 			
 			break;
 			
@@ -101,11 +101,11 @@ public class UserInterface {
 		int selection;
 		char c = 'A';
 		char cUpper = 'A';
+		String s = "hello";
 		int r1 = 0;
 		int check1, check2; 
 		int r2 = 0;
-		int amountFinds, oneFind, oneDate, twoFind1, twoDate1, twoFind2, twoDate2;
-		int threeFind1, threeDate1, threeFind2, threeDate2, threeFind3, threeDate3;
+		// ***************** see #3 in notepad
 
 		System.out.println("What would you like to do?");
 		System.out.println("1 ) Change just one coordinate");
@@ -135,32 +135,12 @@ public class UserInterface {
 			
 		/* Change a whole row */
 		case 2: 
-			bool = true;
+			System.out.println("Which row would you like to edit?");
+			System.out.println("::> ");
+			r2 = input.nextInt();
 
-			while(bool){
-
-				System.out.println("Which row would you like to edit?");
-				System.out.println("::> ");
-				r2 = input.nextInt();
-
-				System.out.println("The row you entered to edit is: " + r2);
-				System.out.println("If correct, please enter 1. If not, please hit 0.");
-				System.out.println("::> ");
-				check2 = input.nextInt();
-
-				if(check2 == 1){
-					bool = false;   
-				}
-				else if(check2 == 0){
-					continue;
-				}
-				else {
-					System.out.println("This input is incorrect. Please try again.");
-					continue;
-				}
-			}
-			mapEditor.editRow(r1);
-			break;
+			mapEditor.editRow(r2);
+			
 		default:
 			System.out.println("Not a valid option. Please try again.");
 
