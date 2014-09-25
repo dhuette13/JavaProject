@@ -87,7 +87,6 @@ public class UserInterface {
 	
 	
 	public void changeCoordinate() {
-		boolean bool = true;
 		int selection;
 		char c = 'A';
 		char cUpper = 'A';

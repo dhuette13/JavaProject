@@ -12,6 +12,11 @@ import archeologyp1.shared.Map;
 import archeologyp1.shared.Utilities;
 import archeologyp1.shared.ViewingOption;
 
+/**
+ * 
+ * @author What's the Meaning of Stonehenge!
+ *
+ */
 public class EntryPoint {
 	Scanner input;
 	int selection;
@@ -224,10 +229,10 @@ public class EntryPoint {
 			}
 		}
 	}
+	
 	/**
 	 * @param args
 	 */
-
 	public static void main(String[] args) {
 		EntryPoint entry = new EntryPoint();
 		entry.go();
