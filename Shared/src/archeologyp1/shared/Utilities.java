@@ -220,14 +220,12 @@ public class Utilities {
 	}
 	
 	public static int columnToIndex(String column){
-		int index = 0;
 		column = column.toUpperCase();
 		if(column.length() == 1){
-			index = column.charAt(0) - 'A';
+			return column.charAt(0) - 'A';
 		} else {
-			index = ((column.charAt(0) - 'A' + 1) * 25) + (column.charAt(1) - 'A');
+			return ((column.charAt(0) - 'A' + 1) * 25) + (column.charAt(1) - 'A') + 1;
 		}
-		return index + 1;
 	}
 	
 	public static String indexToColumn(int index){
