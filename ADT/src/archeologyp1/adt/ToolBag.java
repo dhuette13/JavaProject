@@ -41,6 +41,11 @@ public class ToolBag {
 	 * @param row
 	 * @param col
 	 * 
+	 * This method is for the magnetometer tool, which you use to sense 
+	 * charcoal types. If there is charcoal hidden in the coordinate
+	 * you're checking with the tool, then the program sets the magnetometer
+	 * for that square to equal true. 
+	 * 
 	 */
 	public void magnetoMeter(int row, String col){
 		int r = row - 1;
@@ -58,6 +63,12 @@ public class ToolBag {
 	 * For the public void metalDetector method
 	 * @param row
 	 * @param col
+	 * 
+	 * This method is for the metal detector, which (obviously)
+	 * is there to sense metal over any coordinate the user asks
+	 * to inspect. If there is a metal object or objects there
+	 * that get inspected, then the program sets the metal 
+	 * detector equal to true.
 	 * 
 	 */
 	public void metalDetector(int row, String col){
@@ -77,6 +88,9 @@ public class ToolBag {
 	 * @param row
 	 * @param col
 	 * 
+	 * This method is for sensing any pottery in the
+	 * coordinate the user specifies.
+	 * 
 	 */
 	public void visibleSpectrum(int row, String col){
 		int r = row - 1;
@@ -91,7 +105,10 @@ public class ToolBag {
 	 * @param row
 	 * @param col
 	 * 
-	 * 
+	 * In this method, the user is able to find and excavate. If they
+	 * excavate and there are items within the coordinate (based off
+	 * the count size), then the boolean handling if the itemFound
+	 * method will change to true.
 	 * 
 	 */
 	public void dig(int row, String col){
