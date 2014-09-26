@@ -32,9 +32,10 @@ public class MapEditor {
 			current.setFeature(Feature.postHole);
 			break;
 		}
+		map.updateView();
 	}
 
-	public void changeDate(int row, String col, int type, int amount, int date){
+	public void changeDate(int row, String col, int type, int date){
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col); 
 		current = map.plane[r][c];
@@ -52,16 +53,6 @@ public class MapEditor {
 			current.metalCount.add(new MetalObject(date));
 			break;
 		}
-		//Inputting the dates
-	}
-
-	public void editRow(int row){
-		UserInterface ui = new UserInterface(this);
-		int r = row - 1;
-		for(int c = 0; c < map.getNumColumns(); c++){
-			current = map.plane[row][c];
-			ui.changeCoordinate();
-
-		}
+		map.updateView();
 	}
 }

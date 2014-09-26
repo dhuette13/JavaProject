@@ -34,7 +34,7 @@ public class EntryPoint {
 		input = new Scanner(System.in);
 		handleLoad();
 		mapEditor = new MapEditor(map);
-		ui = new UserInterface(mapEditor);
+		ui = new UserInterface(mapEditor, map);
 		flag = true;
 	}
 

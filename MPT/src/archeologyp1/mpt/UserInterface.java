@@ -1,9 +1,9 @@
 package archeologyp1.mpt;
 
-import java.util.Scanner; 
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import archeologyp1.shared.Map;
-import archeologyp1.shared.Coordinate;
 
 // 1) Change a coordinate
 // a) Change a single coordinate
@@ -17,18 +17,24 @@ import archeologyp1.shared.Coordinate;
 // 6) Save map
 public class UserInterface {
 	private int selection;
+	private int row;
+	private String col;
+	private int feature, amountFinds, findType;
+	private boolean featureFlag = false, findFlag = false;
+	
+	private ArrayList <Integer> dateList;
 
 	private MapEditor mapEditor;
 	private Scanner input;
+	private Map map;
 
-	public UserInterface(MapEditor mapEditor){
+	public UserInterface(MapEditor mapEditor, Map map){
 		this.mapEditor = mapEditor;
+		this.map = map;
 		input = new Scanner(System.in);
 	}
 
-	public void addFeatureorFind(int row, String col){
-		int findType, amount;
-		char changeFeature;
+	public void pollFeatureorFind(){
 		int date;
 
 		System.out.println("\t1) Change a Feature");
@@ -38,15 +44,16 @@ public class UserInterface {
 		switch(selection){
 		/* Feature */
 		case 1:
+			featureFlag = true;
 			System.out.println("\t\t1) Natural Surface");
 			System.out.println("\t\t2) Stone");
 			System.out.println("\t\t3) Post Hole");
 			System.out.print("::> ");
-			selection = input.nextInt();
-			mapEditor.changeFeature(row, col, selection);
+			feature = input.nextInt();
 			break;
 			/* Find */
 		case 2:
+			findFlag = true;
 			System.out.println("What find would you like to add?");
 			System.out.println("1 ) A Pot");
 			System.out.println("2 ) Charcoal");
@@ -56,12 +63,12 @@ public class UserInterface {
 
 			System.out.println("How many of these finds would you like to have? Please input an integer.");
 			System.out.println("::> ");
-			amount = input.nextInt();
-			for(int i = 0; i < amount; i++){
+			amountFinds = input.nextInt();
+			for(int i = 0; i < amountFinds; i++){
 				System.out.println("What date would you like your " + (i+1) + " find to have?");
 				System.out.print("::> ");
 				date = input.nextInt();
-				mapEditor.changeDate(row, col, findType, amount, date);
+				dateList.add(date);
 			}
 			break;
 		default:
@@ -69,14 +76,20 @@ public class UserInterface {
 		}
 	}
 
-	public void getCoordinate(){
-		
+	public void updateCoordinate(){
+		if(featureFlag) {
+			mapEditor.changeFeature(row, col, feature);
+			featureFlag = false;
+		}
+		else if(findFlag){
+			for(int i = 0; i < amountFinds; i++)
+				mapEditor.changeDate(row, col, findType, dateList.get(i));
+			findFlag = false;
+		}
 	}
 	public void changeCoordinate() {
 		boolean flag = true;
 		int selection;
-		String column;
-		int row;
 
 		System.out.println("What would you like to do?");
 		System.out.println("1 ) Change just one coordinate");
@@ -90,17 +103,21 @@ public class UserInterface {
 			System.out.println("\tPlease specify a row and column.");
 			System.out.print("::> ");
 			row = input.nextInt();
-			column = input.next();
-			addFeatureorFind(row, column);
+			col = input.next();
+			pollFeatureorFind();
+			updateCoordinate();
 			break;
 			/* Change a whole row */
 		case 2: 
-			flag = true;
-			while(flag){
-				System.out.println("Which row would you like to edit?");
-				System.out.println("::> ");
-				row = input.nextInt();
-				mapEditor.editRow(row);
+			System.out.println("Which row would you like to edit?");
+			System.out.println("::> ");
+			row = input.nextInt();
+			pollFeatureorFind();
+			col = "A";
+			for(int i = 0; i < map.getNumColumns(); i++){
+				col = Character.toString((char) ('A' + i));
+				featureFlag = true;
+				updateCoordinate();
 			}
 			break;
 		default:
