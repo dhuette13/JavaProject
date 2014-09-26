@@ -61,7 +61,6 @@ public class Map {
 						else current.setCurrentViewableSymbol(Coordinate.defaultDirtAlias);
 						break;
 					}
-					//					current.setFeatureSymbol(ViewingOption.natural);
 				}
 			}
 			break;

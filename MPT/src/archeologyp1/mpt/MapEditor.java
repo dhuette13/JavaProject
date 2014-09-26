@@ -7,6 +7,7 @@ import archeologyp1.shared.Map;
 import archeologyp1.shared.MetalObject;
 import archeologyp1.shared.Pot;
 import archeologyp1.shared.Utilities;
+import archeologyp1.shared.ViewingOption;
 
 public class MapEditor {
 
@@ -20,17 +21,37 @@ public class MapEditor {
 	public void changeFeature(int row, String col, int feature){
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col);
+		Feature f = Feature.dirt;
 		current = map.plane[r][c];
 		switch(feature){
 		case 1:
-			current.setFeature(Feature.dirt);
+			f = Feature.dirt;
+			current.setFeature(f);
 			break;
 		case 2:
-			current.setFeature(Feature.stone);
+			f = Feature.stone;
+			current.setFeature(f);
 			break;
 		case 3:
-			current.setFeature(Feature.postHole);
+			f = Feature.postHole;
+			current.setFeature(f);
 			break;
+		default:
+			System.out.println("Invalid option");
+			return;
+		}
+		
+		boolean done = false;
+		if(map.getViewingOption() == ViewingOption.userModified){
+			for(int i = 0; (i < map.getNumRows()) && !done; i++){
+				for(int j = 0; j < map.getNumColumns(); j++){
+					if(map.plane[i][j].getFeature() == f){
+						current.setFeatureAlias(map.plane[i][j].getAliasChar());
+						done = true;
+						break;
+					}
+				}
+			}
 		}
 		map.updateView();
 	}

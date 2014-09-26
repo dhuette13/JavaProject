@@ -239,7 +239,6 @@ public class Utilities {
 		}
 	}
 	
-	
 	public static String indexToColumn(int index){
 		String result = new String();
 		ArrayList <Integer> tempArray = new ArrayList<Integer>();

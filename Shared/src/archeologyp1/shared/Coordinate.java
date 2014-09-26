@@ -231,6 +231,17 @@ public class Coordinate {
 	 * For use by scanning methods
 	 */
 	public void setMetalInspected(boolean i) { metalInspected = i; }
+	public char getAliasChar(){
+		switch(feature){
+		case dirt:
+			return dirtAlias;
+		case stone:
+			return stoneAlias;
+		case postHole:
+			return postHoleAlias;
+		}
+		return ' ';
+	}
 }
 
 
