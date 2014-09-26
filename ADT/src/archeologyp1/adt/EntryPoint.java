@@ -1,6 +1,6 @@
 package archeologyp1.adt;
 
-import java.io.File; 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.InputMismatchException;
@@ -122,9 +122,9 @@ public class EntryPoint {
 					double minus = average - sd;
 					double plus = average + sd;
 					
-					System.out.println("Average of found dates is " + average);
-					System.out.println("Standard Deviation is: " + sd);
-					System.out.println("The average minus standard deviation is " + minus + " and the average plus the standard deviation is " + plus + ".");
+					System.out.format("Average of found dates is %.2f\n", average);
+					System.out.format("Standard Deviation is: %.2f\n", sd);
+					System.out.format("The average minus standard deviation is %.2f and the average plus the standard deviation is %.2f.\n", minus, plus);
 					break;
 					/* Change Viewing Option */
 				case 4:
@@ -230,9 +230,12 @@ public class EntryPoint {
 
 			} catch(InputMismatchException e){
 				System.out.println("Input was invalid.");
-				input.next();
+				input = new Scanner(System.in);
 			} catch (FileNotFoundException e) {
 				System.out.println("Error creating file");
+			} catch (ArrayIndexOutOfBoundsException e){
+				System.out.println("Specified row or column were not valid. Please try again");
+				input = new Scanner(System.in);
 			}
 			System.out.println();
 		}

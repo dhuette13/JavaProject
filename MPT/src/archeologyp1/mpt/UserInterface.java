@@ -58,11 +58,11 @@ public class UserInterface {
 			System.out.println("1 ) A Pot");
 			System.out.println("2 ) Charcoal");
 			System.out.println("3 ) A Metal Object");
-			System.out.println("::> ");
+			System.out.print("::> ");
 			findType = input.nextInt();
 
 			System.out.println("How many of these finds would you like to have? Please input an integer.");
-			System.out.println("::> ");
+			System.out.print("::> ");
 			amountFinds = input.nextInt();
 			for(int i = 0; i < amountFinds; i++){
 				System.out.println("What date would you like your " + (i+1) + " find to have?");

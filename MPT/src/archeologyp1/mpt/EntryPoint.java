@@ -171,10 +171,14 @@ public class EntryPoint {
 				System.out.println();
 			} catch(InputMismatchException e){
 				System.out.println("Invalid Input");
-				input.next();
+				input = new Scanner(System.in);
 			} catch (FileNotFoundException e) {
 				System.out.println("Invalid file name");
+			} catch (ArrayIndexOutOfBoundsException e){
+				System.out.println("Row or Column entered were incorrect. Try agian");
+				input = new Scanner(System.in);
 			}
+			System.out.println();
 		}
 	}
 
