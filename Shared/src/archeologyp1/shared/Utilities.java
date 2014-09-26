@@ -23,15 +23,22 @@ import java.util.Scanner;
  * 
  * This class contains utilities that are shared by both
  * the MPT and the ADT. Included in this class are the
- * methods 
+ * methods that generates the map, loads the file that 
+ * will generate the map, save the file, and print the map. 
  *
  */
+
 public class Utilities {
+	
 	/**
-	 * Generates new empty map
+	 * For the public static Map generateMap method
 	 * @param height of map
 	 * @param width of map
 	 * @return  Map object
+	 * 
+	 * This method generates a new empty map using a nested for-loop, then
+	 * returns the map object to be printed.
+	 * 
 	 */
 	public static Map generateMap(int width, int height){
 		Map map = new Map(width, height);
@@ -44,9 +51,12 @@ public class Utilities {
 	}
 
 	/**
-	 * Loads map from file into memory
+	 * 
+	 * For the public static Map load method
 	 * @param path
 	 * @return Map object
+	 * 
+	 * This method loads a map from file into memory. 
 	 * 
 	 */
 	public static Map load(String path){
