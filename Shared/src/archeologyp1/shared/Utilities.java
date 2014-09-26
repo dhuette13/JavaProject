@@ -1,3 +1,11 @@
+/*
+ * Source code for base 26 to alphabet
+ * Author: Becker
+ * URL: https://elearn.uta.edu/webapps/portal/frameset.jsp?tab_group=courses&url=%2Fwebapps%2Fblackboard%2Fexecute%2Fcontent%2Ffile%3Fcmd%3Dview%26content_id%3D_3440332_1%26course_id%3D_228496_1%26framesetWrapped%3Dtrue
+ * Date put into the code: Sept 18, 2014
+ * 
+ */
+
 package archeologyp1.shared;
 
 import java.io.File;
@@ -7,15 +15,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
+ * UTILITIES
  * Holds a number of utilities used by both projects.
  * @author Daniel
+ * @author Celine
  *
  */
 public class Utilities {
 	/**
 	 * Generates new empty map
-	 * @param height 
-	 * @param width 
+	 * @param height of map
+	 * @param width of map
 	 * @return  Map object
 	 */
 	public static Map generateMap(int width, int height){

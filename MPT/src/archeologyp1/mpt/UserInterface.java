@@ -88,6 +88,7 @@ public class UserInterface {
 		}
 	}
 	public void changeCoordinate() {
+
 		boolean flag = true;
 		int selection;
 
