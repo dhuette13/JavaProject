@@ -213,14 +213,7 @@ public class ToolBag {
 		double sd = 0;
 		sd = Math.sqrt(variance);
 
-		double minus = 0;
-		minus = avg - sd;
-		double plus = 0;
-		plus = avg + sd;
 
-		//Finally, prints out standard deviation in regards to the average, and returns 
-		//the standard deviation
-		System.out.println("The average minus standard deviation is " + minus + " and the average plus the standard deviation is " + plus + ".");
 		return sd;
 	}
 }

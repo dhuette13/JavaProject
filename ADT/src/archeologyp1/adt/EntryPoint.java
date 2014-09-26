@@ -53,15 +53,15 @@ public class EntryPoint {
 	public void go(){
 		flag = true;
 		while(flag){
-			Utilities.printMap(map, System.out);
-			System.out.println("Please pick what you would like to do.");
-			System.out.println("1 ) Survey an Area");
-			System.out.println("2 ) Dig an Area");
-			System.out.println("3 ) Find Average of Found Dates");
-			System.out.println("4 ) Change a Viewing Option");
-			System.out.println("5 ) Export the map");
-			System.out.println("0 ) Exit");
 			try{
+				Utilities.printMap(map, System.out);
+				System.out.println("Please pick what you would like to do.");
+				System.out.println("1 ) Survey an Area");
+				System.out.println("2 ) Dig an Area");
+				System.out.println("3 ) Find Average of Found Dates");
+				System.out.println("4 ) Change a Viewing Option");
+				System.out.println("5 ) Export the map");
+				System.out.println("0 ) Exit");
 				System.out.print("::> ");
 				selection = input.nextInt();
 
@@ -119,7 +119,12 @@ public class EntryPoint {
 				case 3:
 					average = toolBag.computeAverageDate();
 					double sd = toolBag.computeStandardDeviation(average);
-					System.out.println("-" + sd + " " + average + " " +  "+" + sd);
+					double minus = average - sd;
+					double plus = average + sd;
+					
+					System.out.println("Average of found dates is " + average);
+					System.out.println("Standard Deviation is: " + sd);
+					System.out.println("The average minus standard deviation is " + minus + " and the average plus the standard deviation is " + plus + ".");
 					break;
 					/* Change Viewing Option */
 				case 4:
@@ -224,12 +229,12 @@ public class EntryPoint {
 				}
 
 			} catch(InputMismatchException e){
-				e.printStackTrace();
 				System.out.println("Input was invalid.");
+				input.next();
 			} catch (FileNotFoundException e) {
-				e.printStackTrace();
 				System.out.println("Error creating file");
 			}
+			System.out.println();
 		}
 	}
 	
