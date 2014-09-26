@@ -56,7 +56,7 @@ public class MapEditor {
 		map.updateView();
 	}
 
-	public void changeDate(int row, String col, int type, int date){
+	public void addFind(int row, String col, int type, int date){
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col); 
 		current = map.plane[r][c];

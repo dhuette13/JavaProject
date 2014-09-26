@@ -22,7 +22,7 @@ public class UserInterface {
 	private int feature, amountFinds, findType;
 	private boolean featureFlag = false, findFlag = false;
 	
-	private ArrayList <Integer> dateList;
+	private ArrayList <Integer> dateList = new ArrayList<>();
 
 	private MapEditor mapEditor;
 	private Scanner input;
@@ -83,7 +83,7 @@ public class UserInterface {
 		}
 		else if(findFlag){
 			for(int i = 0; i < amountFinds; i++)
-				mapEditor.changeDate(row, col, findType, dateList.get(i));
+				mapEditor.addFind(row, col, findType, dateList.get(i));
 			findFlag = false;
 		}
 	}
@@ -115,9 +115,13 @@ public class UserInterface {
 			row = input.nextInt();
 			pollFeatureorFind();
 			col = "A";
+			boolean findTemp = false, featureTemp = false;
+			if(featureFlag) featureTemp = true;
+			else if(findFlag) findTemp = true;
 			for(int i = 0; i < map.getNumColumns(); i++){
 				col = Character.toString((char) ('A' + i));
-				featureFlag = true;
+				featureFlag = featureTemp;
+				findFlag = findTemp;
 				updateCoordinate();
 			}
 			break;
