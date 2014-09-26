@@ -49,8 +49,6 @@ public class EntryPoint {
 
 	/**
 	 * The go-method handles most of the user input for the ADT.
-	 * 
-	 * 
 	 */
 	public void go(){
 		flag = true;
