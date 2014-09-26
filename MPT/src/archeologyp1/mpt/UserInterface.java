@@ -1,6 +1,7 @@
 package archeologyp1.mpt;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import archeologyp1.shared.Map;
@@ -58,11 +59,11 @@ public class UserInterface {
 			System.out.println("1 ) A Pot");
 			System.out.println("2 ) Charcoal");
 			System.out.println("3 ) A Metal Object");
-			System.out.println("::> ");
+			System.out.print("::> ");
 			findType = input.nextInt();
 
 			System.out.println("How many of these finds would you like to have? Please input an integer.");
-			System.out.println("::> ");
+			System.out.print("::> ");
 			amountFinds = input.nextInt();
 			for(int i = 0; i < amountFinds; i++){
 				System.out.println("What date would you like your " + (i+1) + " find to have?");
@@ -91,42 +92,49 @@ public class UserInterface {
 
 		boolean flag = true;
 		int selection;
-
-		System.out.println("What would you like to do?");
-		System.out.println("1 ) Change just one coordinate");
-		System.out.println("2 ) Change an entire row");
-		System.out.print("::> ");
-		selection = input.nextInt();
-		
-		switch(selection){
-			/* Change a single coordinate */
-		case 1:
-			System.out.println("\tPlease specify a row and column.");
+		try{
+			System.out.println("What would you like to do?");
+			System.out.println("1 ) Change just one coordinate");
+			System.out.println("2 ) Change an entire row");
 			System.out.print("::> ");
-			row = input.nextInt();
-			col = input.next();
-			pollFeatureorFind();
-			updateCoordinate();
-			break;
-			/* Change a whole row */
-		case 2: 
-			System.out.println("Which row would you like to edit?");
-			System.out.println("::> ");
-			row = input.nextInt();
-			pollFeatureorFind();
-			col = "A";
-			boolean findTemp = false, featureTemp = false;
-			if(featureFlag) featureTemp = true;
-			else if(findFlag) findTemp = true;
-			for(int i = 0; i < map.getNumColumns(); i++){
-				col = Character.toString((char) ('A' + i));
-				featureFlag = featureTemp;
-				findFlag = findTemp;
+			selection = input.nextInt();
+			
+			switch(selection){
+			/* Change a single coordinate */
+			case 1:
+				System.out.println("\tPlease specify a row and column.");
+				System.out.print("::> ");
+				row = input.nextInt();
+				col = input.next();
+				pollFeatureorFind();
 				updateCoordinate();
+				break;
+				/* Change a whole row */
+			case 2: 
+				System.out.println("Which row would you like to edit?");
+				System.out.println("::> ");
+				row = input.nextInt();
+				pollFeatureorFind();
+				col = "A";
+				boolean findTemp = false, featureTemp = false;
+				if(featureFlag) featureTemp = true;
+				else if(findFlag) findTemp = true;
+				for(int i = 0; i < map.getNumColumns(); i++){
+					col = Character.toString((char) ('A' + i));
+					featureFlag = featureTemp;
+					findFlag = findTemp;
+					updateCoordinate();
+				}
+				break;
+			default:
+				System.out.println("Not a valid option. Please try again.");
 			}
-			break;
-		default:
-			System.out.println("Not a valid option. Please try again.");
+		} catch(InputMismatchException e){
+			System.out.println("Invalid choice");
+			input = new Scanner(System.in);
+		} catch(Exception e){
+			System.out.println("Invalid input");
+			input = new Scanner(System.in);
 		}
 	}
 }

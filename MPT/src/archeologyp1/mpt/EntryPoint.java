@@ -80,10 +80,11 @@ public class EntryPoint {
 			try{
 				Utilities.printMap(map, System.out);
 				System.out.println("Please pick what you would like to do.");
-				System.out.println("1 ) Change a coordinate");
-				System.out.println("2 ) Change a viewing symbol");
+				System.out.println("1 ) Edit the map");
+				System.out.println("2 ) Change viewing symbols");
 				System.out.println("3 ) Export the map");
 				System.out.println("4 ) Save the map");
+				System.out.println("5 ) Count number of Finds");
 				System.out.println("0 ) Exit");
 				System.out.print("::> ");
 				selection = input.nextInt();
@@ -160,6 +161,9 @@ public class EntryPoint {
 					path = input.next();
 					Utilities.save(map, path);
 					break;
+				case 5:
+					System.out.print("Number of finds in map: " + map.countNumberOfFinds());
+					break;
 					/* Exit */
 				case 0:
 					System.out.println("Goodbye. ");
@@ -171,10 +175,14 @@ public class EntryPoint {
 				System.out.println();
 			} catch(InputMismatchException e){
 				System.out.println("Invalid Input");
-				input.next();
+				input = new Scanner(System.in);
 			} catch (FileNotFoundException e) {
 				System.out.println("Invalid file name");
+			} catch (ArrayIndexOutOfBoundsException e){
+				System.out.println("Row or Column entered were incorrect. Try agian");
+				input = new Scanner(System.in);
 			}
+			System.out.println();
 		}
 	}
 
