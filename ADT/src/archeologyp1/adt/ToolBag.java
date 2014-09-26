@@ -7,16 +7,41 @@ import archeologyp1.shared.MetalObject;
 import archeologyp1.shared.Pot;
 import archeologyp1.shared.Utilities;
 
+/**
+ * 
+ * TOOL BAG FOR THE ARCHAEOLOGICAL DIG TOOL
+ * @author Daniel
+ * @author Celine
+ * 
+ * This class contains methods that allow the user to
+ * excavate the map depending on what tool they're using,
+ * and it also has methods that compute both the average and 
+ * standard deviation. 
+ *
+ */
 
 public class ToolBag {
 
 	private Map map;
 	private Coordinate current;
 
+	/**
+	 * 
+	 * For the public ToolBag method
+	 * @param map
+	 * 
+	 */
 	public ToolBag(Map map){
 		this.map = map;
 	}
-
+	
+	/**
+	 * 
+	 * For the public void magnetoMeter method
+	 * @param row
+	 * @param col
+	 * 
+	 */
 	public void magnetoMeter(int row, String col){
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col); 
@@ -28,6 +53,13 @@ public class ToolBag {
 			current.setCharcoalHidden(false);
 	}
 
+	/**
+	 * 
+	 * For the public void metalDetector method
+	 * @param row
+	 * @param col
+	 * 
+	 */
 	public void metalDetector(int row, String col){
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col);
@@ -39,6 +71,13 @@ public class ToolBag {
 			current.setMetalHidden(false);
 	}
 
+	/**
+	 * 
+	 * For the public void visibleSpectrum method
+	 * @param row
+	 * @param col
+	 * 
+	 */
 	public void visibleSpectrum(int row, String col){
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col);
@@ -46,6 +85,15 @@ public class ToolBag {
 		current.setPotInspected(true);
 	}
 
+	/**
+	 * 
+	 * For the public void dig method
+	 * @param row
+	 * @param col
+	 * 
+	 * 
+	 * 
+	 */
 	public void dig(int row, String col){
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col);
@@ -57,6 +105,19 @@ public class ToolBag {
 		current.updateCurrentViewableSymbol();
 	}
 
+	/**
+	 * 
+	 * For the public double computeAverageDate method
+	 * @return the average
+	 * 
+	 * This method computes the average date from the specified dates. 
+	 * The nested for-loop computes the dates via what type the find is
+	 * if an item in that coordinate has both been found and if there's 
+	 * also an object inside it, then add to the average date sum,
+	 * and increment the itemCount. Finally, it will divide the average date
+	 * sum by the itemCount total to get the real average date.
+	 * 
+	 */
 	public double computeAverageDate(){
 		int r, c, itemCount = 0;
 		double average = 0;
@@ -83,10 +144,17 @@ public class ToolBag {
 		return average;
 	}
 
-	/* Computing the standard deviation first by going
-	 * through and getting the variance, before
-	 * taking the square root of that, which is the
-	 * standard deviation
+	/**
+	 * 
+	 * For the public double computeStandardDeviation method
+	 * @param avg
+	 * @return the standard deviation
+	 * 
+	 * This method computes the standard deviation first by
+	 * going through and getting the variance based off the
+	 * dates specified. It then takes the standard deviation
+	 * from that, which is the square root of the variance.
+	 * 
 	 */
 	public double computeStandardDeviation(double avg){
 		int r, c, n = 0;
@@ -95,9 +163,11 @@ public class ToolBag {
 		for(r = 0; r < map.getNumRows(); r++){
 			for(c = 0; c < map.getNumColumns(); c++){
 				current = map.plane[r][c];
-				if(current.getExcavated() && current.itemFound()){ //If it's excavated and if there's an object inside it
+				if(current.getExcavated() && current.itemFound()){ 
 					for(int k = 0; k < current.potCount.size() + current.metalCount.size() + current.charcoalCount.size(); k++)
-						n++;
+						n++; 
+						//If it's excavated and if there's an object inside it
+						//then add to the amount of things variable
 				}
 			}
 		}
@@ -136,6 +206,7 @@ public class ToolBag {
 				}
 			}
 		}
+		
 		double variance = 0;
 		variance = sum / n;
 
@@ -147,6 +218,8 @@ public class ToolBag {
 		double plus = 0;
 		plus = avg + sd;
 
+		//Finally, prints out standard deviation in regards to the average, and returns 
+		//the standard deviation
 		System.out.println("The average minus standard deviation is " + minus + " and the average plus the standard deviation is " + plus + ".");
 		return sd;
 	}
