@@ -150,4 +150,16 @@ public class Map {
 	public ViewingOption getViewingOption(){
 		return viewingOption;
 	}
+	
+	public int countNumberOfFinds(){
+		Coordinate current;
+		int count = 0;
+		for(int r = 0; r < getNumRows(); r++){
+			for(int c = 0; c < getNumColumns(); c++){
+				current = plane[r][c];
+				count = count + current.potCount.size() + current.metalCount.size() + current.charcoalCount.size();
+			}
+		}
+		return count;
+	}
 }
