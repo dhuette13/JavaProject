@@ -13,8 +13,16 @@ import archeologyp1.shared.Utilities;
 import archeologyp1.shared.ViewingOption;
 
 /**
+ * ENTRY POINT OF THE ARCHAEOLOGICAL DIG TOOL 
+ * @author Daniel
+ * @author Celine
  * 
- * @author What's the Meaning of Stonehenge!
+ * This class contains the Main method for the ADT. It runs the 
+ * user input menu, which asks the user if they'd like to 
+ * survey, which tool they'd like to use if they do survey, 
+ * if they'd like to excavate, if they'd like to see the date
+ * average (with the bonus of standard deviation) of the finds 
+ * they have, change the viewing option, print, or export. 
  *
  */
 public class EntryPoint {
@@ -30,24 +38,21 @@ public class EntryPoint {
 	Coordinate current;
 	ViewingOption option;
 
+	/**
+	 * 
+	 */
 	public EntryPoint(){
 		input = new Scanner(System.in);
 		handleLoad();
 		toolBag = new ToolBag(map);
 	}
 
+	/**
+	 * The go-method handles most of the user input for the ADT.
+	 * 
+	 * 
+	 */
 	public void go(){
-		/*
-		 * 1) Survey
-		 * 	a) Light Specturm
-		 * 	b) Magnetometer
-		 *  c) Metal Detector
-		 * 2) Dig
-		 * 3) Date Average
-		 * 4) Change a Viewing Option
-		 * 5) Print
-		 * 6) Export
-		 */
 		flag = true;
 		while(flag){
 			Utilities.printMap(map, System.out);
@@ -232,12 +237,21 @@ public class EntryPoint {
 	
 	/**
 	 * @param args
+	 * 
+	 * This method creates and object, and 
+	 * begins the class. 
+	 * 
 	 */
 	public static void main(String[] args) {
 		EntryPoint entry = new EntryPoint();
 		entry.go();
 	}
 
+	/**
+	 * This method handles the user input for the file and
+	 * continues looping if the file path the user specifies
+	 * isn't there.
+	 */
 	private void handleLoad(){
 		flag = true;
 		while(flag){
