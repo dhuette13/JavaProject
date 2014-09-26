@@ -1,7 +1,8 @@
 /*
  * Source code for base 26 to alphabet
  * Author: Becker
- * URL: https://elearn.uta.edu/webapps/portal/frameset.jsp?tab_group=courses&url=%2Fwebapps%2Fblackboard%2Fexecute%2Fcontent%2Ffile%3Fcmd%3Dview%26content_id%3D_3440332_1%26course_id%3D_228496_1%26framesetWrapped%3Dtrue
+ * URL: https://elearn.uta.edu/webapps/portal/frameset.jsp?tab_group=courses&url=%2Fwebapps%
+ * 2Fblackboard%2Fexecute%2Fcontent%2Ffile%3Fcmd%3Dview%26content_id%3D_3440332_1%26course_id%3D_228496_1%26framesetWrapped%3Dtrue
  * Date put into the code: Sept 18, 2014
  * 
  */
@@ -238,49 +239,30 @@ public class Utilities {
 		}
 	}
 	
+	
 	public static String indexToColumn(int index){
-		String result=null;
+		String result = new String();
 		ArrayList <Integer> tempArray = new ArrayList<Integer>();
-		int value=index;
-		int modulus=0;
-//		int iTemp1=0;
-//		int iTemp2=0;
-		char temp=' ';	
+		int modulus = 0;
 		
-		
-		
-		result=new String();
-		boolean flag=true;
-		
-
 		//Convert from Base 10 to Base 26
-		while (flag)
-		{
-			modulus=value%26;
-			value=value/26;
+		while (true) {
+			modulus=index % 26;
+			index = index / 26;
 			tempArray.add(modulus);
-			if (value<1)
-				flag=false;
+			
+			if (index < 1)
+				break;
 		}
 
-		//Convert Base 26 to Character SEt 
-		int loop=0;
-		for (loop=0;loop<tempArray.size();loop++)
-		{
-			int iTemp3=tempArray.get(loop);
-
-			//If the current character is higher than the first significant column.
-			if (loop>0)
-			{	temp=(char)('A'+iTemp3-1);
-
-			}
+		//Convert Base 26 to Character Set 
+		for (int i = 0; i < tempArray.size(); i++) {
 			//Else, we want there to be a blank, not an '@'
+			if (i == 0)
+				result +=( char)('A'+ tempArray.get(i));
+			//If the current character is higher than the first significant column.
 			else
-			{
-				temp=(char)('A'+iTemp3);
-			}
-			result=temp+result;
-			
+				result += (char)('A'+ tempArray.get(i) - 1);
 		}
 		return result;
 	}
