@@ -20,6 +20,10 @@ import java.util.Scanner;
  * Holds a number of utilities used by both projects.
  * @author Daniel
  * @author Celine
+ * 
+ * This class contains utilities that are shared by both
+ * the MPT and the ADT. Included in this class are the
+ * methods 
  *
  */
 public class Utilities {
