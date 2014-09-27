@@ -160,7 +160,7 @@ public class Coordinate {
 	/********************************************************************/
 	/**
 	 * 
-	 * For the publid void setFeature method
+	 * For the public void setFeature method
 	 * @param featureType
 	 * 
 	 * This method allows the user to set the feature type. 

@@ -5,7 +5,8 @@ package archeologyp1.shared;
  * @author Daniel
  * @author Celine
  * 
- * This class contains map features that are shared by
+ * This class represents a loaded map in memory and
+ * contains map features that are shared by
  * both the ADT and the MPT. The main method
  * in this class is the viewing options method,
  * which allows the user to switch their view between

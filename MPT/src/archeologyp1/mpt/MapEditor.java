@@ -71,6 +71,9 @@ public class MapEditor {
 			return;
 		}
 		
+		/* Searches map for a feature of the same type to
+		 * determine what alias character to use.
+		 */
 		boolean done = false;
 		if(map.getViewingOption() == ViewingOption.userModified){
 			for(int i = 0; (i < map.getNumRows()) && !done; i++){
