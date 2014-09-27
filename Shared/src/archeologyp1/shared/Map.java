@@ -1,8 +1,15 @@
 package archeologyp1.shared;
 
 /**
- * 
+ * MAP IN THE SHARED RESOURCES
  * @author Daniel
+ * @author Celine
+ * 
+ * This class contains map features that are shared by
+ * both the ADT and the MPT. The main method
+ * in this class is the viewing options method,
+ * which allows the user to switch their view between
+ * multiple choices.
  *
  */
 public class Map {
@@ -23,22 +30,61 @@ public class Map {
 		plane = new Coordinate[rows][columns];
 	}
 
+	/**
+	 * 
+	 * For the public int getNumRows method
+	 * @return the number of rows
+	 * 
+	 */
 	public int getNumRows(){
 		return rows;
 	}
 
+	/**
+	 * 
+	 * For the public int getNumColumns method
+	 * @return the number of columns
+	 * 
+	 */
 	public int getNumColumns(){
 		return columns;
 	}
 
+	/**
+	 * 
+	 * For the public void setViewingOption method
+	 * @param option
+	 * 
+	 */
 	public void setViewingOption(ViewingOption option){
 		viewingOption = option;
 	}
 
+	/**
+	 * 
+	 * For the public void updateView method
+	 * This method toggles with the user's view of the map.
+	 * 
+	 */
 	public void updateView(){
 		updateView(null, '\0', false);
 	}
 
+	/**
+	 * 
+	 * For the public void updateView method
+	 * @param feature
+	 * @param symbol
+	 * @param alias
+	 * 
+	 * This method toggles with the user's view of the map. 
+	 * It switches based on whether the user wants to view
+	 * the map as the natural version, the modified version
+	 * they'd worked on, the counts for the three types, or
+	 * the results of the tools if they'd opted to use those
+	 * for the ADT.
+	 * 
+	 */
 	public void updateView(Feature feature, char symbol, boolean alias){
 		int r,c;
 		Coordinate current;
@@ -147,10 +193,25 @@ public class Map {
 		}
 	}
 
+	/**
+	 * 
+	 * For the public ViewingOption getViewingOption method
+	 * @return the viewing option the user specifies
+	 * 
+	 */
 	public ViewingOption getViewingOption(){
 		return viewingOption;
 	}
 	
+	/**
+	 * 
+	 * For the public int countNumberOfFinds method
+	 * @return the number of finds
+	 * 
+	 * This method goes through the map and counts the amount of
+	 * finds, regardless of type of find.
+	 * 
+	 */
 	public int countNumberOfFinds(){
 		Coordinate current;
 		int count = 0;

@@ -48,7 +48,7 @@ public class EntryPoint {
 	}
 
 	/**
-	 * The go-method handles most of the user input for the ADT.
+	 * This is the go-method, which handles most of the user input for the ADT.
 	 */
 	public void go(){
 		flag = true;
@@ -244,7 +244,7 @@ public class EntryPoint {
 	/**
 	 * @param args
 	 * 
-	 * This method creates and object, and 
+	 * This method creates an object, and 
 	 * begins the class. 
 	 * 
 	 */

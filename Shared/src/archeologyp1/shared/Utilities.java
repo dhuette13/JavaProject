@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * UTILITIES
+ * UTILITIES IN THE SHARED RESOURCES
  * Holds a number of utilities used by both projects.
  * @author Daniel
  * @author Celine
