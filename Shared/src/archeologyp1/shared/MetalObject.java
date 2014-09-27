@@ -2,7 +2,7 @@ package archeologyp1.shared;
 
 /**
  * 
- * METALOBJECT IN SHARED RESOURCES
+ * METALOBJECT FOR THE SHARED RESOURCES
  * @author Daniel
  * @author Celine
  * 
