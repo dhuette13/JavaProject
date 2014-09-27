@@ -3,8 +3,14 @@ package archeologyp1.shared;
 import java.util.ArrayList;
 
 /**
- * Represents a single coordinate on the map
+ * 
+ * COORDINATE FOR THE SHARED RESOURCES
  * @author Daniel
+ * @author Celine
+ * 
+ * This class represents a single coordinate on the map.
+ * Many of the methods in this class involve the symbols
+ * and finds of the map. 
  *
  */
 public class Coordinate {
@@ -31,7 +37,10 @@ public class Coordinate {
 	public static final char defaultPostHoleAlias = 'G';
 
 	/**
-	 * Initialize member variables
+	 * 
+	 * For the public Coordinate method
+	 * This method initializes member variables.
+	 * 
 	 */
 	public Coordinate(){
 		feature = Feature.dirt;
@@ -51,18 +60,29 @@ public class Coordinate {
 	}
 
 	/**
+	 * 
+	 * For the public char getCurrentViewableSymbol method
 	 * @return currentViewableSymbol
-	 * For use by printing method
+	 * 
+	 * This method is for use by printing method.
+	 * 
 	 */
 	public char getCurrentViewableSymbol() { return currentViewableSymbol; }
 	/**
+	 * 
+	 * For the public void setCurrentViewableSymbol
 	 * @param symbol sets currentViewableSymbol
-	 * currentViewableSymbol used by printing method
+	 * 
+	 * This method is used by printing method.
+	 * 
 	 */
 	public void setCurrentViewableSymbol(char symbol) { currentViewableSymbol = symbol; }
 	/**
-	 * Updates current viewable symbol based on the Coordinate's
-	 * current feature type.
+	 * 
+	 * For the public void updateCurrentViewableSymbol
+	 * This method updates current viewable symbol based on 
+	 * the Coordinate's current feature type.
+	 * 
 	 */
 	public void updateCurrentViewableSymbol(){
 		switch(feature){
@@ -82,8 +102,11 @@ public class Coordinate {
 	}
 	/********************************************************************/
 	/**
+	 * 
+	 * For the public void setFeatureSymbol method
 	 * @param symbol sets either the stoneSymbol, postHoleSymbol, or dirtSymbol
-	 * Based on the current Coordinate's feature type
+	 * 
+	 * This method is revolves around the current Coordinate's feature type.
 	 */
 	public void setFeatureSymbol(char symbol){
 		switch(feature){
@@ -99,8 +122,11 @@ public class Coordinate {
 		}
 	}
 	/**
+	 * 
+	 * For the public void setFeatureAlias method
 	 * @param symbol sets either the stoneAlias, postHoleAlias, or dirtAlias
-	 * Based on the current Coordinate's feature type
+	 * 
+	 * This method is revolves around the current Coordinate's feature type.
 	 */
 	public void setFeatureAlias(char symbol){
 		switch(feature){
@@ -117,18 +143,29 @@ public class Coordinate {
 	}
 	/********************************************************************/
 	/**
+	 * 
+	 * For the public Feature getFeature method
 	 * @return feature the Coordinate's current stored feature type
+	 * 
 	 */
 	public Feature getFeature() { return feature;}
 	/**
+	 * 
+	 * For the public void setFeature method
 	 * @param f sets feature
+	 * 
 	 */
 	public void setFeature(Feature f) { feature = f; }
 
 	/********************************************************************/
 	/**
+	 * 
+	 * For the publid void setFeature method
 	 * @param featureType
-	 * For use by the load method
+	 * 
+	 * This method allows the user to set the feature type. 
+	 * It is used by the load method.
+	 * 
 	 */
 	public void setFeature(char featureType){
 		switch(featureType){
@@ -146,8 +183,12 @@ public class Coordinate {
 		}
 	}
 	/**
+	 * 
+	 * For the public char getFeatureChar method
 	 * @return Character to write to save file
-	 * For use by the save method
+	 * 
+	 * This method is for use by the save method. 
+	 * 
 	 */
 	public char getFeatureChar(){
 		switch(feature){
@@ -162,75 +203,141 @@ public class Coordinate {
 	}
 	/********************************************************************/
 	/**
+	 * 
+	 * For the public boolean charcoalHidden method
 	 * @return charcoalHidden if a charCoal Object is hidden in Coordinate
+	 * 
 	 */
 	public boolean charcoalHidden() { return charcoalHidden; }
 	/**
+	 * 
+	 * For the public boolean metalHidden method
 	 * @return metalHidden if a metalObject is hidden in Coordinate
+	 * 
 	 */
 	public boolean metalHidden() { return metalHidden; }
 
 	/**
+	 * 
+	 * For the public void setCharcoalHidden method
 	 * @param hidden
-	 * Sets charcoalHidden variable for use by scanning methods
+	 * 
+	 * This method sets the charcoalHidden variable for use by scanning methods.
+	 * 
 	 */
 	public void setCharcoalHidden(boolean hidden) { charcoalHidden = hidden; }
 	/**
+	 * 
+	 * For the public void setMetalHidden method
 	 * @param hidden
-	 * Sets metalHidden variable for use by scanning methods
+	 * 
+	 * This method sets the metalHidden variable for use by scanning methods.
+	 * 
 	 */
 	public void setMetalHidden(boolean hidden) { metalHidden = hidden; }
 	/**
+	 * 
+	 * For the public void setItemFound method
 	 * @param found
-	 * Sets itemFound variable, if excavated Coordinate has a hidden find.
+	 * 
+	 * This method sets the itemFound variable. If excavated, Coordinate has a hidden find.
+	 * 
 	 */
 	public void setItemFound(boolean found) { itemFound = found; }
 	/**
+	 * 
+	 * For the public boolean itemFound method
 	 * @return itemFound
-	 * Indicate whether an item has been found by excavating
+	 * 
+	 * This method will indicate whether an item has been found by excavating.
+	 * 
 	 */
 	public boolean itemFound(){ return itemFound; }
 	/**
+	 * 
+	 * For the public boolean getExcavated method
 	 * @return excavated
-	 * Indicates whether the current Coordinate has been dug previously
+	 * 
+	 * This method will indicate whether the current Coordinate has been dug previously.
+	 * 
 	 */
 	public boolean getExcavated() { return excavated; }
 	/**
+	 * 
+	 * For the public void setExcavated method
 	 * @param e set value of excavated
-	 * For use by digging method
+	 * 
+	 * This method is for use by the digging method.
+	 * 
 	 */
 	public void setExcavated(boolean e) { excavated = e; }
 	/**
+	 * 
+	 * For the public boolean getPotInspected method
 	 * @return potInspected
-	 * Indicates whether visible spectrum has been previously used on this Coordinate
+	 * 
+	 * This method indicates whether the visible spectrum tool has been 
+	 * previously used on this Coordinate
+	 * 
 	 */
 	public boolean getPotInspected() { return potInspected; }
 	/**
+	 * 
+	 * For the public boolean getCharcoalInspected method
 	 * @return charCoalInspected
-	 * Indicates whether magnetometer has been previously used on this Coordinate
+	 * 
+	 * This method indicates whether the magnetometer tool has 
+	 * been previously used on this Coordinate.
+	 * 
 	 */
 	public boolean getCharcoalInspected() { return charcoalInspected; }
 	/**
+	 * 
+	 * For the public boolean getMetalInspected method
 	 * @return metalInspected
-	 * Indicates whether metal detector has been previously used on this Coordinate
+	 * 
+	 * This method indicates whether the metal detector tool 
+	 * has been previously used on this Coordinate.
+	 * 
 	 */
 	public boolean getMetalInspected() { return metalInspected; }
 
 	/**
+	 * 
+	 * For the public void setPotInspected tool
 	 * @param i set value of potInspected
-	 * For use by scanning methods
+	 * 
+	 * This method is for use by scanning methods.
+	 * 
 	 */
 	public void setPotInspected(boolean i) { potInspected = i; }
 	/**
+	 * 
+	 * For the public void setCharcoalInspected method
 	 * @param i set value of charcoalInspected
-	 * For use by scanning methods
+	 * 
+	 * This method is for use by scanning methods.
+	 * 
 	 */
 	public void setCharcoalInspected(boolean i) { charcoalInspected = i; }
 	/**
+	 * 
+	 * For the public void setMetalInspected method
 	 * @param i set value of metalInspected
-	 * For use by scanning methods
+	 * 
+	 * This method is for use by scanning methods.
+	 * 
 	 */
 	public void setMetalInspected(boolean i) { metalInspected = i; }
+	
+	/**
+	 * 
+	 * For the public char getAliasChar method
+	 * @return the alias
+	 * 
+	 * This method will return the alias for a feature.
+	 * 
+	 */
 	public char getAliasChar(){
 		switch(feature){
 		case dirt:
@@ -239,7 +346,7 @@ public class Coordinate {
 			return stoneAlias;
 		case postHole:
 			return postHoleAlias;
-		}
+		} //Should there be a default case for this? Or no?
 		return ' ';
 	}
 }
