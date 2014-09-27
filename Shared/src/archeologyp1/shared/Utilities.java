@@ -130,9 +130,14 @@ public class Utilities {
 	}
 
 	/**
-	 * Saves map from memory into file
+	 * 
+	 * For the public static void save method
 	 * @param path fileName to save to
 	 * @param m map to save
+	 * 
+	 * This method saves the map from memory into a file at the
+	 * user's discretion. 
+	 * 
 	 */
 	public static void save(Map m, String path){
 		try {
@@ -174,8 +179,13 @@ public class Utilities {
 
 	/**
 	 * 
+	 * For the public static void printMap method
 	 * @param map map to print or export
 	 * @param output stream to output to
+	 * 
+	 * This method prints the map out and shows the user
+	 * the current map. 
+	 * 
 	 */
 	public static void printMap(Map map, PrintStream output){
 		int r, c;
@@ -244,6 +254,17 @@ public class Utilities {
 		output.println();
 	}
 	
+	/**
+	 * 
+	 * For the public static int columnToIndex method
+	 * @param column
+	 * @return
+	 * 
+	 * This method converts the column the user specifies in so-and-so
+	 * and converts it into a usable number for other general
+	 * purposes.
+	 * 
+	 */
 	public static int columnToIndex(String column){
 		column = column.toUpperCase();
 		if(column.length() == 1){
@@ -253,6 +274,17 @@ public class Utilities {
 		}
 	}
 	
+	/**
+	 * 
+	 * For the public static String indexToColumn method
+	 * @param index
+	 * @return character result
+	 * 
+	 * This method takes an integer and converts it to 
+	 * a character that should come out to be a column on 
+	 * the map.
+	 * 
+	 */
 	public static String indexToColumn(int index){
 		String result = new String();
 		ArrayList <Integer> tempArray = new ArrayList<Integer>();
@@ -260,7 +292,7 @@ public class Utilities {
 		
 		//Convert from Base 10 to Base 26
 		while (true) {
-			modulus=index % 26;
+			modulus = index % 26;
 			index = index / 26;
 			tempArray.add(modulus);
 			
@@ -272,7 +304,7 @@ public class Utilities {
 		for (int i = 0; i < tempArray.size(); i++) {
 			//Else, we want there to be a blank, not an '@'
 			if (i == 0)
-				result +=( char)('A'+ tempArray.get(i));
+				result += (char)('A'+ tempArray.get(i));
 			//If the current character is higher than the first significant column.
 			else
 				result += (char)('A'+ tempArray.get(i) - 1);
