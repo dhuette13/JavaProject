@@ -6,16 +6,19 @@ import java.util.Scanner;
 
 import archeologyp1.shared.Map;
 
-// 1) Change a coordinate
-// a) Change a single coordinate
-// b) Change a row
-// - wizard: feature, viewing symbol, excavated?, find
-// 3) Change a viewing symbol
-// a) Whole map
-// b) Group of symbols
-// 4) Print map
-// 5) Export map
-// 6) Save map
+/**
+ * USERINTERFACE FOR THE MAP POPULATION TOOL
+ * @author Daniel
+ * @author Celine
+ * 
+ * This class handles most of the UI for the
+ * mpt, which includes adding a feature 
+ * or a find, updating a coordinate, and changing
+ * a coordinate based on a single coordinate or
+ * an entire row.
+ *
+ */
+
 public class UserInterface {
 	private int selection;
 	private int row;
@@ -29,17 +32,38 @@ public class UserInterface {
 	private Scanner input;
 	private Map map;
 
+	/**
+	 * 
+	 * For the public UserInterface method
+	 * @param the mapEditor object
+	 * @param the map object
+	 * 
+	 */
 	public UserInterface(MapEditor mapEditor, Map map){
 		this.mapEditor = mapEditor;
 		this.map = map;
 		input = new Scanner(System.in);
 	}
 
+	/**
+	 * 
+	 * For the public void pollFeatureorFind method
+	 * 
+	 * This method asks whether the user wants to change a
+	 * feature or add a find to the map. If they want to change a 
+	 * feature, the menu will ask them for the option (among the
+	 * unexcavated options available) they want to change it 
+	 * to, or whether they want to add a (collection of) find(s).
+	 * If they want to add a find, the menu will then push them
+	 * into a loop based on how many finds they want to add, 
+	 * and make them add the dates for each find.
+	 * 
+	 */
 	public void pollFeatureorFind(){
 		int date;
 
 		System.out.println("\t1) Change a Feature");
-		System.out.println("\t2) Change a Find");
+		System.out.println("\t2) Add a Find");
 		System.out.print("::> ");
 		selection = input.nextInt();
 		switch(selection){
@@ -77,6 +101,14 @@ public class UserInterface {
 		}
 	}
 
+	/**
+	 * 
+	 * For the public void updateCoordinate method
+	 * 
+	 * This method updates the coordinate in the 
+	 * map that's been changed.
+	 * 
+	 */
 	public void updateCoordinate(){
 		if(featureFlag) {
 			mapEditor.changeFeature(row, col, feature);
@@ -88,6 +120,16 @@ public class UserInterface {
 			findFlag = false;
 		}
 	}
+	
+	/**
+	 * 
+	 * For the public void changeCoordinate method
+	 * 
+	 * This method asks what type of change to the menu
+	 * the user wants to make: a single coordinate, or 
+	 * an entire row on the map. 
+	 * 
+	 */
 	public void changeCoordinate() {
 
 		boolean flag = true;
@@ -102,16 +144,16 @@ public class UserInterface {
 			switch(selection){
 			/* Change a single coordinate */
 			case 1:
-				System.out.println("\tPlease specify a row and column.");
+				System.out.println("\tPlease specify a row and column. (Example: 4 d)");
 				System.out.print("::> ");
 				row = input.nextInt();
 				col = input.next();
 				pollFeatureorFind();
 				updateCoordinate();
 				break;
-				/* Change a whole row */
+			/* Change a whole row */
 			case 2: 
-				System.out.println("Which row would you like to edit?");
+				System.out.println("Which row would you like to edit? (Example: b)");
 				System.out.println("::> ");
 				row = input.nextInt();
 				pollFeatureorFind();

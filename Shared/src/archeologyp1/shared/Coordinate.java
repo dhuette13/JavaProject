@@ -346,7 +346,7 @@ public class Coordinate {
 			return stoneAlias;
 		case postHole:
 			return postHoleAlias;
-		} //Should there be a default case for this? Or no?
+		} 
 		return ' ';
 	}
 }

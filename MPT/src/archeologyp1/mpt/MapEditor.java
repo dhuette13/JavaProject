@@ -9,15 +9,45 @@ import archeologyp1.shared.Pot;
 import archeologyp1.shared.Utilities;
 import archeologyp1.shared.ViewingOption;
 
+/**
+ * MAPEDITOR FOR THE MAP POPULATION TOOL
+ * @author Daniel
+ * @author Celine
+ * 
+ * This class handles editing the map for the Map Population 
+ * Tool. It includes changing features and adding finds. 
+ *
+ */
+
 public class MapEditor {
 
 	private Map map;
 	private Coordinate current;
 
+	/**
+	 * 
+	 * For the public MapEditor method
+	 * @param map object
+	 * 
+	 */
 	public MapEditor(Map map) {
 		this.map = map;
 	}
 
+	/**
+	 * 
+	 * For the public void changeFeature method
+	 * @param row
+	 * @param col
+	 * @param feature they'd like to change to
+	 * 
+	 * This method involves changing the feature to
+	 * what the user specifies. After changing the 
+	 * feature, it then sets the alias (or "natural") features so
+	 * the user can access view them again, before updating the
+	 * map view.
+	 * 
+	 */
 	public void changeFeature(int row, String col, int feature){
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col);
@@ -56,20 +86,32 @@ public class MapEditor {
 		map.updateView();
 	}
 
+	/**
+	 * 
+	 * For the public void addFind method
+	 * @param row
+	 * @param col
+	 * @param type of find
+	 * @param date(s) for the find
+	 * 
+	 * This method adds finds based on the user preference,
+	 * and adds the dates of those finds. 
+	 * 
+	 */
 	public void addFind(int row, String col, int type, int date){
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col); 
 		current = map.plane[r][c];
 		switch(type){
-			/* Add to pot collection */
+		/* Add to pot collection */
 		case 1:
 			current.potCount.add(new Pot(date));
 			break;
-			/* Add to charcoal collection */
+		/* Add to charcoal collection */
 		case 2:
 			current.charcoalCount.add(new Charcoal(date));
 			break;
-			/* Add to metal collection */
+		/* Add to metal collection */
 		case 3:
 			current.metalCount.add(new MetalObject(date));
 			break;
