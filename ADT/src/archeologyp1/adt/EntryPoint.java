@@ -272,6 +272,7 @@ public class EntryPoint {
 				input.nextLine();
 			}
 		}
+		map.updateView();
 	}
 
 }

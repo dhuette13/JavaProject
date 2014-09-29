@@ -91,6 +91,7 @@ public class EntryPoint {
 				input.nextLine();
 			}
 		} while(flag);
+		map.updateView();
 	}
 
 	/**
@@ -137,6 +138,9 @@ public class EntryPoint {
 						System.out.println("\t1) Change Natural Surface");
 						System.out.println("\t2) Change Post Hole");
 						System.out.println("\t3) Change Stone");
+						System.out.println("\t4) Change Excavated Natural Surface");
+						System.out.println("\t5) Change Excavated Post Hole");
+						System.out.println("\t6) Change Excavated Stone");
 						System.out.print("::> ");
 						selection = input.nextInt();
 						System.out.print("\tEnter symbol to change to: ");
@@ -151,6 +155,15 @@ public class EntryPoint {
 						case 3:
 							map.updateView(Feature.stone, symbol, true);
 							break;
+						case 4:
+							map.updateView(Feature.dirt, symbol, false);
+							break;
+						case 5:
+							map.updateView(Feature.postHole, symbol, false);
+							break;
+						case 6:
+							map.updateView(Feature.stone, symbol, false);
+							break;
 						default:
 							System.out.println("Invalid selection");
 						}
@@ -159,6 +172,11 @@ public class EntryPoint {
 					case 2:
 						System.out.println("\t\t1) Natual option");
 						System.out.println("\t\t2) User Modified option");
+						System.out.println("\t\t3) PotCount option");
+						System.out.println("\t\t4) MetalCount option");
+						System.out.println("\t\t5) CharcoalCount option");
+						System.out.println("\t\t6) Magnetometer Results option");
+						System.out.println("\t\t7) Metal Detector Results option");
 						System.out.print("::> ");
 						selection = input.nextInt();
 						switch(selection){
@@ -168,6 +186,20 @@ public class EntryPoint {
 						case 2:
 							option = ViewingOption.userModified;
 							break;
+						case 3:
+							option = ViewingOption.potCount;
+							break;
+						case 4:
+							option = ViewingOption.metalCount;
+							break;
+						case 5:
+							option = ViewingOption.charcoalCount;
+							break;
+						case 6:
+							option = ViewingOption.magnetometerResult;
+							break;
+						case 7:
+							option = ViewingOption.metalDetectorResult;
 						default:
 							System.out.println("\tInvalid Selection");
 							break;
