@@ -53,10 +53,10 @@ public class Utilities {
 	/**
 	 * 
 	 * For the public static Map load method
+	 * This method loads a map from file into memory. 
 	 * @param path
 	 * @return Map object
 	 * 
-	 * This method loads a map from file into memory. 
 	 * 
 	 */
 	public static Map load(String path){
@@ -125,7 +125,7 @@ public class Utilities {
 		} catch (FileNotFoundException e) {
 			System.out.println("Invalid Path specified");
 		}
-
+ 
 		return null;
 	}
 
@@ -304,10 +304,10 @@ public class Utilities {
 		for (int i = 0; i < tempArray.size(); i++) {
 			//Else, we want there to be a blank, not an '@'
 			if (i == 0)
-				result += (char)('A'+ tempArray.get(i));
+				result = (char)('A'+ tempArray.get(i)) + result;
 			//If the current character is higher than the first significant column.
 			else
-				result += (char)('A'+ tempArray.get(i) - 1);
+				result = (char)('A'+ tempArray.get(i) - 1) + result;
 		}
 		return result;
 	}
