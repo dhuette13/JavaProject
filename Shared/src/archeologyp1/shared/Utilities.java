@@ -124,6 +124,8 @@ public class Utilities {
 			return map;
 		} catch (FileNotFoundException e) {
 			System.out.println("Invalid Path specified");
+		} catch(Exception e) {
+			System.out.println("Invalid File");
 		}
  
 		return null;
