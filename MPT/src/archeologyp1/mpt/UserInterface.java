@@ -131,8 +131,6 @@ public class UserInterface {
 	 * 
 	 */
 	public void changeCoordinate() {
-
-		boolean flag = true;
 		int selection;
 		try{
 			System.out.println("What would you like to do?");
