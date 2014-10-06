@@ -1,9 +1,10 @@
 /*
- * Source code for base 26 to alphabet
+ * Source code for base 26 to alphabet and alphabet to base 26
  * Author: Becker
  * URL: https://elearn.uta.edu/webapps/portal/frameset.jsp?tab_group=courses&url=%2Fwebapps%
  * 2Fblackboard%2Fexecute%2Fcontent%2Ffile%3Fcmd%3Dview%26content_id%3D_3440332_1%26course_id%3D_228496_1%26framesetWrapped%3Dtrue
  * Date put into the code: Sept 18, 2014
+ * 							Oct 05, 2014
  * 
  */
 
@@ -29,7 +30,7 @@ import java.util.Scanner;
  */
 
 public class Utilities {
-	
+
 	/**
 	 * For the public static Map generateMap method
 	 * @param height of map
@@ -40,12 +41,12 @@ public class Utilities {
 	 * returns the map object to be printed.
 	 * 
 	 */
-	public static Map generateMap(int width, int height){
-		Map map = new Map(width, height);
+	public static Map<Coordinate> generateMap(int width, int height){
+		Map<Coordinate> map = new Map<>(width, height);
 		int r, c;
 		for(r = 0; r < map.getNumRows(); r++)
 			for(c = 0; c < map.getNumColumns(); c++)
-				map.plane[r][c] = new Coordinate();
+				map.add(r, c, new Coordinate(r, c));
 
 		return map;
 	}
@@ -59,10 +60,10 @@ public class Utilities {
 	 * 
 	 * 
 	 */
-	public static Map load(String path){
+	public static Map<Coordinate> load(String path){
 		int rowSize, colSize, r, c;
 		Scanner scan;
-		Map map;
+		Map<Coordinate> map;
 		try {
 			File myFile = new File(path);
 			scan = new Scanner(myFile);
@@ -72,13 +73,9 @@ public class Utilities {
 			String dimensions[] = line.split(",");
 			colSize = Integer.parseInt(dimensions[0]);
 			rowSize = Integer.parseInt(dimensions[1]);
-			map = new Map(rowSize, colSize);
+			map = new Map<>(rowSize, colSize);
 
 			String dataArray[];
-			for(r = 0; r < map.getNumRows(); r++)
-				for(c = 0; c < map.getNumColumns(); c++)
-					map.plane[r][c] = new Coordinate();
-
 			Coordinate current;
 			int numPots, numMetal, numCharcoal, date, i = 0;
 
@@ -89,13 +86,12 @@ public class Utilities {
 				/* Get integer index for row and column */ 
 				c = columnToIndex(dataArray[i++]);
 				r = Integer.parseInt(dataArray[i++]);
-				current = map.plane[r][c];
+				current = new Coordinate(r, c);
 
 				/* Set the type of feature for coordinate, 
 				 * and the symbol to be displayed.
 				 */
 				current.setFeature(dataArray[i++].charAt(0));
-				current.updateCurrentViewableSymbol();
 				current.setExcavated(Boolean.parseBoolean(dataArray[i++]));
 
 				/* Iterate through pot input */
@@ -119,6 +115,7 @@ public class Utilities {
 					current.charcoalCount.add(new Charcoal(date));
 				}
 				i = 0;
+				map.add(r, c, current);
 			}
 			scan.close();
 			return map;
@@ -127,7 +124,7 @@ public class Utilities {
 		} catch(Exception e) {
 			System.out.println("Invalid File");
 		}
- 
+
 		return null;
 	}
 
@@ -141,36 +138,32 @@ public class Utilities {
 	 * user's discretion. 
 	 * 
 	 */
-	public static void save(Map m, String path){
+	public static void save(Map<Coordinate> map, String path){
 		try {
 			PrintStream out = new PrintStream(new File(path));
-			out.println(m.getNumColumns() + "," + m.getNumRows());
-			Coordinate current;
-			int r, c, k;
+			out.println(map.getNumColumns() + "," + map.getNumRows());
+			int k;
 			/* For every element in the map array,
 			 * get the data elements and write to
 			 * data file in comma separated format.
 			 */
-			for(r = 0; r < m.getNumRows(); r++){
-				for(c = 0; c < m.getNumColumns(); c++){
-					current = m.plane[r][c];
-					out.print(indexToColumn(c) + "," + r);
-					out.print("," + current.getFeatureChar());
-					out.print("," + Boolean.toString(current.getExcavated()).toUpperCase());
-					out.print("," + current.potCount.size());
-					for(k = 0; k < current.potCount.size(); k++){
-						out.print("," + current.potCount.get(k).getDate());
-					}
-					out.print("," + current.metalCount.size());
-					for(k = 0; k < current.metalCount.size(); k++){
-						out.print("," + current.metalCount.get(k).getDate());
-					}
-					out.print("," + current.charcoalCount.size());
-					for(k = 0; k < current.charcoalCount.size(); k++){
-						out.print("," + current.charcoalCount.get(k).getDate());
-					}
-					out.println();
+			for(Coordinate coord : map){
+				out.print(indexToColumn(coord.getColumn()) + "," + coord.getRow());
+				out.print("," + coord.getFeatureChar());
+				out.print("," + Boolean.toString(coord.getExcavated()).toUpperCase());
+				out.print("," + coord.potCount.size());
+				for(k = 0; k < coord.potCount.size(); k++){
+					out.print("," + coord.potCount.get(k).getDate());
 				}
+				out.print("," + coord.metalCount.size());
+				for(k = 0; k < coord.metalCount.size(); k++){
+					out.print("," + coord.metalCount.get(k).getDate());
+				}
+				out.print("," + coord.charcoalCount.size());
+				for(k = 0; k < coord.charcoalCount.size(); k++){
+					out.print("," + coord.charcoalCount.get(k).getDate());
+				}
+				out.println();
 			}
 			out.close();
 		} catch (FileNotFoundException e) {
@@ -189,9 +182,7 @@ public class Utilities {
 	 * the current map. 
 	 * 
 	 */
-	public static void printMap(Map map, PrintStream output){
-		int r, c;
-		Coordinate current;
+	public static void printMap(Map<Coordinate> map, PrintStream output){
 		char columnCharacter = 'A';
 		/* Print the Column labels 
 		 * 
@@ -203,7 +194,7 @@ public class Utilities {
 			output.format("  |");
 			/* Print 0's as a buffer for first iteration of the alphabet */
 			for(int k = 0; k < 26; k++) output.print(0);
-			
+
 			/* Print a sequence common characters for every
 			 * 26 characters.
 			 */
@@ -213,49 +204,51 @@ public class Utilities {
 			}
 			output.println();
 			output.format("  |");
-			
+
 			/* Print the second row of full alphabets */
 			for(int k = 0; k < map.getNumColumns() / 26; k++){
 				for(int p = 0; p < 26; p++){
 					output.print((char) ('A' + p));
 				}
 			}
-			
+
 			/* Print the remaining characters for the last alphabet */
 			for(int k = 0; k < map.getNumColumns() % 26; k++){
 				output.print((char) ('A' + k));
 			}
-			
+
 		} else {
 			/* If the number of columns is less than 26,
 			 * a second row is not needed.
 			 */
 			output.format("  |");
-			for(c = 0; c < map.getNumColumns(); c++){
+			for(int c = 0; c < map.getNumColumns(); c++){
 				output.format("%c", (char) (c + 65));
 			}
 		}
-		
+
 
 		output.println();
 		output.format("--+");
-		for(c = 0; c < map.getNumColumns(); c++){
+		for(int c = 0; c < map.getNumColumns(); c++){
 			output.format("-");
 		}
 		output.println();
 
 		/* Print the current viewable symbol for each row */
-		for(r = 0; r < map.getNumRows(); r++){
-			output.format("%02d|", r + 1);
-			for(c = 0; c < map.getNumColumns(); c++){
-				current = map.plane[r][c];
-				output.format("%c", current.getCurrentViewableSymbol());
+		for(Coordinate coord : map){
+			if(coord.getColumn() == 0){
+				output.format("%02d|",  coord.getRow() + 1);
 			}
-			output.println();
+
+			output.format("%c", map.getMapSymbol(coord.getRow(), coord.getColumn()));
+
+			if(coord.getColumn() == map.getNumColumns() - 1){
+				output.println();
+			}
 		}
-		output.println();
 	}
-	
+
 	/**
 	 * 
 	 * For the public static int columnToIndex method
@@ -268,14 +261,23 @@ public class Utilities {
 	 * 
 	 */
 	public static int columnToIndex(String column){
-		column = column.toUpperCase();
-		if(column.length() == 1){
-			return column.charAt(0) - 'A';
-		} else {
-			return ((column.charAt(0) - 'A' + 1) * 25) + (column.charAt(1) - 'A') + 1;
+		float power = 1;
+		int coeff = 0;
+		char letter = ' ';
+		int term = 0;
+		int total = 0;
+
+
+		for(int i = column.length() - 1; i >= 0; i--){
+			letter = column.charAt(i);
+			coeff = letter - 'A' + 1;
+			term = (int) (coeff * power);
+			total = total + term;
+			power = power * 26;
 		}
+		return total - 1;
 	}
-	
+
 	/**
 	 * 
 	 * For the public static String indexToColumn method
@@ -291,13 +293,13 @@ public class Utilities {
 		String result = new String();
 		ArrayList <Integer> tempArray = new ArrayList<Integer>();
 		int modulus = 0;
-		
+
 		//Convert from Base 10 to Base 26
 		while (true) {
 			modulus = index % 26;
 			index = index / 26;
 			tempArray.add(modulus);
-			
+
 			if (index < 1)
 				break;
 		}

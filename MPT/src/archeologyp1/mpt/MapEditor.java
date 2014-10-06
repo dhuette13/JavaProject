@@ -7,7 +7,6 @@ import archeologyp1.shared.Map;
 import archeologyp1.shared.MetalObject;
 import archeologyp1.shared.Pot;
 import archeologyp1.shared.Utilities;
-import archeologyp1.shared.ViewingOption;
 
 /**
  * MAPEDITOR FOR THE MAP POPULATION TOOL
@@ -21,7 +20,7 @@ import archeologyp1.shared.ViewingOption;
 
 public class MapEditor {
 
-	private Map map;
+	private Map<Coordinate> map;
 	private Coordinate current;
 
 	/**
@@ -30,7 +29,7 @@ public class MapEditor {
 	 * @param map object
 	 * 
 	 */
-	public MapEditor(Map map) {
+	public MapEditor(Map<Coordinate> map) {
 		this.map = map;
 	}
 
@@ -52,7 +51,7 @@ public class MapEditor {
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col);
 		Feature f = Feature.dirt;
-		current = map.plane[r][c];
+		current = map.get(r, c);
 		switch(feature){
 		case 1:
 			f = Feature.dirt;
@@ -70,23 +69,8 @@ public class MapEditor {
 			System.out.println("Invalid option");
 			return;
 		}
-		
-		/* Searches map for a feature of the same type to
-		 * determine what alias character to use.
-		 */
-		boolean done = false;
-		if(map.getViewingOption() == ViewingOption.userModified){
-			for(int i = 0; (i < map.getNumRows()) && !done; i++){
-				for(int j = 0; j < map.getNumColumns(); j++){
-					if(map.plane[i][j].getFeature() == f){
-						current.setFeatureAlias(map.plane[i][j].getAliasChar());
-						done = true;
-						break;
-					}
-				}
-			}
-		}
-		map.updateView();
+
+		updateView();
 	}
 
 	/**
@@ -104,21 +88,128 @@ public class MapEditor {
 	public void addFind(int row, String col, int type, int date){
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col); 
-		current = map.plane[r][c];
+		current = map.get(r, c);
 		switch(type){
 		/* Add to pot collection */
 		case 1:
 			current.potCount.add(new Pot(date));
 			break;
-		/* Add to charcoal collection */
+			/* Add to charcoal collection */
 		case 2:
 			current.charcoalCount.add(new Charcoal(date));
 			break;
-		/* Add to metal collection */
+			/* Add to metal collection */
 		case 3:
 			current.metalCount.add(new MetalObject(date));
 			break;
 		}
-		map.updateView();
+		updateView();
 	}
+
+	public void updateView(){
+		switch(map.getViewingOption()){
+		case natural:
+			for(Coordinate coord : map){
+				switch(coord.getFeature()){
+				case stone:
+					if(coord.getExcavated()) map.setMapSymbol(coord.getRow(), coord.getColumn(), Map.defaultStoneSymbol);
+					else map.setMapSymbol(coord.getRow(), coord.getColumn(), Map.defaultStoneAlias);
+					break;
+				case postHole:
+					if(coord.getExcavated()) map.setMapSymbol(coord.getRow(), coord.getColumn(), Map.defaultPostHoleSymbol);
+					else map.setMapSymbol(coord.getRow(), coord.getColumn(), Map.defaultPostHoleAlias);
+					break;
+				case dirt:
+					if(coord.getExcavated()) map.setMapSymbol(coord.getRow(), coord.getColumn(), Map.defaultDirtSymbol);
+					else map.setMapSymbol(coord.getRow(), coord.getColumn(), Map.defaultDirtAlias);
+					break;
+				}
+			}
+			break;
+		case userModified:
+			for(Coordinate coord : map){
+				switch(coord.getFeature()){
+				case stone:
+					if(coord.getExcavated()) map.setMapSymbol(coord.getRow(), coord.getColumn(), map.getStoneSymbol());
+					else map.setMapSymbol(coord.getRow(), coord.getColumn(), map.getStoneAlias());
+					break;
+				case postHole:
+					if(coord.getExcavated()) map.setMapSymbol(coord.getRow(), coord.getColumn(), map.getPostHoleSymbol());
+					else map.setMapSymbol(coord.getRow(), coord.getColumn(), map.getPostHoleAlias());
+					break;
+				case dirt:
+					if(coord.getExcavated()) map.setMapSymbol(coord.getRow(), coord.getColumn(), map.getDirtSymbol());
+					else map.setMapSymbol(coord.getRow(), coord.getColumn(), map.getDirtAlias());
+					break;
+				}
+			}
+			break;
+		case potCount:
+			for(Coordinate coord : map){
+				if(coord.getExcavated())
+					map.setMapSymbol(coord.getRow(), coord.getColumn(), Integer.toString(current.potCount.size()).charAt(0));
+				else
+					map.setMapSymbol(coord.getRow(), coord.getColumn(), ' ');
+			}
+			break;
+		case metalCount:
+			for(Coordinate coord : map){
+				if(coord.getExcavated())
+					map.setMapSymbol(coord.getRow(), coord.getColumn(), Integer.toString(current.metalCount.size()).charAt(0));
+				else
+					map.setMapSymbol(coord.getRow(), coord.getColumn(), ' ');
+			}
+			break;
+		case charcoalCount:
+			for(Coordinate coord : map){
+				if(coord.getExcavated())
+					map.setMapSymbol(coord.getRow(), coord.getColumn(), Integer.toString(current.charcoalCount.size()).charAt(0));
+				else
+					map.setMapSymbol(coord.getRow(), coord.getColumn(), ' ');
+			}
+			break;
+		case magnetometerResult:
+			for(Coordinate coord : map) {
+				if(coord.getCharcoalInspected()){
+					if(coord.charcoalHidden())
+						map.setMapSymbol(coord.getRow(), coord.getColumn(), 'T');
+					else
+						map.setMapSymbol(coord.getRow(), coord.getColumn(), 'F');
+				}
+				else
+					map.setMapSymbol(coord.getRow(), coord.getColumn(), ' ');
+			}
+			break;
+		case metalDetectorResult:
+			for(Coordinate coord : map) {
+				if(coord.getMetalInspected()){
+					if(coord.metalHidden())
+						map.setMapSymbol(coord.getRow(), coord.getColumn(), 'T');
+					else
+						map.setMapSymbol(coord.getRow(), coord.getColumn(), 'F');
+				}
+				else
+					map.setMapSymbol(coord.getRow(), coord.getColumn(), ' ');
+			}
+			break;
+		}
+	}
+
+	/**
+	 * 
+	 * For the public int countNumberOfFinds method
+	 * @return the number of finds
+	 * 
+	 * This method goes through the map and counts the amount of
+	 * finds, regardless of type of find.
+	 * 
+	 */
+	public int countNumberOfFinds(){
+		int count = 0;
+		for(Coordinate coord : map){
+			count = count + coord.potCount.size() + coord.metalCount.size() + coord.charcoalCount.size();
+		}
+		return count;
+	}
+
 }

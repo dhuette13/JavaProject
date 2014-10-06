@@ -6,7 +6,7 @@ import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import archeologyp1.shared.Feature;
+import archeologyp1.shared.Coordinate;
 import archeologyp1.shared.Map;
 import archeologyp1.shared.Utilities;
 import archeologyp1.shared.ViewingOption;
@@ -25,7 +25,7 @@ public class EntryPoint {
 	int selection;
 	boolean flag;
 	String path;
-	Map map;
+	Map<Coordinate> map;
 	UserInterface ui;
 	MapEditor mapEditor;
 	int row, col, width, height;
@@ -44,6 +44,7 @@ public class EntryPoint {
 		handleLoad();
 		mapEditor = new MapEditor(map);
 		ui = new UserInterface(mapEditor, map);
+		mapEditor.updateView();
 		flag = true;
 	}
 
@@ -91,7 +92,6 @@ public class EntryPoint {
 				input.nextLine();
 			}
 		} while(flag);
-		map.updateView();
 	}
 
 	/**
@@ -147,26 +147,27 @@ public class EntryPoint {
 						symbol = input.next().charAt(0);
 						switch(selection){
 						case 1:
-							map.updateView(Feature.dirt, symbol, true);
+							map.setDirtAlias(symbol);
 							break;
 						case 2:
-							map.updateView(Feature.postHole, symbol, true);
+							map.setPostHoleAlias(symbol);
 							break;
 						case 3:
-							map.updateView(Feature.stone, symbol, true);
+							map.setStoneAlias(symbol);
 							break;
 						case 4:
-							map.updateView(Feature.dirt, symbol, false);
+							map.setDirtSymbol(symbol);
 							break;
 						case 5:
-							map.updateView(Feature.postHole, symbol, false);
+							map.setPostHoleSymbol(symbol);
 							break;
 						case 6:
-							map.updateView(Feature.stone, symbol, false);
+							map.setStoneSymbol(symbol);
 							break;
 						default:
 							System.out.println("Invalid selection");
 						}
+						mapEditor.updateView();
 						break;
 					/* Change the map's viewing option*/
 					case 2:
@@ -205,7 +206,7 @@ public class EntryPoint {
 							break;
 						}
 						map.setViewingOption(option);
-						map.updateView();
+//						map.updateView();
 						break;
 					default:
 						System.out.println("\tInvalid selection");
@@ -225,7 +226,7 @@ public class EntryPoint {
 					break;
 				/* Number of finds */
 				case 5:
-					System.out.print("Number of finds in map: " + map.countNumberOfFinds());
+					System.out.print("Number of finds in map: " + mapEditor.countNumberOfFinds());
 					break;
 				/* Exit */
 				case 0:

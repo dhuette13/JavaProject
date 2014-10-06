@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import archeologyp1.shared.Coordinate;
 import archeologyp1.shared.Map;
 
 /**
@@ -30,7 +31,7 @@ public class UserInterface {
 
 	private MapEditor mapEditor;
 	private Scanner input;
-	private Map map;
+	private Map<Coordinate> map;
 
 	/**
 	 * 
@@ -39,7 +40,7 @@ public class UserInterface {
 	 * @param the map object
 	 * 
 	 */
-	public UserInterface(MapEditor mapEditor, Map map){
+	public UserInterface(MapEditor mapEditor, Map<Coordinate> map){
 		this.mapEditor = mapEditor;
 		this.map = map;
 		input = new Scanner(System.in);

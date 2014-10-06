@@ -14,27 +14,15 @@ import java.util.ArrayList;
  *
  */
 public class Coordinate {
+	int row, column;
 	private Feature feature;
-	private char currentViewableSymbol;
 	private boolean excavated, itemFound;
 	private boolean charcoalHidden, metalHidden;
 	private boolean charcoalInspected, metalInspected, potInspected;
-	/* For Excavated Coordinates */
-	private char stoneSymbol, postHoleSymbol, dirtSymbol;
-	/* For Not Excavated Coordinates */
-	private char stoneAlias, postHoleAlias, dirtAlias;
+	
 	public ArrayList<Pot> potCount = new ArrayList<Pot>();
 	public ArrayList<MetalObject> metalCount = new ArrayList<MetalObject>();
 	public ArrayList<Charcoal> charcoalCount = new ArrayList<Charcoal>();
-
-	/* Default symbols to use */
-	public static final char defaultDirtSymbol = 'D';
-	public static final char defaultStoneSymbol = 'R';
-	public static final char defaultPostHoleSymbol = 'H';
-	
-	public static final char defaultDirtAlias = 'g';
-	public static final char defaultStoneAlias = 'Y';
-	public static final char defaultPostHoleAlias = 'G';
 
 	/**
 	 * 
@@ -42,105 +30,24 @@ public class Coordinate {
 	 * This method initializes member variables.
 	 * 
 	 */
-	public Coordinate(){
+	public Coordinate(int row, int column){
+		this.row = row;
+		this.column = column;
 		feature = Feature.dirt;
-		currentViewableSymbol = defaultDirtAlias;
 		
 		excavated = false;
 		itemFound = false;
 		charcoalHidden = false; metalHidden = false;
 		charcoalInspected = false; metalInspected = false; potInspected = false;
-		
-		stoneSymbol = defaultStoneSymbol;
-		postHoleSymbol = defaultPostHoleSymbol;
-		dirtSymbol = defaultDirtSymbol;
-		stoneAlias = defaultStoneAlias;
-		postHoleAlias = defaultPostHoleAlias;
-		dirtAlias = defaultDirtAlias;
+	}
+	
+	public int getRow() {
+		return row;
+	}
+	public int getColumn() {
+		return column;
 	}
 
-	/**
-	 * 
-	 * For the public char getCurrentViewableSymbol method
-	 * @return currentViewableSymbol
-	 * 
-	 * This method is for use by printing method.
-	 * 
-	 */
-	public char getCurrentViewableSymbol() { return currentViewableSymbol; }
-	/**
-	 * 
-	 * For the public void setCurrentViewableSymbol
-	 * @param symbol sets currentViewableSymbol
-	 * 
-	 * This method is used by printing method.
-	 * 
-	 */
-	public void setCurrentViewableSymbol(char symbol) { currentViewableSymbol = symbol; }
-	/**
-	 * 
-	 * For the public void updateCurrentViewableSymbol
-	 * This method updates current viewable symbol based on 
-	 * the Coordinate's current feature type.
-	 * 
-	 */
-	public void updateCurrentViewableSymbol(){
-		switch(feature){
-		case stone:
-			if(excavated) currentViewableSymbol = stoneSymbol;
-			else currentViewableSymbol = stoneAlias;
-			break;
-		case postHole:
-			if(excavated) currentViewableSymbol = postHoleSymbol;
-			else currentViewableSymbol = postHoleAlias;
-			break;
-		case dirt:
-			if(excavated) currentViewableSymbol = dirtSymbol;
-			else currentViewableSymbol = dirtAlias;
-			break;
-		}
-	}
-	/********************************************************************/
-	/**
-	 * 
-	 * For the public void setFeatureSymbol method
-	 * @param symbol sets either the stoneSymbol, postHoleSymbol, or dirtSymbol
-	 * 
-	 * This method is revolves around the current Coordinate's feature type.
-	 */
-	public void setFeatureSymbol(char symbol){
-		switch(feature){
-		case stone:
-			stoneSymbol = symbol;
-			break;
-		case postHole:
-			postHoleSymbol = symbol;
-			break;
-		case dirt:
-			dirtSymbol = symbol;
-			break;
-		}
-	}
-	/**
-	 * 
-	 * For the public void setFeatureAlias method
-	 * @param symbol sets either the stoneAlias, postHoleAlias, or dirtAlias
-	 * 
-	 * This method is revolves around the current Coordinate's feature type.
-	 */
-	public void setFeatureAlias(char symbol){
-		switch(feature){
-		case stone:
-			stoneAlias = symbol;
-			break;
-		case postHole:
-			postHoleAlias = symbol;
-			break;
-		case dirt:
-			dirtAlias = symbol;
-			break;
-		}
-	}
 	/********************************************************************/
 	/**
 	 * 
@@ -329,26 +236,6 @@ public class Coordinate {
 	 * 
 	 */
 	public void setMetalInspected(boolean i) { metalInspected = i; }
-	
-	/**
-	 * 
-	 * For the public char getAliasChar method
-	 * @return the alias
-	 * 
-	 * This method will return the alias for a feature.
-	 * 
-	 */
-	public char getAliasChar(){
-		switch(feature){
-		case dirt:
-			return dirtAlias;
-		case stone:
-			return stoneAlias;
-		case postHole:
-			return postHoleAlias;
-		} 
-		return ' ';
-	}
 }
 
 

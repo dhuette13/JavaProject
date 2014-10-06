@@ -1,5 +1,8 @@
 package archeologyp1.shared;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 /**
  * MAP IN THE SHARED RESOURCES
  * @author Daniel
@@ -13,9 +16,23 @@ package archeologyp1.shared;
  * multiple choices.
  *
  */
-public class Map {
+public class Map<E> implements Iterable<E> {
 
-	public Coordinate[][] plane;
+	/* Default symbols to use */
+	public static final char defaultDirtSymbol = 'D';
+	public static final char defaultStoneSymbol = 'R';
+	public static final char defaultPostHoleSymbol = 'H';
+	public static final char defaultDirtAlias = 'g';
+	public static final char defaultStoneAlias = 'Y';
+	public static final char defaultPostHoleAlias = 'G';
+
+	/* For Excavated Coordinates */
+	private char stoneSymbol, postHoleSymbol, dirtSymbol;
+	/* For Not Excavated Coordinates */
+	private char stoneAlias, postHoleAlias, dirtAlias;
+
+	private char charMap[][];
+	private ArrayList<E> plane;
 	private int rows, columns;
 	private ViewingOption viewingOption;
 
@@ -28,9 +45,22 @@ public class Map {
 		this.rows = rows;
 		this.columns = columns;
 		viewingOption = ViewingOption.natural;
-		plane = new Coordinate[rows][columns];
-	}
+		charMap = new char[rows][columns];
+		plane = new ArrayList<E>(rows * columns);
 
+		stoneSymbol = defaultStoneSymbol;
+		postHoleSymbol = defaultPostHoleSymbol;
+		dirtSymbol = defaultDirtSymbol;
+		stoneAlias = defaultStoneAlias;
+		postHoleAlias = defaultPostHoleAlias;
+		dirtAlias = defaultDirtAlias;
+
+		/* Initialize character map */
+		for(int r = 0; r < rows; r++)
+			for(int c = 0; c < columns; c++)
+				charMap[r][c] = defaultDirtAlias;
+	}
+	
 	/**
 	 * 
 	 * For the public int getNumRows method
@@ -40,7 +70,7 @@ public class Map {
 	public int getNumRows(){
 		return rows;
 	}
-
+	
 	/**
 	 * 
 	 * For the public int getNumColumns method
@@ -52,151 +82,75 @@ public class Map {
 	}
 
 	/**
+	 * Adds the specified item to ArrayList
 	 * 
-	 * For the public void setViewingOption method
-	 * @param option
-	 * 
+	 * @param row 
+	 * @param col
+	 * @param e
 	 */
-	public void setViewingOption(ViewingOption option){
-		viewingOption = option;
+	public void add(int row, int col, E e){
+		plane.add(row * columns + col, e);
+	}
+	
+	/**
+	 * Gets the item stored at the specified row and column
+	 * 
+	 * @param row
+	 * @param col
+	 * @return Item stored at given row and column
+	 */
+	public E get(int row, int col){
+		return plane.get(row * columns + col);
 	}
 
 	/**
 	 * 
-	 * For the public void updateView method
-	 * This method toggles with the user's view of the map.
-	 * 
+	 * @param r
+	 * @param c
+	 * @return Character Map symbol at specified row and column
 	 */
-	public void updateView(){
-		updateView(null, '\0', false);
+	public char getMapSymbol(int r, int c){
+		return charMap[r][c];
 	}
 
 	/**
+	 * Sets the character map at given row and column to given symbol
 	 * 
-	 * For the public void updateView method
-	 * @param feature
-	 * @param symbol
-	 * @param alias
-	 * 
-	 * This method toggles with the user's view of the map. 
-	 * It switches based on whether the user wants to view
-	 * the map as the natural version, the modified version
-	 * they'd worked on, the counts for the three types, or
-	 * the results of the tools if they'd opted to use those
-	 * for the ADT.
-	 * 
+	 * @param r
+	 * @param c
+	 * @param symbol 
 	 */
-	public void updateView(Feature feature, char symbol, boolean alias){
-		int r,c;
-		Coordinate current;
-		switch(viewingOption){
-		case natural:
-			for(r = 0; r < rows; r++){
-				for(c = 0; c < columns; c++){
-					current = plane[r][c];
-					switch(current.getFeature()){
-					case stone:
-						if(current.getExcavated()) current.setCurrentViewableSymbol(Coordinate.defaultStoneSymbol);
-						else current.setCurrentViewableSymbol(Coordinate.defaultStoneAlias);
-						break;
-					case postHole:
-						if(current.getExcavated()) current.setCurrentViewableSymbol(Coordinate.defaultPostHoleSymbol);
-						else current.setCurrentViewableSymbol(Coordinate.defaultPostHoleAlias);
-						break;
-					case dirt:
-						if(current.getExcavated()) current.setCurrentViewableSymbol(Coordinate.defaultDirtSymbol);
-						else current.setCurrentViewableSymbol(Coordinate.defaultDirtAlias);
-						break;
-					}
-				}
-			}
-			break;
-		case userModified:
-			for(r = 0; r < rows; r++){
-				for(c = 0; c < columns; c++){
-					current = plane[r][c];
-					if(current.getFeature() == feature){
-						if(alias){
-							current.setFeatureAlias(symbol);
-						} else {
-							current.setFeatureSymbol(symbol);
-						}
-					}
-					current.updateCurrentViewableSymbol();
-				}
-			}
-			break;
-		case potCount:
-			for(r = 0; r < rows; r++){
-				for(c = 0; c < columns; c++){
-					current = plane[r][c];
-					if(current.getExcavated())
-						current.setCurrentViewableSymbol(Integer.toString(current.potCount.size()).charAt(0));
-					else
-						current.setCurrentViewableSymbol(' ');
-				}
-			}
-			break;
-		case metalCount:
-			for(r = 0; r < rows; r++){
-				for(c = 0; c < columns; c++){
-					current = plane[r][c];
-					if(current.getExcavated())
-						current.setCurrentViewableSymbol(Integer.toString(current.metalCount.size()).charAt(0));
-					else
-						current.setCurrentViewableSymbol(' ');
-				}
-			}
-			break;
-		case charcoalCount:
-			for(r = 0; r < rows; r++){
-				for(c = 0; c < columns; c++){
-					current = plane[r][c];
-					if(current.getExcavated())
-						current.setCurrentViewableSymbol(Integer.toString(current.charcoalCount.size()).charAt(0));
-					else 
-						current.setCurrentViewableSymbol(' ');
-				}
-			}
-			break;
-		case magnetometerResult:
-			for(r = 0; r < rows; r++){
-				for(c = 0; c < columns; c++){
-					current = plane[r][c];
-					if(current.getCharcoalInspected()){
-						if(current.charcoalHidden())
-							current.setCurrentViewableSymbol('T');
-						else
-							current.setCurrentViewableSymbol('F');
-					}
-					else
-						current.setCurrentViewableSymbol(' ');
-				}
-			}
-			break;
-		case metalDetectorResult:
-			for(r = 0; r < rows; r++){
-				for(c = 0; c < columns; c++){
-					current = plane[r][c];
-					if(current.getMetalInspected()){
-						if(current.metalHidden())
-							current.setCurrentViewableSymbol('T');
-						else
-							current.setCurrentViewableSymbol('F');
-					}
-					else
-						current.setCurrentViewableSymbol(' ');
-				}
-			}
-			break;
-		default:
-			System.out.println("Invalid ViewingOption in Map Class");
-		}
+	public void setMapSymbol(int r, int c, char symbol){
+		charMap[r][c] = symbol;
 	}
 
+	public void setStoneSymbol(char symbol) { stoneSymbol = symbol; }
+	
+	public void setDirtSymbol(char symbol) { dirtSymbol = symbol; }
+	
+	public void setPostHoleSymbol(char symbol) { postHoleSymbol = symbol; }
+	
+	public void setStoneAlias(char symbol) { stoneAlias = symbol; }
+	
+	public void setDirtAlias(char symbol) { dirtAlias = symbol; }
+	
+	public void setPostHoleAlias(char symbol) { postHoleAlias = symbol; }
+
+	public char getStoneSymbol() { return stoneSymbol; }
+	
+	public char getDirtSymbol() { return dirtSymbol; }
+	
+	public char getPostHoleSymbol() { return postHoleSymbol; }
+	
+	public char getStoneAlias() { return stoneAlias; }
+	
+	public char getDirtAlias() { return dirtAlias; }
+	
+	public char getPostHoleAlias() { return postHoleAlias; }
+
 	/**
-	 * 
-	 * For the public ViewingOption getViewingOption method
+	 * Returns the map's current viewing option
+	 *
 	 * @return the viewing option the user specifies
 	 * 
 	 */
@@ -205,23 +159,53 @@ public class Map {
 	}
 	
 	/**
+	 * Sets the map's current viewing option
 	 * 
-	 * For the public int countNumberOfFinds method
-	 * @return the number of finds
-	 * 
-	 * This method goes through the map and counts the amount of
-	 * finds, regardless of type of find.
+	 * @param option
 	 * 
 	 */
-	public int countNumberOfFinds(){
-		Coordinate current;
-		int count = 0;
-		for(int r = 0; r < getNumRows(); r++){
-			for(int c = 0; c < getNumColumns(); c++){
-				current = plane[r][c];
-				count = count + current.potCount.size() + current.metalCount.size() + current.charcoalCount.size();
+	public void setViewingOption(ViewingOption option){
+		viewingOption = option;
+	}
+
+	/**
+	 * Map iterator generator for use by enhanced for loop
+	 * 
+	 * @return it Iterator for map object
+	 */
+	@Override
+	public Iterator<E> iterator() {
+		
+		/* Create new iterator method */
+		Iterator<E> it = new Iterator<E>() {
+			int r = 0, c = 0;
+
+			/* Indicates when the iteration has completed */
+			@Override
+			public boolean hasNext() {
+				if((r * columns + c) == plane.size()){
+					return false;
+				} else {
+					return true;
+				}
 			}
-		}
-		return count;
+
+			/* Returns next object in collection */
+			@Override
+			public E next() {
+				if(c == columns){
+					c = 0;
+					r++;
+				}
+				return plane.get(r * columns + c++);
+			}
+
+			@Override
+			public void remove() {
+			}
+
+		};
+		
+		return it;
 	}
 }
