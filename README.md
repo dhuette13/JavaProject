@@ -1,7 +1,9 @@
 <h1>JavaProject</h1>
 
-Phase One due September 29th.
-Phase Two due November 3rd.
+<ul>
+<li>Phase One due September 29th.</li>
+<li>Phase Two due November 3rd.</li>
+</ul>
 
 
 <h1>To Do for Phase Two</h1>
