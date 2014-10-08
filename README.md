@@ -1,8 +1,11 @@
-<h1>JavaProject</h1>
+<h1>JavaProject and Other Dates</h1>
 
 <ul>
 <li>Phase One due September 29th.</li>
+<li>CSE1325 Midterm on October 20th.</li>
 <li>Phase Two due November 3rd.</li>
+<li>Phase Three</li>
+<li>CSE1325 Final</li>
 </ul>
 
 
