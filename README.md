@@ -34,6 +34,9 @@
   <li>7.1. Throw custom exception if user tries to dig</li>
   </ul>
 <li>8. GUI</li>
+  <ul>
+  <li>8.1. Figure out threading</li>
+  </ul>
 <li>9. Print a report</li>
   <ul>
   <li>9.1. "View Report" -- First pottery, sorted by date, then charcoal, sorted by date, then metalobjects sorted by date</li>
