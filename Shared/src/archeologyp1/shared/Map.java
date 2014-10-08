@@ -88,7 +88,7 @@ public class Map<E> implements Iterable<E> {
 	 * @param col
 	 * @param e
 	 */
-	public void add(int row, int col, E e){
+	public void addPlaneItem(int row, int col, E e){
 		plane.add(row * columns + col, e);
 	}
 	
@@ -99,11 +99,12 @@ public class Map<E> implements Iterable<E> {
 	 * @param col
 	 * @return Item stored at given row and column
 	 */
-	public E get(int row, int col){
+	public E getPlaneItem(int row, int col){
 		return plane.get(row * columns + col);
 	}
 
 	/**
+	 * Gets the character map symbol at given row and column
 	 * 
 	 * @param r
 	 * @param c
@@ -111,6 +112,19 @@ public class Map<E> implements Iterable<E> {
 	 */
 	public char getMapSymbol(int r, int c){
 		return charMap[r][c];
+	}
+	
+	/**
+	 * Returns a copy of the map's current character map
+	 * 
+	 * @return charMap
+	 */
+	public char[][] getCharMap(){
+		char[][] copy = new char[rows][columns];
+		for(int r = 0; r < rows; r++)
+			for(int c = 0; c < columns; c++)
+				copy[r][c] = charMap[r][c];
+		return copy;
 	}
 
 	/**

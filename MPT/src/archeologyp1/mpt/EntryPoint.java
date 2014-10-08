@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import archeologyp1.shared.Coordinate;
 import archeologyp1.shared.Map;
+import archeologyp1.shared.MapEditor;
 import archeologyp1.shared.Utilities;
 import archeologyp1.shared.ViewingOption;
 
@@ -27,7 +28,6 @@ public class EntryPoint {
 	String path;
 	Map<Coordinate> map;
 	UserInterface ui;
-	MapEditor mapEditor;
 	int row, col, width, height;
 	Scanner input;
 	ViewingOption option;
@@ -42,9 +42,8 @@ public class EntryPoint {
 	public EntryPoint(){
 		input = new Scanner(System.in);
 		handleLoad();
-		mapEditor = new MapEditor(map);
-		ui = new UserInterface(mapEditor, map);
-		mapEditor.updateView();
+		ui = new UserInterface(map);
+		MapEditor.updateView(map);
 		flag = true;
 	}
 
@@ -167,7 +166,7 @@ public class EntryPoint {
 						default:
 							System.out.println("Invalid selection");
 						}
-						mapEditor.updateView();
+						MapEditor.updateView(map);
 						break;
 					/* Change the map's viewing option*/
 					case 2:
@@ -206,7 +205,7 @@ public class EntryPoint {
 							break;
 						}
 						map.setViewingOption(option);
-//						map.updateView();
+						MapEditor.updateView(map);
 						break;
 					default:
 						System.out.println("\tInvalid selection");
@@ -226,7 +225,7 @@ public class EntryPoint {
 					break;
 				/* Number of finds */
 				case 5:
-					System.out.print("Number of finds in map: " + mapEditor.countNumberOfFinds());
+					System.out.print("Number of finds in map: " + MapEditor.countNumberOfFinds(map));
 					break;
 				/* Exit */
 				case 0:

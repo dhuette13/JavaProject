@@ -7,8 +7,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import archeologyp1.shared.Coordinate;
-import archeologyp1.shared.Feature;
 import archeologyp1.shared.Map;
+import archeologyp1.shared.MapEditor;
 import archeologyp1.shared.Utilities;
 import archeologyp1.shared.ViewingOption;
 
@@ -33,8 +33,9 @@ public class EntryPoint {
 	String column;
 	double average;
 	String path;
-	Map map;
-	ToolBag toolBag;
+	Map<Coordinate> map;
+	MapEditor mapEditor;
+	SubController toolBag;
 	Coordinate current;
 	ViewingOption option;
 
@@ -44,7 +45,8 @@ public class EntryPoint {
 	public EntryPoint(){
 		input = new Scanner(System.in);
 		handleLoad();
-		toolBag = new ToolBag(map);
+		toolBag = new SubController(map);
+		MapEditor.updateView(map);
 	}
 
 	/**
@@ -82,7 +84,7 @@ public class EntryPoint {
 						row = input.nextInt();
 						column = input.next();
 						toolBag.visibleSpectrum(row, column);
-						map.updateView();
+						MapEditor.updateView(map);
 						break;
 						/* Metal Detector */
 					case 2:
@@ -91,7 +93,7 @@ public class EntryPoint {
 						row = input.nextInt();
 						column = input.next();
 						toolBag.metalDetector(row, column);
-						map.updateView();
+						MapEditor.updateView(map);
 						break;
 						/* Magnetometer */
 					case 3:
@@ -100,7 +102,7 @@ public class EntryPoint {
 						row = input.nextInt();
 						column = input.next();
 						toolBag.magnetoMeter(row, column);
-						map.updateView();
+						MapEditor.updateView(map);
 						break;
 					default:
 						System.out.println("\tInvalid Selection.");
@@ -113,7 +115,7 @@ public class EntryPoint {
 					row = input.nextInt();
 					column = input.next();
 					toolBag.dig(row, column);
-					map.updateView();
+					MapEditor.updateView(map);
 					break;
 					/* Find Average of Found Dates */
 				case 3:
@@ -121,7 +123,7 @@ public class EntryPoint {
 					double sd = toolBag.computeStandardDeviation(average);
 					double minus = average - sd;
 					double plus = average + sd;
-					
+
 					System.out.format("Average of found dates is %.2f\n", average);
 					System.out.format("Standard Deviation is: %.2f\n", sd);
 					System.out.format("The average minus standard deviation is %.2f and the average plus the standard deviation is %.2f.\n", minus, plus);
@@ -149,26 +151,27 @@ public class EntryPoint {
 						symbol = input.next().charAt(0);
 						switch(selection){
 						case 1:
-							map.updateView(Feature.dirt, symbol, true);
+							map.setDirtAlias(symbol);
 							break;
 						case 2:
-							map.updateView(Feature.postHole, symbol, true);
+							map.setPostHoleAlias(symbol);
 							break;
 						case 3:
-							map.updateView(Feature.stone, symbol, true);
+							map.setStoneAlias(symbol);
 							break;
 						case 4:
-							map.updateView(Feature.dirt, symbol, false);
+							map.setDirtSymbol(symbol);
 							break;
 						case 5:
-							map.updateView(Feature.postHole, symbol, false);
+							map.setPostHoleSymbol(symbol);
 							break;
 						case 6:
-							map.updateView(Feature.stone, symbol, false);
+							map.setStoneSymbol(symbol);
 							break;
 						default:
 							System.out.println("Invalid selection");
 						}
+						MapEditor.updateView(map);
 						break;
 						/* Change the map's viewing option*/
 					case 2:
@@ -207,7 +210,7 @@ public class EntryPoint {
 							break;
 						}
 						map.setViewingOption(option);
-						map.updateView();
+						MapEditor.updateView(map);
 						break;
 					default:
 						System.out.println("\tInvalid selection");
@@ -240,7 +243,7 @@ public class EntryPoint {
 			System.out.println();
 		}
 	}
-	
+
 	/**
 	 * @param args
 	 * 
@@ -272,7 +275,5 @@ public class EntryPoint {
 				input.nextLine();
 			}
 		}
-		map.updateView();
 	}
-
 }

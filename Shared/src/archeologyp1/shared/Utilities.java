@@ -46,7 +46,7 @@ public class Utilities {
 		int r, c;
 		for(r = 0; r < map.getNumRows(); r++)
 			for(c = 0; c < map.getNumColumns(); c++)
-				map.add(r, c, new Coordinate(r, c));
+				map.addPlaneItem(r, c, new Coordinate(r, c));
 
 		return map;
 	}
@@ -98,24 +98,25 @@ public class Utilities {
 				numPots = Integer.parseInt(dataArray[i++]);
 				while(numPots-- != 0){
 					date = Integer.parseInt(dataArray[i++]);
-					current.potCount.add(new Pot(date));
+					current.addFind(new Pot(date));
 				}
 
 				/* Iterate through metal input */
 				numMetal = Integer.parseInt(dataArray[i++]);
 				while(numMetal-- != 0){
 					date = Integer.parseInt(dataArray[i++]);
-					current.metalCount.add(new MetalObject(date));
+					current.addFind(new MetalObject(date));
 				}
 
 				/* Iterate through charcoal input */
 				numCharcoal = Integer.parseInt(dataArray[i++]);
 				while(numCharcoal-- != 0){
 					date = Integer.parseInt(dataArray[i++]);
-					current.charcoalCount.add(new Charcoal(date));
+					current.addFind(new Charcoal(date));
 				}
+				current.sortDates();
 				i = 0;
-				map.add(r, c, current);
+				map.addPlaneItem(r, c, current);
 			}
 			scan.close();
 			return map;
@@ -151,17 +152,17 @@ public class Utilities {
 				out.print(indexToColumn(coord.getColumn()) + "," + coord.getRow());
 				out.print("," + coord.getFeatureChar());
 				out.print("," + Boolean.toString(coord.getExcavated()).toUpperCase());
-				out.print("," + coord.potCount.size());
-				for(k = 0; k < coord.potCount.size(); k++){
-					out.print("," + coord.potCount.get(k).getDate());
+				out.print("," + coord.getPotCount());
+				for(k = 0; k < coord.getPotCount(); k++){
+					out.print("," + coord.getPot(k).getDate());
 				}
-				out.print("," + coord.metalCount.size());
-				for(k = 0; k < coord.metalCount.size(); k++){
-					out.print("," + coord.metalCount.get(k).getDate());
+				out.print("," + coord.getMetalCount());
+				for(k = 0; k < coord.getMetalCount(); k++){
+					out.print("," + coord.getMetal(k).getDate());
 				}
-				out.print("," + coord.charcoalCount.size());
-				for(k = 0; k < coord.charcoalCount.size(); k++){
-					out.print("," + coord.charcoalCount.get(k).getDate());
+				out.print("," + coord.getCharcoalCount());
+				for(k = 0; k < coord.getCharcoalCount(); k++){
+					out.print("," + coord.getCharcoal(k).getDate());
 				}
 				out.println();
 			}
@@ -236,28 +237,35 @@ public class Utilities {
 		output.println();
 
 		/* Print the current viewable symbol for each row */
-		for(Coordinate coord : map){
-			if(coord.getColumn() == 0){
-				output.format("%02d|",  coord.getRow() + 1);
+		//		for(Coordinate coord : map){
+		//			if(coord.getColumn() == 0){
+		//				output.format("%02d|",  coord.getRow() + 1);
+		//			}
+		//
+		//			output.format("%c", map.getMapSymbol(coord.getRow(), coord.getColumn()));
+		//
+		//			if(coord.getColumn() == map.getNumColumns() - 1){
+		//				output.println();
+		//			}
+		//		}
+		
+		char charMap[][] = map.getCharMap();
+		for(int r = 0; r < map.getNumRows(); r++){
+			output.format("%02d|", r + 1);
+			for(int c = 0; c < map.getNumColumns(); c++){
+				output.format("%c", charMap[r][c]);
 			}
-
-			output.format("%c", map.getMapSymbol(coord.getRow(), coord.getColumn()));
-
-			if(coord.getColumn() == map.getNumColumns() - 1){
-				output.println();
-			}
+			output.println();
 		}
 	}
-
 	/**
-	 * 
-	 * For the public static int columnToIndex method
-	 * @param column
-	 * @return
 	 * 
 	 * This method converts the column the user specifies in so-and-so
 	 * and converts it into a usable number for other general
 	 * purposes.
+	 * 
+	 * @param column to convert
+	 * @return index of given column
 	 * 
 	 */
 	public static int columnToIndex(String column){
@@ -266,6 +274,7 @@ public class Utilities {
 		char letter = ' ';
 		int term = 0;
 		int total = 0;
+		column = column.toUpperCase();
 
 
 		for(int i = column.length() - 1; i >= 0; i--){
@@ -280,13 +289,12 @@ public class Utilities {
 
 	/**
 	 * 
-	 * For the public static String indexToColumn method
-	 * @param index
-	 * @return character result
-	 * 
 	 * This method takes an integer and converts it to 
 	 * a character that should come out to be a column on 
 	 * the map.
+	 * 
+	 * @param index
+	 * @return result 
 	 * 
 	 */
 	public static String indexToColumn(int index){

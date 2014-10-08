@@ -9,7 +9,7 @@ package archeologyp1.shared;
  * This class handles the pot find.
  *
  */
-public class Pot {
+public class Pot extends Artifact {
 	int date;
 	
 	/**

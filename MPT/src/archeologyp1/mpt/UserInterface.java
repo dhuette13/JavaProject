@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import archeologyp1.shared.Coordinate;
 import archeologyp1.shared.Map;
+import archeologyp1.shared.Utilities;
 
 /**
  * USERINTERFACE FOR THE MAP POPULATION TOOL
@@ -29,7 +30,7 @@ public class UserInterface {
 	
 	private ArrayList <Integer> dateList = new ArrayList<>();
 
-	private MapEditor mapEditor;
+	private SubController controller;
 	private Scanner input;
 	private Map<Coordinate> map;
 
@@ -40,10 +41,10 @@ public class UserInterface {
 	 * @param the map object
 	 * 
 	 */
-	public UserInterface(MapEditor mapEditor, Map<Coordinate> map){
-		this.mapEditor = mapEditor;
+	public UserInterface(Map<Coordinate> map){
 		this.map = map;
 		input = new Scanner(System.in);
+		controller = new SubController(map);
 	}
 
 	/**
@@ -112,12 +113,13 @@ public class UserInterface {
 	 */
 	public void updateCoordinate(){
 		if(featureFlag) {
-			mapEditor.changeFeature(row, col, feature);
+			controller.changeFeature(row, col, feature);
 			featureFlag = false;
 		}
 		else if(findFlag){
 			for(int i = 0; i < amountFinds; i++)
-				mapEditor.addFind(row, col, findType, dateList.get(i));
+				controller.addFind(row, col, findType, dateList.get(i));
+			
 			findFlag = false;
 		}
 	}
@@ -161,7 +163,7 @@ public class UserInterface {
 				if(featureFlag) featureTemp = true;
 				else if(findFlag) findTemp = true;
 				for(int i = 0; i < map.getNumColumns(); i++){
-					col = Character.toString((char) ('A' + i));
+					col = Utilities.indexToColumn(i);
 					featureFlag = featureTemp;
 					findFlag = findTemp;
 					updateCoordinate();

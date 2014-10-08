@@ -1,6 +1,7 @@
 package archeologyp1.shared;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * 
@@ -19,10 +20,10 @@ public class Coordinate {
 	private boolean excavated, itemFound;
 	private boolean charcoalHidden, metalHidden;
 	private boolean charcoalInspected, metalInspected, potInspected;
-	
-	public ArrayList<Pot> potCount = new ArrayList<Pot>();
-	public ArrayList<MetalObject> metalCount = new ArrayList<MetalObject>();
-	public ArrayList<Charcoal> charcoalCount = new ArrayList<Charcoal>();
+
+	private ArrayList<Pot> potCount = new ArrayList<Pot>();
+	private ArrayList<MetalObject> metalCount = new ArrayList<MetalObject>();
+	private ArrayList<Charcoal> charcoalCount = new ArrayList<Charcoal>();
 
 	/**
 	 * 
@@ -34,16 +35,90 @@ public class Coordinate {
 		this.row = row;
 		this.column = column;
 		feature = Feature.dirt;
-		
+
 		excavated = false;
 		itemFound = false;
 		charcoalHidden = false; metalHidden = false;
 		charcoalInspected = false; metalInspected = false; potInspected = false;
 	}
+
+	/**
+	 * Determines the type of item passed, and adds the item
+	 * to an appropriate collection
+	 * 
+	 * @param item to add to a collection
+	 */
+	public void addFind(Artifact item){
+		if(item instanceof Pot)
+			potCount.add((Pot) item);
+		if(item instanceof MetalObject)
+			metalCount.add((MetalObject) item);
+		if(item instanceof Charcoal)
+			charcoalCount.add((Charcoal) item);
+	}
+
+	/**
+	 * 
+	 * @return size of potCount ArrayList
+	 */
+	public int getPotCount(){
+		return potCount.size();
+	}
 	
+	/**
+	 * 
+	 * @return size of metalCount ArrayList
+	 */
+	public int getMetalCount(){
+		return metalCount.size();
+	}
+	
+	/**
+	 * 
+	 * @return size of charcoalCount ArrayList
+	 */
+	public int getCharcoalCount(){
+		return charcoalCount.size();
+	}
+	
+	/**
+	 * 
+	 * @param index
+	 * @return item stored at given index of potCount ArrayList
+	 */
+	public Pot getPot(int index){
+		return potCount.get(index);
+	}
+	
+	/**
+	 * 
+	 * @param index
+	 * @return item stored at given index of metalCount ArrayList
+	 */
+	public MetalObject getMetal(int index){
+		return metalCount.get(index);
+	}
+	
+	/**
+	 * 
+	 * @param index
+	 * @return item stored at given index of charcoalCount ArrayList
+	 */
+	public Charcoal getCharcoal(int index){
+		return charcoalCount.get(index);
+	}
+	/**
+	 * 
+	 * @return row
+	 */
 	public int getRow() {
 		return row;
 	}
+	
+	/**
+	 * 
+	 * @return column
+	 */
 	public int getColumn() {
 		return column;
 	}
@@ -236,6 +311,15 @@ public class Coordinate {
 	 * 
 	 */
 	public void setMetalInspected(boolean i) { metalInspected = i; }
+
+	/**
+	 * Sorts each of the artifact collections based on date
+	 */
+	public void sortDates() {
+		Collections.sort(potCount);
+		Collections.sort(metalCount);
+		Collections.sort(charcoalCount);
+	}
 }
 
 

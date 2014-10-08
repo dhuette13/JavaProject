@@ -9,7 +9,7 @@ package archeologyp1.shared;
  * This class handles the metal object finds.
  *
  */
-public class MetalObject {
+public class MetalObject extends Artifact {
 	int date;
 	
 	/**
