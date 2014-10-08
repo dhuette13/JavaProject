@@ -88,8 +88,8 @@ public class Map<E> implements Iterable<E> {
 	 * @param col
 	 * @param e
 	 */
-	public void addPlaneItem(int row, int col, E e){
-		plane.add(row * columns + col, e);
+	public void addPlaneItem(int row, int col, E item){
+		plane.add(row * columns + col, item);
 	}
 	
 	/**
@@ -110,8 +110,8 @@ public class Map<E> implements Iterable<E> {
 	 * @param c
 	 * @return Character Map symbol at specified row and column
 	 */
-	public char getMapSymbol(int r, int c){
-		return charMap[r][c];
+	public char getMapSymbol(int row, int column){
+		return charMap[row][column];
 	}
 	
 	/**
@@ -134,8 +134,8 @@ public class Map<E> implements Iterable<E> {
 	 * @param c
 	 * @param symbol 
 	 */
-	public void setMapSymbol(int r, int c, char symbol){
-		charMap[r][c] = symbol;
+	public void setMapSymbol(int row, int column, char symbol){
+		charMap[row][column] = symbol;
 	}
 
 	public void setStoneSymbol(char symbol) { stoneSymbol = symbol; }
