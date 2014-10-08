@@ -1,5 +1,12 @@
 package archeologyp1.shared;
 
+/**
+ * Parent class for all finds in a map.
+ * Is comparable based on dates.
+ * 
+ * @author dan
+ *
+ */
 public abstract class Artifact implements Comparable <Artifact>{
 	int date;
 
@@ -12,8 +19,13 @@ public abstract class Artifact implements Comparable <Artifact>{
 	public int getDate(){
 		return date;
 	}
-
+	
 	@Override
+	/**
+	 * All subclasses of Artifact are comparable based on date
+	 * 
+	 * @param a 
+	 */
 	public int compareTo(Artifact a) {
 		if(this.date < a.date){
 			return -1;

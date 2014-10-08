@@ -237,18 +237,6 @@ public class Utilities {
 		output.println();
 
 		/* Print the current viewable symbol for each row */
-		//		for(Coordinate coord : map){
-		//			if(coord.getColumn() == 0){
-		//				output.format("%02d|",  coord.getRow() + 1);
-		//			}
-		//
-		//			output.format("%c", map.getMapSymbol(coord.getRow(), coord.getColumn()));
-		//
-		//			if(coord.getColumn() == map.getNumColumns() - 1){
-		//				output.println();
-		//			}
-		//		}
-		
 		char charMap[][] = map.getCharMap();
 		for(int r = 0; r < map.getNumRows(); r++){
 			output.format("%02d|", r + 1);
