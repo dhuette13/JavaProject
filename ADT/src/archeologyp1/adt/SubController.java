@@ -184,7 +184,7 @@ public class SubController {
 		double sum = 0;
 		
 		Artifact a;
-//		//Computes the amount of things needed to divide by to get the variance
+//		Computes the amount of things needed to divide by to get the variance
 //		for(Coordinate coord : map) {
 //			if(coord.getExcavated() && coord.itemFound()){ 
 //				for(int k = 0; k < coord.potCount.size() + coord.metalCount.size() + coord.charcoalCount.size(); k++)
