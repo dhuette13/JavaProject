@@ -21,7 +21,7 @@ public class Coordinate {
 	private boolean charcoalHidden, metalHidden;
 	private boolean charcoalInspected, metalInspected, potInspected;
 
-	private ArrayList<Pot> potCount = new ArrayList<Pot>();
+	private ArrayList<Pottery> potCount = new ArrayList<Pottery>();
 	private ArrayList<MetalObject> metalCount = new ArrayList<MetalObject>();
 	private ArrayList<Charcoal> charcoalCount = new ArrayList<Charcoal>();
 
@@ -49,8 +49,8 @@ public class Coordinate {
 	 * @param item to add to a collection
 	 */
 	public void addFind(Artifact item){
-		if(item instanceof Pot)
-			potCount.add((Pot) item);
+		if(item instanceof Pottery)
+			potCount.add((Pottery) item);
 		if(item instanceof MetalObject)
 			metalCount.add((MetalObject) item);
 		if(item instanceof Charcoal)
@@ -86,7 +86,7 @@ public class Coordinate {
 	 * @param index
 	 * @return item stored at given index of potCount ArrayList
 	 */
-	public Pot getPot(int index){
+	public Pottery getPot(int index){
 		return potCount.get(index);
 	}
 	

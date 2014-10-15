@@ -19,16 +19,6 @@ public class Charcoal extends Artifact {
 	 * 
 	 */
 	public Charcoal(int date){
-		this.date = date;
-	}
-	
-	/**
-	 * 
-	 * For the public int getDate method
-	 * @return the date of charcoal find
-	 * 
-	 */
-	public int getDate(){
-		return date;
+		super(date);
 	}
 }

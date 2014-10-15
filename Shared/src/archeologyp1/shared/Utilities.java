@@ -98,7 +98,7 @@ public class Utilities {
 				numPots = Integer.parseInt(dataArray[i++]);
 				while(numPots-- != 0){
 					date = Integer.parseInt(dataArray[i++]);
-					current.addFind(new Pot(date));
+					current.addFind(new Pottery(date));
 				}
 
 				/* Iterate through metal input */

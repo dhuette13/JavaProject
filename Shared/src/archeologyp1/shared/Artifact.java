@@ -8,7 +8,12 @@ package archeologyp1.shared;
  *
  */
 public abstract class Artifact implements Comparable <Artifact>{
-	int date;
+	
+	private int date;
+	
+	public Artifact(int date){
+		this.date = date;
+	}
 
 	/**
 	 * 
