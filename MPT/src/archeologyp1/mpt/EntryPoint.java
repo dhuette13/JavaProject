@@ -7,6 +7,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import archeologyp1.shared.Coordinate;
+import archeologyp1.shared.FrameOfFun;
 import archeologyp1.shared.Map;
 import archeologyp1.shared.MapEditor;
 import archeologyp1.shared.Utilities;
@@ -40,6 +41,8 @@ public class EntryPoint {
 	 * 
 	 */
 	public EntryPoint(){
+		FrameOfFun frame = new FrameOfFun("MPT");
+		frame.setVisible(true);
 		input = new Scanner(System.in);
 		handleLoad();
 		ui = new UserInterface(map);

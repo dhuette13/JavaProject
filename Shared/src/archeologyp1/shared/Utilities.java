@@ -16,6 +16,8 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JTextArea;
+
 /**
  * UTILITIES IN THE SHARED RESOURCES
  * Holds a number of utilities used by both projects.
@@ -31,6 +33,7 @@ import java.util.Scanner;
 
 public class Utilities {
 
+	private static JTextArea textArea;
 	/**
 	 * For the public static Map generateMap method
 	 * @param height of map
@@ -310,5 +313,9 @@ public class Utilities {
 				result = (char)('A'+ tempArray.get(i) - 1) + result;
 		}
 		return result;
+	}
+
+	public static void setTextArea(JTextArea text) {
+		textArea = text;
 	}
 }
