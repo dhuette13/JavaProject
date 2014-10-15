@@ -36,6 +36,14 @@
 <li>8. GUI</li>
   <ul>
   <li>8.1. Figure out threading</li>
+  <li>8.2. Three ActionListener</li>
+    <ul>
+    <li>8.2.1. One Listener for Shared (default)</li>
+      <ul>8.2.1.1. This one is going to be the "layout" for the other two files - very generic; will copy and paste the other two from this and make them specific toward their respective duties.
+      </ul>
+    <li>8.2.2. One Listener for MPT</li>
+    <li>8.2.3. One Listener for ADT</li>
+    </ul>
   </ul>
 <li>9. Print a report</li>
   <ul>
