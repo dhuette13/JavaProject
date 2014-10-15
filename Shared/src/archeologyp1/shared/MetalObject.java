@@ -19,16 +19,6 @@ public class MetalObject extends Artifact {
 	 * 
 	 */
 	public MetalObject(int date){
-		this.date = date;
-	}
-	
-	/**
-	 * 
-	 * For the public int getDate method
-	 * @return the date of the metal object find
-	 * 
-	 */
-	public int getDate(){
-		return date;
+		super(date);
 	}
 }

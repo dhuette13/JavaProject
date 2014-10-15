@@ -6,7 +6,7 @@ import archeologyp1.shared.Feature;
 import archeologyp1.shared.Map;
 import archeologyp1.shared.MapEditor;
 import archeologyp1.shared.MetalObject;
-import archeologyp1.shared.Pot;
+import archeologyp1.shared.Pottery;
 import archeologyp1.shared.Utilities;
 
 /**
@@ -81,7 +81,7 @@ public class SubController {
 		switch(type){
 		/* Add to pot collection */
 		case 1:
-			current.addFind(new Pot(date));
+			current.addFind(new Pottery(date));
 			break;
 			/* Add to charcoal collection */
 		case 2:
