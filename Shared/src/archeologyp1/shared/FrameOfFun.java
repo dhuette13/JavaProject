@@ -20,28 +20,29 @@ public class FrameOfFun extends JFrame  {
 
 	private Map<Coordinate> map;
 	
-	private JMenuBar menuBar;
-	private JMenu fileMenu;
+	protected JMenuBar menuBar;
+	protected JMenu fileMenu;
 	private JMenuItem loadMenuItem;
 	private JMenuItem saveMenuItem;
 	private JMenuItem exitMenuItem;
 	
-	private JMenu editMenu;
+	protected JMenu editMenu;
 	private JMenuItem setSizeMenuItem;
 	private JMenuItem clearMenuItem;
 	
-	private JMenu viewMenu;
+	protected JMenu viewMenu;
 	private JMenuItem showMapMenuItem;
 	
+	private JMenu helpMenu;
 	private JMenuItem aboutMenuItem;
 	
-	private JTextArea textArea;
+	protected JTextArea textArea;
 	private JScrollPane scrollPane;
 
 	/**
 	 * Initializes a default Frame with a text area, scrollpane,
 	 * and menubar containing multiple menu items.
-	 * 
+	 * e
 	 * @param title
 	 */
 	public FrameOfFun(String title) {
@@ -106,6 +107,47 @@ public class FrameOfFun extends JFrame  {
 		fileMenu.add(saveMenuItem);
 		fileMenu.add(exitMenuItem);
 		menuBar.add(fileMenu);
+		
+		editMenu = new JMenu("Edit");
+		setSizeMenuItem = new JMenuItem("Set Size");
+		setSizeMenuItem.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+			
+		});
+		
+		clearMenuItem = new JMenuItem("Clear");
+		clearMenuItem.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		editMenu.add(setSizeMenuItem);
+		editMenu.add(clearMenuItem);
+		menuBar.add(editMenu);
+		
+		viewMenu = new JMenu("View");
+		showMapMenuItem = new JMenuItem("Show Map");
+		showMapMenuItem.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		
+		viewMenu.add(showMapMenuItem);
+		menuBar.add(viewMenu);
+		
+		helpMenu = new JMenu("Help");
+		aboutMenuItem = new JMenuItem("About");
+		aboutMenuItem.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		helpMenu.add(aboutMenuItem);
+		menuBar.add(helpMenu);
 		
 		menuBar.setVisible(true);
 		this.setJMenuBar(menuBar);
