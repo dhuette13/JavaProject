@@ -304,7 +304,6 @@ public class Utilities {
 			}
 		}
 
-
 		output += "\n--+";
 		for(int c = 0; c < map.getNumColumns(); c++){
 			output += "-";
@@ -388,5 +387,12 @@ public class Utilities {
 				result = (char)('A'+ tempArray.get(i) - 1) + result;
 		}
 		return result;
+	}
+
+	/**
+	 * Exits from the program
+	 */
+	public static void exit() {
+		System.exit(0);
 	}
 }

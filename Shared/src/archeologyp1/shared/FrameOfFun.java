@@ -9,10 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 public class FrameOfFun extends JFrame  {
 	
@@ -27,8 +25,8 @@ public class FrameOfFun extends JFrame  {
 	private JMenuItem exitMenuItem;
 	
 	protected JMenu editMenu;
-	private JMenuItem setSizeMenuItem;
-	private JMenuItem clearMenuItem;
+	private JMenuItem generateMapMenuItem;
+	private JMenuItem setViewMenuItem;
 	
 	protected JMenu viewMenu;
 	private JMenuItem showMapMenuItem;
@@ -99,6 +97,7 @@ public class FrameOfFun extends JFrame  {
 		exitMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Utilities.exit();
 			}
 		});
 		
@@ -108,23 +107,23 @@ public class FrameOfFun extends JFrame  {
 		menuBar.add(fileMenu);
 		
 		editMenu = new JMenu("Edit");
-		setSizeMenuItem = new JMenuItem("Set Size");
-		setSizeMenuItem.addActionListener(new ActionListener(){
+		generateMapMenuItem = new JMenuItem("Generate Map");
+		generateMapMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			}
 			
 		});
 		
-		clearMenuItem = new JMenuItem("Clear");
-		clearMenuItem.addActionListener(new ActionListener(){
+		setViewMenuItem = new JMenuItem("Update Viewing Symbols");
+		setViewMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
-		editMenu.add(setSizeMenuItem);
-		editMenu.add(clearMenuItem);
+		editMenu.add(generateMapMenuItem);
+		editMenu.add(setViewMenuItem);
 		menuBar.add(editMenu);
 		
 		viewMenu = new JMenu("View");
