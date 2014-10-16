@@ -81,6 +81,8 @@ public class FrameOfFun extends JFrame  {
 		menuBar = new JMenuBar();
 		
 		fileMenu = new JMenu("File");
+		
+		// From "File" Menu, Load
 		loadMenuItem = new JMenuItem("Load");
 		loadMenuItem.addActionListener(new ActionListener() {
 			@Override
@@ -89,6 +91,7 @@ public class FrameOfFun extends JFrame  {
 			}
 		});
 		
+		// From "File" Menu, Save
 		saveMenuItem = new JMenuItem("Save");
 		saveMenuItem.addActionListener(new ActionListener() {
 			@Override
@@ -96,6 +99,7 @@ public class FrameOfFun extends JFrame  {
 			}
 		});
 		
+		// From "File" Menu, Exit
 		exitMenuItem = new JMenuItem("Exit");
 		exitMenuItem.addActionListener(new ActionListener() {
 			@Override
@@ -109,6 +113,8 @@ public class FrameOfFun extends JFrame  {
 		menuBar.add(fileMenu);
 		
 		editMenu = new JMenu("Edit");
+		
+		// From "Edit" Menu, Set Size
 		setSizeMenuItem = new JMenuItem("Set Size");
 		setSizeMenuItem.addActionListener(new ActionListener(){
 			@Override
@@ -117,6 +123,7 @@ public class FrameOfFun extends JFrame  {
 			
 		});
 		
+		// From "Edit" Menu, Clear
 		clearMenuItem = new JMenuItem("Clear");
 		clearMenuItem.addActionListener(new ActionListener(){
 			@Override
@@ -129,6 +136,8 @@ public class FrameOfFun extends JFrame  {
 		menuBar.add(editMenu);
 		
 		viewMenu = new JMenu("View");
+		
+		// From "View" Menu, Show Map
 		showMapMenuItem = new JMenuItem("Show Map");
 		showMapMenuItem.addActionListener(new ActionListener(){
 			@Override
@@ -140,6 +149,8 @@ public class FrameOfFun extends JFrame  {
 		menuBar.add(viewMenu);
 		
 		helpMenu = new JMenu("Help");
+		
+		// From "Help" Menu, About
 		aboutMenuItem = new JMenuItem("About");
 		aboutMenuItem.addActionListener(new ActionListener(){
 			@Override

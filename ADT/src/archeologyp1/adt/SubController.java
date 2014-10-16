@@ -1,6 +1,17 @@
+/*
+ * Source code for about 
+ * Author: Becker
+ * URL: https://elearn.uta.edu/bbcswebdav/pid-3462119-dt-content-rid-26118645_2/
+ * courses/2148-OBJECT-ORIENTED-PROGRAMMING-81534-001/SubController.java
+ * Date put into the code: October 16, 2014
+ * 
+ */
+
 package archeologyp1.adt;
 
-import archeologyp1.shared.Artifact;
+import javax.swing.JTextArea;
+
+import archeologyp1.shared.Artifact; 
 import archeologyp1.shared.Coordinate;
 import archeologyp1.shared.Map;
 import archeologyp1.shared.Utilities;
@@ -21,6 +32,8 @@ import archeologyp1.shared.Utilities;
 public class SubController {
 
 	private Map<Coordinate> map;
+	private JTextArea output;
+	String text;
 
 	/**
 	 * 
@@ -30,6 +43,19 @@ public class SubController {
 	 */
 	public SubController(Map<Coordinate> map){
 		this.map = map;
+	}
+	
+	public void aboutADT(){
+		text = output.getText();
+		text = "/n"
+				+ "Team What's The Meaning Of Stonehenge!/n"
+				+ "Daniel Huette: 1000947178/n"
+				+ "Celine Soriano: 1000876277/n"
+				+ "Archaeological Dig Tool/n"
+				+ "Date: /n"
+				+ "Version 0.2/n"
+				+ "/n";
+		output.setText(text);
 	}
 
 	/**

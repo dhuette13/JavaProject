@@ -1,5 +1,5 @@
 /*
- * Source code for base 26 to alphabet and alphabet to base 26
+ * Source code for base 26 to alphabet and alphabet to base 26 
  * Author: Becker
  * URL: https://elearn.uta.edu/webapps/portal/frameset.jsp?tab_group=courses&url=%2Fwebapps%
  * 2Fblackboard%2Fexecute%2Fcontent%2Ffile%3Fcmd%3Dview%26content_id%3D_3440332_1%26course_id%3D_228496_1%26framesetWrapped%3Dtrue
@@ -10,7 +10,7 @@
 
 package archeologyp1.shared;
 
-import java.io.File;
+import java.io.File; 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
