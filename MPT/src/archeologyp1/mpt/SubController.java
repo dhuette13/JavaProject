@@ -1,5 +1,7 @@
 package archeologyp1.mpt;
 
+import javax.swing.JTextArea;
+
 import archeologyp1.shared.Charcoal;
 import archeologyp1.shared.Coordinate;
 import archeologyp1.shared.Feature;
@@ -17,6 +19,7 @@ import archeologyp1.shared.Utilities;
 public class SubController {
 	
 	private Map<Coordinate> map;
+	private JTextArea output;
 	
 	public SubController(Map<Coordinate> map){
 		this.map = map;
@@ -94,5 +97,13 @@ public class SubController {
 		}
 		current.sortDates();
 		MapEditor.updateView(map);
+	}
+	
+	/**
+	 * 
+	 * @param text
+	 */
+	public void setTextArea(JTextArea text){
+		output = text;
 	}
 }

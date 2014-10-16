@@ -33,7 +33,6 @@ import javax.swing.JTextArea;
 
 public class Utilities {
 
-	private static JTextArea textArea;
 	/**
 	 * For the public static Map generateMap method
 	 * @param height of map
@@ -186,7 +185,7 @@ public class Utilities {
 	 * the current map. 
 	 * 
 	 */
-	public static void printMap(Map<Coordinate> map, PrintStream output){
+	public static void printMap(Map<Coordinate> map, PrintStream output) {
 		char columnCharacter = 'A';
 		/* Print the Column labels 
 		 * 
@@ -248,6 +247,82 @@ public class Utilities {
 			}
 			output.println();
 		}
+	}
+
+
+	/**
+	 * 
+	 * For the public static void printMap method
+	 * @param map map to print or export
+	 * @param output stream to output to
+	 * 
+	 * This method prints the map out and shows the user
+	 * the current map. 
+	 * 
+	 */
+	public static void printMap(Map<Coordinate> map, JTextArea textArea) {
+		char columnCharacter = 'A';
+		String output = "";
+		/* Print the Column labels 
+		 * 
+		 * If there are more than 26 columns, a second row
+		 * will be needed for the ruler.
+		 */
+		if(map.getNumColumns() > 26){
+			output += "\n  |";
+			/* Print 0's as a buffer for first iteration of the alphabet */
+			for(int k = 0; k < 26; k++) output += "0";
+
+			/* Print a sequence common characters for every
+			 * 26 characters.
+			 */
+			for(int k = 1; k <= map.getNumColumns() - 26; k++){
+				if((k % 26) == 0) columnCharacter = (char) (columnCharacter + 1);
+				output += columnCharacter;
+			}
+			output += "\n  |";
+
+			/* Print the second row of full alphabets */
+			for(int k = 0; k < map.getNumColumns() / 26; k++){
+				for(int p = 0; p < 26; p++){
+					output += ((char) ('A' + p));
+				}
+			}
+
+			/* Print the remaining characters for the last alphabet */
+			for(int k = 0; k < map.getNumColumns() % 26; k++){
+				output += ((char) ('A' + k));
+			}
+
+		} else {
+			/* If the number of columns is less than 26,
+			 * a second row is not needed.
+			 */
+			output += "  |";
+			for(int c = 0; c < map.getNumColumns(); c++){
+				output += ((char) (c + 65));
+			}
+		}
+
+
+		output += "\n--+";
+		for(int c = 0; c < map.getNumColumns(); c++){
+			output += "-";
+		}
+		output += "\n";
+
+		/* Print the current viewable symbol for each row */
+		char charMap[][] = map.getCharMap();
+		String temp = "";
+		for(int r = 0; r < map.getNumRows(); r++){
+			temp = String.format("%02d|", (r + 1));
+			output += temp;
+			for(int c = 0; c < map.getNumColumns(); c++){
+				output += charMap[r][c];
+			}
+			output += "\n";
+		}
+		textArea.setText(output);
 	}
 	/**
 	 * 
@@ -313,9 +388,5 @@ public class Utilities {
 				result = (char)('A'+ tempArray.get(i) - 1) + result;
 		}
 		return result;
-	}
-
-	public static void setTextArea(JTextArea text) {
-		textArea = text;
 	}
 }
