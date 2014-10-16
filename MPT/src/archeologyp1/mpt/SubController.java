@@ -122,4 +122,12 @@ public class SubController {
 		current.sortDates();
 		MapEditor.updateView(map);
 	}
+	
+	/**
+	 * 
+	 * @param text
+	 */
+	public void setTextArea(JTextArea text){
+		output = text;
+	}
 }

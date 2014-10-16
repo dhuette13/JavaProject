@@ -71,7 +71,6 @@ public class FrameOfFun extends JFrame  {
 		textArea.setEditable(false);
 		scrollPane = new JScrollPane(textArea);
 		this.add(scrollPane, BorderLayout.CENTER);
-		Utilities.setTextArea(textArea);
 	}
 	
 	/**
@@ -142,6 +141,8 @@ public class FrameOfFun extends JFrame  {
 		showMapMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				MapEditor.updateView(map);
+				Utilities.printMap(map, textArea);
 			}
 		});
 		
