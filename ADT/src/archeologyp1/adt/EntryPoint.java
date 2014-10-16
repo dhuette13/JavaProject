@@ -1,6 +1,7 @@
 package archeologyp1.adt;
 
 import java.io.File;
+
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.InputMismatchException;
@@ -25,6 +26,7 @@ import archeologyp1.shared.ViewingOption;
  * they have, change the viewing option, print, or export. 
  *
  */
+
 public class EntryPoint {
 	Scanner input;
 	int selection;
