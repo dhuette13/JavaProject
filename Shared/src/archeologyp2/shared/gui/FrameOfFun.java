@@ -89,7 +89,9 @@ public class FrameOfFun extends JFrame  {
 		loadMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				map = Utilities.load("res/Tikal.csv");
+//				map = Utilities.load("res/Tikal.csv");
+				PathDialog dialog = new PathDialog("Load", map);
+				map = dialog.go();
 			}
 		});
 		
@@ -98,6 +100,8 @@ public class FrameOfFun extends JFrame  {
 		saveMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				PathDialog dialog = new PathDialog("Save", map);
+				dialog.setVisible(true);
 			}
 		});
 		
