@@ -42,9 +42,9 @@ public class FrameOfFun extends JFrame  {
 	private JScrollPane scrollPane;
 
 	/**
-	 * Initializes a default Frame with a text area, scrollpane,
-	 * and menubar containing multiple menu items.
-	 * e
+	 * Initializes a default Frame with a text area, scroll pane,
+	 * and menu bar containing multiple menu items.
+	 * 
 	 * @param title
 	 */
 	public FrameOfFun(String title) {
