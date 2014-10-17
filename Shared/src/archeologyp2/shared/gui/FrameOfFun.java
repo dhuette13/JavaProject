@@ -30,7 +30,6 @@ public class FrameOfFun extends JFrame  {
 	private JMenuItem exitMenuItem;
 	
 	protected JMenu editMenu;
-	private JMenuItem generateMapMenuItem;
 	private JMenuItem viewingMenuItem;
 	
 	protected JMenu viewMenu;
@@ -82,6 +81,7 @@ public class FrameOfFun extends JFrame  {
 	private void createMenuBar(){
 		menuBar = new JMenuBar();
 		
+		/* File Menu */
 		fileMenu = new JMenu("File");
 		
 		// From "File" Menu, Load
@@ -115,18 +115,13 @@ public class FrameOfFun extends JFrame  {
 		fileMenu.add(exitMenuItem);
 		menuBar.add(fileMenu);
 		
+		/* Edit Menu */
 		editMenu = new JMenu("Edit");
 		
-		// From "Edit" Menu, Set Size
-		generateMapMenuItem = new JMenuItem("Generate Map");
-		generateMapMenuItem.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			}
-			
-		});
+		menuBar.add(editMenu);
 		
-		// From "Edit" Menu, Clear
+		/* View Menu */
+		viewMenu = new JMenu("View");
 		viewingMenuItem = new JMenuItem("Viewing Options");
 		viewingMenuItem.addActionListener(new ActionListener(){
 			@Override
@@ -135,14 +130,8 @@ public class FrameOfFun extends JFrame  {
 				dialog.setVisible(true);
 			}
 		});
+		viewMenu.add(viewingMenuItem);
 		
-		editMenu.add(generateMapMenuItem);
-		editMenu.add(viewingMenuItem);
-		menuBar.add(editMenu);
-		
-		viewMenu = new JMenu("View");
-		
-		// From "View" Menu, Show Map
 		showMapMenuItem = new JMenuItem("Show Map");
 		showMapMenuItem.addActionListener(new ActionListener(){
 			@Override

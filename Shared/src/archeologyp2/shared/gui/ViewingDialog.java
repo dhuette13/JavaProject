@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 import archeologyp2.shared.map.Coordinate;
 import archeologyp2.shared.map.Map;
 import archeologyp2.shared.map.MapEditor;
-import archeologyp2.shared.map.Utilities;
 
 public class ViewingDialog extends JDialog {
 
