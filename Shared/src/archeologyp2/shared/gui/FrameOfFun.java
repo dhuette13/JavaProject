@@ -30,8 +30,8 @@ public class FrameOfFun extends JFrame  {
 	private JMenuItem exitMenuItem;
 	
 	protected JMenu editMenu;
-	private JMenuItem setSizeMenuItem;
-	private JMenuItem clearMenuItem;
+	private JMenuItem generateMapMenuItem;
+	private JMenuItem viewingMenuItem;
 	
 	protected JMenu viewMenu;
 	private JMenuItem showMapMenuItem;
@@ -53,7 +53,7 @@ public class FrameOfFun extends JFrame  {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		createTextArea();
 		createMenuBar();
-		this.setSize(800, 600);
+		this.setSize(800, 700);
 	}
 	
 	/**
@@ -106,6 +106,7 @@ public class FrameOfFun extends JFrame  {
 		exitMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Utilities.exit();
 			}
 		});
 		
@@ -117,8 +118,8 @@ public class FrameOfFun extends JFrame  {
 		editMenu = new JMenu("Edit");
 		
 		// From "Edit" Menu, Set Size
-		setSizeMenuItem = new JMenuItem("Set Size");
-		setSizeMenuItem.addActionListener(new ActionListener(){
+		generateMapMenuItem = new JMenuItem("Generate Map");
+		generateMapMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -126,15 +127,17 @@ public class FrameOfFun extends JFrame  {
 		});
 		
 		// From "Edit" Menu, Clear
-		clearMenuItem = new JMenuItem("Clear");
-		clearMenuItem.addActionListener(new ActionListener(){
+		viewingMenuItem = new JMenuItem("Viewing Options");
+		viewingMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				ViewingDialog dialog = new ViewingDialog("Viewing Options", map);
+				dialog.setVisible(true);
 			}
 		});
 		
-		editMenu.add(setSizeMenuItem);
-		editMenu.add(clearMenuItem);
+		editMenu.add(generateMapMenuItem);
+		editMenu.add(viewingMenuItem);
 		menuBar.add(editMenu);
 		
 		viewMenu = new JMenu("View");
