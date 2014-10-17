@@ -14,6 +14,38 @@ package archeologyp2.shared.map;
 
 public class MapEditor {
 
+	public static final String naturalToken = "Natural";
+	public static final String stoneToken = "Stone";
+	public static final String postHoleToken = "Post Hole";
+	public static final String excavatedNaturalToken = "Excavated Natural";
+	public static final String excavatedStoneToken = "Excavated Stone";
+	public static final String excavatedPostHoleToken = "Excavated Post Hole";
+
+	public static void changeViewingSymbol(Map<Coordinate> map, String token, char symbol){
+		map.setViewingOption(ViewingOption.userModified);
+		switch(token){
+		case naturalToken:
+			map.setDirtAlias(symbol);
+			break;
+		case stoneToken:
+			map.setStoneAlias(symbol);
+			break;
+		case postHoleToken:
+			map.setPostHoleAlias(symbol);
+			break;
+		case excavatedNaturalToken:
+			map.setDirtSymbol(symbol);
+			break;
+		case excavatedStoneToken:
+			map.setStoneSymbol(symbol);
+			break;
+		case excavatedPostHoleToken:
+			map.setPostHoleSymbol(symbol);
+			break;
+		default:
+			System.out.println("Invalid Token");
+		}
+	}
 	/**
 	 * Updates the passed map's view
 	 *  

@@ -35,6 +35,9 @@ public class SubController {
 		this.map = map;
 	}
 	
+	/**
+	 * Prints the about information to text area
+	 */
 	public void aboutMPT(){
 		text = output.getText();
 		text = "/n"

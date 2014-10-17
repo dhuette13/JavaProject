@@ -393,4 +393,8 @@ public class Utilities {
 		}
 		return result;
 	}
+	
+	public static void exit(){
+		System.exit(0);
+	}
 }

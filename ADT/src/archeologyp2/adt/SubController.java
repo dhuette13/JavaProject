@@ -45,6 +45,9 @@ public class SubController {
 		this.map = map;
 	}
 	
+	/**
+	 * Prints the about information to text area
+	 */
 	public void aboutADT(){
 		text = output.getText();
 		text = "/n"
