@@ -4,9 +4,6 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintStream;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -62,12 +59,10 @@ public class PathDialog extends JDialog implements ActionListener {
 			Utilities.save(map, textField.getText());
 			break;
 		case "Export":
-			try {
-				Utilities.printMap(map, new PrintStream(new File(textField.getText())));
-			} catch (FileNotFoundException e1) {
-				e1.printStackTrace();
-			}
+			Utilities.exportMap(map, textField.getText());
 			break;
+		default:
+			System.out.println("Not a valid path dialog");
 		}
 		dispose();
 	}
