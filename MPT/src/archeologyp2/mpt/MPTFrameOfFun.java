@@ -16,6 +16,8 @@ import archeologyp2.shared.gui.FrameOfFun;
  */
 public class MPTFrameOfFun extends FrameOfFun {
 
+	private SubController subController;
+	
 	private JMenuItem generateMapMenuItem;
 	private JMenuItem addFeatureMenuItem;
 	private JMenuItem addFindMenuItem;
@@ -29,6 +31,7 @@ public class MPTFrameOfFun extends FrameOfFun {
 	public MPTFrameOfFun(String title) {
 		super(title);
 		addMenuItems();
+		subController = new SubController(map, textArea);
 	}
 
 	/**
@@ -71,6 +74,13 @@ public class MPTFrameOfFun extends FrameOfFun {
 			
 		});
 		editMenu.add(heritageMenuItem);
+		
+		aboutMenuItem.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				subController.aboutMPT();
+			}
+		});
 
 	}
 }

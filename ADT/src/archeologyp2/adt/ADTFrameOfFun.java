@@ -14,9 +14,12 @@ public class ADTFrameOfFun extends FrameOfFun {
 	private JMenuItem digMenuItem;
 	private JMenuItem scanMenuItem;
 	
+	private SubController subController;
+	
 	public ADTFrameOfFun(String title) {
 		super(title);
 		addMenuItems();
+		subController = new SubController(map, textArea);
 	}
 	
 	private void addMenuItems(){
@@ -38,6 +41,14 @@ public class ADTFrameOfFun extends FrameOfFun {
 		});
 		
 		editMenu.add(scanMenuItem);
+		
+		aboutMenuItem.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				subController.aboutADT();
+			}
+			
+		});
 	}
 	
 }

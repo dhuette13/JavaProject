@@ -41,8 +41,9 @@ public class SubController {
 	 * @param map
 	 * 
 	 */
-	public SubController(Map<Coordinate> map){
+	public SubController(Map<Coordinate> map, JTextArea output){
 		this.map = map;
+		this.output = output;
 	}
 	
 	/**
@@ -50,14 +51,14 @@ public class SubController {
 	 */
 	public void aboutADT(){
 		text = output.getText();
-		text = "/n"
-				+ "Team What's The Meaning Of Stonehenge!/n"
-				+ "Daniel Huette: 1000947178/n"
-				+ "Celine Soriano: 1000876277/n"
-				+ "Archaeological Dig Tool/n"
-				+ "Date: /n"
-				+ "Version 0.2/n"
-				+ "/n";
+		text = "\n"
+				+ "Team What's The Meaning Of Stonehenge!\n"
+				+ "Daniel Huette: 1000947178\n"
+				+ "Celine Soriano: 1000876277\n"
+				+ "Archaeological Dig Tool\n"
+				+ "Date: \n"
+				+ "Version 0.2\n"
+				+ "\n";
 		output.setText(text);
 	}
 

@@ -17,11 +17,11 @@ import archeologyp2.shared.map.Map;
 import archeologyp2.shared.map.MapEditor;
 import archeologyp2.shared.map.Utilities;
 
-public class FrameOfFun extends JFrame  {
+public class FrameOfFun extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 
-	private Map<Coordinate> map;
+	protected Map<Coordinate> map;
 	
 	protected JMenuBar menuBar;
 	protected JMenu fileMenu;
@@ -36,7 +36,7 @@ public class FrameOfFun extends JFrame  {
 	private JMenuItem showMapMenuItem;
 	
 	private JMenu helpMenu;
-	private JMenuItem aboutMenuItem;
+	protected JMenuItem aboutMenuItem;
 	
 	protected JTextArea textArea;
 	private JScrollPane scrollPane;
@@ -89,19 +89,25 @@ public class FrameOfFun extends JFrame  {
 		loadMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				map = Utilities.load("res/Tikal.csv");
-				PathDialog dialog = new PathDialog("Load", map);
-				map = dialog.go();
+				final PathDialog loadDialog = new PathDialog("Load", map);
+				loadDialog.setVisible(true);
+				Relay myRelay = new Relay();
+				myRelay.addMyEventListener(new CompletionEventListener(){
+					@Override
+					public void myEventOccurred(CompletionEvent evt) {
+						map = loadDialog.getMap();
+					}
+				});
+				loadDialog.setRelay(myRelay);
 			}
 		});
-		
 		// From "File" Menu, Save
 		saveMenuItem = new JMenuItem("Save");
 		saveMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PathDialog dialog = new PathDialog("Save", map);
-				dialog.setVisible(true);
+				PathDialog saveDialog = new PathDialog("Save", map);
+				saveDialog.setVisible(true);
 			}
 		});
 		
@@ -126,6 +132,17 @@ public class FrameOfFun extends JFrame  {
 		
 		/* View Menu */
 		viewMenu = new JMenu("View");
+		
+		showMapMenuItem = new JMenuItem("Show Map");
+		showMapMenuItem.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MapEditor.updateView(map);
+				Utilities.printMap(map, textArea);
+			}
+		});
+		viewMenu.add(showMapMenuItem);
+		
 		viewingMenuItem = new JMenuItem("Viewing Options");
 		viewingMenuItem.addActionListener(new ActionListener(){
 			@Override
@@ -136,32 +153,17 @@ public class FrameOfFun extends JFrame  {
 		});
 		viewMenu.add(viewingMenuItem);
 		
-		showMapMenuItem = new JMenuItem("Show Map");
-		showMapMenuItem.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				MapEditor.updateView(map);
-				Utilities.printMap(map, textArea);
-			}
-		});
-		
-		viewMenu.add(showMapMenuItem);
 		menuBar.add(viewMenu);
 		
 		helpMenu = new JMenu("Help");
 		
 		// From "Help" Menu, About
 		aboutMenuItem = new JMenuItem("About");
-		aboutMenuItem.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		helpMenu.add(aboutMenuItem);
 		menuBar.add(helpMenu);
 		
 		menuBar.setVisible(true);
 		this.setJMenuBar(menuBar);
 	}
-
 }
+

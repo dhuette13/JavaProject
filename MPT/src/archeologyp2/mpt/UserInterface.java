@@ -44,7 +44,6 @@ public class UserInterface {
 	public UserInterface(Map<Coordinate> map){
 		this.map = map;
 		input = new Scanner(System.in);
-		controller = new SubController(map);
 	}
 
 	/**

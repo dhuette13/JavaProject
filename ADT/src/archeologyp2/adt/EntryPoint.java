@@ -18,7 +18,7 @@ import archeologyp2.shared.gui.FrameOfFun;
 
 public class EntryPoint {
 	private FrameOfFun frame;
-	
+
 	/**
 	 * Initializes the Frame
 	 */
