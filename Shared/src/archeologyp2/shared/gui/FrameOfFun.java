@@ -1,6 +1,6 @@
 package archeologyp2.shared.gui;
 
-import java.awt.BorderLayout;
+import java.awt.BorderLayout; 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,11 +17,11 @@ import archeologyp2.shared.map.Map;
 import archeologyp2.shared.map.MapEditor;
 import archeologyp2.shared.map.Utilities;
 
-public class FrameOfFun extends JFrame  {
+public class FrameOfFun extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 
-	private Map<Coordinate> map;
+	protected Map<Coordinate> map;
 	
 	protected JMenuBar menuBar;
 	protected JMenu fileMenu;
@@ -36,7 +36,7 @@ public class FrameOfFun extends JFrame  {
 	private JMenuItem showMapMenuItem;
 	
 	private JMenu helpMenu;
-	private JMenuItem aboutMenuItem;
+	protected JMenuItem aboutMenuItem;
 	
 	protected JTextArea textArea;
 	private JScrollPane scrollPane;
@@ -89,7 +89,16 @@ public class FrameOfFun extends JFrame  {
 		loadMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				map = Utilities.load("res/Tikal.csv");
+				final PathDialog loadDialog = new PathDialog("Load", map);
+				loadDialog.setVisible(true);
+				Relay myRelay = new Relay();
+				myRelay.addMyEventListener(new CompletionEventListener(){
+					@Override
+					public void myEventOccurred(CompletionEvent evt) {
+						map = loadDialog.getMap();
+					}
+				});
+				loadDialog.setRelay(myRelay);
 			}
 		});
 		
@@ -98,6 +107,8 @@ public class FrameOfFun extends JFrame  {
 		saveMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				PathDialog saveDialog = new PathDialog("Save", map);
+				saveDialog.setVisible(true);
 			}
 		});
 		
@@ -122,6 +133,17 @@ public class FrameOfFun extends JFrame  {
 		
 		/* View Menu */
 		viewMenu = new JMenu("View");
+		
+		showMapMenuItem = new JMenuItem("Show Map");
+		showMapMenuItem.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MapEditor.updateView(map);
+				Utilities.printMap(map, textArea);
+			}
+		});
+		viewMenu.add(showMapMenuItem);
+		
 		viewingMenuItem = new JMenuItem("Viewing Options");
 		viewingMenuItem.addActionListener(new ActionListener(){
 			@Override
@@ -132,32 +154,17 @@ public class FrameOfFun extends JFrame  {
 		});
 		viewMenu.add(viewingMenuItem);
 		
-		showMapMenuItem = new JMenuItem("Show Map");
-		showMapMenuItem.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				MapEditor.updateView(map);
-				Utilities.printMap(map, textArea);
-			}
-		});
-		
-		viewMenu.add(showMapMenuItem);
 		menuBar.add(viewMenu);
 		
 		helpMenu = new JMenu("Help");
 		
 		// From "Help" Menu, About
 		aboutMenuItem = new JMenuItem("About");
-		aboutMenuItem.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		helpMenu.add(aboutMenuItem);
 		menuBar.add(helpMenu);
 		
 		menuBar.setVisible(true);
 		this.setJMenuBar(menuBar);
 	}
-
 }
+

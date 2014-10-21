@@ -10,9 +10,9 @@
 
 package archeologyp2.shared.map;
 
-import java.io.File;  
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -146,8 +146,9 @@ public class Utilities {
 	 * 
 	 */
 	public static void save(Map<Coordinate> map, String path){
+		PrintWriter out = null;
 		try {
-			PrintStream out = new PrintStream(new File(path));
+			out = new PrintWriter(new File(path));
 			out.println(map.getNumColumns() + "," + map.getNumRows());
 			int k;
 			/* For every element in the map array,
@@ -176,80 +177,91 @@ public class Utilities {
 		} catch (FileNotFoundException e) {
 			System.out.println("Error creating file");
 			e.printStackTrace();
+		} finally {
+			if(out != null)
+				out.close();
 		}
 	}
 
 	/**
 	 * 
-	 * For the public static void printMap method
+	 * This method exports the current map to the given path name
+	 * 
 	 * @param map map to print or export
 	 * @param output stream to output to
 	 * 
-	 * This method prints the map out and shows the user
-	 * the current map. 
-	 * 
 	 */
-	public static void printMap(Map<Coordinate> map, PrintStream output) {
+	public static void exportMap(Map<Coordinate> map, String path) {
 		char columnCharacter = 'A';
 		/* Print the Column labels 
 		 * 
 		 * If there are more than 26 columns, a second row
 		 * will be needed for the ruler.
 		 */
-		if(map.getNumColumns() > 26){
-			output.println();
-			output.format("  |");
-			/* Print 0's as a buffer for first iteration of the alphabet */
-			for(int k = 0; k < 26; k++) output.print(0);
 
-			/* Print a sequence common characters for every
-			 * 26 characters.
-			 */
-			for(int k = 1; k <= map.getNumColumns() - 26; k++){
-				if((k % 26) == 0) columnCharacter = (char) (columnCharacter + 1);
-				output.print(columnCharacter);
-			}
-			output.println();
-			output.format("  |");
+		PrintWriter output = null;
+		try {
+			output = new PrintWriter(new File(path));
+			if(map.getNumColumns() > 26){
+				output.println();
+				output.format("  |");
+				/* Print 0's as a buffer for first iteration of the alphabet */
+				for(int k = 0; k < 26; k++) output.print(0);
 
-			/* Print the second row of full alphabets */
-			for(int k = 0; k < map.getNumColumns() / 26; k++){
-				for(int p = 0; p < 26; p++){
-					output.print((char) ('A' + p));
+				/* Print a sequence common characters for every
+				 * 26 characters.
+				 */
+				for(int k = 1; k <= map.getNumColumns() - 26; k++){
+					if((k % 26) == 0) columnCharacter = (char) (columnCharacter + 1);
+					output.print(columnCharacter);
+				}
+				output.println();
+				output.format("  |");
+
+				/* Print the second row of full alphabets */
+				for(int k = 0; k < map.getNumColumns() / 26; k++){
+					for(int p = 0; p < 26; p++){
+						output.print((char) ('A' + p));
+					}
+				}
+
+				/* Print the remaining characters for the last alphabet */
+				for(int k = 0; k < map.getNumColumns() % 26; k++){
+					output.print((char) ('A' + k));
+				}
+
+			} else {
+				/* If the number of columns is less than 26,
+				 * a second row is not needed.
+				 */
+				output.format("  |");
+				for(int c = 0; c < map.getNumColumns(); c++){
+					output.format("%c", (char) (c + 65));
 				}
 			}
 
-			/* Print the remaining characters for the last alphabet */
-			for(int k = 0; k < map.getNumColumns() % 26; k++){
-				output.print((char) ('A' + k));
-			}
 
-		} else {
-			/* If the number of columns is less than 26,
-			 * a second row is not needed.
-			 */
-			output.format("  |");
+			output.println();
+			output.format("--+");
 			for(int c = 0; c < map.getNumColumns(); c++){
-				output.format("%c", (char) (c + 65));
-			}
-		}
-
-
-		output.println();
-		output.format("--+");
-		for(int c = 0; c < map.getNumColumns(); c++){
-			output.format("-");
-		}
-		output.println();
-
-		/* Print the current viewable symbol for each row */
-		char charMap[][] = map.getCharMap();
-		for(int r = 0; r < map.getNumRows(); r++){
-			output.format("%02d|", r + 1);
-			for(int c = 0; c < map.getNumColumns(); c++){
-				output.format("%c", charMap[r][c]);
+				output.format("-");
 			}
 			output.println();
+
+			/* Print the current viewable symbol for each row */
+			char charMap[][] = map.getCharMap();
+			for(int r = 0; r < map.getNumRows(); r++){
+				output.format("%02d|", r + 1);
+				for(int c = 0; c < map.getNumColumns(); c++){
+					output.format("%c", charMap[r][c]);
+				}
+				output.println();
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("Invalid path");
+		} finally {
+			if(output != null)
+				output.close();
 		}
 	}
 
@@ -393,7 +405,7 @@ public class Utilities {
 		}
 		return result;
 	}
-	
+
 	public static void exit(){
 		System.exit(0);
 	}

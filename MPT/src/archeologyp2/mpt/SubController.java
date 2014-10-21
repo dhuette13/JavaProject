@@ -31,8 +31,9 @@ public class SubController {
 	private JTextArea output;
 	String text;
 	
-	public SubController(Map<Coordinate> map){
+	public SubController(Map<Coordinate> map, JTextArea output){
 		this.map = map;
+		this.output = output;
 	}
 	
 	/**
@@ -40,14 +41,14 @@ public class SubController {
 	 */
 	public void aboutMPT(){
 		text = output.getText();
-		text = "/n"
-				+ "Team What's The Meaning Of Stonehenge!/n"
-				+ "Daniel Huette: 1000947178/n"
-				+ "Celine Soriano: 1000876277/n"
-				+ "Map Population Tool/n"
-				+ "Date: /n"
-				+ "Version 0.2/n"
-				+ "/n";
+		text = "\n"
+				+ "Team What's The Meaning Of Stonehenge!\n"
+				+ "Daniel Huette: 1000947178\n"
+				+ "Celine Soriano: 1000876277\n"
+				+ "Map Population Tool\n"
+				+ "Date: \n"
+				+ "Version 0.2\n"
+				+ "\n";
 		output.setText(text);
 	}
 	
@@ -124,13 +125,5 @@ public class SubController {
 		}
 		current.sortDates();
 		MapEditor.updateView(map);
-	}
-	
-	/**
-	 * 
-	 * @param text
-	 */
-	public void setTextArea(JTextArea text){
-		output = text;
 	}
 }

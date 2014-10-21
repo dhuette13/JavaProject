@@ -1,46 +1,77 @@
 package archeologyp2.shared.gui;
 
-import javax.swing.*;   
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class PathDialog extends JFrame implements ActionListener{
-	
-	JLabel text1;
-	JTextField x;
-	JButton button;
-	
-	PathDialog(){
-		super("Title Here");
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
+import archeologyp2.shared.map.Coordinate;
+import archeologyp2.shared.map.Map;
+import archeologyp2.shared.map.Utilities;
+
+public class PathDialog extends JDialog implements ActionListener {
+
+	private static final long serialVersionUID = 1L;
+
+	private Relay relay;
+
+	private JLabel label;
+	private JTextField textField;
+	private JButton button;
+	private Map<Coordinate> map;
+	private String title;
+
+	public PathDialog(String title, Map<Coordinate> map){
+		this.setTitle(title);
+		this.map = map;
+		this.title = title;
 		setBounds(200,200,500,100);
-		setVisible(true);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		this.setResizable(false);
+
 		Container pane = getContentPane();
 		pane.setLayout(new FlowLayout());
-		
-		text1 = new JLabel("Path: ");
-		x = new JTextField(25);
+
+		label = new JLabel("Enter file to " + title.toLowerCase());
+		textField = new JTextField(25);
 		button = new JButton("OK");
 		button.addActionListener(this);
-		
-		pane.add(text1);
-		pane.add(x);
+
+		pane.add(label);
+		pane.add(textField);
 		pane.add(button);
-		
+
 		paintComponents(getGraphics());
-	}
-	
-	public static void main(String[] args){
-		PathDialog frame = new PathDialog();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if((e.getSource()==button) && (e.getSource()==x))
-			text1.setText("Ay man"); //just getting it to do whatever
-		
+		switch(title){
+		case "Load":
+			map = Utilities.load(textField.getText());
+			relay.fireMyEvent(new CompletionEvent(this));
+			break;
+		case "Save":
+			Utilities.save(map, textField.getText());
+			break;
+		case "Export":
+			Utilities.exportMap(map, textField.getText());
+			break;
+		default:
+			System.out.println("Not a valid path dialog");
+		}
+		dispose();
 	}
-	
+
+	public void setRelay(Relay r){
+		relay = r;
+	}
+
+	public Map<Coordinate> getMap() {
+		return map;
+	}
 }
