@@ -1,16 +1,16 @@
 package archeologyp2.shared.gui;
 
-import javax.swing.*;  
+import javax.swing.*;   
 import java.awt.*;
 import java.awt.event.*;
 
-public class PathDialogue extends JFrame implements ActionListener{
+public class PathDialog extends JFrame implements ActionListener{
 	
 	JLabel text1;
 	JTextField x;
 	JButton button;
 	
-	PathDialogue(){
+	PathDialog(){
 		super("Title Here");
 
 		setBounds(200,200,500,100);
@@ -33,7 +33,7 @@ public class PathDialogue extends JFrame implements ActionListener{
 	}
 	
 	public static void main(String[] args){
-		PathDialogue frame = new PathDialogue();
+		PathDialog frame = new PathDialog();
 	}
 
 	@Override
