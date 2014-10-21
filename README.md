@@ -13,11 +13,29 @@
 <ul>
 <li>1. Subclasses for pottery </li>
   <ul>
-  <li>1.1. Storage, decorated, submerged</li>
+  <li>1.1.1. Storage</li>
+    <ul>
+    <li>1.1.1.1. double volumn //variable for volume of the pottery</li>
+    </ul>
+  <li>1.1.2. Decorated</li>
+    <ul>
+    <li>1.1.2.1. String description //one word description to describe the pottery, ie "sacrifice" "moon" "sun"</li>
+    </ul>
+  <li>1.1.3. Submerged</li>
+    <ul>
+    <li>1.1.3.1. int depth //depth in meters</li>
+    </ul>
   </ul>
 <li>2. Subclasses for charcoal</li>
   <ul>
-  <li>2.1. Kiln, hearth</li>
+    <li>2.1. Kiln</li>
+      <ul>
+      <li>2.1.1. variable representing the radius in meters
+      </ul>
+    <li>2.2. Hearth</li>
+      <ul>
+      <li> 2.2.1. two data members to describe length and width in meters
+      </ul>
   </ul>
 <li>3. Subclasses for metalwork</li>
   <ul>
@@ -52,6 +70,9 @@
   <li>9.1.2. Need special properties</li>
   <li>9.1.3. Average date displayed at the bottom</li>
   </ul>
+<li>10. Create a map that's at least 50% full of archaeological features and finds</li>
+<li>11. Finish UML diagrams</li>
+
 </ul>
 
 
