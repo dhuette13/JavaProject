@@ -41,8 +41,7 @@ public class SubController {
 	 * @param map
 	 * 
 	 */
-	public SubController(Map<Coordinate> map, JTextArea output){
-		this.map = map;
+	public SubController(JTextArea output){
 		this.output = output;
 	}
 	
@@ -267,5 +266,9 @@ public class SubController {
 
 
 		return sd;
+	}
+
+	public void setMap(Map<Coordinate> map) {
+		this.map = map;
 	}
 }

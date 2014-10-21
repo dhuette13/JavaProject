@@ -45,7 +45,7 @@ public class PathDialog extends JDialog implements ActionListener {
 		pane.add(textField);
 		pane.add(button);
 
-		paintComponents(getGraphics());
+//		paintComponents(getGraphics());
 	}
 
 	@Override
