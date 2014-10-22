@@ -27,6 +27,7 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 	private SubController subController;
 	private Map<Coordinate> map;
 	
+	private JComboBox<String> comboBox;
 	private JLabel rowLabel;
 	private JLabel colLabel;
 	private JTextField rowText;
@@ -53,14 +54,14 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 		button = new JButton("OK");
 		button.addActionListener(this);
 
-		String[] choices = {"Stone", "Pit", "Natural"};
-		final JComboBox<String> cB = new JComboBox<String>(choices);
+		String[] choices = {"Dirt", "Stone", "Post Hole"};
+		comboBox = new JComboBox<String>(choices);
 
 		pane.add(rowLabel);
 		pane.add(rowText);
 		pane.add(colLabel);
 		pane.add(colText);
-		pane.add(cB);
+		pane.add(comboBox);
 		pane.add(button);
 		
 		paintComponents(getGraphics());
@@ -69,10 +70,17 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 
 	/* (non-Javadoc)
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * DO ROW OPTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
+		int feature;
+		feature=comboBox.getSelectedIndex();
+		feature++;
+		int row = Integer.parseInt(rowText.getText());
+		String col = colText.getText();
+		subController.changeFeature(row, col, feature);
 		
 	}
 }
