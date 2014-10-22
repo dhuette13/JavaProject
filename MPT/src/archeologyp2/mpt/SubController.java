@@ -31,8 +31,7 @@ public class SubController {
 	private JTextArea output;
 	String text;
 	
-	public SubController(Map<Coordinate> map, JTextArea output){
-		this.map = map;
+	public SubController(JTextArea output){
 		this.output = output;
 	}
 	
@@ -125,5 +124,12 @@ public class SubController {
 		}
 		current.sortDates();
 		MapEditor.updateView(map);
+	}
+
+	/**
+	 * @param map2
+	 */
+	public void setMap(Map<Coordinate> map) {
+		this.map = map;
 	}
 }

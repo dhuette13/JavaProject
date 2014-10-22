@@ -25,6 +25,8 @@ public class ViewingDialog extends JDialog {
 	private char symbol;
 	private String selection;
 	private Map<Coordinate> map;
+
+	private Relay relay;
 	
 	public ViewingDialog(String title, Map<Coordinate> map){
 		this.map = map;
@@ -49,6 +51,7 @@ public class ViewingDialog extends JDialog {
 				selection = comboBox.getSelectedItem().toString();
 				MapEditor.changeViewingSymbol(map, selection, symbol);
 				MapEditor.updateView(map);
+				relay.fireMyEvent(new CompletionEvent(this));
 				dispose();
 			}
 		});
@@ -74,5 +77,9 @@ public class ViewingDialog extends JDialog {
 		comboBox.addItem(MapEditor.excavatedNaturalToken);
 		comboBox.addItem(MapEditor.excavatedStoneToken);
 		comboBox.addItem(MapEditor.excavatedPostHoleToken);
+	}
+
+	public void setRelay(Relay relay) {
+		this.relay = relay;
 	}
 }

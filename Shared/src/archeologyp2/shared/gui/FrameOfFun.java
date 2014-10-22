@@ -16,6 +16,7 @@ import archeologyp2.shared.map.Coordinate;
 import archeologyp2.shared.map.Map;
 import archeologyp2.shared.map.MapEditor;
 import archeologyp2.shared.map.Utilities;
+import archeologyp2.shared.map.ViewingOption;
 
 public class FrameOfFun extends JFrame {
 	
@@ -24,23 +25,31 @@ public class FrameOfFun extends JFrame {
 	protected Map<Coordinate> map;
 	
 	protected JMenuBar menuBar;
+	
+	/* File Menu */
 	protected JMenu fileMenu;
-	private JMenuItem loadMenuItem;
+	protected JMenuItem loadMenuItem;
 	private JMenuItem saveMenuItem;
 	private JMenuItem exitMenuItem;
 	
+	/* Edit Menu */
 	protected JMenu editMenu;
-	private JMenuItem viewingMenuItem;
 	
+	/* View Menu */
 	protected JMenu viewMenu;
 	private JMenuItem showMapMenuItem;
+	private JMenuItem viewingMenuItem;
 	
+	/* Help Menu */
 	private JMenu helpMenu;
 	protected JMenuItem aboutMenuItem;
 	
 	protected JTextArea textArea;
 	private JScrollPane scrollPane;
 
+	final protected PathDialog loadDialog;
+	
+	protected Relay relay;
 	/**
 	 * Initializes a default Frame with a text area, scroll pane,
 	 * and menu bar containing multiple menu items.
@@ -53,6 +62,8 @@ public class FrameOfFun extends JFrame {
 		createTextArea();
 		createMenuBar();
 		this.setSize(800, 700);
+		relay = new Relay();
+		loadDialog = new PathDialog("Load", map);
 	}
 	
 	/**
@@ -86,21 +97,6 @@ public class FrameOfFun extends JFrame {
 		
 		// From "File" Menu, Load
 		loadMenuItem = new JMenuItem("Load");
-		loadMenuItem.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				final PathDialog loadDialog = new PathDialog("Load", map);
-				loadDialog.setVisible(true);
-				Relay myRelay = new Relay();
-				myRelay.addMyEventListener(new CompletionEventListener(){
-					@Override
-					public void myEventOccurred(CompletionEvent evt) {
-						map = loadDialog.getMap();
-					}
-				});
-				loadDialog.setRelay(myRelay);
-			}
-		});
 		
 		// From "File" Menu, Save
 		saveMenuItem = new JMenuItem("Save");
@@ -134,12 +130,15 @@ public class FrameOfFun extends JFrame {
 		/* View Menu */
 		viewMenu = new JMenu("View");
 		
-		showMapMenuItem = new JMenuItem("Show Map");
+		showMapMenuItem = new JMenuItem("View Current Symbol Map");
 		showMapMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MapEditor.updateView(map);
-				Utilities.printMap(map, textArea);
+				if(map != null){
+					map.setViewingOption(ViewingOption.userModified);
+					MapEditor.updateView(map);
+					Utilities.printMap(map, textArea);
+				}
 			}
 		});
 		viewMenu.add(showMapMenuItem);
@@ -150,6 +149,14 @@ public class FrameOfFun extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ViewingDialog dialog = new ViewingDialog("Viewing Options", map);
 				dialog.setVisible(true);
+				relay.addMyEventListener(new CompletionEventListener(){
+					@Override
+					public void myEventOccurred(CompletionEvent evt) {
+						Utilities.printMap(map, textArea);
+					}
+					
+				});
+				dialog.setRelay(relay);
 			}
 		});
 		viewMenu.add(viewingMenuItem);
