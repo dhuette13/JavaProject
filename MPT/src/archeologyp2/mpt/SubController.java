@@ -132,4 +132,9 @@ public class SubController {
 	public void setMap(Map<Coordinate> map) {
 		this.map = map;
 	}
+	
+	public void updateView(){
+		MapEditor.updateView(map);
+		Utilities.printMap(map, output);
+	}
 }

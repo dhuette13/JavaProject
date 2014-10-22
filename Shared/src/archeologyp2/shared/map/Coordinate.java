@@ -1,6 +1,6 @@
 package archeologyp2.shared.map;
 
-import java.util.ArrayList; 
+import java.util.ArrayList;
 import java.util.Collections;
 
 import archeologyp2.shared.finds.Artifact;
@@ -54,12 +54,18 @@ public class Coordinate {
 	 * @param item to add to a collection
 	 */
 	public void addFind(Artifact item){
-		if(item instanceof Pottery)
+		if(item instanceof Pottery){
 			potCount.add((Pottery) item);
-		if(item instanceof MetalObject)
+			Collections.sort(potCount);
+		}
+		if(item instanceof MetalObject){
 			metalCount.add((MetalObject) item);
-		if(item instanceof Charcoal)
+			Collections.sort(metalCount);
+		}
+		if(item instanceof Charcoal){
 			charcoalCount.add((Charcoal) item);
+			Collections.sort(charcoalCount);
+		}
 	}
 
 	/**

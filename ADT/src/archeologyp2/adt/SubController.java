@@ -14,6 +14,7 @@ import javax.swing.JTextArea;
 import archeologyp2.shared.finds.Artifact;
 import archeologyp2.shared.map.Coordinate;
 import archeologyp2.shared.map.Map;
+import archeologyp2.shared.map.MapEditor;
 import archeologyp2.shared.map.Utilities;
 
 /**
@@ -270,5 +271,10 @@ public class SubController {
 
 	public void setMap(Map<Coordinate> map) {
 		this.map = map;
+	}
+
+	public void updateMap() {
+		MapEditor.updateView(map);
+		Utilities.printMap(map, output);
 	}
 }
