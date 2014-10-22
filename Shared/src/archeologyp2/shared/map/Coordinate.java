@@ -54,18 +54,12 @@ public class Coordinate {
 	 * @param item to add to a collection
 	 */
 	public void addFind(Artifact item){
-		if(item instanceof Pottery){
+		if(item instanceof Pottery)
 			potCount.add((Pottery) item);
-			Collections.sort(potCount);
-		}
-		if(item instanceof MetalObject){
+		if(item instanceof MetalObject)
 			metalCount.add((MetalObject) item);
-			Collections.sort(metalCount);
-		}
-		if(item instanceof Charcoal){
+		if(item instanceof Charcoal)
 			charcoalCount.add((Charcoal) item);
-			Collections.sort(charcoalCount);
-		}
 	}
 
 	/**
