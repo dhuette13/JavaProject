@@ -1,7 +1,6 @@
 package archeologyp2.mpt;
 
 import java.awt.Container;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +20,7 @@ import archeologyp2.shared.map.Map;
  * @author Celine
  *
  */
-public class addFeatureDialog extends JDialog implements ActionListener {
+public class AddFeatureDialog extends JDialog implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -35,7 +34,7 @@ public class addFeatureDialog extends JDialog implements ActionListener {
 	private JButton button;
 	private String title;
 	
-	public addFeatureDialog(String title, Map<Coordinate> map){
+	public AddFeatureDialog(String title, Map<Coordinate> map){
 		this.setTitle(title);
 		this.map = map;
 		this.title = title;
