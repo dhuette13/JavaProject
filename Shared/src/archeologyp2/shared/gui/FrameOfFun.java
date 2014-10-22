@@ -46,7 +46,7 @@ public class FrameOfFun extends JFrame {
 	
 	protected JTextArea textArea;
 	private JScrollPane scrollPane;
-
+	
 	final protected PathDialog loadDialog;
 	
 	protected Relay relay;

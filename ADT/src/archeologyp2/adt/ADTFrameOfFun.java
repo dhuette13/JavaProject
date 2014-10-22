@@ -72,7 +72,8 @@ public class ADTFrameOfFun extends FrameOfFun {
 		digMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				subController.dig(0, "A");
+				DigDialog digDialog = new DigDialog("Dig", subController);
+				digDialog.setVisible(true);
 			}
 
 		});
@@ -82,7 +83,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 		scanMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				subController.magnetoMeter(0, "A");
+				subController.magnetoMeter(5, "C");
 			}
 		});
 
