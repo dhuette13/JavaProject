@@ -86,6 +86,8 @@ public class MPTFrameOfFun extends FrameOfFun {
 		addFindMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				FindDialog findDialog = new FindDialog("Finds", subController);
+				findDialog.setVisible(true);
 			}
 			
 		});
@@ -95,6 +97,8 @@ public class MPTFrameOfFun extends FrameOfFun {
 		heritageMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				HeritageDialog heritage = new HeritageDialog("Heritage", subController);
+				heritage.setVisible(true);
 			}
 			
 		});

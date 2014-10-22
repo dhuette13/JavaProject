@@ -11,6 +11,7 @@ package archeologyp2.mpt;
 
 import javax.swing.JTextArea;
 
+import archeologyp2.shared.finds.Artifact;
 import archeologyp2.shared.finds.Charcoal;
 import archeologyp2.shared.finds.MetalObject;
 import archeologyp2.shared.finds.Pottery;
@@ -65,28 +66,34 @@ public class SubController {
 	 * map view.
 	 * 
 	 */
-	public void changeFeature(int row, String col, int feature){
+	public void changeFeature(int row, String col, int feature, boolean loopFlag){
 		Coordinate current;
 		int r = row - 1;
-		int c = Utilities.columnToIndex(col);
 		Feature f = Feature.dirt;
-		current = map.getPlaneItem(r, c);
 		switch(feature){
 		case 1:
 			f = Feature.dirt;
-			current.setFeature(f);
 			break;
 		case 2:
 			f = Feature.stone;
-			current.setFeature(f);
 			break;
 		case 3:
 			f = Feature.postHole;
-			current.setFeature(f);
 			break;
 		default:
 			System.out.println("Invalid option");
 			return;
+		}
+		
+		if(loopFlag) {
+			for(int j = 0; j < map.getNumColumns(); j++){
+				current = map.getPlaneItem(r, j);
+				current.setFeature(f);
+			}
+		} else {
+			int c = Utilities.columnToIndex(col);
+			current = map.getPlaneItem(r, c);
+			current.setFeature(f);
 		}
 		MapEditor.updateView(map);
 	}
@@ -103,26 +110,36 @@ public class SubController {
 	 * and adds the dates of those finds. 
 	 * 
 	 */
-	public void addFind(int row, String col, int type, int date){
+	public void addFind(int row, String col, int type, int date, boolean loopFlag){
 		Coordinate current;
+		Artifact artifact = new Pottery(date);
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col); 
-		current = map.getPlaneItem(r, c);
 		switch(type){
 		/* Add to pot collection */
 		case 1:
-			current.addFind(new Pottery(date));
+			artifact = new Pottery(date);
 			break;
 			/* Add to charcoal collection */
 		case 2:
-			current.addFind(new Charcoal(date));
+			artifact = new Charcoal(date);
 			break;
 			/* Add to metal collection */
 		case 3:
-			current.addFind(new MetalObject(date));
+			artifact = new MetalObject(date);
 			break;
 		}
-		current.sortDates();
+		if(loopFlag){
+			for(int j = 0; j < map.getNumColumns(); j++){
+				current = map.getPlaneItem(r, j);
+				current.addFind(artifact);
+				current.sortDates();
+			}
+		} else {
+			current = map.getPlaneItem(r, c);
+			current.addFind(artifact);
+			current.sortDates();
+		}
 		MapEditor.updateView(map);
 	}
 
@@ -133,8 +150,16 @@ public class SubController {
 		this.map = map;
 	}
 	
-	public void updateView(){
+	public void updateMap(){
 		MapEditor.updateView(map);
 		Utilities.printMap(map, output);
+	}
+
+	/**
+	 * @param row
+	 * @param column
+	 */
+	public void markHeritage(int row, String column) {
+		
 	}
 }
