@@ -35,6 +35,7 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 	private JButton button;
 	private String title;
 	
+	//For Try-Catch: "Exception in thread "AWT-EventQueue-0" java.lang.NumberFormatException"
 	public AddFeatureDialog(String title, Map<Coordinate> map){
 		this.setTitle(title);
 		this.map = map;
@@ -70,17 +71,23 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 
 	/* (non-Javadoc)
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 * DO ROW OPTION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	 * 
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		int feature;
-		feature=comboBox.getSelectedIndex();
-		feature++;
-		int row = Integer.parseInt(rowText.getText());
-		String col = colText.getText();
-		subController.changeFeature(row, col, feature);
+		try{
+			int feature;
+			feature=comboBox.getSelectedIndex();
+			feature++;
+			int row = Integer.parseInt(rowText.getText());
+			String col = colText.getText();
+			subController.changeFeature(row, col, feature, false);
+		}
+		catch(java.lang.NumberFormatException n) {
+			System.out.println("Your input was wrong. Please try again."); //placeholder for exception
+		}
+		dispose();
 		
 	}
 }
