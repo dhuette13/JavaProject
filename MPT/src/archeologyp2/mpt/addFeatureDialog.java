@@ -81,6 +81,7 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 		int row = Integer.parseInt(rowText.getText());
 		String col = colText.getText();
 		subController.changeFeature(row, col, feature, false);
+		dispose();
 		
 	}
 }
