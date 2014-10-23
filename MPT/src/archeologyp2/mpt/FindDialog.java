@@ -8,6 +8,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -39,6 +41,8 @@ public class FindDialog extends JDialog {
 	private JLabel dateLabel;
 	private JLabel rowPromptLabel;
 	private JCheckBox rowCheckBox;
+	private JLabel dataLabel;
+	private JTextField dataTextField;
 
 	private GridBagConstraints constraints;
 
@@ -55,28 +59,35 @@ public class FindDialog extends JDialog {
 		createCheckBox();
 		this.subController = subController;
 		setLayout(new GridBagLayout());
-		setSize(300, 180);
-		setResizable(true);
+		setSize(360, 220);
+		setResizable(false);
 
 		rowLabel = new JLabel("row: ");
 		columnLabel = new JLabel("col: ");
 		dateLabel = new JLabel("date: ");
 		rowPromptLabel = new JLabel("Change an entire row? ");
+		dataLabel = new JLabel("description: ");
 		constraints = new GridBagConstraints();
 		constraints.insets = new Insets(3, 3, 3, 3);
 
+		constraints.anchor = GridBagConstraints.EAST;
+		constraints.fill = GridBagConstraints.HORIZONTAL;
 		addComponent(rowPromptLabel, 0, 0, 2, 1);
 		addComponent(rowCheckBox, 2, 0, 1, 1);
 		addComponent(rowLabel, 0, 1, 1, 1);
 		addComponent(rowTextField, 1, 1, 1, 1);
-		addComponent(comboBox, 2, 1, 1, 1);
+		addComponent(comboBox, 2, 1, 2, 1);
 		addComponent(columnLabel, 0, 2, 1, 1);
 		addComponent(columnTextField, 1, 2, 1, 1);
 		addComponent(dateLabel, 0, 3, 1, 1);
 		addComponent(dateTextField, 1, 3, 1, 1);
+		addComponent(dataLabel, 0, 4, 1, 1);
+		addComponent(dataTextField, 1, 4, 1, 1);
 		constraints.anchor = GridBagConstraints.EAST;
-		addComponent(confirmButton, 1, 4, 1, 1);
-		addComponent(cancelButton, 2, 4, 1, 1);
+		constraints.fill = GridBagConstraints.NONE;
+		constraints.weightx = 1;
+		addComponent(confirmButton, 2, 5, 1, 1);
+		addComponent(cancelButton, 3, 5, 1, 1);
 	}
 
 	/**
@@ -115,6 +126,7 @@ public class FindDialog extends JDialog {
 		rowTextField = new JTextField(5);
 		columnTextField = new JTextField(5);
 		dateTextField = new JTextField(5);
+		dataTextField = new JTextField(5);
 	}
 
 	/**
@@ -149,7 +161,29 @@ public class FindDialog extends JDialog {
 	}
 
 	private void createComboBox() {
-		String[] options = {"Pot", "Charcoal", "Metal"};
+		String[] options = {"Decorated Pot", "Submerged Pot", "Storage Pot", "Kiln", "Hearth", "Ferrous", "NonFerrous"};
 		comboBox = new JComboBox<>(options);
+		comboBox.addItemListener(new ItemListener(){
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				switch(e.getItem().toString()){
+				case "Decorated Pot":
+					break;
+				case "Submerged Pot":
+					break;
+				case "Storage Pot":
+					break;
+				case "Kiln":
+					break;
+				case "Hearth":
+					break;
+				case "Ferrous":
+					break;
+				case "NonFerrous":
+					break;
+				}
+			}
+			
+		});
 	}
 }
