@@ -1,9 +1,9 @@
-/**
+/** 
  * 
  */
 package archeologyp2.mpt;
 
-import java.awt.event.ActionEvent;
+import java.awt.event.ActionEvent; 
 import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
@@ -45,6 +45,7 @@ public class MPTFrameOfFun extends FrameOfFun {
 	 *  Creates the new Menu Items
 	 */
 	private void addMenuItems() {
+		
 		loadMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -67,7 +68,17 @@ public class MPTFrameOfFun extends FrameOfFun {
 		generateMapMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				map = Utilities.generateMap(16, 16);
+				loadDialog.setVisible(true);
+				relay.addMyEventListener(new CompletionEventListener(){
+					@Override
+					public void myEventOccurred(CompletionEvent evt) {
+						map = loadDialog.getMap();
+						subController.setMap(map);
+						MapEditor.updateView(map);
+						Utilities.printMap(map, textArea);
+					}
+				});
+				loadDialog.setRelay(relay);
 			}
 			
 		});
