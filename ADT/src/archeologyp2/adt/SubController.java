@@ -19,14 +19,15 @@ import archeologyp2.shared.map.Utilities;
 
 /**
  * 
- * TOOL BAG FOR THE ARCHAEOLOGICAL DIG TOOL
- * @author Daniel
- * @author Celine
+ * SUBCONTROLLER FOR THE ARCHAEOLOGICAL DIG TOOL
  * 
  * This class contains methods that allow the user to
  * excavate the map depending on what tool they're using,
  * and it also has methods that compute both the average and 
  * standard deviation. 
+ * 
+ * @author Daniel
+ * @author Celine
  *
  */
 
@@ -63,15 +64,13 @@ public class SubController {
 	}
 
 	/**
-	 * 
-	 * For the public void magnetoMeter method
-	 * @param row
-	 * @param col
-	 * 
 	 * This method is for the magnetometer tool, which you use to sense 
 	 * charcoal types. If there is charcoal hidden in the coordinate
 	 * you're checking with the tool, then the program sets the magnetometer
 	 * for that square to equal true. 
+	 * 
+	 * @param row
+	 * @param col
 	 * 
 	 */
 	public void magnetoMeter(int row, String col){
@@ -87,16 +86,14 @@ public class SubController {
 	}
 
 	/**
-	 * 
-	 * For the public void metalDetector method
-	 * @param row
-	 * @param col
-	 * 
 	 * This method is for the metal detector, which (obviously)
 	 * is there to sense metal over any coordinate the user asks
 	 * to inspect. If there is a metal object or objects there
 	 * that get inspected, then the program sets the metal 
 	 * detector equal to true.
+	 * 
+	 * @param row
+	 * @param col
 	 * 
 	 */
 	public void metalDetector(int row, String col){
@@ -113,12 +110,11 @@ public class SubController {
 
 	/**
 	 * 
-	 * For the public void visibleSpectrum method
-	 * @param row
-	 * @param col
-	 * 
 	 * This method is for sensing any pottery in the
 	 * coordinate the user specifies.
+	 * 
+	 * @param row
+	 * @param col
 	 * 
 	 */
 	public void visibleSpectrum(int row, String col){
@@ -130,39 +126,44 @@ public class SubController {
 	}
 
 	/**
-	 * 
-	 * For the public void dig method
-	 * @param row
-	 * @param col
-	 * 
 	 * In this method, the user is able to find and excavate. If they
 	 * excavate and there are items within the coordinate (based off
 	 * the count size), then the boolean handling if the itemFound
 	 * method will change to true.
 	 * 
+	 * In the event the user tries to dig a heritage coordinate,
+	 * a new heritage exception will be thrown
+	 * 
+	 * @param row
+	 * @param col
+	 * 
+	 * @throws HeritageException 
+	 * 
 	 */
-	public void dig(int row, String col){
+	public void dig(int row, String col) throws HeritageException {
 		Coordinate current;
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col);
 		current = map.getPlaneItem(r, c);
-		current.setExcavated(true);
-		if((current.getPotCount() != 0) || (current.getCharcoalCount() != 0) || (current.getMetalCount() != 0)){
-			current.setItemFound(true);
+		if(current.isHeritage()){
+			throw new HeritageException("This coordinate is heritage!");
+		} else {
+			current.setExcavated(true);
+			if((current.getPotCount() != 0) || (current.getCharcoalCount() != 0) || (current.getMetalCount() != 0)){
+				current.setItemFound(true);
+			}
 		}
 	}
 
 	/**
-	 * 
-	 * For the public double computeAverageDate method
-	 * @return the average
-	 * 
 	 * This method computes the average date from the specified dates. 
 	 * The nested for-loop computes the dates via what type the find is
 	 * if an item in that coordinate has both been found and if there's 
 	 * also an object inside it, then add to the average date sum,
 	 * and increment the itemCount. Finally, it will divide the average date
 	 * sum by the itemCount total to get the real average date.
+	 * 
+	 * @return the average
 	 * 
 	 */
 	public double computeAverageDate(){
@@ -196,15 +197,13 @@ public class SubController {
 
 	/**
 	 * 
-	 * For the public double computeStandardDeviation method
-	 * @param avg
-	 * @return the standard deviation
-	 * 
 	 * This method computes the standard deviation first by
 	 * going through and getting the variance based off the
 	 * dates specified. It then takes the standard deviation
 	 * from that, which is the square root of the variance.
 	 * 
+	 * @param avg
+	 * @return the standard deviation
 	 */
 	public double computeStandardDeviation(double avg){
 		int n = 0;
@@ -269,10 +268,16 @@ public class SubController {
 		return sd;
 	}
 
+	/**
+	 * @param map
+	 */
 	public void setMap(Map<Coordinate> map) {
 		this.map = map;
 	}
 
+	/**
+	 * Updates the maps viewing symbols
+	 */
 	public void updateMap() {
 		MapEditor.updateView(map);
 		Utilities.printMap(map, output);

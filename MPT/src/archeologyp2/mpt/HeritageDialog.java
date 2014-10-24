@@ -1,10 +1,13 @@
 package archeologyp2.mpt;
 
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -18,6 +21,9 @@ public class HeritageDialog extends JDialog {
 	private JTextField rowTextField;
 	private JTextField columnTextField;
 	private JButton confirmButton;
+	private JButton cancelButton;
+	
+	private GridBagConstraints constraints;
 	
 	private int row;
 	private String column;
@@ -26,26 +32,40 @@ public class HeritageDialog extends JDialog {
 	public HeritageDialog(String title, SubController subController){
 		this.setTitle(title);
 		this.subController = subController;
+		setSize(200, 120);
+		setResizable(false);
+		setLayout(new GridBagLayout());
+
 		createTextFields();
-		createButton();
+		createButtons();
+		
+		constraints = new GridBagConstraints();
+		constraints.insets = new Insets(3, 3, 3, 3);
+		
 		rowLabel = new JLabel("row: ");
-		columnLabel = new JLabel("col: ");
-		this.setSize(180, 100);
-		this.setLayout(new GridLayout(3, 2));
-		this.add(rowLabel);
-		this.add(rowTextField);
-		this.add(columnLabel);
-		this.add(columnTextField);
-		this.add(confirmButton);
-		this.setResizable(false);
+		columnLabel = new JLabel("column: ");
+		addComponent(rowLabel, 0, 0, 1, 1);
+		addComponent(rowTextField, 1, 0, 1, 1);
+		addComponent(columnLabel, 0, 1, 1, 1);
+		addComponent(columnTextField, 1, 1, 1, 1);
+		addComponent(confirmButton, 0, 2, 1, 1);
+		addComponent(cancelButton, 1, 2, 1, 1);
 	}
 
+	public void addComponent(JComponent component, int column, int row, int width, int height){
+		constraints.gridx = column;
+		constraints.gridy = row;
+		constraints.gridwidth = width;
+		constraints.gridheight = height;
+		this.add(component, constraints);
+	}
+	
 	private void createTextFields() {
 		rowTextField = new JTextField(5);
 		columnTextField = new JTextField(5);
 	}
 	
-	private void createButton() {
+	private void createButtons() {
 		confirmButton = new JButton("OK");
 		confirmButton.addActionListener(new ActionListener(){
 			@Override
@@ -53,7 +73,14 @@ public class HeritageDialog extends JDialog {
 				row = Integer.parseInt(rowTextField.getText());
 				column = columnTextField.getText();
 				subController.markHeritage(row, column);
-				subController.updateMap();
+				dispose();
+			}
+		});
+		
+		cancelButton = new JButton("Cancel");
+		cancelButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
 		});

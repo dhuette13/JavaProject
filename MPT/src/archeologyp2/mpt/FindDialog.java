@@ -49,6 +49,8 @@ public class FindDialog extends JDialog {
 	private int row;
 	private String column;
 	private int date;
+	private boolean entireRow;
+	private String data;
 	private SubController subController;
 
 	public FindDialog(String title, SubController subController){
@@ -70,20 +72,27 @@ public class FindDialog extends JDialog {
 		constraints = new GridBagConstraints();
 		constraints.insets = new Insets(3, 3, 3, 3);
 
-		constraints.anchor = GridBagConstraints.EAST;
-		constraints.fill = GridBagConstraints.HORIZONTAL;
+		dataLabel.setEnabled(false);
+		dataTextField.setEnabled(false);
+
+		constraints.anchor = GridBagConstraints.WEST;
+		constraints.fill = GridBagConstraints.NONE;
 		addComponent(rowPromptLabel, 0, 0, 2, 1);
 		addComponent(rowCheckBox, 2, 0, 1, 1);
 		addComponent(rowLabel, 0, 1, 1, 1);
-		addComponent(rowTextField, 1, 1, 1, 1);
-		addComponent(comboBox, 2, 1, 2, 1);
 		addComponent(columnLabel, 0, 2, 1, 1);
-		addComponent(columnTextField, 1, 2, 1, 1);
 		addComponent(dateLabel, 0, 3, 1, 1);
-		addComponent(dateTextField, 1, 3, 1, 1);
 		addComponent(dataLabel, 0, 4, 1, 1);
-		addComponent(dataTextField, 1, 4, 1, 1);
+		
+		constraints.anchor = GridBagConstraints.CENTER;
+		addComponent(comboBox, 2, 1, 2, 1);
 		constraints.anchor = GridBagConstraints.EAST;
+		addComponent(rowTextField, 1, 1, 1, 1);
+		addComponent(columnTextField, 1, 2, 1, 1);
+		addComponent(dateTextField, 1, 3, 1, 1);
+		addComponent(dataTextField, 1, 4, 1, 1);
+		
+		constraints.anchor = GridBagConstraints.CENTER;
 		constraints.fill = GridBagConstraints.NONE;
 		constraints.weightx = 1;
 		addComponent(confirmButton, 2, 5, 1, 1);
@@ -137,16 +146,13 @@ public class FindDialog extends JDialog {
 		confirmButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(rowCheckBox.isSelected()){
-					row = Integer.parseInt(rowTextField.getText());
-					date = Integer.parseInt(dateTextField.getText());
-					subController.addFind(row, "A", comboBox.getSelectedIndex() + 1, date, true);
-				} else {
-					row = Integer.parseInt(rowTextField.getText());
-					column = columnTextField.getText();
-					date = Integer.parseInt(dateTextField.getText());
-					subController.addFind(row, column, comboBox.getSelectedIndex() + 1, date, false);
-				}
+				row = Integer.parseInt(rowTextField.getText());
+				column = columnTextField.getText();
+				date = Integer.parseInt(dateTextField.getText());
+				entireRow = rowCheckBox.isSelected();
+				data = dataTextField.getText();
+				subController.addFind(row, column, comboBox.getSelectedIndex() + 1, date, data, entireRow);
+				dispose();
 			}
 		});
 
@@ -156,10 +162,12 @@ public class FindDialog extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
-
 		});
 	}
 
+	/**
+	 * 
+	 */
 	private void createComboBox() {
 		String[] options = {"Decorated Pot", "Submerged Pot", "Storage Pot", "Kiln", "Hearth", "Ferrous", "NonFerrous"};
 		comboBox = new JComboBox<>(options);
@@ -168,22 +176,30 @@ public class FindDialog extends JDialog {
 			public void itemStateChanged(ItemEvent e) {
 				switch(e.getItem().toString()){
 				case "Decorated Pot":
+					dataLabel.setText("description: ");
 					break;
 				case "Submerged Pot":
+					dataLabel.setText("depth: ");
 					break;
 				case "Storage Pot":
+					dataLabel.setText("volume: ");
 					break;
 				case "Kiln":
+					dataLabel.setText("radius: ");
 					break;
 				case "Hearth":
+					dataLabel.setText("length, width: ");
 					break;
 				case "Ferrous":
+					dataLabel.setText("strength: ");
 					break;
 				case "NonFerrous":
+					dataLabel.setText("type: ");
 					break;
 				}
+				dataLabel.setEnabled(true);
+				dataTextField.setEnabled(true);
 			}
-			
 		});
 	}
 }

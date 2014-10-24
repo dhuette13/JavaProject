@@ -25,6 +25,8 @@ public class Coordinate {
 	private boolean excavated, itemFound;
 	private boolean charcoalHidden, metalHidden;
 	private boolean charcoalInspected, metalInspected, potInspected;
+	
+	private boolean heritage;
 
 	private ArrayList<Pottery> potCount = new ArrayList<Pottery>();
 	private ArrayList<MetalObject> metalCount = new ArrayList<MetalObject>();
@@ -317,6 +319,23 @@ public class Coordinate {
 	 */
 	public void setMetalInspected(boolean i) { metalInspected = i; }
 
+	/**
+	 * Sets the coordinate's current heritage status
+	 * 
+	 * @param heritage
+	 */
+	public void setHeritage(boolean heritage){
+		this.heritage = heritage;
+	}
+	
+	/**
+	 * Gets the coordinate's current heritage status
+	 * 
+	 * @return heritage
+	 */
+	public boolean isHeritage(){
+		return heritage;
+	}
 	/**
 	 * Sorts each of the artifact collections based on date
 	 */
