@@ -16,19 +16,33 @@ import archeologyp2.shared.map.Coordinate;
 import archeologyp2.shared.map.Map;
 import archeologyp2.shared.map.Utilities;
 
+/**
+ * 
+ * @author Daniel
+ * @author Celine
+ *
+ */
 public class PathDialog extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private Relay relay;
 
+	/* Graphical Components of the Dialog */
 	private JLabel label;
 	private JTextField textField;
 	private JButton okButton;
 	private JButton cancelButton;
+	private Relay relay;
+	
 	private Map<Coordinate> map;
 	private String title;
 
+	/**
+	 * Constructs the gui of the Path Dialog
+	 * 
+	 * @param title
+	 * @param map
+	 */
 	public PathDialog(String title, Map<Coordinate> map){
 		this.map = map;
 		this.title = title;
@@ -77,6 +91,12 @@ public class PathDialog extends JDialog implements ActionListener {
 		okButton.addActionListener(this);
 	}
 
+	/**
+	 * Performs three actions:
+	 * 1) Load
+	 * 2) Save
+	 * 3) Export
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		switch(title){
@@ -96,10 +116,20 @@ public class PathDialog extends JDialog implements ActionListener {
 		dispose();
 	}
 
-	public void setRelay(Relay r){
-		relay = r;
+	/**
+	 * Sets the dialog's relay for triggering completion event
+	 * 
+	 * @param relay
+	 */
+	public void setRelay(Relay relay){
+		this.relay = relay;
 	}
 
+	/**
+	 * Retrieves the loaded map
+	 * 
+	 * @return map
+	 */
 	public Map<Coordinate> getMap() {
 		return map;
 	}

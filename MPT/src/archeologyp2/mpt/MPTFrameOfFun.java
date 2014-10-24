@@ -3,7 +3,7 @@
  */
 package archeologyp2.mpt;
 
-import java.awt.event.ActionEvent; 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
@@ -21,15 +21,17 @@ import archeologyp2.shared.map.Utilities;
  */
 public class MPTFrameOfFun extends FrameOfFun {
 
-	private SubController subController;
+	private static final long serialVersionUID = 1L;
 	
+	private SubController subController;
 	/* Edit Menu Items */
 	private JMenuItem generateMapMenuItem;
 	private JMenuItem addFeatureMenuItem;
 	private JMenuItem addFindMenuItem;
 	private JMenuItem heritageMenuItem;
 	
-	private static final long serialVersionUID = 1L;
+	final protected GenerateDialog generateDialog;
+	
 
 	/**
 	 * Adds MPT specific menu items and creates subcontroller
@@ -39,6 +41,7 @@ public class MPTFrameOfFun extends FrameOfFun {
 		super(title);
 		addMenuItems();
 		subController = new SubController(textArea);
+		generateDialog = new GenerateDialog("Generate Map");
 	}
 
 	/**
@@ -68,17 +71,17 @@ public class MPTFrameOfFun extends FrameOfFun {
 		generateMapMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				loadDialog.setVisible(true);
+				generateDialog.setVisible(true);
 				relay.addMyEventListener(new CompletionEventListener(){
 					@Override
 					public void myEventOccurred(CompletionEvent evt) {
-						map = loadDialog.getMap();
+						map = generateDialog.getMap();
 						subController.setMap(map);
 						MapEditor.updateView(map);
 						Utilities.printMap(map, textArea);
 					}
 				});
-				loadDialog.setRelay(relay);
+				generateDialog.setRelay(relay);
 			}
 			
 		});

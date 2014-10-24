@@ -19,24 +19,36 @@ import archeologyp2.shared.map.Coordinate;
 import archeologyp2.shared.map.Map;
 import archeologyp2.shared.map.MapEditor;
 
+/**
+ * 
+ * @author Daniel
+ * @author Celine
+ *
+ */
 public class ViewingDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	
+	/* Graphical Components of the Dialog */
 	private JComboBox<String> comboBox;
 	private JLabel charLabel;
 	private JTextField charField;
 	private JButton confirmButton;
 	private JButton cancelButton;
+	private GridBagConstraints constraints;
+	private Relay relay;
 	
 	private char symbol;
 	private String selection;
-	
 	private Map<Coordinate> map;
-	private Relay relay;
 	
-	private GridBagConstraints constraints;
 	
+	/**
+	 * Constructs the dialog's gui
+	 * 
+	 * @param title
+	 * @param map
+	 */
 	public ViewingDialog(String title, Map<Coordinate> map){
 		this.map = map;
 		setSize(420, 100);
@@ -63,6 +75,15 @@ public class ViewingDialog extends JDialog {
 		addComponent(cancelButton, 2, 1, 1, 1);
 	}
 	
+	/**
+	 * Adds the specified component to the dialog using constraints
+	 * 
+	 * @param component
+	 * @param column
+	 * @param row
+	 * @param width
+	 * @param height
+	 */
 	public void addComponent(JComponent component, int column, int row, int width, int height){
 		constraints.gridx = column;
 		constraints.gridy = row;
@@ -71,6 +92,12 @@ public class ViewingDialog extends JDialog {
 		this.add(component, constraints);
 	}
 
+	/**
+	 * Creates the OK and cancel buttons, and gives them
+	 * action listeners
+	 * 
+	 * OK gets the user's information and changes the viewing accordingly
+	 */
 	private void createButton() {
 		confirmButton = new JButton("OK");
 		confirmButton.addActionListener(new ActionListener(){
@@ -94,6 +121,9 @@ public class ViewingDialog extends JDialog {
 		});
 	}
 
+	/**
+	 * Creates the text fields for data entry
+	 */
 	private void createTextField() {
 		charField = new JTextField(5);
 		charField.addFocusListener(new FocusListener(){
@@ -106,6 +136,9 @@ public class ViewingDialog extends JDialog {
 		});
 	}
 
+	/**
+	 * Creates the combo box for selecting the type of symbol to change
+	 */
 	private void createComboBox() {
 		comboBox = new JComboBox<String>();
 		comboBox.addItem(MapEditor.naturalToken);
@@ -116,6 +149,10 @@ public class ViewingDialog extends JDialog {
 		comboBox.addItem(MapEditor.excavatedPostHoleToken);
 	}
 
+	/**
+	 * 
+	 * @param relay
+	 */
 	public void setRelay(Relay relay) {
 		this.relay = relay;
 	}

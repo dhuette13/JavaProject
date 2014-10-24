@@ -1,9 +1,21 @@
+/*
+ * Source code for Relay in event handling systems
+ * Author: Dr. Eric Becker
+ * Date put into the code: October 18, 2014
+ * 
+ */
+
 package archeologyp2.shared.gui;
 
 import javax.swing.event.EventListenerList;
 
 
-//Add the event registration and notification code to a class.
+/**
+ * Add the event registration and notification code to a class.
+ * 
+ * @author Dr. Becker
+ *
+ */
 public class Relay {
 	// Create the listener list
 	protected EventListenerList listenerList = new EventListenerList();
@@ -21,7 +33,7 @@ public class Relay {
 	}
 
 	// This private class is used to fire MyEvents
-	void fireMyEvent(CompletionEvent evt) {
+	public void fireMyEvent(CompletionEvent evt) {
 
 		Object[] listeners = listenerList.getListenerList();
 		// Each listener occupies two elements - the first is the listener class
