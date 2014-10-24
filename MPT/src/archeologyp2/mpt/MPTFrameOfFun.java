@@ -88,7 +88,7 @@ public class MPTFrameOfFun extends FrameOfFun {
 		addFindMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				FindDialog findDialog = new FindDialog("Finds", subController);
+				FindDialog findDialog = new FindDialog("Add Finds", subController);
 				findDialog.setVisible(true);
 			}
 			

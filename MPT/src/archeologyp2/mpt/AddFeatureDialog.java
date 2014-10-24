@@ -3,6 +3,7 @@ package archeologyp2.mpt;
 import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -43,9 +44,9 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 		this.setTitle(title);
 		this.subController = subController;
 		
-		setBounds(50,50,300,200);
+		setSize(340,180);
 		setVisible(true);
-		this.setResizable(false);
+		setResizable(false);
 
 		Container pane = getContentPane();
 		pane.setLayout(new GridBagLayout());
@@ -53,9 +54,9 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 		checkBox = new JCheckBox();
 		rowPromptLabel = new JLabel("Change an entire row? ");
 		rowLabel = new JLabel("Row: ");
-		rowText = new JTextField(10);
+		rowText = new JTextField(5);
 		colLabel = new JLabel("Column: ");
-		colText = new JTextField(10);
+		colText = new JTextField(5);
 		oButton = new JButton("OK");
 		cButton = new JButton("Cancel");
 		
@@ -65,9 +66,11 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 		GridBagConstraints constraints = new GridBagConstraints();
 		
 		// =========== FIRST COLUMN ========= //
-		constraints.anchor = GridBagConstraints.EAST;
-		constraints.weightx = 0;
-		constraints.weighty = 0;
+		constraints.insets = new Insets(3,3,3,3);
+		constraints.anchor = GridBagConstraints.WEST;
+		constraints.fill = GridBagConstraints.NONE;
+//		constraints.weightx = 1;
+//		constraints.weighty = 1;
 		
 		constraints.gridx = 0;
 		constraints.gridy = 2;
@@ -79,9 +82,11 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 		
 		// ========== SECOND COLUMN ========== //
 		constraints.anchor = GridBagConstraints.CENTER;
-		constraints.gridx = 1;
+		constraints.gridx = 0;
 		constraints.gridy = 0;
+		constraints.gridwidth = 2;
 		add(rowPromptLabel, constraints);
+		constraints.gridwidth = 1;
 		
 		constraints.gridx = 1;
 		constraints.gridy = 2;
@@ -98,6 +103,7 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 		
 		
 		// ============= THIRD COLUMN =========== //
+		constraints.anchor = GridBagConstraints.WEST;
 		constraints.gridx = 2;
 		constraints.gridy = 0;
 		add(checkBox, constraints);

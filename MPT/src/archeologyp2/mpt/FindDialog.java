@@ -64,11 +64,11 @@ public class FindDialog extends JDialog {
 		setSize(360, 220);
 		setResizable(false);
 
-		rowLabel = new JLabel("row: ");
-		columnLabel = new JLabel("col: ");
-		dateLabel = new JLabel("date: ");
+		rowLabel = new JLabel("Row: ");
+		columnLabel = new JLabel("Column: ");
+		dateLabel = new JLabel("Date: ");
 		rowPromptLabel = new JLabel("Change an entire row? ");
-		dataLabel = new JLabel("description: ");
+		dataLabel = new JLabel("Description: ");
 		constraints = new GridBagConstraints();
 		constraints.insets = new Insets(3, 3, 3, 3);
 
@@ -176,25 +176,25 @@ public class FindDialog extends JDialog {
 			public void itemStateChanged(ItemEvent e) {
 				switch(e.getItem().toString()){
 				case "Decorated Pot":
-					dataLabel.setText("description: ");
+					dataLabel.setText("Description: ");
 					break;
 				case "Submerged Pot":
-					dataLabel.setText("depth: ");
+					dataLabel.setText("Depth: ");
 					break;
 				case "Storage Pot":
-					dataLabel.setText("volume: ");
+					dataLabel.setText("Volume: ");
 					break;
 				case "Kiln":
-					dataLabel.setText("radius: ");
+					dataLabel.setText("Radius: ");
 					break;
 				case "Hearth":
-					dataLabel.setText("length, width: ");
+					dataLabel.setText("Length, Width: ");
 					break;
 				case "Ferrous":
-					dataLabel.setText("strength: ");
+					dataLabel.setText("Strength: ");
 					break;
 				case "NonFerrous":
-					dataLabel.setText("type: ");
+					dataLabel.setText("Type: ");
 					break;
 				}
 				dataLabel.setEnabled(true);
