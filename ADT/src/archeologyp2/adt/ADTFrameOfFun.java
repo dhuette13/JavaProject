@@ -1,6 +1,6 @@
 package archeologyp2.adt;
 
-import java.awt.event.ActionEvent;
+import java.awt.event.ActionEvent; 
 import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
@@ -14,9 +14,15 @@ import archeologyp2.shared.map.ViewingOption;
 
 /**
  * 
+ * ADT FRAME (OF FUN) FOR GUI
+ * 
+ * This class contains methods that allow the user to access the other
+ * Graphical User Interfaces through the menu bar, and will show output of the
+ * maps being changed by the user. 
+ * 
  * @author Daniel
  * @author Celine
- *
+ * 
  */
 public class ADTFrameOfFun extends FrameOfFun {
 
@@ -37,7 +43,8 @@ public class ADTFrameOfFun extends FrameOfFun {
 	private SubController subController;
 
 	/**
-	 * Adds the ADT specifice menu items and creates subcontroller
+	 * For the public ADTFrameOfFun
+	 * This method adds the ADT specific menu items and creates subController.
 	 * 
 	 * @param title
 	 */
@@ -48,7 +55,19 @@ public class ADTFrameOfFun extends FrameOfFun {
 	}
 
 	/**
-	 * Creates the new Menu Items
+	 * For the private void addMenuItems
+	 * 
+	 * This method creates the new Menu Items. For the ADT,
+	 * this would include the Dig tool, the Scan tool, 
+	 * view different types of maps, and the report tool.
+	 * The Dig Tool instantiates the DigDialog class and sets 
+	 * the dig GUI to visible. The Scan tool instantiates the
+	 * ScanDialog class and sets the scan GUI to visible. 
+	 * The map different map views allow the user to toggle 
+	 * between different maps by changing the viewing option
+	 * and updating to the current map once they change the
+	 * view. The report tool instantiates and shows the report
+	 * in this ADTFrameOfFun.
 	 */
 	private void addMenuItems(){
 		loadMenuItem.addActionListener(new ActionListener() {

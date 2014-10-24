@@ -12,6 +12,20 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+/**
+ * 
+ * DIG DIALOG TOOL TO HANDLE DIGGING
+ * 
+ * This class contains the methods DigDialog, addComponent,
+ * createButtons, and addTextFields. It uses a JDialog and 
+ * implements a GridBagLayout for a more user-friendly interface.
+ * This class sets up the dialog box that the user will
+ * be able to use to specify what coordinate they want to dig.
+ * 
+ * @author Daniel
+ * @author Celine
+ *
+ */
 public class DigDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
@@ -29,6 +43,16 @@ public class DigDialog extends JDialog {
 	private String column;
 	private SubController subController;
 	
+	/**
+	 * For the public Dialog method
+	 * 
+	 * This method takes in a title and a subController. It uses
+	 * a GridBagLayout and adds two labels, two text fields, and two
+	 * buttons. 
+	 * 
+	 * @param title
+	 * @param subController
+	 */
 	public DigDialog(String title, SubController subController){
 		this.setTitle(title);
 		this.subController = subController;
@@ -52,6 +76,20 @@ public class DigDialog extends JDialog {
 		addComponent(cancelButton, 1, 2, 1, 1);
 	}
 
+	/**
+	 * For the public void addComponent method
+	 * 
+	 * This method takes in parameters passed by the above method
+	 * (public DigDialog) and smushes all the information 
+	 * being passed to it until it can fit it correctly into
+	 * constraints, to use in the add() to the frame. 
+	 * 
+	 * @param component
+	 * @param column
+	 * @param row
+	 * @param width
+	 * @param height
+	 */
 	public void addComponent(JComponent component, int column, int row, int width, int height){
 		constraints.gridx = column;
 		constraints.gridy = row;
@@ -60,11 +98,30 @@ public class DigDialog extends JDialog {
 		this.add(component, constraints);
 	}
 	
+	/**
+	 * For the private void createTextFields method
+	 * 
+	 * This method merely creates the text fields that the user will be 
+	 * typing their input to. 
+	 * 
+	 */
 	private void createTextFields() {
 		rowTextField = new JTextField(5);
 		columnTextField = new JTextField(5);
 	}
 	
+	/**
+	 * For the private void createButtons method
+	 * 
+	 * This method creates the buttons "OK" and 
+	 * "Cancel", which use ActionListeners to see what the
+	 * user would like the program to do. If the user
+	 * selects "Cancel", the dialog box closes. If the
+	 * user selects "OK", the program takes the
+	 * information from the text fields and passes them
+	 * to the SubController method dig to work its magic.
+	 * 
+	 */
 	private void createButtons() {
 		confirmButton = new JButton("OK");
 		confirmButton.addActionListener(new ActionListener(){

@@ -17,6 +17,13 @@ import javax.swing.event.ChangeListener;
 
 /**
  * 
+ * THE SCANDIALOG GUI
+ * 
+ * This class makes the Scan dialog, which the user uses if they 
+ * wish to use the tools (magnetometer, metal detector) to figure out
+ * if there are any metal objects or charcoal in a coordinate of
+ * their choice.
+ * 
  * @author Daniel
  * @author Celine
  *
@@ -38,6 +45,18 @@ public class ScanDialog extends JDialog implements ActionListener {
 	private boolean singleOrRow;
 
 	//For Try-Catch: "Exception in thread "AWT-EventQueue-0" java.lang.NumberFormatException"
+	/**
+	 * For public ScanDialog
+	 * 
+	 * This method sets the dialog up so that the user will be able to
+	 * specify what tool they want to use (magnetometer, metal detector)
+	 * and what coordinate they want to scan with said tool. It contains
+	 * two labels, two text areas, two buttons, and a combobox that shows
+	 * the user their tool options. 
+	 * 
+	 * @param title
+	 * @param subController
+	 */
 	public ScanDialog(String title, SubController subController){
 		this.setTitle(title);
 		this.subController = subController;
@@ -118,6 +137,15 @@ public class ScanDialog extends JDialog implements ActionListener {
 	 * 
 	 */
 	@Override
+	/**
+	 * For the public void actionPerformed
+	 * 
+	 * This will activate when the user clicks the
+	 * "OK" button. Once the user clicks the
+	 * "OK" button, based on what tool they'd selected, 
+	 * this passes information to the specified tool.
+	 * 
+	 */
 	public void actionPerformed(ActionEvent e) {
 		int feature = comboBox.getSelectedIndex();
 		int row = Integer.parseInt(rowText.getText());

@@ -269,6 +269,8 @@ public class SubController {
 	}
 
 	/**
+	 * For public void setMap
+	 * 
 	 * @param map
 	 */
 	public void setMap(Map<Coordinate> map) {
@@ -276,6 +278,8 @@ public class SubController {
 	}
 
 	/**
+	 * For public void updateMap
+	 * 
 	 * Updates the maps viewing symbols
 	 */
 	public void updateMap() {
