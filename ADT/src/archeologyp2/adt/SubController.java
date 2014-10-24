@@ -12,6 +12,9 @@ package archeologyp2.adt;
 import javax.swing.JTextArea;
 
 import archeologyp2.shared.finds.Artifact;
+import archeologyp2.shared.finds.FerrousMetal;
+import archeologyp2.shared.finds.MetalObject;
+import archeologyp2.shared.finds.NonFerrousMetal;
 import archeologyp2.shared.map.Coordinate;
 import archeologyp2.shared.map.Map;
 import archeologyp2.shared.map.MapEditor;
@@ -96,16 +99,41 @@ public class SubController {
 	 * @param col
 	 * 
 	 */
-	public void metalDetector(int row, String col){
+	public int metalDetector(int row, String col){
+		MetalObject metal;
 		Coordinate current;
+		int detectorResults = 0;
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col);
 		current = map.getPlaneItem(r, c);
 		current.setMetalInspected(true);
-		if(current.getMetalCount() != 0)
+		if(current.getMetalCount() != 0) {
 			current.setMetalHidden(true);
-		else
+			
+			/* Look for first instance of Ferrous Metal, increment results */
+			for(int i = 0; i < current.getMetalCount(); i++){
+				metal = current.getMetal(i);
+				if(metal instanceof FerrousMetal){
+					detectorResults += metal.respondToMetalDetector();
+					break;
+				} 
+			}
+			
+			/* Look for first instance of NonFerrous Metal, increment results */
+			for(int i = 0; i < current.getMetalCount(); i++){
+				metal = current.getMetal(i);
+				if(metal instanceof NonFerrousMetal){
+					detectorResults += metal.respondToMetalDetector();
+					break;
+				}
+			}
+		}
+		
+		else {
 			current.setMetalHidden(false);
+		}
+		
+		return detectorResults;
 	}
 
 	/**

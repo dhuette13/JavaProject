@@ -6,6 +6,7 @@ import java.util.Collections;
 import archeologyp2.shared.finds.Artifact;
 import archeologyp2.shared.finds.Charcoal;
 import archeologyp2.shared.finds.MetalObject;
+import archeologyp2.shared.finds.NonFerrousMetal;
 import archeologyp2.shared.finds.Pottery;
 
 /**
@@ -62,6 +63,24 @@ public class Coordinate {
 			metalCount.add((MetalObject) item);
 		if(item instanceof Charcoal)
 			charcoalCount.add((Charcoal) item);
+	}
+	
+	/**
+	 * Removes the instance of gold stored in the current coordinate
+	 * 
+	 */
+	public void removeGold(){
+		MetalObject m;
+		/* Search for the gold object */
+		for(int i = 0; i < metalCount.size(); i++){
+			m = metalCount.get(i);
+			if(m instanceof NonFerrousMetal){
+				if(((NonFerrousMetal) m).getType().toLowerCase().equals("gold")){
+					/* When found, remove from list */
+					metalCount.remove(i);
+				}
+			}
+		}
 	}
 
 	/**

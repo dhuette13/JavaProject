@@ -10,7 +10,7 @@ package archeologyp2.shared.finds;
  * This class handles the metal object finds.
  *
  */
-public class MetalObject extends Artifact {
+public abstract class MetalObject extends Artifact {
 	int date;
 	
 	/**
@@ -22,4 +22,11 @@ public class MetalObject extends Artifact {
 	public MetalObject(int date){
 		super(date);
 	}
+	
+	/**
+	 * Specifies what kinds of metal are in a coordinate
+	 * 
+	 * @return int 
+	 */
+	public abstract int respondToMetalDetector();
 }

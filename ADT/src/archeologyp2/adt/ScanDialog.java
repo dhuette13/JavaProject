@@ -7,13 +7,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 /**
  * 
@@ -30,12 +27,10 @@ public class ScanDialog extends JDialog implements ActionListener {
 	private JComboBox<String> comboBox;
 	private JLabel rowLabel;
 	private JLabel colLabel;
-	private JLabel rowPromptLabel;
 	private JTextField rowText;
 	private JTextField colText;
 	private JButton oButton;
 	private JButton cButton;
-	private boolean singleOrRow;
 
 	//For Try-Catch: "Exception in thread "AWT-EventQueue-0" java.lang.NumberFormatException"
 	public ScanDialog(String title, SubController subController){
@@ -133,6 +128,7 @@ public class ScanDialog extends JDialog implements ActionListener {
 		default:
 			break;
 		}
+		subController.updateMap();
 		dispose();
 	}
 }
