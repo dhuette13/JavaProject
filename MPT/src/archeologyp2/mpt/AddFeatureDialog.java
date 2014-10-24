@@ -1,6 +1,5 @@
 package archeologyp2.mpt;
 
-import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -23,11 +22,11 @@ import javax.swing.event.ChangeListener;
  *
  */
 public class AddFeatureDialog extends JDialog implements ActionListener {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	private SubController subController;
-	
+
 	private JComboBox<String> comboBox;
 	private JCheckBox checkBox;
 	private JLabel rowLabel;
@@ -38,19 +37,16 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 	private JButton oButton;
 	private JButton cButton;
 	private boolean singleOrRow;
-	
+
 	//For Try-Catch: "Exception in thread "AWT-EventQueue-0" java.lang.NumberFormatException"
 	public AddFeatureDialog(String title, SubController subController){
 		this.setTitle(title);
 		this.subController = subController;
-		
 		setSize(340,180);
 		setVisible(true);
+		setLayout(new GridBagLayout());
 		setResizable(false);
 
-		Container pane = getContentPane();
-		pane.setLayout(new GridBagLayout());
-		
 		checkBox = new JCheckBox();
 		rowPromptLabel = new JLabel("Change an entire row? ");
 		rowLabel = new JLabel("Row: ");
@@ -59,27 +55,25 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 		colText = new JTextField(5);
 		oButton = new JButton("OK");
 		cButton = new JButton("Cancel");
-		
+
 		String[] choices = {"Dirt", "Stone", "Post Hole"};
 		comboBox = new JComboBox<String>(choices);
-		
+
 		GridBagConstraints constraints = new GridBagConstraints();
-		
+
 		// =========== FIRST COLUMN ========= //
 		constraints.insets = new Insets(3,3,3,3);
 		constraints.anchor = GridBagConstraints.WEST;
 		constraints.fill = GridBagConstraints.NONE;
-//		constraints.weightx = 1;
-//		constraints.weighty = 1;
-		
+
 		constraints.gridx = 0;
 		constraints.gridy = 2;
 		add(rowLabel, constraints);
-		
+
 		constraints.gridx = 0;
 		constraints.gridy = 3;
 		add(colLabel, constraints);
-		
+
 		// ========== SECOND COLUMN ========== //
 		constraints.anchor = GridBagConstraints.CENTER;
 		constraints.gridx = 0;
@@ -87,21 +81,21 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 		constraints.gridwidth = 2;
 		add(rowPromptLabel, constraints);
 		constraints.gridwidth = 1;
-		
+
 		constraints.gridx = 1;
 		constraints.gridy = 2;
 		add(rowText, constraints);
-		
+
 		constraints.gridx = 1;
 		constraints.gridy = 3;
 		add(colText, constraints);
-		
+
 		constraints.gridx = 1;
 		constraints.gridy = 4;
 		add(oButton, constraints);
 		oButton.addActionListener(this);
-		
-		
+
+
 		// ============= THIRD COLUMN =========== //
 		constraints.anchor = GridBagConstraints.WEST;
 		constraints.gridx = 2;
@@ -122,11 +116,11 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 			}
 
 		});
-		
+
 		constraints.gridx = 2;
 		constraints.gridy = 2; 
 		add(comboBox, constraints);
-		
+
 		constraints.gridx = 2;
 		constraints.gridy = 4;
 		add(cButton, constraints);
@@ -136,7 +130,7 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 				dispose();
 			}
 		});
-		
+
 	}
 
 	/* (non-Javadoc)
@@ -145,23 +139,11 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		try{
-			int feature;
-			feature=comboBox.getSelectedIndex();
-			feature++;
-			System.out.println(feature);
-			int row = Integer.parseInt(rowText.getText());
-			String col = colText.getText();
-			System.out.println(row);
-			System.out.println(col);
-			subController.changeFeature(row, col, feature, singleOrRow);
-			subController.updateMap();
-		}
-		catch(java.lang.NumberFormatException n) {
-			System.out.println("Your input was wrong. Please try again."); //placeholder for exception
-		}
+		int feature = comboBox.getSelectedIndex() + 1;
+		int row = Integer.parseInt(rowText.getText());
+		String col = colText.getText();
+		subController.changeFeature(row, col, feature, singleOrRow);
+		subController.updateMap();
 		dispose();
-		
 	}
 }
