@@ -90,11 +90,12 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 		constraints.gridy = 3;
 		add(colText, constraints);
 
+
+		constraints.anchor = GridBagConstraints.EAST;
 		constraints.gridx = 1;
 		constraints.gridy = 4;
 		add(oButton, constraints);
 		oButton.addActionListener(this);
-
 
 		// ============= THIRD COLUMN =========== //
 		constraints.anchor = GridBagConstraints.WEST;
@@ -121,6 +122,8 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 		constraints.gridy = 2; 
 		add(comboBox, constraints);
 
+		
+		constraints.anchor = GridBagConstraints.EAST;
 		constraints.gridx = 2;
 		constraints.gridy = 4;
 		add(cButton, constraints);

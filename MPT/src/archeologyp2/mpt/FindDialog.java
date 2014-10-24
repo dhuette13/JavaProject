@@ -54,15 +54,17 @@ public class FindDialog extends JDialog {
 	private SubController subController;
 
 	public FindDialog(String title, SubController subController){
-		this.setTitle(title);
+		this.subController = subController;
+		
+		setTitle(title);
+		setLayout(new GridBagLayout());
+		setSize(360, 220);
+		setResizable(false);
+
 		createTextFields();
 		createButton();
 		createComboBox();
 		createCheckBox();
-		this.subController = subController;
-		setLayout(new GridBagLayout());
-		setSize(360, 220);
-		setResizable(false);
 
 		rowLabel = new JLabel("Row: ");
 		columnLabel = new JLabel("Column: ");
