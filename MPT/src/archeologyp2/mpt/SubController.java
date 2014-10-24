@@ -12,9 +12,14 @@ package archeologyp2.mpt;
 import javax.swing.JTextArea;
 
 import archeologyp2.shared.finds.Artifact;
-import archeologyp2.shared.finds.Charcoal;
-import archeologyp2.shared.finds.MetalObject;
+import archeologyp2.shared.finds.DecoratedPottery;
+import archeologyp2.shared.finds.FerrousMetal;
+import archeologyp2.shared.finds.Hearth;
+import archeologyp2.shared.finds.Kiln;
+import archeologyp2.shared.finds.NonFerrousMetal;
 import archeologyp2.shared.finds.Pottery;
+import archeologyp2.shared.finds.StoragePottery;
+import archeologyp2.shared.finds.SubmergedPottery;
 import archeologyp2.shared.map.Coordinate;
 import archeologyp2.shared.map.Feature;
 import archeologyp2.shared.map.Map;
@@ -27,15 +32,15 @@ import archeologyp2.shared.map.Utilities;
  *
  */
 public class SubController {
-	
+
 	private Map<Coordinate> map;
 	private JTextArea output;
 	String text;
-	
+
 	public SubController(JTextArea output){
 		this.output = output;
 	}
-	
+
 	/**
 	 * Prints the about information to text area
 	 */
@@ -51,19 +56,17 @@ public class SubController {
 				+ "\n";
 		output.setText(text);
 	}
-	
+
 	/**
-	 * 
-	 * For the public void changeFeature method
-	 * @param row
-	 * @param col
-	 * @param feature they'd like to change to
-	 * 
 	 * This method involves changing the feature to
 	 * what the user specifies. After changing the 
 	 * feature, it then sets the alias (or "natural") features so
 	 * the user can access view them again, before updating the
 	 * map view.
+	 * 
+	 * @param row
+	 * @param col
+	 * @param feature they'd like to change to
 	 * 
 	 */
 	public void changeFeature(int row, String col, int feature, boolean loopFlag){
@@ -84,7 +87,7 @@ public class SubController {
 			System.out.println("Invalid option");
 			return;
 		}
-		
+
 		if(loopFlag) {
 			for(int j = 0; j < map.getNumColumns(); j++){
 				current = map.getPlaneItem(r, j);
@@ -100,34 +103,53 @@ public class SubController {
 
 	/**
 	 * 
-	 * For the public void addFind method
-	 * @param row
-	 * @param col
-	 * @param type of find
-	 * @param date(s) for the find
-	 * 
 	 * This method adds finds based on the user preference,
 	 * and adds the dates of those finds. 
 	 * 
+	 * @param row
+	 * @param col
+	 * @param type of find
+	 * @param data 
+	 * @param date(s) for the find
+	 * 
 	 */
-	public void addFind(int row, String col, int type, int date, boolean loopFlag){
+	public void addFind(int row, String col, int type, int date, String data, boolean loopFlag){
 		Coordinate current;
 		Artifact artifact = new Pottery(date);
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col); 
 		switch(type){
-		/* Add to pot collection */
+			/* Add to decorated pot collection */
 		case 1:
-			artifact = new Pottery(date);
+			artifact = new DecoratedPottery(date, data);
 			break;
-			/* Add to charcoal collection */
+			/* Add to submerged pot collection */
 		case 2:
-			artifact = new Charcoal(date);
+			artifact = new SubmergedPottery(date, Integer.parseInt(data));
 			break;
-			/* Add to metal collection */
+			/* Add to storage pot collection */
 		case 3:
-			artifact = new MetalObject(date);
+			artifact = new StoragePottery(date, Integer.parseInt(data));
 			break;
+			/* Add to kiln collection */
+		case 4:
+			artifact = new Kiln(date, Integer.parseInt(data));
+			break;
+			/* Add to hearth collection */
+		case 5:
+			String info[] = data.split(",");
+			artifact = new Hearth(date, Integer.parseInt(info[0]), Integer.parseInt(info[1]));
+			break;
+			/* Add to ferrous collection */
+		case 6:
+			artifact = new FerrousMetal(date, Integer.parseInt(data));
+			break;
+			/* Add to non-ferrous collection */
+		case 7:
+			artifact = new NonFerrousMetal(date, data);
+			break;
+		default:
+			System.out.println("Invalid option");
 		}
 		if(loopFlag){
 			for(int j = 0; j < map.getNumColumns(); j++){
@@ -144,22 +166,30 @@ public class SubController {
 	}
 
 	/**
-	 * @param map2
+	 * @param map
 	 */
 	public void setMap(Map<Coordinate> map) {
 		this.map = map;
 	}
-	
+
+	/**
+	 * Updates the maps viewing symbols
+	 */
 	public void updateMap(){
 		MapEditor.updateView(map);
 		Utilities.printMap(map, output);
 	}
 
 	/**
+	 * Marks a coordinate as heritage
+	 * 
 	 * @param row
 	 * @param column
 	 */
 	public void markHeritage(int row, String column) {
-		
+		int r = row - 1;
+		int c = Utilities.columnToIndex(column);
+		Coordinate current = map.getPlaneItem(r, c);
+		current.setHeritage(true);
 	}
 }
