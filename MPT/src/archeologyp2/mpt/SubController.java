@@ -147,6 +147,23 @@ public class SubController {
 			/* Add to non-ferrous collection */
 		case 7:
 			artifact = new NonFerrousMetal(date, data);
+			if(data.toLowerCase().equals("Gold")){
+				NonFerrousMetal gold = (NonFerrousMetal) artifact;
+				if(gold.goldExists()){
+					int goldRow = gold.getGoldRow() - 1;
+					int goldColumn = Utilities.columnToIndex(gold.getGoldColumn());
+					current = map.getPlaneItem(goldRow, goldColumn);
+					current.removeGold();
+					
+					gold.setGoldRow(row);
+					gold.setGoldColumn(col);
+					current = map.getPlaneItem(r, c);
+					current.addFind(artifact);
+				} else {
+					gold.setGoldExists(true);
+				}
+				return;
+			}
 			break;
 		default:
 			System.out.println("Invalid option");

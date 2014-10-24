@@ -37,4 +37,9 @@ public class FerrousMetal extends MetalObject {
 		return signalStrength;
 	}
 
+	@Override
+	public int respondToMetalDetector() {
+		return 2;
+	}
+
 }
