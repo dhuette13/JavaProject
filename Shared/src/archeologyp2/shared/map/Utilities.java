@@ -19,7 +19,7 @@ import java.util.Scanner;
 import javax.swing.JTextArea;
 
 import archeologyp2.shared.finds.Charcoal;
-import archeologyp2.shared.finds.MetalObject;
+import archeologyp2.shared.finds.FerrousMetal;
 import archeologyp2.shared.finds.Pottery;
 
 /**
@@ -111,7 +111,7 @@ public class Utilities {
 				numMetal = Integer.parseInt(dataArray[i++]);
 				while(numMetal-- != 0){
 					date = Integer.parseInt(dataArray[i++]);
-					current.addFind(new MetalObject(date));
+					current.addFind(new FerrousMetal(date));
 				}
 
 				/* Iterate through charcoal input */
