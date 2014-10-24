@@ -1,6 +1,3 @@
-/** 
- * 
- */
 package archeologyp2.mpt;
 
 import java.awt.event.ActionEvent;
@@ -15,6 +12,13 @@ import archeologyp2.shared.map.MapEditor;
 import archeologyp2.shared.map.Utilities;
 
 /**
+ * THE MPT FRAME OF FUN GUI
+ * 
+ * This calls the other classes and includes a fully functional 
+ * menu bar, which allows the user to choose from multiple options
+ * on what they'd like to do, including generating an entirely new
+ * map. 
+ * 
  * @author Daniel
  * @author Celine
  *
@@ -34,7 +38,10 @@ public class MPTFrameOfFun extends FrameOfFun {
 	
 
 	/**
-	 * Adds MPT specific menu items and creates subcontroller
+	 * For public MPTFrameOfFun
+	 * 
+	 * This adds MPT specific menu items and creates subController
+	 * 
 	 * @param title
 	 */
 	public MPTFrameOfFun(String title) {
@@ -45,7 +52,11 @@ public class MPTFrameOfFun extends FrameOfFun {
 	}
 
 	/**
-	 *  Creates the new Menu Items
+	 * For private void addMenuItems
+	 * 
+	 * This creates the new Menu Items, including generate a 
+	 * new map, add a find, add a feature, mark heritage, view the
+	 * current symbol map, the viewing options, and the about. 
 	 */
 	private void addMenuItems() {
 		

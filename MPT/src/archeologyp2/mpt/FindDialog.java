@@ -1,6 +1,3 @@
-/**
- * 
- */
 package archeologyp2.mpt;
 
 import java.awt.GridBagConstraints;
@@ -22,6 +19,14 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
+ * THE FIND DIALOG FOR THE MPT GUI
+ * 
+ * This class contains a dialog that has multiple GUI tools
+ * implemented, and allows the user to see a user friendly 
+ * dialog box if they specified they wanted to add a find 
+ * to their map. It contains five labels, four text fields,
+ * one check box, one combobox, and two buttons. 
+ * 
  * @author Daniel
  * @author Celine
  */
@@ -53,6 +58,15 @@ public class FindDialog extends JDialog {
 	private String data;
 	private SubController subController;
 
+	/**
+	 * For the public FindDialog
+	 * 
+	 * This includes a GridBagLayout that allows the GUI dialog
+	 * box to seem pleasant to the user's eyes.
+	 * 
+	 * @param title
+	 * @param subController
+	 */
 	public FindDialog(String title, SubController subController){
 		this.subController = subController;
 		
@@ -102,7 +116,14 @@ public class FindDialog extends JDialog {
 	}
 
 	/**
+	 * For the private void createCheckBox
 	 * 
+	 * This method creates a check box for when the
+	 * user wants to specify they want to change
+	 * and entire row in their map. It checks to see
+	 * if the check box has been clicked, and if so, 
+	 * then it grays out the column option so the user
+	 * won't get confused. 
 	 */
 	private void createCheckBox() {
 		rowCheckBox = new JCheckBox();
@@ -122,6 +143,19 @@ public class FindDialog extends JDialog {
 
 	}
 
+	/**
+	 * For public void addComponent
+	 * 
+	 * This takes in multiple components from the public FindDialog
+	 * and smushes the parameters down so they can all fit in the
+	 * constraints and add it to the GridBagLayout
+	 * 
+	 * @param component
+	 * @param column
+	 * @param row
+	 * @param width
+	 * @param height
+	 */
 	public void addComponent(JComponent component, int column, int row, int width, int height){
 		constraints.gridx = column;
 		constraints.gridy = row;
@@ -131,7 +165,10 @@ public class FindDialog extends JDialog {
 	}
 
 	/**
+	 * For private void createTextFields
 	 * 
+	 * This creates the four text fields the user will use
+	 * to input their information.
 	 */
 	private void createTextFields() {
 		rowTextField = new JTextField(5);
@@ -141,7 +178,13 @@ public class FindDialog extends JDialog {
 	}
 
 	/**
+	 * For private void createButton
 	 * 
+	 * This creates exactly two buttons, each with ActionListeners.
+	 * The first is the "OK" button, which when clicked will take the
+	 * user input, and run it through other called methods. The second
+	 * one is the "Cancel" button, which will let the user click out
+	 * of the GUI without having to click the red X. 
 	 */
 	private void createButton() {
 		confirmButton = new JButton("OK");
@@ -168,6 +211,13 @@ public class FindDialog extends JDialog {
 	}
 
 	/**
+	 * For private void createComboBox
+	 * 
+	 * This creates the combobox, which allows the user to
+	 * specify down to the details what kind of find they'd
+	 * like to add in, from a decorated pot to a nonferrous metal. 
+	 * Depending on what they want, the last label will change to
+	 * suit the needs of the user. 
 	 * 
 	 */
 	private void createComboBox() {

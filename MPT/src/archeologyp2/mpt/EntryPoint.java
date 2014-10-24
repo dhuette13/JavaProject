@@ -27,7 +27,7 @@ public class EntryPoint {
 	}
 
 	/**
-	 * 
+	 * For private void go
 	 */
 	private void go() {
 		frame.setVisible(true);
@@ -36,9 +36,10 @@ public class EntryPoint {
 	/**
 	 * 
 	 * For the public static void main method
-	 * @param args
 	 * 
 	 * This method starts the entire program. 
+	 * 
+	 * @param args
 	 * 
 	 */
 	public static void main(String[] args) {

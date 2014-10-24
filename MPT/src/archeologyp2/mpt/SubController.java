@@ -27,21 +27,35 @@ import archeologyp2.shared.map.MapEditor;
 import archeologyp2.shared.map.Utilities;
 
 /**
+ * THE SUBCONTROLLER FOR THE MPT
+ * 
+ * This class contains all the logic done in the MPT, so that
+ * the GUI is by itself. It includes multiple things like changing
+ * the features, adding finds, making sure only one gold is on the
+ * map, and many more. 
+ * 
  * @author Daniel
  * @author Celine
  *
  */
 public class SubController {
-
+	
 	private Map<Coordinate> map;
 	private JTextArea output;
 	String text;
 
+	/**
+	 * For public SubController
+	 * 
+	 * @param output
+	 */
 	public SubController(JTextArea output){
 		this.output = output;
 	}
 
 	/**
+	 * For public void aboutMPT
+	 * 
 	 * Prints the about information to text area
 	 */
 	public void aboutMPT(){
@@ -58,6 +72,8 @@ public class SubController {
 	}
 
 	/**
+	 * For public void changeFeature
+	 * 
 	 * This method involves changing the feature to
 	 * what the user specifies. After changing the 
 	 * feature, it then sets the alias (or "natural") features so
@@ -102,6 +118,7 @@ public class SubController {
 	}
 
 	/**
+	 * For public void addFind
 	 * 
 	 * This method adds finds based on the user preference,
 	 * and adds the dates of those finds. 
@@ -183,6 +200,8 @@ public class SubController {
 	}
 
 	/**
+	 * For public void setMap
+	 * 
 	 * @param map
 	 */
 	public void setMap(Map<Coordinate> map) {
@@ -190,6 +209,8 @@ public class SubController {
 	}
 
 	/**
+	 * For public void updateMap
+	 * 
 	 * Updates the maps viewing symbols
 	 */
 	public void updateMap(){
@@ -198,6 +219,8 @@ public class SubController {
 	}
 
 	/**
+	 * For public void markHeritage
+	 * 
 	 * Marks a coordinate as heritage
 	 * 
 	 * @param row
