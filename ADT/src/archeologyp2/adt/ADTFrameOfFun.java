@@ -83,7 +83,8 @@ public class ADTFrameOfFun extends FrameOfFun {
 		scanMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				subController.magnetoMeter(5, "C");
+				ScanDialog scanDialog = new ScanDialog("Scan",subController);
+				scanDialog.setVisible(true);
 			}
 		});
 

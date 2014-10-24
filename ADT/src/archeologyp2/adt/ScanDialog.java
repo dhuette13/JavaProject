@@ -46,7 +46,6 @@ public class ScanDialog extends JDialog implements ActionListener {
 		setLayout(new GridBagLayout());
 		setResizable(false);
 
-		rowPromptLabel = new JLabel("Change an entire row? ");
 		rowLabel = new JLabel("Row: ");
 		rowText = new JTextField(5);
 		colLabel = new JLabel("Column: ");
@@ -76,9 +75,6 @@ public class ScanDialog extends JDialog implements ActionListener {
 		constraints.anchor = GridBagConstraints.CENTER;
 		constraints.gridx = 0;
 		constraints.gridy = 0;
-		constraints.gridwidth = 2;
-		add(rowPromptLabel, constraints);
-		constraints.gridwidth = 1;
 
 		constraints.gridx = 1;
 		constraints.gridy = 2;
