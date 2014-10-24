@@ -155,9 +155,6 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 		catch(java.lang.NumberFormatException n) {
 			System.out.println("Your input was wrong. Please try again."); //placeholder for exception
 		}
-		/*catch(java.lang.NullPointerException n){
-			System.out.println("Uh oh!");
-		}*/
 		dispose();
 		
 	}
