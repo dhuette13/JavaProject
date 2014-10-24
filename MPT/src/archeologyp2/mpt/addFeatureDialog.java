@@ -15,7 +15,6 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-
 /**
  * 
  * @author Daniel
@@ -37,12 +36,12 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 	private JTextField colText;
 	private JButton oButton;
 	private JButton cButton;
-	private String title;
+	private boolean singleOrRow;
 	
 	//For Try-Catch: "Exception in thread "AWT-EventQueue-0" java.lang.NumberFormatException"
-	public AddFeatureDialog(String title){
+	public AddFeatureDialog(String title, SubController subController){
 		this.setTitle(title);
-		this.title = title;
+		this.subController = subController;
 		
 		setBounds(50,50,300,200);
 		setVisible(true);
@@ -106,9 +105,11 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
 				if(checkBox.isSelected()){
+					singleOrRow = true;
 					colText.setEnabled(false);
 					colLabel.setEnabled(false);
 				} else {
+					singleOrRow = false;
 					colText.setEnabled(true);
 					colLabel.setEnabled(true);
 				}
@@ -143,14 +144,20 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 			int feature;
 			feature=comboBox.getSelectedIndex();
 			feature++;
+			System.out.println(feature);
 			int row = Integer.parseInt(rowText.getText());
 			String col = colText.getText();
-			subController.changeFeature(row, col, feature, false);
+			System.out.println(row);
+			System.out.println(col);
+			subController.changeFeature(row, col, feature, singleOrRow);
 			subController.updateMap();
 		}
 		catch(java.lang.NumberFormatException n) {
 			System.out.println("Your input was wrong. Please try again."); //placeholder for exception
 		}
+		/*catch(java.lang.NullPointerException n){
+			System.out.println("Uh oh!");
+		}*/
 		dispose();
 		
 	}

@@ -77,7 +77,7 @@ public class MPTFrameOfFun extends FrameOfFun {
 		addFeatureMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AddFeatureDialog addFeature = new AddFeatureDialog("Add Feature");
+				AddFeatureDialog addFeature = new AddFeatureDialog("Add Feature", subController);
 				addFeature.setVisible(true);
 			}
 			
