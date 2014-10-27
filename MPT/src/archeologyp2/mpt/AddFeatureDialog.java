@@ -16,6 +16,13 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 /**
+ * THE ADD FEATURE DIALOG OF THE MPT GUI
+ * 
+ * This class contains methods that allow the user to 
+ * see a GUI if they clicked on the menu item "Add Feature".
+ * It will ask for what coordinate (or row) they want to
+ * change, and what feature they want to change
+ * what they specified to. 
  * 
  * @author Daniel
  * @author Celine
@@ -39,6 +46,21 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 	private boolean singleOrRow;
 
 	//For Try-Catch: "Exception in thread "AWT-EventQueue-0" java.lang.NumberFormatException"
+	/**
+	 * For public AddFeatureDialog
+	 * 
+	 * This contains a GridBagLayout, which makes the user interface
+	 * seem more pleasing to the user's eyes. It contains a check box,
+	 * three labels, two text fields, two buttons, and a combobox for
+	 * the user to specify what feature they want to change their 
+	 * specified coordinate (or row) to. It also implements a 
+	 * ChangeListener to see whether or not the user has selected they
+	 * wanted to change a whole row, which makes typing in a 
+	 * column grey out. 
+	 * 
+	 * @param title
+	 * @param subController
+	 */
 	public AddFeatureDialog(String title, SubController subController){
 		this.setTitle(title);
 		this.subController = subController;
@@ -141,6 +163,9 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 	 * 
 	 */
 	@Override
+	/**
+	 * For public void actionPerformed
+	 */
 	public void actionPerformed(ActionEvent e) {
 		int feature = comboBox.getSelectedIndex() + 1;
 		int row = Integer.parseInt(rowText.getText());

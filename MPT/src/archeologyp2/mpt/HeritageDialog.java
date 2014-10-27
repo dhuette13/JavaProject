@@ -12,6 +12,17 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+/**
+ * THE HERITAGE DIALOG FOR MPT GUI
+ * 
+ * This class makes the Heritage dialog box when the 
+ * user would like to mark a certain coordinate that cannot
+ * be dug up. 
+ * 
+ * @author Daniel
+ * @author Celine
+ *
+ */
 public class HeritageDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
@@ -29,6 +40,17 @@ public class HeritageDialog extends JDialog {
 	private String column;
 	private SubController subController;
 	
+	/**
+	 * For public HeritageDialog
+	 * 
+	 * This includes two labels, one for row, and one for column.
+	 * And then it adds the two labels, two text fields, and
+	 * two buttons into the GridBagLayout to make a simple dialog 
+	 * pop-up. 
+	 * 
+	 * @param title
+	 * @param subController
+	 */
 	public HeritageDialog(String title, SubController subController){
 		this.setTitle(title);
 		this.subController = subController;
@@ -54,6 +76,15 @@ public class HeritageDialog extends JDialog {
 		addComponent(cancelButton, 1, 2, 1, 1);
 	}
 
+	/**
+	 * For public void addComponent
+	 * 
+	 * @param component
+	 * @param column
+	 * @param row
+	 * @param width
+	 * @param height
+	 */
 	public void addComponent(JComponent component, int column, int row, int width, int height){
 		constraints.gridx = column;
 		constraints.gridy = row;
@@ -62,11 +93,27 @@ public class HeritageDialog extends JDialog {
 		this.add(component, constraints);
 	}
 	
+	/**
+	 * For private void createTextFields
+	 * 
+	 * This creates the two text fields (one for row,
+	 * and one for column) for the coordinate the user wants
+	 * to mark as "Heritage".
+	 */
 	private void createTextFields() {
 		rowTextField = new JTextField(5);
 		columnTextField = new JTextField(5);
 	}
 	
+	/**
+	 * For private void createButtons
+	 * 
+	 * This creates exactly two buttons, each with ActionListeners.
+	 * The first is the "OK" button, which when clicked will take the
+	 * user input, and run it through other called methods. The second
+	 * one is the "Cancel" button, which will let the user click out
+	 * of the GUI without having to click the red X. 
+	 */
 	private void createButtons() {
 		confirmButton = new JButton("OK");
 		confirmButton.addActionListener(new ActionListener(){
