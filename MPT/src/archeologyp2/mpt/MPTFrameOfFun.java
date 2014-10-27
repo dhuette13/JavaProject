@@ -68,6 +68,7 @@ public class MPTFrameOfFun extends FrameOfFun {
 		
 		// From "Edit" Menu, Generate
 		generateMapMenuItem = new JMenuItem("Generate Map");
+		generateMapMenuItem.setMnemonic('G');
 		generateMapMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -88,6 +89,7 @@ public class MPTFrameOfFun extends FrameOfFun {
 		editMenu.add(generateMapMenuItem);
 		
 		addFeatureMenuItem = new JMenuItem("Add Feature");
+		addFeatureMenuItem.setMnemonic('e');
 		addFeatureMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -99,6 +101,7 @@ public class MPTFrameOfFun extends FrameOfFun {
 		editMenu.add(addFeatureMenuItem);
 		
 		addFindMenuItem = new JMenuItem("Add Find");
+		addFindMenuItem.setMnemonic('i');
 		addFindMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -110,6 +113,7 @@ public class MPTFrameOfFun extends FrameOfFun {
 		editMenu.add(addFindMenuItem);
 		
 		heritageMenuItem = new JMenuItem("Mark Heritage");
+		heritageMenuItem.setMnemonic('M');
 		heritageMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {

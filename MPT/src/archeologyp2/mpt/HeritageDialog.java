@@ -42,11 +42,13 @@ public class HeritageDialog extends JDialog {
 		constraints = new GridBagConstraints();
 		constraints.insets = new Insets(3, 3, 3, 3);
 		
-		rowLabel = new JLabel("row: ");
-		columnLabel = new JLabel("column: ");
+		rowLabel = new JLabel("Row: ");
+		columnLabel = new JLabel("Column: ");
+		constraints.anchor = GridBagConstraints.WEST;
 		addComponent(rowLabel, 0, 0, 1, 1);
-		addComponent(rowTextField, 1, 0, 1, 1);
 		addComponent(columnLabel, 0, 1, 1, 1);
+		constraints.anchor = GridBagConstraints.EAST;
+		addComponent(rowTextField, 1, 0, 1, 1);
 		addComponent(columnTextField, 1, 1, 1, 1);
 		addComponent(confirmButton, 0, 2, 1, 1);
 		addComponent(cancelButton, 1, 2, 1, 1);

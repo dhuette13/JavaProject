@@ -88,6 +88,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 		});
 		
 		digMenuItem = new JMenuItem("Dig");
+		digMenuItem.setMnemonic('D');
 		digMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -99,6 +100,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 
 		editMenu.add(digMenuItem);
 		scanMenuItem = new JMenuItem("Scan");
+		scanMenuItem.setMnemonic('S');
 		scanMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -110,6 +112,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 		editMenu.add(scanMenuItem);
 
 		viewMagnetoMeterMenuItem = new JMenuItem("View Magnetometer Map");
+		viewMagnetoMeterMenuItem.setMnemonic('g');
 		viewMagnetoMeterMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -121,6 +124,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 		viewMenu.add(viewMagnetoMeterMenuItem);
 
 		viewMetalDetectorMenuItem = new JMenuItem("View Metal Detector Map");
+		viewMetalDetectorMenuItem.setMnemonic('D');
 		viewMetalDetectorMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -132,6 +136,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 		viewMenu.add(viewMetalDetectorMenuItem);
 
 		viewPotteryMenuItem = new JMenuItem("View Pottery Finds Map");
+		viewPotteryMenuItem.setMnemonic('P');
 		viewPotteryMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -143,6 +148,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 		viewMenu.add(viewPotteryMenuItem);
 
 		viewCharcoalMenuItem = new JMenuItem("View Charcoal Finds Map");
+		viewCharcoalMenuItem.setMnemonic('C');
 		viewCharcoalMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -154,6 +160,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 		viewMenu.add(viewCharcoalMenuItem);
 
 		viewMetalMenuItem = new JMenuItem("View Metal Finds Map");
+		viewMetalMenuItem.setMnemonic('M');
 		viewMetalMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -172,6 +179,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 		});
 
 		viewReportMenuItem = new JMenuItem("View Report");
+		viewReportMenuItem.setMnemonic('R');
 		viewReportMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

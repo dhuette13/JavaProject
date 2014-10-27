@@ -57,9 +57,11 @@ public class GenerateDialog extends JDialog {
 		
 		widthLabel = new JLabel("Width: ");
 		heightLabel = new JLabel("Height: ");
+		constraints.anchor = GridBagConstraints.WEST;
 		addComponent(widthLabel, 0, 0, 1, 1);
-		addComponent(widthTextField, 1, 0, 1, 1);
 		addComponent(heightLabel, 0, 1, 1, 1);
+		constraints.anchor = GridBagConstraints.EAST;
+		addComponent(widthTextField, 1, 0, 1, 1);
 		addComponent(heightTextField, 1, 1, 1, 1);
 		addComponent(confirmButton, 0, 2, 1, 1);
 		addComponent(cancelButton, 1, 2, 1, 1);
