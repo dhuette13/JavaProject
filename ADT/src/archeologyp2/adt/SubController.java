@@ -48,6 +48,7 @@ public class SubController {
 	 */
 	public SubController(JTextArea output){
 		this.output = output;
+		map = null;
 	}
 	
 	/**

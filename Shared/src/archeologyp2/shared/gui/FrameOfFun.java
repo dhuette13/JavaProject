@@ -1,6 +1,6 @@
 package archeologyp2.shared.gui;
 
-import java.awt.BorderLayout; 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,7 +29,7 @@ import archeologyp2.shared.map.ViewingOption;
  * @author Daniel
  * @author Celine
  */
-public class FrameOfFun extends JFrame {
+public abstract class FrameOfFun extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -112,12 +112,15 @@ public class FrameOfFun extends JFrame {
 		
 		/* File Menu */
 		fileMenu = new JMenu("File");
+		fileMenu.setMnemonic('F');
 		
 		// From "File" Menu, Load
 		loadMenuItem = new JMenuItem("Load");
+		loadMenuItem.setMnemonic('L');
 		
 		// From "File" Menu, Save
 		saveMenuItem = new JMenuItem("Save");
+		saveMenuItem.setMnemonic('S');
 		saveMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -128,6 +131,7 @@ public class FrameOfFun extends JFrame {
 		
 		// From "File" Menu, Exit
 		exitMenuItem = new JMenuItem("Exit");
+		exitMenuItem.setMnemonic('E');
 		exitMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -142,13 +146,15 @@ public class FrameOfFun extends JFrame {
 		
 		/* Edit Menu */
 		editMenu = new JMenu("Edit");
-		
+		editMenu.setMnemonic('E');
 		menuBar.add(editMenu);
 		
 		/* View Menu */
 		viewMenu = new JMenu("View");
+		viewMenu.setMnemonic('V');
 		
 		showMapMenuItem = new JMenuItem("View Current Symbol Map");
+		showMapMenuItem.setMnemonic('V');
 		showMapMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -162,6 +168,7 @@ public class FrameOfFun extends JFrame {
 		viewMenu.add(showMapMenuItem);
 		
 		viewingMenuItem = new JMenuItem("Viewing Options");
+		viewingMenuItem.setMnemonic('O');
 		viewingMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -182,9 +189,11 @@ public class FrameOfFun extends JFrame {
 		menuBar.add(viewMenu);
 		
 		helpMenu = new JMenu("Help");
+		helpMenu.setMnemonic('H');
 		
 		// From "Help" Menu, About
 		aboutMenuItem = new JMenuItem("About");
+		aboutMenuItem.setMnemonic('A');
 		helpMenu.add(aboutMenuItem);
 		menuBar.add(helpMenu);
 		

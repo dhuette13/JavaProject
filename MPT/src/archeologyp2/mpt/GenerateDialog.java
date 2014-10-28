@@ -5,6 +5,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -29,7 +32,7 @@ import archeologyp2.shared.map.Utilities;
  * @author Celine
  *
  */
-public class GenerateDialog extends JDialog {
+public class GenerateDialog extends JDialog implements KeyListener {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -71,9 +74,11 @@ public class GenerateDialog extends JDialog {
 		
 		widthLabel = new JLabel("Width: ");
 		heightLabel = new JLabel("Height: ");
+		constraints.anchor = GridBagConstraints.WEST;
 		addComponent(widthLabel, 0, 0, 1, 1);
-		addComponent(widthTextField, 1, 0, 1, 1);
 		addComponent(heightLabel, 0, 1, 1, 1);
+		constraints.anchor = GridBagConstraints.EAST;
+		addComponent(widthTextField, 1, 0, 1, 1);
 		addComponent(heightTextField, 1, 1, 1, 1);
 		addComponent(confirmButton, 0, 2, 1, 1);
 		addComponent(cancelButton, 1, 2, 1, 1);
@@ -109,6 +114,9 @@ public class GenerateDialog extends JDialog {
 	private void createTextFields() {
 		widthTextField = new JTextField(5);
 		heightTextField = new JTextField(5);
+		
+		widthTextField.addKeyListener(this);
+		heightTextField.addKeyListener(this);
 	}
 	
 	/**
@@ -132,12 +140,21 @@ public class GenerateDialog extends JDialog {
 				dispose();
 			}
 		});
+		confirmButton.addKeyListener(this);
 		
 		cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
+			}
+		});
+		cancelButton.addKeyListener(new KeyAdapter(){
+			@Override
+			public void keyPressed(KeyEvent e){
+				if(e.getKeyCode() == KeyEvent.VK_ENTER){
+					dispose();
+				}
 			}
 		});
 	}
@@ -158,5 +175,29 @@ public class GenerateDialog extends JDialog {
 	 */
 	public void setRelay(Relay relay) {
 		this.relay = relay;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
+	 */
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ENTER){
+			confirmButton.doClick();
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
+	 */
+	@Override
+	public void keyReleased(KeyEvent e) {
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
+	 */
+	@Override
+	public void keyTyped(KeyEvent e) {
 	}
 }

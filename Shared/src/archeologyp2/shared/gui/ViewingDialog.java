@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -34,7 +37,7 @@ import archeologyp2.shared.map.MapEditor;
  * @author Celine
  *
  */
-public class ViewingDialog extends JDialog {
+public class ViewingDialog extends JDialog implements KeyListener {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -123,12 +126,22 @@ public class ViewingDialog extends JDialog {
 				dispose();
 			}
 		});
+		confirmButton.addKeyListener(this);
 		
 		cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
+			}
+		});
+		
+		cancelButton.addKeyListener(new KeyAdapter(){
+			@Override
+			public void keyPressed(KeyEvent e){
+				if(e.getKeyCode() == KeyEvent.VK_ENTER){
+					dispose();
+				}
 			}
 		});
 	}
@@ -147,6 +160,7 @@ public class ViewingDialog extends JDialog {
 			public void focusLost(FocusEvent arg0) {
 			}
 		});
+		charField.addKeyListener(this);
 	}
 
 	/**
@@ -161,6 +175,7 @@ public class ViewingDialog extends JDialog {
 		comboBox.addItem(MapEditor.excavatedNaturalToken);
 		comboBox.addItem(MapEditor.excavatedStoneToken);
 		comboBox.addItem(MapEditor.excavatedPostHoleToken);
+		comboBox.addKeyListener(this);
 	}
 
 	/**
@@ -169,5 +184,20 @@ public class ViewingDialog extends JDialog {
 	 */
 	public void setRelay(Relay relay) {
 		this.relay = relay;
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ENTER){
+			confirmButton.doClick();
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
 	}
 }
