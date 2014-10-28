@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -30,7 +33,7 @@ import javax.swing.event.ChangeListener;
  * @author Daniel
  * @author Celine
  */
-public class FindDialog extends JDialog {
+public class FindDialog extends JDialog implements KeyListener {
 
 	private static final long serialVersionUID = 1L;
 
@@ -74,6 +77,7 @@ public class FindDialog extends JDialog {
 		setLayout(new GridBagLayout());
 		setSize(360, 220);
 		setResizable(false);
+		addKeyListener(this);
 
 		createTextFields();
 		createButton();
@@ -140,6 +144,7 @@ public class FindDialog extends JDialog {
 			}
 
 		});
+		rowCheckBox.addKeyListener(this);
 
 	}
 
@@ -175,6 +180,11 @@ public class FindDialog extends JDialog {
 		columnTextField = new JTextField(5);
 		dateTextField = new JTextField(5);
 		dataTextField = new JTextField(5);
+		
+		rowTextField.addKeyListener(this);
+		columnTextField.addKeyListener(this);
+		dateTextField.addKeyListener(this);
+		dataTextField.addKeyListener(this);
 	}
 
 	/**
@@ -200,12 +210,21 @@ public class FindDialog extends JDialog {
 				dispose();
 			}
 		});
+		confirmButton.addKeyListener(this);
 
 		cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
+			}
+		});
+		cancelButton.addKeyListener(new KeyAdapter(){
+			@Override
+			public void keyPressed(KeyEvent e){
+				if(e.getKeyCode() == KeyEvent.VK_ENTER){
+					dispose();
+				}
 			}
 		});
 	}
@@ -253,5 +272,30 @@ public class FindDialog extends JDialog {
 				dataTextField.setEnabled(true);
 			}
 		});
+		comboBox.addKeyListener(this);
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
+	 */
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ENTER){
+			confirmButton.doClick();
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
+	 */
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
+	 */
+	@Override
+	public void keyTyped(KeyEvent arg0) {
 	}
 }

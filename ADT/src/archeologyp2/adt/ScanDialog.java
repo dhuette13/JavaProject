@@ -5,6 +5,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -25,7 +28,7 @@ import javax.swing.JTextField;
  * @author Celine
  *
  */
-public class ScanDialog extends JDialog implements ActionListener {
+public class ScanDialog extends JDialog implements ActionListener, KeyListener {
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,8 +39,8 @@ public class ScanDialog extends JDialog implements ActionListener {
 	private JLabel colLabel;
 	private JTextField rowText;
 	private JTextField colText;
-	private JButton oButton;
-	private JButton cButton;
+	private JButton confirmButton;
+	private JButton cancelButton;
 
 	//For Try-Catch: "Exception in thread "AWT-EventQueue-0" java.lang.NumberFormatException"
 	/**
@@ -64,8 +67,8 @@ public class ScanDialog extends JDialog implements ActionListener {
 		rowText = new JTextField(5);
 		colLabel = new JLabel("Column: ");
 		colText = new JTextField(5);
-		oButton = new JButton("OK");
-		cButton = new JButton("Cancel");
+		confirmButton = new JButton("OK");
+		cancelButton = new JButton("Cancel");
 
 		String[] choices = {"Magnetometer", "Metal Detector"};
 		comboBox = new JComboBox<String>(choices);
@@ -78,50 +81,57 @@ public class ScanDialog extends JDialog implements ActionListener {
 		constraints.fill = GridBagConstraints.NONE;
 
 		constraints.gridx = 0;
-		constraints.gridy = 2;
+		constraints.gridy = 0;
 		add(rowLabel, constraints);
 
 		constraints.gridx = 0;
-		constraints.gridy = 3;
+		constraints.gridy = 1;
 		add(colLabel, constraints);
 
 		// ========== SECOND COLUMN ========== //
 		constraints.anchor = GridBagConstraints.CENTER;
-		constraints.gridx = 0;
+		constraints.gridx = 1;
 		constraints.gridy = 0;
 
-		constraints.gridx = 1;
-		constraints.gridy = 2;
 		add(rowText, constraints);
+		rowText.addKeyListener(this);
 
 		constraints.gridx = 1;
-		constraints.gridy = 3;
+		constraints.gridy = 1;
 		add(colText, constraints);
+		colText.addKeyListener(this);
 
 		constraints.anchor = GridBagConstraints.EAST;
 		constraints.gridx = 1;
-		constraints.gridy = 4;
-		add(oButton, constraints);
-		oButton.addActionListener(this);
+		constraints.gridy = 3;
+		add(confirmButton, constraints);
+		confirmButton.addActionListener(this);
+		confirmButton.addKeyListener(this);
 
 		// ============= THIRD COLUMN =========== //
 		constraints.anchor = GridBagConstraints.WEST;
 		constraints.gridx = 2;
 		constraints.gridy = 0;
 		add(comboBox, constraints);
+		comboBox.addKeyListener(this);
 
-		constraints.gridx = 2;
-		constraints.gridy = 2; 
-		add(comboBox, constraints);
-		
 		constraints.anchor = GridBagConstraints.EAST;
 		constraints.gridx = 2;
-		constraints.gridy = 4;
-		add(cButton, constraints);
-		cButton.addActionListener(new ActionListener(){
+		constraints.gridy = 3;
+		add(cancelButton, constraints);
+		cancelButton.addActionListener(new ActionListener(){
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				dispose();
+			}
+		});
+		
+		cancelButton.addKeyListener(new KeyAdapter(){
+			@Override
+			public void keyPressed(KeyEvent e){
+				if(e.getKeyCode() == KeyEvent.VK_ENTER){
+					dispose();
+				}
 			}
 		});
 
@@ -158,5 +168,20 @@ public class ScanDialog extends JDialog implements ActionListener {
 		}
 		subController.updateMap();
 		dispose();
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ENTER){
+			confirmButton.doClick();
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
 	}
 }

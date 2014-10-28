@@ -293,7 +293,7 @@ public class Utilities {
 			 * 26 characters.
 			 */
 			for(int k = 1; k <= map.getNumColumns() - 26; k++){
-				if((k % 26) == 0) columnCharacter = (char) (columnCharacter + 1);
+				if((k % 27) == 0) columnCharacter = (char) (columnCharacter + 1);
 				output += columnCharacter;
 			}
 			output += "\n  |";

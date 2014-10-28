@@ -6,6 +6,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -22,7 +25,7 @@ import archeologyp2.shared.map.Utilities;
  * @author Celine
  *
  */
-public class PathDialog extends JDialog implements ActionListener {
+public class PathDialog extends JDialog implements ActionListener, KeyListener {
 
 	private static final long serialVersionUID = 1L;
 
@@ -50,14 +53,25 @@ public class PathDialog extends JDialog implements ActionListener {
 		setTitle(title);
 		setSize(380, 100);
 		setResizable(false);
+		addKeyListener(this);
 
 		Container pane = getContentPane();
 		pane.setLayout(new GridBagLayout());
 
 		label = new JLabel("Enter file to " + title.toLowerCase() + ": ");
 		textField = new JTextField(20);
+		textField.addKeyListener(this);
 		okButton = new JButton("OK");
+		okButton.addKeyListener(this);
 		cancelButton = new JButton("Cancel");
+		cancelButton.addKeyListener(new KeyAdapter(){
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER){
+					cancelButton.doClick();
+				}
+			}
+		});
 		
 		GridBagConstraints constraints = new GridBagConstraints();
 		constraints.insets = new Insets(3, 3, 3, 3);
@@ -132,5 +146,20 @@ public class PathDialog extends JDialog implements ActionListener {
 	 */
 	public Map<Coordinate> getMap() {
 		return map;
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ENTER){
+			okButton.doClick();
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+	}
+	
+	@Override
+	public void keyTyped(KeyEvent e) {
 	}
 }

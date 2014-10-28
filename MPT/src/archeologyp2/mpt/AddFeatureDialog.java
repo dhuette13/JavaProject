@@ -5,6 +5,9 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -28,7 +31,7 @@ import javax.swing.event.ChangeListener;
  * @author Celine
  *
  */
-public class AddFeatureDialog extends JDialog implements ActionListener {
+public class AddFeatureDialog extends JDialog implements ActionListener, KeyListener {
 
 	private static final long serialVersionUID = 1L;
 
@@ -41,8 +44,8 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 	private JLabel rowPromptLabel;
 	private JTextField rowText;
 	private JTextField colText;
-	private JButton oButton;
-	private JButton cButton;
+	private JButton confirmButton;
+	private JButton cancelButton;
 	private boolean singleOrRow;
 
 	//For Try-Catch: "Exception in thread "AWT-EventQueue-0" java.lang.NumberFormatException"
@@ -70,16 +73,20 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 		setResizable(false);
 
 		checkBox = new JCheckBox();
+		checkBox.addKeyListener(this);
 		rowPromptLabel = new JLabel("Change an entire row? ");
 		rowLabel = new JLabel("Row: ");
 		rowText = new JTextField(5);
+		rowText.addKeyListener(this);
 		colLabel = new JLabel("Column: ");
 		colText = new JTextField(5);
-		oButton = new JButton("OK");
-		cButton = new JButton("Cancel");
+		colText.addKeyListener(this);
+		confirmButton = new JButton("OK");
+		cancelButton = new JButton("Cancel");
 
 		String[] choices = {"Dirt", "Stone", "Post Hole"};
 		comboBox = new JComboBox<String>(choices);
+		comboBox.addKeyListener(this);
 
 		GridBagConstraints constraints = new GridBagConstraints();
 
@@ -116,8 +123,9 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 		constraints.anchor = GridBagConstraints.EAST;
 		constraints.gridx = 1;
 		constraints.gridy = 4;
-		add(oButton, constraints);
-		oButton.addActionListener(this);
+		add(confirmButton, constraints);
+		confirmButton.addActionListener(this);
+		confirmButton.addKeyListener(this);
 
 		// ============= THIRD COLUMN =========== //
 		constraints.anchor = GridBagConstraints.WEST;
@@ -137,8 +145,8 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 					colLabel.setEnabled(true);
 				}
 			}
-
 		});
+		checkBox.addKeyListener(this);
 
 		constraints.gridx = 2;
 		constraints.gridy = 2; 
@@ -148,14 +156,22 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 		constraints.anchor = GridBagConstraints.EAST;
 		constraints.gridx = 2;
 		constraints.gridy = 4;
-		add(cButton, constraints);
-		cButton.addActionListener(new ActionListener(){
+		add(cancelButton, constraints);
+		cancelButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 			}
 		});
-
+		
+		cancelButton.addKeyListener(new KeyAdapter(){
+			@Override
+			public void keyPressed(KeyEvent e){
+				if(e.getKeyCode() == KeyEvent.VK_ENTER){
+					dispose();
+				}
+			}
+		});
 	}
 
 	/* (non-Javadoc)
@@ -173,5 +189,29 @@ public class AddFeatureDialog extends JDialog implements ActionListener {
 		subController.changeFeature(row, col, feature, singleOrRow);
 		subController.updateMap();
 		dispose();
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.KeyListener#keyPressed(java.awt.event.KeyEvent)
+	 */
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ENTER){
+			confirmButton.doClick();
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
+	 */
+	@Override
+	public void keyReleased(KeyEvent e) {
+	}
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.KeyListener#keyTyped(java.awt.event.KeyEvent)
+	 */
+	@Override
+	public void keyTyped(KeyEvent e) {
 	}
 }
