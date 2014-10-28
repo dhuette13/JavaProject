@@ -24,14 +24,13 @@ import archeologyp2.shared.finds.Pottery;
 
 /**
  * UTILITIES IN THE SHARED RESOURCES
- * Holds a number of utilities used by both projects.
- * @author Daniel
- * @author Celine
- * 
  * This class contains utilities that are shared by both
  * the MPT and the ADT. Included in this class are the
  * methods that generates the map, loads the file that 
  * will generate the map, save the file, and print the map. 
+ * 
+ * @author Daniel
+ * @author Celine
  *
  */
 
@@ -39,12 +38,13 @@ public class Utilities {
 
 	/**
 	 * For the public static Map generateMap method
-	 * @param height of map
-	 * @param width of map
-	 * @return  Map object
 	 * 
 	 * This method generates a new empty map using a nested for-loop, then
 	 * returns the map object to be printed.
+	 * 
+	 * @param height of map
+	 * @param width of map
+	 * @return  Map object
 	 * 
 	 */
 	public static Map<Coordinate> generateMap(int width, int height){
@@ -63,7 +63,6 @@ public class Utilities {
 	 * This method loads a map from file into memory. 
 	 * @param path
 	 * @return Map object
-	 * 
 	 * 
 	 */
 	public static Map<Coordinate> load(String path){
@@ -138,11 +137,11 @@ public class Utilities {
 	/**
 	 * 
 	 * For the public static void save method
-	 * @param path fileName to save to
-	 * @param m map to save
-	 * 
 	 * This method saves the map from memory into a file at the
 	 * user's discretion. 
+	 * 
+	 * @param path fileName to save to
+	 * @param m map to save
 	 * 
 	 */
 	public static void save(Map<Coordinate> map, String path){
@@ -184,8 +183,9 @@ public class Utilities {
 	}
 
 	/**
-	 * 
+	 * For public static void exportMap
 	 * This method exports the current map to the given path name
+	 * the user specifies.
 	 * 
 	 * @param map map to print or export
 	 * @param output stream to output to
@@ -269,11 +269,12 @@ public class Utilities {
 	/**
 	 * 
 	 * For the public static void printMap method
-	 * @param map map to print or export
-	 * @param output stream to output to
 	 * 
 	 * This method prints the map out and shows the user
 	 * the current map. 
+	 * 
+	 * @param map map to print or export
+	 * @param output stream to output to
 	 * 
 	 */
 	public static void printMap(Map<Coordinate> map, JTextArea textArea) {
@@ -341,6 +342,7 @@ public class Utilities {
 		textArea.setText(output);
 	}
 	/**
+	 * For public static int columnToIndex
 	 * 
 	 * This method converts the column the user specifies in so-and-so
 	 * and converts it into a usable number for other general
@@ -370,6 +372,7 @@ public class Utilities {
 	}
 
 	/**
+	 * For public static String indexToColumn
 	 * 
 	 * This method takes an integer and converts it to 
 	 * a character that should come out to be a column on 

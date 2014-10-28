@@ -2,17 +2,16 @@ package archeologyp2.shared.finds;
 
 
 /**
- * 
+ * STORAGE POTTERY FOR SHARED FINDS
  * @author Daniel
  * @author Celine
- *
  */
 public class StoragePottery extends Pottery {
 
 	private double volume;
 	
 	/**
-	 * 
+	 * For public StoragePottery
 	 * @param date
 	 */
 	public StoragePottery(int date) {
@@ -20,7 +19,7 @@ public class StoragePottery extends Pottery {
 	}
 	
 	/**
-	 * 
+	 * For public StoragePottery
 	 * @param date
 	 * @param volume
 	 */
@@ -30,7 +29,7 @@ public class StoragePottery extends Pottery {
 	}
 
 	/**
-	 * 
+	 * For public double getVolumn
 	 * @return volume
 	 */
 	public double getVolume(){

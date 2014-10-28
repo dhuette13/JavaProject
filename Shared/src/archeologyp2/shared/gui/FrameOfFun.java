@@ -18,6 +18,17 @@ import archeologyp2.shared.map.MapEditor;
 import archeologyp2.shared.map.Utilities;
 import archeologyp2.shared.map.ViewingOption;
 
+/**
+ * FRAME OF FUN - THE GUI FOR THE SHARED ITEMS
+ * 
+ * This class handles the GUI frame of the shared items.
+ * It lets the user pick between what they want to do 
+ * through menu items (by setting the frame itself visible)
+ * and then closing the frame once the user exits. 
+ * 
+ * @author Daniel
+ * @author Celine
+ */
 public class FrameOfFun extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
@@ -50,7 +61,10 @@ public class FrameOfFun extends JFrame {
 	final protected PathDialog loadDialog;
 	
 	protected Relay relay;
+	
 	/**
+	 * For public FrameOfFun
+	 * 
 	 * Initializes a default Frame with a text area, scroll pane,
 	 * and menu bar containing multiple menu items.
 	 * 
@@ -75,6 +89,8 @@ public class FrameOfFun extends JFrame {
 	}
 	
 	/**
+	 * For private void createTextArea
+	 * 
 	 * Initializes the text area and scroll pane, placing it on the
 	 * Frame. Text area is passed to Utilities for printing and exporting.
 	 */
@@ -87,6 +103,8 @@ public class FrameOfFun extends JFrame {
 	}
 	
 	/**
+	 * For private void createMenuBar
+	 * 
 	 * Creates the menu bar and menu items.
 	 */
 	private void createMenuBar(){

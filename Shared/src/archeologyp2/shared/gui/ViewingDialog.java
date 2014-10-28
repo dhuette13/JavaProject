@@ -20,6 +20,15 @@ import archeologyp2.shared.map.Map;
 import archeologyp2.shared.map.MapEditor;
 
 /**
+ * VIEWING DIALOG FOR SHARED GUI
+ * 
+ * This class is a dialog box that asks
+ * the user what they'd like to change features
+ * to for easier viewing. It allows the user
+ * to enter a character for the user's
+ * convenience, and see different symbols
+ * instead of just hard-to-notice-something's-different
+ * alphabet letters.
  * 
  * @author Daniel
  * @author Celine
@@ -44,6 +53,7 @@ public class ViewingDialog extends JDialog {
 	
 	
 	/**
+	 * For public ViewingDialog
 	 * Constructs the dialog's gui
 	 * 
 	 * @param title
@@ -76,6 +86,7 @@ public class ViewingDialog extends JDialog {
 	}
 	
 	/**
+	 * For public void addComponent
 	 * Adds the specified component to the dialog using constraints
 	 * 
 	 * @param component
@@ -93,6 +104,7 @@ public class ViewingDialog extends JDialog {
 	}
 
 	/**
+	 * For private void createButton
 	 * Creates the OK and cancel buttons, and gives them
 	 * action listeners
 	 * 
@@ -122,6 +134,7 @@ public class ViewingDialog extends JDialog {
 	}
 
 	/**
+	 * For private void createTextField
 	 * Creates the text fields for data entry
 	 */
 	private void createTextField() {
@@ -137,6 +150,7 @@ public class ViewingDialog extends JDialog {
 	}
 
 	/**
+	 * For private void createComboBox
 	 * Creates the combo box for selecting the type of symbol to change
 	 */
 	private void createComboBox() {
@@ -150,7 +164,7 @@ public class ViewingDialog extends JDialog {
 	}
 
 	/**
-	 * 
+	 * For public void setRelay
 	 * @param relay
 	 */
 	public void setRelay(Relay relay) {

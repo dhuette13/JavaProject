@@ -11,6 +11,7 @@ import javax.swing.event.EventListenerList;
 
 
 /**
+ * RELAY FOR SHARED GUI
  * Add the event registration and notification code to a class.
  * 
  * @author Dr. Becker

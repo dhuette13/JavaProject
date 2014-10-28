@@ -37,7 +37,7 @@ public class Map<E> implements Iterable<E> {
 	private ViewingOption viewingOption;
 
 	/**
-	 * 
+	 * For public Map
 	 * @param rows
 	 * @param columns
 	 */
@@ -82,6 +82,7 @@ public class Map<E> implements Iterable<E> {
 	}
 
 	/**
+	 * For public void addPlaneItem
 	 * Adds the specified item to ArrayList
 	 * 
 	 * @param row 
@@ -93,6 +94,7 @@ public class Map<E> implements Iterable<E> {
 	}
 	
 	/**
+	 * For public E getPlaneItem
 	 * Gets the item stored at the specified row and column
 	 * 
 	 * @param row
@@ -104,6 +106,7 @@ public class Map<E> implements Iterable<E> {
 	}
 
 	/**
+	 * For public char getMapSymbol
 	 * Gets the character map symbol at given row and column
 	 * 
 	 * @param r
@@ -115,6 +118,7 @@ public class Map<E> implements Iterable<E> {
 	}
 	
 	/**
+	 * For public char getCharMap
 	 * Returns a copy of the map's current character map
 	 * 
 	 * @return charMap
@@ -128,6 +132,7 @@ public class Map<E> implements Iterable<E> {
 	}
 
 	/**
+	 * For public void setMapSymbol
 	 * Sets the character map at given row and column to given symbol
 	 * 
 	 * @param r
@@ -138,31 +143,80 @@ public class Map<E> implements Iterable<E> {
 		charMap[row][column] = symbol;
 	}
 
+	/**
+	 * For public void setStoneSymbol
+	 * @param symbol
+	 */
 	public void setStoneSymbol(char symbol) { stoneSymbol = symbol; }
 	
+	/**
+	 * For public void setDirtSymbol
+	 * @param symbol
+	 */
 	public void setDirtSymbol(char symbol) { dirtSymbol = symbol; }
 	
+	/**
+	 * For public void setPostHoleSymbol
+	 * @param symbol
+	 */
 	public void setPostHoleSymbol(char symbol) { postHoleSymbol = symbol; }
 	
+	/**
+	 * For public void setStoneAlias
+	 * @param symbol
+	 */
 	public void setStoneAlias(char symbol) { stoneAlias = symbol; }
 	
+	/**
+	 * For public void setDirtAlias
+	 * @param symbol
+	 */
 	public void setDirtAlias(char symbol) { dirtAlias = symbol; }
 	
+	/**
+	 * For public void setPostHoleAlias
+	 * @param symbol
+	 */
 	public void setPostHoleAlias(char symbol) { postHoleAlias = symbol; }
 
+	/**
+	 * For public char getStoneSymbol
+	 * @return stoneSymbol
+	 */
 	public char getStoneSymbol() { return stoneSymbol; }
 	
+	/**
+	 * For public char getDirtSymbol
+	 * @return dirtSymbol
+	 */
 	public char getDirtSymbol() { return dirtSymbol; }
 	
+	/**
+	 * For public char getPostHoleSymbol
+	 * @return postHoleSymbol
+	 */
 	public char getPostHoleSymbol() { return postHoleSymbol; }
 	
+	/**
+	 * For public char getStoneAlias
+	 * @return stoneAlias
+	 */
 	public char getStoneAlias() { return stoneAlias; }
 	
+	/**
+	 * For public char getDirtAlias
+	 * @return dirtAlias
+	 */
 	public char getDirtAlias() { return dirtAlias; }
 	
+	/**
+	 * For public char getPostHoleAlias
+	 * @return postHoleAlias
+	 */
 	public char getPostHoleAlias() { return postHoleAlias; }
 
 	/**
+	 * For public ViewingOption getViewingOption
 	 * Returns the map's current viewing option
 	 *
 	 * @return the viewing option the user specifies
@@ -173,6 +227,7 @@ public class Map<E> implements Iterable<E> {
 	}
 	
 	/**
+	 * For public void setViewingOption
 	 * Sets the map's current viewing option
 	 * 
 	 * @param option
@@ -183,6 +238,7 @@ public class Map<E> implements Iterable<E> {
 	}
 
 	/**
+	 * For public Iterator<E> iterator
 	 * Map iterator generator for use by enhanced for loop
 	 * 
 	 * @return it Iterator for map object

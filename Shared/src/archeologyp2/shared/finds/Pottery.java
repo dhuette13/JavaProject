@@ -2,22 +2,17 @@ package archeologyp2.shared.finds;
 
 
 /**
- * 
- * POT FOR THE SHARED RESOURCES
+ * POT FOR THE SHARED FINDS
+ * This class handles the pot find.
  * @author Daniel
  * @author Celine
- * 
- * This class handles the pot find.
- *
  */
 public class Pottery extends Artifact {
 	int date;
 	
 	/**
-	 * 
-	 * For the public Pot method
+	 * For public Pottery
 	 * @param date
-	 * 
 	 */
 	public Pottery(int date){
 		super(date);

@@ -66,8 +66,8 @@ public class Coordinate {
 	}
 	
 	/**
+	 * For public void removeGold
 	 * Removes the instance of gold stored in the current coordinate
-	 * 
 	 */
 	public void removeGold(){
 		MetalObject m;
@@ -84,7 +84,7 @@ public class Coordinate {
 	}
 
 	/**
-	 * 
+	 * For public int getPotCount
 	 * @return size of potCount ArrayList
 	 */
 	public int getPotCount(){
@@ -92,7 +92,7 @@ public class Coordinate {
 	}
 	
 	/**
-	 * 
+	 * For public int getMetalCount
 	 * @return size of metalCount ArrayList
 	 */
 	public int getMetalCount(){
@@ -100,7 +100,7 @@ public class Coordinate {
 	}
 	
 	/**
-	 * 
+	 * For public int getCharcoalCount
 	 * @return size of charcoalCount ArrayList
 	 */
 	public int getCharcoalCount(){
@@ -108,7 +108,7 @@ public class Coordinate {
 	}
 	
 	/**
-	 * 
+	 * For public Pottery getPot
 	 * @param index
 	 * @return item stored at given index of potCount ArrayList
 	 */
@@ -117,7 +117,7 @@ public class Coordinate {
 	}
 	
 	/**
-	 * 
+	 * For public MetalObject getMetal
 	 * @param index
 	 * @return item stored at given index of metalCount ArrayList
 	 */
@@ -126,7 +126,7 @@ public class Coordinate {
 	}
 	
 	/**
-	 * 
+	 * For public Charcoal getCharcoal
 	 * @param index
 	 * @return item stored at given index of charcoalCount ArrayList
 	 */
@@ -134,7 +134,7 @@ public class Coordinate {
 		return charcoalCount.get(index);
 	}
 	/**
-	 * 
+	 * For public int getRow
 	 * @return row
 	 */
 	public int getRow() {
@@ -142,7 +142,7 @@ public class Coordinate {
 	}
 	
 	/**
-	 * 
+	 * For public int getColumn
 	 * @return column
 	 */
 	public int getColumn() {
@@ -228,9 +228,9 @@ public class Coordinate {
 	/**
 	 * 
 	 * For the public void setCharcoalHidden method
+	 * This method sets the charcoalHidden variable for use by scanning methods.
 	 * @param hidden
 	 * 
-	 * This method sets the charcoalHidden variable for use by scanning methods.
 	 * 
 	 */
 	public void setCharcoalHidden(boolean hidden) { charcoalHidden = hidden; }
@@ -246,66 +246,59 @@ public class Coordinate {
 	/**
 	 * 
 	 * For the public void setItemFound method
-	 * @param found
-	 * 
 	 * This method sets the itemFound variable. If excavated, Coordinate has a hidden find.
+	 * @param found
 	 * 
 	 */
 	public void setItemFound(boolean found) { itemFound = found; }
 	/**
 	 * 
 	 * For the public boolean itemFound method
-	 * @return itemFound
-	 * 
 	 * This method will indicate whether an item has been found by excavating.
+	 * @return itemFound
 	 * 
 	 */
 	public boolean itemFound(){ return itemFound; }
 	/**
 	 * 
 	 * For the public boolean getExcavated method
-	 * @return excavated
-	 * 
 	 * This method will indicate whether the current Coordinate has been dug previously.
+	 * @return excavated
 	 * 
 	 */
 	public boolean getExcavated() { return excavated; }
 	/**
 	 * 
 	 * For the public void setExcavated method
-	 * @param e set value of excavated
-	 * 
 	 * This method is for use by the digging method.
+	 * @param e set value of excavated
 	 * 
 	 */
 	public void setExcavated(boolean e) { excavated = e; }
 	/**
 	 * 
 	 * For the public boolean getPotInspected method
-	 * @return potInspected
-	 * 
 	 * This method indicates whether the visible spectrum tool has been 
 	 * previously used on this Coordinate
+	 * @return potInspected
 	 * 
 	 */
 	public boolean getPotInspected() { return potInspected; }
 	/**
 	 * 
 	 * For the public boolean getCharcoalInspected method
-	 * @return charCoalInspected
-	 * 
 	 * This method indicates whether the magnetometer tool has 
 	 * been previously used on this Coordinate.
+	 * @return charCoalInspected
 	 * 
 	 */
 	public boolean getCharcoalInspected() { return charcoalInspected; }
 	/**
 	 * 
 	 * For the public boolean getMetalInspected method
-	 * @return metalInspected
-	 * 
 	 * This method indicates whether the metal detector tool 
 	 * has been previously used on this Coordinate.
+	 * @return metalInspected
 	 * 
 	 */
 	public boolean getMetalInspected() { return metalInspected; }
@@ -313,34 +306,31 @@ public class Coordinate {
 	/**
 	 * 
 	 * For the public void setPotInspected tool
-	 * @param i set value of potInspected
-	 * 
 	 * This method is for use by scanning methods.
+	 * @param i set value of potInspected
 	 * 
 	 */
 	public void setPotInspected(boolean i) { potInspected = i; }
 	/**
 	 * 
 	 * For the public void setCharcoalInspected method
-	 * @param i set value of charcoalInspected
-	 * 
 	 * This method is for use by scanning methods.
+	 * @param i set value of charcoalInspected
 	 * 
 	 */
 	public void setCharcoalInspected(boolean i) { charcoalInspected = i; }
 	/**
 	 * 
 	 * For the public void setMetalInspected method
-	 * @param i set value of metalInspected
-	 * 
 	 * This method is for use by scanning methods.
+	 * @param i set value of metalInspected
 	 * 
 	 */
 	public void setMetalInspected(boolean i) { metalInspected = i; }
 
 	/**
+	 * For public void setHeritage
 	 * Sets the coordinate's current heritage status
-	 * 
 	 * @param heritage
 	 */
 	public void setHeritage(boolean heritage){
@@ -348,6 +338,7 @@ public class Coordinate {
 	}
 	
 	/**
+	 * For public boolean isHeritage
 	 * Gets the coordinate's current heritage status
 	 * 
 	 * @return heritage
@@ -355,7 +346,9 @@ public class Coordinate {
 	public boolean isHeritage(){
 		return heritage;
 	}
+	
 	/**
+	 * For public void sortDates
 	 * Sorts each of the artifact collections based on date
 	 */
 	public void sortDates() {

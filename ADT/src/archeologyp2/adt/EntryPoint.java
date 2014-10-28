@@ -20,6 +20,7 @@ public class EntryPoint {
 	private FrameOfFun frame;
 
 	/**
+	 * For public EntryPoint
 	 * Initializes the Frame
 	 */
 	public EntryPoint(){
@@ -27,6 +28,7 @@ public class EntryPoint {
 	}
 
 	/**
+	 * For public void go
 	 * Shows the frame
 	 */
 	public void go(){
@@ -34,6 +36,7 @@ public class EntryPoint {
 	}
 
 	/**
+	 * For public static void main
 	 * This method creates an object, and 
 	 * begins the class. 
 	 *

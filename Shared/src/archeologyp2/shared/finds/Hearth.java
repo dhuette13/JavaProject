@@ -2,7 +2,7 @@ package archeologyp2.shared.finds;
 
 
 /**
- * 
+ * HEARTH FOR SHARED FINDS
  * @author Daniel
  * @author Celine
  *
@@ -13,7 +13,7 @@ public class Hearth extends Charcoal {
 	private int width;
 	
 	/**
-	 * 
+	 * For public Hearth
 	 * @param date
 	 */
 	public Hearth(int date) {
@@ -21,7 +21,7 @@ public class Hearth extends Charcoal {
 	}
 	
 	/**
-	 * 
+	 * For public Hearth
 	 * @param date
 	 * @param length
 	 * @param width
@@ -33,7 +33,8 @@ public class Hearth extends Charcoal {
 	}
 	
 	/**
-	 * 
+	 * For public int getLength
+	 * This returns the int length.
 	 * @return length
 	 */
 	public int getLength(){
@@ -41,7 +42,8 @@ public class Hearth extends Charcoal {
 	}
 	
 	/**
-	 * 
+	 * For public int getWidth
+	 * This returns the int width. 
 	 * @return width
 	 */
 	public int getWidth(){
