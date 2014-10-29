@@ -1,6 +1,6 @@
 package archeologyp2.adt;
 
-import java.awt.GridBagConstraints;
+import java.awt.GridBagConstraints; 
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -12,7 +12,9 @@ import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -41,6 +43,8 @@ public class ScanDialog extends JDialog implements ActionListener, KeyListener {
 	private JTextField colText;
 	private JButton confirmButton;
 	private JButton cancelButton;
+	
+	private JFrame frame;
 
 	//For Try-Catch: "Exception in thread "AWT-EventQueue-0" java.lang.NumberFormatException"
 	/**
@@ -158,15 +162,30 @@ public class ScanDialog extends JDialog implements ActionListener, KeyListener {
 		switch(feature)
 		{
 		case 0: //Magnetometer
-			subController.magnetoMeter(row, col);
+			try{
+				subController.magnetoMeter(row, col);
+				subController.updateMap();
+			}
+			catch(IndexOutOfBoundsException i){
+				JOptionPane.showMessageDialog(frame,
+					    "Uh oh! Looks like the input you gave are out of range. Please try again.",
+					    "Error",
+					    JOptionPane.ERROR_MESSAGE);
+			}
+			catch(NullPointerException i){
+				JOptionPane.showMessageDialog(frame,
+					    "Uh oh! Looks like you forgot to load a map first. Please try again.",
+					    "Error",
+					    JOptionPane.ERROR_MESSAGE);
+			}
 			break;
 		case 1: //Metal Detector
 			subController.metalDetector(row, col);
+			subController.updateMap();
 			break;
 		default:
 			break;
 		}
-		subController.updateMap();
 		dispose();
 	}
 
