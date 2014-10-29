@@ -130,12 +130,12 @@ public class ViewingDialog extends JDialog implements KeyListener {
 				}
 				catch(NullPointerException n){
 					JOptionPane.showMessageDialog(frame,
-						    "Uh oh! Looks like you typed in something wrong. Please try again.",
+						    "Gee-wizz! Uh oh! Looks like you typed in something wrong. Please try again.",
 						    "Error",
 						    JOptionPane.ERROR_MESSAGE);
 				}
 				finally{
-				dispose();
+					dispose();
 				}
 			}
 		});
