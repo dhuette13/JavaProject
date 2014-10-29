@@ -10,9 +10,8 @@ package archeologyp2.shared.gui;
 import java.util.EventListener;
 
 /**
- * 
+ * COMPLETIONEVENTLISTENER FOR SHARED GUI
  * @author Dr. Becker
- *
  */
 public interface CompletionEventListener extends EventListener {
 	

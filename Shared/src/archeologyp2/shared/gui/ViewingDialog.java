@@ -1,6 +1,6 @@
 package archeologyp2.shared.gui;
 
-import java.awt.GridBagConstraints;
+import java.awt.GridBagConstraints; 
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -15,7 +15,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import archeologyp2.shared.map.Coordinate;
@@ -24,6 +26,15 @@ import archeologyp2.shared.map.MapEditor;
 import archeologyp2.shared.map.ViewingOption;
 
 /**
+ * VIEWING DIALOG FOR SHARED GUI
+ * 
+ * This class is a dialog box that asks
+ * the user what they'd like to change features
+ * to for easier viewing. It allows the user
+ * to enter a character for the user's
+ * convenience, and see different symbols
+ * instead of just hard-to-notice-something's-different
+ * alphabet letters.
  * 
  * @author Daniel
  * @author Celine
@@ -46,8 +57,10 @@ public class ViewingDialog extends JDialog implements KeyListener {
 	private String selection;
 	private Map<Coordinate> map;
 	
+	private JFrame frame;
 	
 	/**
+	 * For public ViewingDialog
 	 * Constructs the dialog's gui
 	 * 
 	 * @param title
@@ -80,6 +93,7 @@ public class ViewingDialog extends JDialog implements KeyListener {
 	}
 	
 	/**
+	 * For public void addComponent
 	 * Adds the specified component to the dialog using constraints
 	 * 
 	 * @param component
@@ -97,6 +111,7 @@ public class ViewingDialog extends JDialog implements KeyListener {
 	}
 
 	/**
+	 * For private void createButton
 	 * Creates the OK and cancel buttons, and gives them
 	 * action listeners
 	 * 
@@ -107,13 +122,23 @@ public class ViewingDialog extends JDialog implements KeyListener {
 		confirmButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				symbol = charField.getText().charAt(0);
-				selection = comboBox.getSelectedItem().toString();
-				map.setViewingOption(ViewingOption.userModified);
-				MapEditor.changeViewingSymbol(map, selection, symbol);
-				MapEditor.updateView(map);
-				relay.fireMyEvent(new CompletionEvent(this));
-				dispose();
+				try{
+					symbol = charField.getText().charAt(0);
+					selection = comboBox.getSelectedItem().toString();
+					map.setViewingOption(ViewingOption.userModified);
+					MapEditor.changeViewingSymbol(map, selection, symbol);
+					MapEditor.updateView(map);
+					relay.fireMyEvent(new CompletionEvent(this));
+				}
+				catch(NullPointerException | StringIndexOutOfBoundsException e){
+					JOptionPane.showMessageDialog(frame,
+						    "Gee-wizz! Uh oh! Looks like you typed in something wrong. Please try again.",
+						    "Error",
+						    JOptionPane.ERROR_MESSAGE);
+				}
+				finally{
+					dispose();
+				}
 			}
 		});
 		confirmButton.addKeyListener(this);
@@ -137,6 +162,7 @@ public class ViewingDialog extends JDialog implements KeyListener {
 	}
 
 	/**
+	 * For private void createTextField
 	 * Creates the text fields for data entry
 	 */
 	private void createTextField() {
@@ -153,6 +179,7 @@ public class ViewingDialog extends JDialog implements KeyListener {
 	}
 
 	/**
+	 * For private void createComboBox
 	 * Creates the combo box for selecting the type of symbol to change
 	 */
 	private void createComboBox() {
@@ -167,7 +194,7 @@ public class ViewingDialog extends JDialog implements KeyListener {
 	}
 
 	/**
-	 * 
+	 * For public void setRelay
 	 * @param relay
 	 */
 	public void setRelay(Relay relay) {

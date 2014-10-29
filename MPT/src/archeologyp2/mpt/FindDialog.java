@@ -1,6 +1,6 @@
 package archeologyp2.mpt;
 
-import java.awt.GridBagConstraints;
+import java.awt.GridBagConstraints; 
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -16,7 +16,9 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -51,6 +53,7 @@ public class FindDialog extends JDialog implements KeyListener {
 	private JCheckBox rowCheckBox;
 	private JLabel dataLabel;
 	private JTextField dataTextField;
+	private JFrame frame;
 
 	private GridBagConstraints constraints;
 
@@ -201,13 +204,23 @@ public class FindDialog extends JDialog implements KeyListener {
 		confirmButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				row = Integer.parseInt(rowTextField.getText());
-				column = columnTextField.getText();
-				date = Integer.parseInt(dateTextField.getText());
-				entireRow = rowCheckBox.isSelected();
-				data = dataTextField.getText();
-				subController.addFind(row, column, comboBox.getSelectedIndex() + 1, date, data, entireRow);
-				dispose();
+				try{
+					row = Integer.parseInt(rowTextField.getText());
+					column = columnTextField.getText();
+					date = Integer.parseInt(dateTextField.getText());
+					entireRow = rowCheckBox.isSelected();
+					data = dataTextField.getText();
+					subController.addFind(row, column, comboBox.getSelectedIndex() + 1, date, data, entireRow);
+				}
+				catch(NumberFormatException n){
+					JOptionPane.showMessageDialog(frame,
+						    "Uh oh! Looks like you typed in something wrong. Please try again.",
+						    "Error",
+						    JOptionPane.ERROR_MESSAGE);
+				}
+				finally{
+					dispose();
+				}
 			}
 		});
 		confirmButton.addKeyListener(this);

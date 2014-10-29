@@ -1,10 +1,9 @@
 package archeologyp2.shared.finds;
 
 /**
- * 
+ * NONFERROUS FOR SHARED FINDS
  * @author Daniel
  * @author Celine
- *
  */
 public class NonFerrousMetal extends MetalObject {
 
@@ -14,7 +13,7 @@ public class NonFerrousMetal extends MetalObject {
 	private static String goldColumn;
 	
 	/**
-	 * 
+	 * For public NonFerrousMetal
 	 * @param date
 	 */
 	public NonFerrousMetal(int date) {
@@ -22,7 +21,7 @@ public class NonFerrousMetal extends MetalObject {
 	}
 	
 	/**
-	 * 
+	 * For public NonFerrousMetal
 	 * @param date
 	 * @param type
 	 */
@@ -32,7 +31,7 @@ public class NonFerrousMetal extends MetalObject {
 	}
 	
 	/**
-	 * 
+	 * For public String getType
 	 * @return type
 	 */
 	public String getType(){
@@ -40,12 +39,19 @@ public class NonFerrousMetal extends MetalObject {
 	}
 
 	@Override
+	/**
+	 * For public int respondToMetalDetector
+	 * @return 4
+	 */
 	public int respondToMetalDetector() {
 		return 4;
 	}
 	
 	/**
-	 * 
+	 * For public boolean goldExists
+	 * This method returns a true or false based on if 
+	 * there's a gold on the map already, as there should
+	 * only be one gold on the map at all times.
 	 * @return goldExists
 	 */
 	public boolean goldExists(){
@@ -53,7 +59,7 @@ public class NonFerrousMetal extends MetalObject {
 	}
 	
 	/**
-	 * 
+	 * For public void setGoldExists
 	 * @param exists
 	 */
 	public void setGoldExists(boolean exists){
@@ -61,7 +67,7 @@ public class NonFerrousMetal extends MetalObject {
 	}
 	
 	/**
-	 * 
+	 * For public int getGoldRow
 	 * @return goldRow
 	 */
 	public int getGoldRow(){
@@ -69,7 +75,7 @@ public class NonFerrousMetal extends MetalObject {
 	}
 	
 	/**
-	 * 
+	 * For public void setGoldRow
 	 * @param row
 	 */
 	public void setGoldRow(int row){
@@ -77,7 +83,7 @@ public class NonFerrousMetal extends MetalObject {
 	}
 	
 	/**
-	 * 
+	 * For public String getGoldColumn
 	 * @return goldColumn
 	 */
 	public String getGoldColumn(){
@@ -85,7 +91,7 @@ public class NonFerrousMetal extends MetalObject {
 	}
 	
 	/**
-	 * 
+	 * For public void setGoldColumn
 	 * @param column
 	 */
 	public void setGoldColumn(String column){

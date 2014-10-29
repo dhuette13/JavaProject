@@ -12,7 +12,9 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import archeologyp2.shared.map.Coordinate;
@@ -20,6 +22,12 @@ import archeologyp2.shared.map.Map;
 import archeologyp2.shared.map.Utilities;
 
 /**
+ * PATH DIALOG FOR SHARED GUI
+ * 
+ * This is the dialog box that the program
+ * implements for loading, saving, and 
+ * exporting, and should look the same for those
+ * three besides a change of title.
  * 
  * @author Daniel
  * @author Celine
@@ -36,17 +44,24 @@ public class PathDialog extends JDialog implements ActionListener, KeyListener {
 	private JButton okButton;
 	private JButton cancelButton;
 	private Relay relay;
+	private JFrame frame;
 	
 	private Map<Coordinate> map;
 	private String title;
 
 	/**
-	 * Constructs the gui of the Path Dialog
+	 * For public PathDialog
+	 * This constructs the gui of the Path Dialog
+	 * by using the GridBagLayout. It looks pleasing and 
+	 * simple to the viewers' eyes, and hopefully is self-
+	 * explanatory. It contains a label, a text field, and
+	 * two buttons (one for "OK" and one for "Cancel").
 	 * 
 	 * @param title
 	 * @param map
 	 */
 	public PathDialog(String title, Map<Coordinate> map){
+		try{
 		this.map = map;
 		this.title = title;
 		
@@ -103,9 +118,18 @@ public class PathDialog extends JDialog implements ActionListener, KeyListener {
 		});
 		
 		okButton.addActionListener(this);
+		}
+		catch(NullPointerException n){
+			JOptionPane.showMessageDialog(frame,
+				    "This path cannot be done. Please try again.",
+				    "Error",
+				    JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**
+	 * For public void actionPerformed
+	 * 
 	 * Performs three actions:
 	 * 1) Load
 	 * 2) Save
@@ -115,11 +139,28 @@ public class PathDialog extends JDialog implements ActionListener, KeyListener {
 	public void actionPerformed(ActionEvent e) {
 		switch(title){
 		case "Load":
-			map = Utilities.load(textField.getText());
-			relay.fireMyEvent(new CompletionEvent(this));
+			try{
+				map = Utilities.load(textField.getText());
+				relay.fireMyEvent(new CompletionEvent(this));
+			}
+			catch(NullPointerException n){
+				JOptionPane.showMessageDialog(frame,
+					    "Uh oh! Looks like you typed in something wrong. Please try again.",
+					    "Error",
+					    JOptionPane.ERROR_MESSAGE);
+			}
 			break;
 		case "Save":
-			Utilities.save(map, textField.getText());
+			try{
+				Utilities.save(map, textField.getText());
+			}
+			catch(NullPointerException n)
+			{
+				JOptionPane.showMessageDialog(frame,
+					    "This path cannot be done. Please try again.",
+					    "Error",
+					    JOptionPane.ERROR_MESSAGE);
+			}
 			break;
 		case "Export":
 			Utilities.exportMap(map, textField.getText());
@@ -131,6 +172,7 @@ public class PathDialog extends JDialog implements ActionListener, KeyListener {
 	}
 
 	/**
+	 * For public void setRelay
 	 * Sets the dialog's relay for triggering completion event
 	 * 
 	 * @param relay
@@ -140,6 +182,7 @@ public class PathDialog extends JDialog implements ActionListener, KeyListener {
 	}
 
 	/**
+	 * For public Map<Coordinate> getMap
 	 * Retrieves the loaded map
 	 * 
 	 * @return map

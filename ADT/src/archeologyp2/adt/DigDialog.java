@@ -1,6 +1,6 @@
 package archeologyp2.adt;
 
-import java.awt.GridBagConstraints;
+import java.awt.GridBagConstraints; 
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -12,7 +12,9 @@ import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -41,6 +43,8 @@ public class DigDialog extends JDialog implements KeyListener {
 	private JButton cancelButton;
 	
 	private GridBagConstraints constraints;
+	
+	private JFrame frame;
 	
 	private int row;
 	private String column;
@@ -135,14 +139,26 @@ public class DigDialog extends JDialog implements KeyListener {
 		confirmButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				row = Integer.parseInt(rowTextField.getText());
-				column = columnTextField.getText();
 				try {
+					row = Integer.parseInt(rowTextField.getText());
+					column = columnTextField.getText();
 					subController.dig(row, column);
+					subController.updateMap();
 				} catch (HeritageException e) {
 					System.out.println("You cannot dig here!");
 				}
-				subController.updateMap();
+				catch(IndexOutOfBoundsException i){
+					JOptionPane.showMessageDialog(frame,
+						    "Uh oh! Looks like the input you gave are out of range. Please try again.",
+						    "Error",
+						    JOptionPane.ERROR_MESSAGE);
+				}
+				catch(NumberFormatException n){
+					JOptionPane.showMessageDialog(frame,
+						    "Uh oh! Looks like something went wrong. Please try again.",
+						    "Error",
+						    JOptionPane.ERROR_MESSAGE);
+				}
 				dispose();
 			}
 		});

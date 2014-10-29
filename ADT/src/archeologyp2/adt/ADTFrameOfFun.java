@@ -3,7 +3,9 @@ package archeologyp2.adt;
 import java.awt.event.ActionEvent; 
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import archeologyp2.shared.gui.CompletionEvent;
 import archeologyp2.shared.gui.CompletionEventListener;
@@ -41,6 +43,8 @@ public class ADTFrameOfFun extends FrameOfFun {
 	private JMenuItem viewReportMenuItem;
 
 	private SubController subController;
+	
+	private JFrame frame;
 
 	/**
 	 * For the public ADTFrameOfFun
@@ -116,9 +120,17 @@ public class ADTFrameOfFun extends FrameOfFun {
 		viewMagnetoMeterMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				try{
 				map.setViewingOption(ViewingOption.magnetometerResult);
 				MapEditor.updateView(map);
 				Utilities.printMap(map, textArea);
+				}
+				catch(NullPointerException n){
+					JOptionPane.showMessageDialog(frame,
+						    "Uh oh! Looks like you forgot to load a map first. Please try again.",
+						    "Error",
+						    JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		viewMenu.add(viewMagnetoMeterMenuItem);
@@ -128,9 +140,17 @@ public class ADTFrameOfFun extends FrameOfFun {
 		viewMetalDetectorMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				map.setViewingOption(ViewingOption.metalDetectorResult);
-				MapEditor.updateView(map);
-				Utilities.printMap(map, textArea);
+				try{
+					map.setViewingOption(ViewingOption.metalDetectorResult);
+					MapEditor.updateView(map);
+					Utilities.printMap(map, textArea);
+				}
+				catch(NullPointerException n){
+					JOptionPane.showMessageDialog(frame,
+						    "Uh oh! Looks like you forgot to load a map first. Please try again.",
+						    "Error",
+						    JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		viewMenu.add(viewMetalDetectorMenuItem);
@@ -140,9 +160,17 @@ public class ADTFrameOfFun extends FrameOfFun {
 		viewPotteryMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				map.setViewingOption(ViewingOption.potCount);
-				MapEditor.updateView(map);
-				Utilities.printMap(map, textArea);
+				try{
+					map.setViewingOption(ViewingOption.potCount);
+					MapEditor.updateView(map);
+					Utilities.printMap(map, textArea);
+				}
+				catch(NullPointerException n){
+					JOptionPane.showMessageDialog(frame,
+						    "Uh oh! Looks like you forgot to load a map first. Please try again.",
+						    "Error",
+						    JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		viewMenu.add(viewPotteryMenuItem);
@@ -152,9 +180,17 @@ public class ADTFrameOfFun extends FrameOfFun {
 		viewCharcoalMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				try{
 				map.setViewingOption(ViewingOption.charcoalCount);
 				MapEditor.updateView(map);
 				Utilities.printMap(map, textArea);
+				}
+				catch(NullPointerException n){
+					JOptionPane.showMessageDialog(frame,
+						    "Uh oh! Looks like you forgot to load a map first. Please try again.",
+						    "Error",
+						    JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		viewMenu.add(viewCharcoalMenuItem);
@@ -164,9 +200,17 @@ public class ADTFrameOfFun extends FrameOfFun {
 		viewMetalMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				try{
 				map.setViewingOption(ViewingOption.metalCount);
 				MapEditor.updateView(map);
 				Utilities.printMap(map, textArea);
+				}
+				catch(NullPointerException n){
+					JOptionPane.showMessageDialog(frame,
+						    "Uh oh! Looks like you forgot to load a map first. Please try again.",
+						    "Error",
+						    JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		viewMenu.add(viewMetalMenuItem);

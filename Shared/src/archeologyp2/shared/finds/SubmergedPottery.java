@@ -2,17 +2,16 @@ package archeologyp2.shared.finds;
 
 
 /**
- * 
+ * SUBMERGED POTTERY FOR SHARED FINDS
  * @author Daniel
  * @author Celine
- *
  */
 public class SubmergedPottery extends Pottery {
 
 	private int depth;
 	
 	/**
-	 * 
+	 * For public SubmergedPottery
 	 * @param date
 	 */
 	public SubmergedPottery(int date) {
@@ -20,7 +19,7 @@ public class SubmergedPottery extends Pottery {
 	}
 	
 	/**
-	 * 
+	 * For public SubmergedPottery
 	 * @param date
 	 * @param depth
 	 */
@@ -30,7 +29,7 @@ public class SubmergedPottery extends Pottery {
 	}
 
 	/**
-	 * 
+	 * For public int getDepth
 	 * @return depth
 	 */
 	public int getDepth(){

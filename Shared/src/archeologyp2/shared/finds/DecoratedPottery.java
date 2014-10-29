@@ -2,6 +2,7 @@ package archeologyp2.shared.finds;
 
 
 /**
+ * DECORATEDPOTTERY FOR THE SHARED FINDS
  * 
  * @author Daniel
  * @author Celine
@@ -12,7 +13,7 @@ public class DecoratedPottery extends Pottery {
 	private String description;
 
 	/**
-	 * 
+	 * For public DecoratedPottery
 	 * @param date
 	 */
 	public DecoratedPottery(int date) {
@@ -20,7 +21,7 @@ public class DecoratedPottery extends Pottery {
 	}
 	
 	/**
-	 * 
+	 * For public DecoratedPottery 
 	 * @param date
 	 * @param description
 	 */
@@ -30,7 +31,7 @@ public class DecoratedPottery extends Pottery {
 	}
 	
 	/**
-	 * 
+	 * For public String getDescription
 	 * @return description
 	 */
 	public String getDescription(){

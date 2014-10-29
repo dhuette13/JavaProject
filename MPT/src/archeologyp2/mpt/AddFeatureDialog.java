@@ -1,6 +1,6 @@
 package archeologyp2.mpt;
-
-import java.awt.GridBagConstraints;
+ 
+import java.awt.GridBagConstraints; 
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -13,7 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -47,6 +49,7 @@ public class AddFeatureDialog extends JDialog implements ActionListener, KeyList
 	private JButton confirmButton;
 	private JButton cancelButton;
 	private boolean singleOrRow;
+	private JFrame frame;
 
 	//For Try-Catch: "Exception in thread "AWT-EventQueue-0" java.lang.NumberFormatException"
 	/**
@@ -183,12 +186,28 @@ public class AddFeatureDialog extends JDialog implements ActionListener, KeyList
 	 * For public void actionPerformed
 	 */
 	public void actionPerformed(ActionEvent e) {
-		int feature = comboBox.getSelectedIndex() + 1;
-		int row = Integer.parseInt(rowText.getText());
-		String col = colText.getText();
-		subController.changeFeature(row, col, feature, singleOrRow);
-		subController.updateMap();
+		try{
+			int feature = comboBox.getSelectedIndex() + 1;
+			int row = Integer.parseInt(rowText.getText());
+			String col = colText.getText();
+			subController.changeFeature(row, col, feature, singleOrRow);
+			subController.updateMap();
+		}
+		catch(NumberFormatException n){
+			JOptionPane.showMessageDialog(frame,
+				    "Uh oh! Looks like you typed in something wrong. Please try again.",
+				    "Error",
+				    JOptionPane.ERROR_MESSAGE);
+		}
+		catch(NullPointerException n){
+			JOptionPane.showMessageDialog(frame,
+				    "Uh oh! Looks like you typed in something wrong. Please try again.",
+				    "Error",
+				    JOptionPane.ERROR_MESSAGE);
+		}
+		finally{
 		dispose();
+		}
 	}
 
 	/* (non-Javadoc)

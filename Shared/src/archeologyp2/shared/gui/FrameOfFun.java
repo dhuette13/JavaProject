@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -18,6 +19,17 @@ import archeologyp2.shared.map.MapEditor;
 import archeologyp2.shared.map.Utilities;
 import archeologyp2.shared.map.ViewingOption;
 
+/**
+ * FRAME OF FUN - THE GUI FOR THE SHARED ITEMS
+ * 
+ * This class handles the GUI frame of the shared items.
+ * It lets the user pick between what they want to do 
+ * through menu items (by setting the frame itself visible)
+ * and then closing the frame once the user exits. 
+ * 
+ * @author Daniel
+ * @author Celine
+ */
 public abstract class FrameOfFun extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
@@ -50,7 +62,12 @@ public abstract class FrameOfFun extends JFrame {
 	final protected PathDialog loadDialog;
 	
 	protected Relay relay;
+	
+	private JFrame frame;
+	
 	/**
+	 * For public FrameOfFun
+	 * 
 	 * Initializes a default Frame with a text area, scroll pane,
 	 * and menu bar containing multiple menu items.
 	 * 
@@ -75,6 +92,8 @@ public abstract class FrameOfFun extends JFrame {
 	}
 	
 	/**
+	 * For private void createTextArea
+	 * 
 	 * Initializes the text area and scroll pane, placing it on the
 	 * Frame. Text area is passed to Utilities for printing and exporting.
 	 */
@@ -87,6 +106,8 @@ public abstract class FrameOfFun extends JFrame {
 	}
 	
 	/**
+	 * For private void createMenuBar
+	 * 
 	 * Creates the menu bar and menu items.
 	 */
 	private void createMenuBar(){
@@ -159,10 +180,17 @@ public abstract class FrameOfFun extends JFrame {
 				relay.addMyEventListener(new CompletionEventListener(){
 					@Override
 					public void myEventOccurred(CompletionEvent evt) {
-						map = dialog.getMap();
-						Utilities.printMap(map, textArea);
+						try{
+							map = dialog.getMap();
+							Utilities.printMap(map, textArea);
+						}
+						catch(NullPointerException n){
+							JOptionPane.showMessageDialog(frame,
+								    "Uh oh! Looks like you typed in something wrong. Please try again.",
+								    "Error",
+								    JOptionPane.ERROR_MESSAGE);
+						}
 					}
-					
 				});
 				dialog.setRelay(relay);
 			}

@@ -4,11 +4,12 @@ package archeologyp2.shared.map;
 
 /**
  * MAPEDITOR FOR THE MAP POPULATION TOOL
- * @author Daniel
- * @author Celine
  * 
  * This class handles editing the map for the Map Population 
  * Tool. It includes changing features and adding finds. 
+ * 
+ * @author Daniel
+ * @author Celine
  *
  */
 
@@ -21,6 +22,18 @@ public class MapEditor {
 	public static final String excavatedStoneToken = "Excavated Stone";
 	public static final String excavatedPostHoleToken = "Excavated Post Hole";
 
+	/**
+	 * For public static void changeViewingSymbol
+	 * 
+	 * This method handles the logic of changing the viewing
+	 * symbol for the user. It takes in a map object, a token, and 
+	 * a symbol, and uses the set functions of map to set the
+	 * feature the user wanted to change to that character symbol.
+	 * 
+	 * @param map
+	 * @param token
+	 * @param symbol
+	 */
 	public static void changeViewingSymbol(Map<Coordinate> map, String token, char symbol){
 		map.setViewingOption(ViewingOption.userModified);
 		switch(token){
@@ -46,8 +59,12 @@ public class MapEditor {
 			System.out.println("Invalid Token");
 		}
 	}
+	
 	/**
-	 * Updates the passed map's view
+	 * For public static void updateView
+	 * This method updates the passed map's view.
+	 * We call it to make sure the user can always see
+	 * the current version of their working map. 
 	 *  
 	 * @param map
 	 */
@@ -143,10 +160,9 @@ public class MapEditor {
 	/**
 	 * 
 	 * For the public int countNumberOfFinds method
-	 * @return the number of finds
-	 * 
 	 * This method goes through the map and counts the amount of
 	 * finds, regardless of type of find.
+	 * @return the number of finds
 	 * 
 	 */
 	public static int countNumberOfFinds(Map<Coordinate> map){

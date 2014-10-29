@@ -3,7 +3,9 @@ package archeologyp2.mpt;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import archeologyp2.shared.gui.CompletionEvent;
 import archeologyp2.shared.gui.CompletionEventListener;
@@ -35,6 +37,8 @@ public class MPTFrameOfFun extends FrameOfFun {
 	private JMenuItem heritageMenuItem;
 	
 	final protected GenerateDialog generateDialog;
+	
+	private JFrame frame;
 	
 
 	/**
@@ -71,6 +75,19 @@ public class MPTFrameOfFun extends FrameOfFun {
 						MapEditor.updateView(map);
 						subController.setMap(map);
 						Utilities.printMap(map, textArea);
+						try{
+							map = loadDialog.getMap();
+							subController.setMap(map);
+							MapEditor.updateView(map);
+							Utilities.printMap(map, textArea);
+						}
+						catch(NullPointerException n)
+						{
+							JOptionPane.showMessageDialog(frame,
+								    "This path cannot be specified. Please try again.",
+								    "Error",
+								    JOptionPane.ERROR_MESSAGE);
+						}
 					}
 				});
 				loadDialog.setRelay(relay);

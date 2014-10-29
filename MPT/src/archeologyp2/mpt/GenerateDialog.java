@@ -12,7 +12,9 @@ import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import archeologyp2.shared.gui.CompletionEvent;
@@ -42,6 +44,7 @@ public class GenerateDialog extends JDialog implements KeyListener {
 	private JTextField heightTextField;
 	private JButton confirmButton;
 	private JButton cancelButton;
+	private JFrame frame;
 	
 	private GridBagConstraints constraints;
 	
@@ -133,11 +136,21 @@ public class GenerateDialog extends JDialog implements KeyListener {
 		confirmButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				width = Integer.parseInt(widthTextField.getText());
-				height = Integer.parseInt(heightTextField.getText());
-				map = Utilities.generateMap(height, width);
-				relay.fireMyEvent(new CompletionEvent(this));
-				dispose();
+				try{
+					width = Integer.parseInt(widthTextField.getText());
+					height = Integer.parseInt(heightTextField.getText());
+					map = Utilities.generateMap(height, width);
+					relay.fireMyEvent(new CompletionEvent(this));
+				}
+				catch(NumberFormatException n){
+					JOptionPane.showMessageDialog(frame,
+						    "Uh oh! Looks like you typed in something wrong. Please try again.",
+						    "Error",
+						    JOptionPane.ERROR_MESSAGE);
+				}
+				finally{
+					dispose();
+				}
 			}
 		});
 		confirmButton.addKeyListener(this);
