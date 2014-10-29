@@ -98,11 +98,13 @@ public class Utilities {
 			colSize = Integer.parseInt(dimensions[0]);
 			rowSize = Integer.parseInt(dimensions[1]);
 			map = new Map<>(rowSize, colSize);
-//			for(int m = 0; m < map.getNumRows(); m++){
-//				for(int n = 0; n < map.getNumColumns(); n++){
-//					map.addPlaneItem(m, n, new Coordinate(m, n));
-//				}
-//			}
+			
+			/* Force the map to be of proper size */
+			for(int m = 0; m < map.getNumRows(); m++){
+				for(int n = 0; n < map.getNumColumns(); n++){
+					map.addPlaneItem(m, n, new Coordinate(m, n));
+				}
+			}
 
 			while(scan.hasNextLine()){
 				line = scan.nextLine();

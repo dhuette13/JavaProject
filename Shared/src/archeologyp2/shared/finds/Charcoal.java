@@ -10,7 +10,7 @@ package archeologyp2.shared.finds;
  * This class handles the Charcoal find.
  *
  */
-public class Charcoal extends Artifact {
+public abstract class Charcoal extends Artifact {
 	int date;
 	
 	/**

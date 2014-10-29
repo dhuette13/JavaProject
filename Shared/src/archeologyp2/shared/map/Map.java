@@ -89,7 +89,13 @@ public class Map<E> implements Iterable<E> {
 	 * @param e
 	 */
 	public void addPlaneItem(int row, int col, E item){
-		plane.add(row * columns + col, item);
+		try{
+			/* Replace existing item has higher priority */
+			plane.set(row * columns + col, item);
+		} catch (IndexOutOfBoundsException e){
+			/* If index to replace does not exist, create new one */
+			plane.add(row * columns + col, item);
+		}
 	}
 	
 	/**
