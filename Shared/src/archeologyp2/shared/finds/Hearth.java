@@ -9,8 +9,8 @@ package archeologyp2.shared.finds;
  */
 public class Hearth extends Charcoal {
 
-	private int length;
-	private int width;
+	private double length;
+	private double width;
 	
 	/**
 	 * For public Hearth
@@ -26,7 +26,7 @@ public class Hearth extends Charcoal {
 	 * @param length
 	 * @param width
 	 */
-	public Hearth(int date, int length, int width) {
+	public Hearth(int date, double length, double width) {
 		super(date);
 		this.length = length;
 		this.width = width;
@@ -37,7 +37,7 @@ public class Hearth extends Charcoal {
 	 * This returns the int length.
 	 * @return length
 	 */
-	public int getLength(){
+	public double getLength(){
 		return length;
 	}
 	
@@ -46,7 +46,7 @@ public class Hearth extends Charcoal {
 	 * This returns the int width. 
 	 * @return width
 	 */
-	public int getWidth(){
+	public double getWidth(){
 		return width;
 	}
 

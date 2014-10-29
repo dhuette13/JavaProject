@@ -7,7 +7,7 @@ package archeologyp2.shared.finds;
  * @author Daniel
  * @author Celine
  */
-public class Pottery extends Artifact {
+public abstract class Pottery extends Artifact {
 	int date;
 	
 	/**

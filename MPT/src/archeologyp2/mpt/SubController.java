@@ -17,7 +17,6 @@ import archeologyp2.shared.finds.FerrousMetal;
 import archeologyp2.shared.finds.Hearth;
 import archeologyp2.shared.finds.Kiln;
 import archeologyp2.shared.finds.NonFerrousMetal;
-import archeologyp2.shared.finds.Pottery;
 import archeologyp2.shared.finds.StoragePottery;
 import archeologyp2.shared.finds.SubmergedPottery;
 import archeologyp2.shared.map.Coordinate;
@@ -132,7 +131,7 @@ public class SubController {
 	 */
 	public void addFind(int row, String col, int type, int date, String data, boolean loopFlag){
 		Coordinate current;
-		Artifact artifact = new Pottery(date);
+		Artifact artifact = null;
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col); 
 		switch(type){
@@ -184,6 +183,7 @@ public class SubController {
 			break;
 		default:
 			System.out.println("Invalid option");
+			return;
 		}
 		if(loopFlag){
 			for(int j = 0; j < map.getNumColumns(); j++){

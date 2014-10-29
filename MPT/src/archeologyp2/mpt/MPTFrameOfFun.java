@@ -71,6 +71,10 @@ public class MPTFrameOfFun extends FrameOfFun {
 				relay.addMyEventListener(new CompletionEventListener(){
 					@Override
 					public void myEventOccurred(CompletionEvent evt) {
+						map = loadDialog.getMap();
+						MapEditor.updateView(map);
+						subController.setMap(map);
+						Utilities.printMap(map, textArea);
 						try{
 							map = loadDialog.getMap();
 							subController.setMap(map);
@@ -100,7 +104,6 @@ public class MPTFrameOfFun extends FrameOfFun {
 				relay.addMyEventListener(new CompletionEventListener(){
 					@Override
 					public void myEventOccurred(CompletionEvent evt) {
-						map = generateDialog.getMap();
 						subController.setMap(map);
 						MapEditor.updateView(map);
 						Utilities.printMap(map, textArea);

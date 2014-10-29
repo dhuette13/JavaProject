@@ -8,7 +8,7 @@ package archeologyp2.shared.finds;
  */
 public class Kiln extends Charcoal {
 
-	private int radius;
+	private double radius;
 	
 	/**
 	 * For public Kiln
@@ -23,7 +23,7 @@ public class Kiln extends Charcoal {
 	 * @param date
 	 * @param radius
 	 */
-	public Kiln(int date, int radius){
+	public Kiln(int date, double radius){
 		super(date);
 		this.radius = radius;
 	}
@@ -33,7 +33,7 @@ public class Kiln extends Charcoal {
 	 * This returns the int radius.
 	 * @return radius
 	 */
-	public int getRadius(){
+	public double getRadius(){
 		return radius;
 	}
 

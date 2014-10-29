@@ -99,7 +99,7 @@ public abstract class FrameOfFun extends JFrame {
 	 */
 	private void createTextArea(){
 		textArea = new JTextArea();
-		textArea.setFont(new Font("Courier New", 0, 14));
+		textArea.setFont(new Font("Courier New", 0, 15));
 		textArea.setEditable(false);
 		scrollPane = new JScrollPane(textArea);
 		this.add(scrollPane, BorderLayout.CENTER);
@@ -175,12 +175,13 @@ public abstract class FrameOfFun extends JFrame {
 		viewingMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ViewingDialog dialog = new ViewingDialog("Viewing Options", map);
+				final ViewingDialog dialog = new ViewingDialog("Viewing Options", map);
 				dialog.setVisible(true);
 				relay.addMyEventListener(new CompletionEventListener(){
 					@Override
 					public void myEventOccurred(CompletionEvent evt) {
 						try{
+							map = dialog.getMap();
 							Utilities.printMap(map, textArea);
 						}
 						catch(NullPointerException n){
@@ -190,7 +191,6 @@ public abstract class FrameOfFun extends JFrame {
 								    JOptionPane.ERROR_MESSAGE);
 						}
 					}
-					
 				});
 				dialog.setRelay(relay);
 			}

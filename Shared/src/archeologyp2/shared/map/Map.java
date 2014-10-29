@@ -47,7 +47,6 @@ public class Map<E> implements Iterable<E> {
 		viewingOption = ViewingOption.natural;
 		charMap = new char[rows][columns];
 		plane = new ArrayList<E>(rows * columns);
-
 		stoneSymbol = defaultStoneSymbol;
 		postHoleSymbol = defaultPostHoleSymbol;
 		dirtSymbol = defaultDirtSymbol;
@@ -58,7 +57,7 @@ public class Map<E> implements Iterable<E> {
 		/* Initialize character map */
 		for(int r = 0; r < rows; r++)
 			for(int c = 0; c < columns; c++)
-				charMap[r][c] = defaultDirtAlias;
+				charMap[r][c] = defaultStoneAlias;
 	}
 	
 	/**
@@ -90,7 +89,13 @@ public class Map<E> implements Iterable<E> {
 	 * @param e
 	 */
 	public void addPlaneItem(int row, int col, E item){
-		plane.add(row * columns + col, item);
+		try{
+			/* Replace existing item has higher priority */
+			plane.set(row * columns + col, item);
+		} catch (IndexOutOfBoundsException e){
+			/* If index to replace does not exist, create new one */
+			plane.add(row * columns + col, item);
+		}
 	}
 	
 	/**
@@ -277,5 +282,9 @@ public class Map<E> implements Iterable<E> {
 		};
 		
 		return it;
+	}
+
+	public int size() {
+		return plane.size();
 	}
 }
