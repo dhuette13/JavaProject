@@ -18,9 +18,17 @@ import java.util.Scanner;
 
 import javax.swing.JTextArea;
 
+import archeologyp2.shared.finds.Artifact;
 import archeologyp2.shared.finds.Charcoal;
+import archeologyp2.shared.finds.DecoratedPottery;
 import archeologyp2.shared.finds.FerrousMetal;
+import archeologyp2.shared.finds.Hearth;
+import archeologyp2.shared.finds.Kiln;
+import archeologyp2.shared.finds.MetalObject;
+import archeologyp2.shared.finds.NonFerrousMetal;
 import archeologyp2.shared.finds.Pottery;
+import archeologyp2.shared.finds.StoragePottery;
+import archeologyp2.shared.finds.SubmergedPottery;
 
 /**
  * UTILITIES IN THE SHARED RESOURCES
@@ -70,6 +78,17 @@ public class Utilities {
 		int rowSize, colSize, r, c;
 		Scanner scan;
 		Map<Coordinate> map;
+		String dataArray[];
+		Coordinate current;
+		int numPots, numMetal, numCharcoal, date, i = 0;
+		String artifactIndicator;
+		Pottery pot = null;
+		Charcoal charcoal = null;
+		MetalObject metal = null;
+		double volume, radius, width, length;
+		int depth, strength;
+		String decorationString, metalType;
+		
 		try {
 			File myFile = new File(path);
 			scan = new Scanner(myFile);
@@ -80,10 +99,11 @@ public class Utilities {
 			colSize = Integer.parseInt(dimensions[0]);
 			rowSize = Integer.parseInt(dimensions[1]);
 			map = new Map<>(rowSize, colSize);
-
-			String dataArray[];
-			Coordinate current;
-			int numPots, numMetal, numCharcoal, date, i = 0;
+//			for(int m = 0; m < map.getNumRows(); m++){
+//				for(int n = 0; n < map.getNumColumns(); n++){
+//					map.addPlaneItem(m, n, new Coordinate(m, n));
+//				}
+//			}
 
 			while(scan.hasNextLine()){
 				line = scan.nextLine();
@@ -99,27 +119,71 @@ public class Utilities {
 				 */
 				current.setFeature(dataArray[i++].charAt(0));
 				current.setExcavated(Boolean.parseBoolean(dataArray[i++]));
+				current.setHeritage(Boolean.parseBoolean(dataArray[i++]));
 
 				/* Iterate through pot input */
 				numPots = Integer.parseInt(dataArray[i++]);
 				while(numPots-- != 0){
-					date = Integer.parseInt(dataArray[i++]);
-					current.addFind(new Pottery(date));
-				}
-
-				/* Iterate through metal input */
-				numMetal = Integer.parseInt(dataArray[i++]);
-				while(numMetal-- != 0){
-					date = Integer.parseInt(dataArray[i++]);
-					current.addFind(new FerrousMetal(date));
+					artifactIndicator = dataArray[i++];
+					switch(artifactIndicator){
+					case "Storage":
+						volume = Double.parseDouble(dataArray[i++]);
+						date = Integer.parseInt(dataArray[i++]);
+						pot = new StoragePottery(date, volume);
+						break;
+					case "Decorated":
+						decorationString = dataArray[i++];
+						date = Integer.parseInt(dataArray[i++]);
+						pot = new DecoratedPottery(date, decorationString);
+						break;
+					case "Submerged":
+						depth = Integer.parseInt(dataArray[i++]);
+						date = Integer.parseInt(dataArray[i++]);
+						pot = new SubmergedPottery(date, depth);
+						break;
+					}
+					current.addFind(pot);
 				}
 
 				/* Iterate through charcoal input */
 				numCharcoal = Integer.parseInt(dataArray[i++]);
 				while(numCharcoal-- != 0){
-					date = Integer.parseInt(dataArray[i++]);
-					current.addFind(new Charcoal(date));
+					artifactIndicator = dataArray[i++];
+					switch(artifactIndicator){
+					case "Kiln":
+						radius = Double.parseDouble(dataArray[i++]);
+						date = Integer.parseInt(dataArray[i++]);
+						charcoal = new Kiln(date, radius);
+						break;
+					case "Hearth":
+						length = Double.parseDouble(dataArray[i++]);
+						width = Double.parseDouble(dataArray[i++]);
+						date = Integer.parseInt(dataArray[i++]);
+						charcoal = new Hearth(date, length, width);
+						break;
+					}
+					current.addFind(charcoal);
 				}
+				
+				/* Iterate through metal input */
+				numMetal = Integer.parseInt(dataArray[i++]);
+				while(numMetal-- != 0){
+					artifactIndicator = dataArray[i++];
+					switch(artifactIndicator){
+					case "Non-Ferrous":
+						metalType = dataArray[i++];
+						date = Integer.parseInt(dataArray[i++]);
+						metal = new NonFerrousMetal(date, metalType);
+						break;
+					case "Ferrous":
+						strength = Integer.parseInt(dataArray[i++]);
+						date = Integer.parseInt(dataArray[i++]);
+						metal = new FerrousMetal(date, strength);
+						break;
+					}
+					current.addFind(metal);
+				}
+
 				current.sortDates();
 				i = 0;
 				map.addPlaneItem(r, c, current);
@@ -130,6 +194,7 @@ public class Utilities {
 			System.out.println("Invalid Path specified");
 		} catch(Exception e) {
 			System.out.println("Invalid File");
+			e.printStackTrace();
 		}
 
 		return null;
@@ -147,6 +212,7 @@ public class Utilities {
 	 */
 	public static void save(Map<Coordinate> map, String path){
 		PrintWriter out = null;
+		Artifact artifact;
 		try {
 			out = new PrintWriter(new File(path));
 			out.println(map.getNumColumns() + "," + map.getNumRows());
@@ -159,18 +225,54 @@ public class Utilities {
 				out.print(indexToColumn(coord.getColumn()) + "," + coord.getRow());
 				out.print("," + coord.getFeatureChar());
 				out.print("," + Boolean.toString(coord.getExcavated()).toUpperCase());
+				out.print("," + Boolean.toString(coord.isHeritage()).toUpperCase());
+				
+				/* Save Pot  data */
 				out.print("," + coord.getPotCount());
 				for(k = 0; k < coord.getPotCount(); k++){
-					out.print("," + coord.getPot(k).getDate());
+					artifact = coord.getPot(k);
+					if(artifact instanceof DecoratedPottery){
+						out.print("," + "Decorated");
+						out.print("," + ((DecoratedPottery) artifact).getDescription());
+					} else if(artifact instanceof SubmergedPottery){
+						out.print("," + "Submerged");
+						out.print("," + ((SubmergedPottery) artifact).getDepth());
+					} else if(artifact instanceof StoragePottery){
+						out.print("," + "Storage");
+						out.print("," + ((StoragePottery) artifact).getVolume());
+					}
+					out.print("," + artifact.getDate());
 				}
-				out.print("," + coord.getMetalCount());
-				for(k = 0; k < coord.getMetalCount(); k++){
-					out.print("," + coord.getMetal(k).getDate());
-				}
+				
+				/* Print Charcoal data */
 				out.print("," + coord.getCharcoalCount());
 				for(k = 0; k < coord.getCharcoalCount(); k++){
-					out.print("," + coord.getCharcoal(k).getDate());
+					artifact = coord.getCharcoal(k);
+					if(artifact instanceof Hearth){
+						out.print("," + "Hearth");
+						out.print("," + ((Hearth) artifact).getLength());
+						out.print("," + ((Hearth) artifact).getWidth());
+					} else if (artifact instanceof Kiln){
+						out.print("," + "Kiln");
+						out.print("," + ((Kiln) artifact).getRadius());
+					}
+					out.print("," + artifact.getDate());
 				}
+				
+				/* Print Metal  data */
+				out.print("," + coord.getMetalCount());
+				for(k = 0; k < coord.getMetalCount(); k++){
+					artifact = coord.getMetal(k);
+					if(artifact instanceof FerrousMetal){
+						out.print("," + "Ferrous");
+						out.print("," + ((FerrousMetal) artifact).getSignalStrength());
+					} else if (artifact instanceof NonFerrousMetal){
+						out.print("," + "Non-Ferrous");
+						out.print("," + ((NonFerrousMetal) artifact).getType());
+					}
+					out.print("," + artifact.getDate());
+				}
+				
 				out.println();
 			}
 			out.close();

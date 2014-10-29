@@ -51,7 +51,7 @@ public class MapEditor {
 	 *  
 	 * @param map
 	 */
-	public static void updateView(Map<Coordinate> map){
+	public static void updateView(final Map<Coordinate> map){
 		switch(map.getViewingOption()){
 		case natural:
 			for(Coordinate coord : map){

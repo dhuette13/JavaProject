@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import archeologyp2.shared.map.Coordinate;
 import archeologyp2.shared.map.Map;
 import archeologyp2.shared.map.MapEditor;
+import archeologyp2.shared.map.ViewingOption;
 
 /**
  * 
@@ -108,6 +109,7 @@ public class ViewingDialog extends JDialog implements KeyListener {
 			public void actionPerformed(ActionEvent arg0) {
 				symbol = charField.getText().charAt(0);
 				selection = comboBox.getSelectedItem().toString();
+				map.setViewingOption(ViewingOption.userModified);
 				MapEditor.changeViewingSymbol(map, selection, symbol);
 				MapEditor.updateView(map);
 				relay.fireMyEvent(new CompletionEvent(this));
@@ -170,6 +172,10 @@ public class ViewingDialog extends JDialog implements KeyListener {
 	 */
 	public void setRelay(Relay relay) {
 		this.relay = relay;
+	}
+	
+	public Map<Coordinate> getMap(){
+		return map;
 	}
 
 	@Override
