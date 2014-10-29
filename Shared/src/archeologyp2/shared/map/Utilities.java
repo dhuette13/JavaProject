@@ -87,7 +87,7 @@ public class Utilities {
 		double volume, radius, width, length;
 		int depth, strength;
 		String decorationString, metalType;
-		
+
 		try {
 			File myFile = new File(path);
 			scan = new Scanner(myFile);
@@ -98,7 +98,7 @@ public class Utilities {
 			colSize = Integer.parseInt(dimensions[0]);
 			rowSize = Integer.parseInt(dimensions[1]);
 			map = new Map<>(rowSize, colSize);
-			
+
 			/* Force the map to be of proper size */
 			for(int m = 0; m < map.getNumRows(); m++){
 				for(int n = 0; n < map.getNumColumns(); n++){
@@ -165,7 +165,7 @@ public class Utilities {
 					}
 					current.addFind(charcoal);
 				}
-				
+
 				/* Iterate through metal input */
 				numMetal = Integer.parseInt(dataArray[i++]);
 				while(numMetal-- != 0){
@@ -175,6 +175,11 @@ public class Utilities {
 						metalType = dataArray[i++];
 						date = Integer.parseInt(dataArray[i++]);
 						metal = new NonFerrousMetal(date, metalType);
+						if(metalType.toLowerCase().equals("gold")){
+							((NonFerrousMetal) metal).setGoldExists(true);
+							((NonFerrousMetal) metal).setGoldRow(r + 1);
+							((NonFerrousMetal) metal).setGoldColumn(Utilities.indexToColumn(c));
+						}
 						break;
 					case "Ferrous":
 						strength = Integer.parseInt(dataArray[i++]);
@@ -227,7 +232,7 @@ public class Utilities {
 				out.print("," + coord.getFeatureChar());
 				out.print("," + Boolean.toString(coord.getExcavated()).toUpperCase());
 				out.print("," + Boolean.toString(coord.isHeritage()).toUpperCase());
-				
+
 				/* Save Pot  data */
 				out.print("," + coord.getPotCount());
 				for(k = 0; k < coord.getPotCount(); k++){
@@ -244,7 +249,7 @@ public class Utilities {
 					}
 					out.print("," + artifact.getDate());
 				}
-				
+
 				/* Print Charcoal data */
 				out.print("," + coord.getCharcoalCount());
 				for(k = 0; k < coord.getCharcoalCount(); k++){
@@ -259,7 +264,7 @@ public class Utilities {
 					}
 					out.print("," + artifact.getDate());
 				}
-				
+
 				/* Print Metal  data */
 				out.print("," + coord.getMetalCount());
 				for(k = 0; k < coord.getMetalCount(); k++){
@@ -273,7 +278,7 @@ public class Utilities {
 					}
 					out.print("," + artifact.getDate());
 				}
-				
+
 				out.println();
 			}
 			out.close();
