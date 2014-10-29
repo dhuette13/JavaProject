@@ -1,6 +1,6 @@
 package archeologyp2.shared.gui;
 
-import java.awt.GridBagConstraints;
+import java.awt.GridBagConstraints; 
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -15,7 +15,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import archeologyp2.shared.map.Coordinate;
@@ -54,6 +56,7 @@ public class ViewingDialog extends JDialog implements KeyListener {
 	private String selection;
 	private Map<Coordinate> map;
 	
+	private JFrame frame;
 	
 	/**
 	 * For public ViewingDialog
@@ -118,12 +121,22 @@ public class ViewingDialog extends JDialog implements KeyListener {
 		confirmButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				symbol = charField.getText().charAt(0);
-				selection = comboBox.getSelectedItem().toString();
-				MapEditor.changeViewingSymbol(map, selection, symbol);
-				MapEditor.updateView(map);
-				relay.fireMyEvent(new CompletionEvent(this));
+				try{
+					symbol = charField.getText().charAt(0);
+					selection = comboBox.getSelectedItem().toString();
+					MapEditor.changeViewingSymbol(map, selection, symbol);
+					MapEditor.updateView(map);
+					relay.fireMyEvent(new CompletionEvent(this));
+				}
+				catch(NullPointerException n){
+					JOptionPane.showMessageDialog(frame,
+						    "Uh oh! Looks like you typed in something wrong. Please try again.",
+						    "Error",
+						    JOptionPane.ERROR_MESSAGE);
+				}
+				finally{
 				dispose();
+				}
 			}
 		});
 		confirmButton.addKeyListener(this);

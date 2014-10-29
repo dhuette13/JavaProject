@@ -1,6 +1,6 @@
 package archeologyp2.mpt;
 
-import java.awt.GridBagConstraints;
+import java.awt.GridBagConstraints; 
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -12,7 +12,9 @@ import java.awt.event.KeyListener;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -42,6 +44,8 @@ public class HeritageDialog extends JDialog implements KeyListener {
 	private int row;
 	private String column;
 	private SubController subController;
+	
+	private JFrame frame;
 	
 	/**
 	 * For public HeritageDialog
@@ -125,10 +129,26 @@ public class HeritageDialog extends JDialog implements KeyListener {
 		confirmButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				row = Integer.parseInt(rowTextField.getText());
-				column = columnTextField.getText();
-				subController.markHeritage(row, column);
-				dispose();
+				try{
+					row = Integer.parseInt(rowTextField.getText());
+					column = columnTextField.getText();
+					subController.markHeritage(row, column);
+				}
+				catch(NumberFormatException n){
+					JOptionPane.showMessageDialog(frame,
+						    "Uh oh! Looks like you typed in something wrong. Please try again.",
+						    "Error",
+						    JOptionPane.ERROR_MESSAGE);
+				}
+				catch(NullPointerException n){
+					JOptionPane.showMessageDialog(frame,
+						    "Uh oh! Looks like you typed in something wrong. Please try again.",
+						    "Error",
+						    JOptionPane.ERROR_MESSAGE);
+				}
+				finally{
+					dispose();
+				}
 			}
 		});
 		confirmButton.addKeyListener(this);

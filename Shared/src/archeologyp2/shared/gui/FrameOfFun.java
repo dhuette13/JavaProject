@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -61,6 +62,8 @@ public abstract class FrameOfFun extends JFrame {
 	final protected PathDialog loadDialog;
 	
 	protected Relay relay;
+	
+	private JFrame frame;
 	
 	/**
 	 * For public FrameOfFun
@@ -177,7 +180,15 @@ public abstract class FrameOfFun extends JFrame {
 				relay.addMyEventListener(new CompletionEventListener(){
 					@Override
 					public void myEventOccurred(CompletionEvent evt) {
-						Utilities.printMap(map, textArea);
+						try{
+							Utilities.printMap(map, textArea);
+						}
+						catch(NullPointerException n){
+							JOptionPane.showMessageDialog(frame,
+								    "Uh oh! Looks like you typed in something wrong. Please try again.",
+								    "Error",
+								    JOptionPane.ERROR_MESSAGE);
+						}
 					}
 					
 				});
