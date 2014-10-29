@@ -183,6 +183,24 @@ public class SubController {
 			}
 		}
 	}
+	
+	/* Temporary Layout for Report
+
+	 -------------------------------------------------------------------
+	 ||   TYPE   ||   ROW   ||   COLUMN   ||   DATE   ||   PROPERTY   ||
+	 -------------------------------------------------------------------
+	 ||          ||         ||            ||          ||              ||
+	 -------------------------------------------------------------------
+	 Average Date: -----
+	 
+	  */
+	public void makeReport(){
+		for(Coordinate coord : map){
+			if(coord.getExcavated() && coord.itemFound()){
+				
+			}
+		}
+	}
 
 	/**
 	 * This method computes the average date from the specified dates. 
