@@ -23,10 +23,32 @@ public class NonFerrousMetal extends MetalObject {
 	/**
 	 * For public NonFerrousMetal
 	 * @param date
+	 * @param row
+	 * @param column
+	 */
+	public NonFerrousMetal(int date, int row, String column) {
+		super(date, row, column);
+	}
+	
+	/**
+	 * For public NonFerrousMetal
+	 * @param date
 	 * @param type
 	 */
 	public NonFerrousMetal(int date, String type) {
 		super(date);
+		this.type = type;
+	}
+	
+	/**
+	 * For public NonFerrousMetal
+	 * @param date
+	 * @param type
+	 * @param row
+	 * @param column
+	 */
+	public NonFerrousMetal(int date, String type, int row, String column) {
+		super(date, row, column);
 		this.type = type;
 	}
 	

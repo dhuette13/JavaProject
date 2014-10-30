@@ -21,15 +21,37 @@ public class StoragePottery extends Pottery {
 	/**
 	 * For public StoragePottery
 	 * @param date
+	 * @param row
+	 * @param column
+	 */
+	public StoragePottery(int date, int row, String column) {
+		super(date, row, column);
+	}
+	
+	/**
+	 * For public StoragePottery
+	 * @param date
 	 * @param volume
 	 */
 	public StoragePottery(int date, double volume){
 		super(date);
 		this.volume = volume;
 	}
+	
+	/**
+	 * For public StoragePottery
+	 * @param date
+	 * @param volume
+	 * @param row
+	 * @param column
+	 */
+	public StoragePottery(int date, double volume, int row, String column){
+		super(date, row, column);
+		this.volume = volume;
+	}
 
 	/**
-	 * For public double getVolumn
+	 * For public double getVolume
 	 * @return volume
 	 */
 	public double getVolume(){

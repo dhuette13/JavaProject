@@ -343,4 +343,20 @@ public class SubController {
 		MapEditor.updateView(map);
 		Utilities.printMap(map, output);
 	}
+	
+	public void printReport(){
+		Report report = new Report();
+		for(Coordinate coord : map){
+			if(coord.getExcavated() && coord.itemFound()){
+				for(int i = 0; i < coord.getPotCount(); i++)
+					report.addFoundItem(coord.getPot(i));
+				for(int i = 0; i < coord.getCharcoalCount(); i++)
+					report.addFoundItem(coord.getCharcoal(i));
+				for(int i = 0; i < coord.getMetalCount(); i++)
+					report.addFoundItem(coord.getMetal(i));
+			}
+		}
+		report.generateReport();
+		output.setText(report.toString());
+	}
 }

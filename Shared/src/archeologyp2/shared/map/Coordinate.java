@@ -1,7 +1,6 @@
 package archeologyp2.shared.map;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import archeologyp2.shared.finds.Artifact;
 import archeologyp2.shared.finds.Charcoal;
@@ -351,11 +350,11 @@ public class Coordinate {
 	 * For public void sortDates
 	 * Sorts each of the artifact collections based on date
 	 */
-	public void sortDates() {
-		Collections.sort(potCount);
-		Collections.sort(metalCount);
-		Collections.sort(charcoalCount);
-	}
+//	public void sortDates() {
+//		Collections.sort(potCount);
+//		Collections.sort(metalCount);
+//		Collections.sort(charcoalCount);
+//	}
 }
 
 

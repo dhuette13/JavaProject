@@ -22,4 +22,14 @@ public abstract class Charcoal extends Artifact {
 	public Charcoal(int date){
 		super(date);
 	}
+
+	/**
+	 * For the public Charcoal method
+	 * @param date
+	 * @param row
+	 * @param column
+	 */
+	public Charcoal(int date, int row, String column) {
+		super(date, row, column);
+	}
 }

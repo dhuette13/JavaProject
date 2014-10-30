@@ -20,6 +20,16 @@ public abstract class MetalObject extends Artifact {
 	}
 	
 	/**
+	 * For the public MetalObject method
+	 * @param date
+	 * @param row
+	 * @param column
+	 */
+	public MetalObject(int date, int row, String column) {
+		super(date, row, column);
+	}
+
+	/**
 	 * For public abstract int respondToMetalDetector
 	 * Specifies what kinds of metal are in a coordinate
 	 * @return int 

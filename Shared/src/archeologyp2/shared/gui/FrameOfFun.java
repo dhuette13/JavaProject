@@ -42,6 +42,7 @@ public abstract class FrameOfFun extends JFrame {
 	protected JMenu fileMenu;
 	protected JMenuItem loadMenuItem;
 	private JMenuItem saveMenuItem;
+	private JMenuItem exportMenuItem;
 	private JMenuItem exitMenuItem;
 	
 	/* Edit Menu */
@@ -131,6 +132,17 @@ public abstract class FrameOfFun extends JFrame {
 			}
 		});
 		
+		//From "File" Menu, Export
+		exportMenuItem = new JMenuItem("Export");
+		exportMenuItem.setMnemonic('x');
+		exportMenuItem.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				PathDialog exportDialog = new PathDialog("Export", map);
+				exportDialog.setVisible(true);
+			}
+		});
+		
 		// From "File" Menu, Exit
 		exitMenuItem = new JMenuItem("Exit");
 		exitMenuItem.setMnemonic('E');
@@ -143,6 +155,7 @@ public abstract class FrameOfFun extends JFrame {
 		
 		fileMenu.add(loadMenuItem);
 		fileMenu.add(saveMenuItem);
+		fileMenu.add(exportMenuItem);
 		fileMenu.add(exitMenuItem);
 		menuBar.add(fileMenu);
 		

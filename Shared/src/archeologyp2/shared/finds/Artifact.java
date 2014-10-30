@@ -12,6 +12,8 @@ package archeologyp2.shared.finds;
 public abstract class Artifact implements Comparable <Artifact>{
 	
 	private int date;
+	private int row;
+	private String column;
 	
 	/**
 	 * For public Artifact 
@@ -20,13 +22,35 @@ public abstract class Artifact implements Comparable <Artifact>{
 	public Artifact(int date){
 		this.date = date;
 	}
+	
+	public Artifact(int date, int row, String column){
+		this.date = date;
+		this.row = row;
+		this.column = column;
+	}
 
 	/**
 	 * For public int getDate 
-	 * @return the date for the pot finds
+	 * @return the date for the artifact
 	 */
 	public int getDate(){
 		return date;
+	}
+	
+	/**
+	 * For public int getRow
+	 * @return the row of the artifact
+	 */
+	public int getRow(){
+		return row;
+	}
+	
+	/**
+	 * For public int getColumn
+	 * @return the column for the artifact
+	 */
+	public String getColumn(){
+		return column;
 	}
 	
 	@Override

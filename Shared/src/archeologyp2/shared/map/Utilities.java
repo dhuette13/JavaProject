@@ -71,10 +71,13 @@ public class Utilities {
 	 * This method loads a map from file into memory. 
 	 * @param path
 	 * @return Map object
+	 * @throws Exception 
 	 * 
 	 */
-	public static Map<Coordinate> load(String path){
+	public static Map<Coordinate> load(String path) throws Exception{
 		int rowSize, colSize, r, c;
+		int row;
+		String column;
 		Scanner scan;
 		Map<Coordinate> map;
 		String dataArray[];
@@ -110,9 +113,13 @@ public class Utilities {
 				line = scan.nextLine();
 				dataArray = line.split(",");
 
+				/* Get row and column from file */
+				column = dataArray[i++];
+				row = Integer.parseInt(dataArray[i++]) + 1;
+
 				/* Get integer index for row and column */ 
-				c = columnToIndex(dataArray[i++]);
-				r = Integer.parseInt(dataArray[i++]);
+				c = columnToIndex(column);
+				r = row - 1;
 				current = new Coordinate(r, c);
 
 				/* Set the type of feature for coordinate, 
@@ -130,17 +137,17 @@ public class Utilities {
 					case "Storage":
 						volume = Double.parseDouble(dataArray[i++]);
 						date = Integer.parseInt(dataArray[i++]);
-						pot = new StoragePottery(date, volume);
+						pot = new StoragePottery(date, volume, row, column);
 						break;
 					case "Decorated":
 						decorationString = dataArray[i++];
 						date = Integer.parseInt(dataArray[i++]);
-						pot = new DecoratedPottery(date, decorationString);
+						pot = new DecoratedPottery(date, decorationString, row, column);
 						break;
 					case "Submerged":
 						depth = Integer.parseInt(dataArray[i++]);
 						date = Integer.parseInt(dataArray[i++]);
-						pot = new SubmergedPottery(date, depth);
+						pot = new SubmergedPottery(date, depth, row, column);
 						break;
 					}
 					current.addFind(pot);
@@ -154,13 +161,13 @@ public class Utilities {
 					case "Kiln":
 						radius = Double.parseDouble(dataArray[i++]);
 						date = Integer.parseInt(dataArray[i++]);
-						charcoal = new Kiln(date, radius);
+						charcoal = new Kiln(date, radius, row, column);
 						break;
 					case "Hearth":
 						length = Double.parseDouble(dataArray[i++]);
 						width = Double.parseDouble(dataArray[i++]);
 						date = Integer.parseInt(dataArray[i++]);
-						charcoal = new Hearth(date, length, width);
+						charcoal = new Hearth(date, length, width, row, column);
 						break;
 					}
 					current.addFind(charcoal);
@@ -174,36 +181,32 @@ public class Utilities {
 					case "Non-Ferrous":
 						metalType = dataArray[i++];
 						date = Integer.parseInt(dataArray[i++]);
-						metal = new NonFerrousMetal(date, metalType);
+						metal = new NonFerrousMetal(date, metalType, row, column);
 						if(metalType.toLowerCase().equals("gold")){
 							((NonFerrousMetal) metal).setGoldExists(true);
-							((NonFerrousMetal) metal).setGoldRow(r + 1);
-							((NonFerrousMetal) metal).setGoldColumn(Utilities.indexToColumn(c));
+							((NonFerrousMetal) metal).setGoldRow(row);
+							((NonFerrousMetal) metal).setGoldColumn(column);
 						}
 						break;
 					case "Ferrous":
 						strength = Integer.parseInt(dataArray[i++]);
 						date = Integer.parseInt(dataArray[i++]);
-						metal = new FerrousMetal(date, strength);
+						metal = new FerrousMetal(date, strength, row, column);
 						break;
 					}
 					current.addFind(metal);
 				}
 
-				current.sortDates();
 				i = 0;
 				map.addPlaneItem(r, c, current);
 			}
 			scan.close();
 			return map;
 		} catch (FileNotFoundException e) {
-			System.out.println("Invalid Path specified");
+			throw e;
 		} catch(Exception e) {
-			System.out.println("Invalid File");
-			e.printStackTrace();
+			throw e;
 		}
-
-		return null;
 	}
 
 	/**
@@ -214,11 +217,13 @@ public class Utilities {
 	 * 
 	 * @param path fileName to save to
 	 * @param m map to save
+	 * @throws Exception 
 	 * 
 	 */
-	public static void save(Map<Coordinate> map, String path){
+	public static void save(Map<Coordinate> map, String path) throws Exception{
 		PrintWriter out = null;
 		Artifact artifact;
+		if(map == null) throw new NullPointerException("Map is null");
 		try {
 			out = new PrintWriter(new File(path));
 			out.println(map.getNumColumns() + "," + map.getNumRows());
@@ -282,10 +287,10 @@ public class Utilities {
 				out.println();
 			}
 			out.close();
-		} catch (FileNotFoundException e) {
-			System.out.println("Error creating file");
-			e.printStackTrace();
-		} finally {
+		} catch (Exception e){
+			throw e;
+		}
+		finally {
 			if(out != null)
 				out.close();
 		}
