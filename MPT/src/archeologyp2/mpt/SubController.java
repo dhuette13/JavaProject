@@ -100,7 +100,6 @@ public class SubController {
 			f = Feature.postHole;
 			break;
 		default:
-			System.out.println("Invalid option");
 			return;
 		}
 
@@ -185,7 +184,6 @@ public class SubController {
 			}
 			break;
 		default:
-			System.out.println("Invalid option");
 			return;
 		}
 		if(loopFlag){

@@ -32,6 +32,8 @@ import archeologyp2.shared.finds.SubmergedPottery;
  * This class specifies on working on the report and
  * printing it out to the user. 
  * 
+ * Maintains three lists of found objects, sorts and formats the output
+ * 
  * @author Daniel
  * @author Celine
  */
@@ -50,6 +52,9 @@ public class Report {
 								  "TYPE\t\tROW\tCOLUMN\tDATE\tPROPERTY\n" +
 								  "---------------------------------------------------\n";
 	
+	/**
+	 * 
+	 */
 	public Report(){
 		potteryReport = "";
 		charcoalReport = "";
@@ -60,6 +65,11 @@ public class Report {
 		foundMetal = new ArrayList<>();
 	}
 	
+	/**
+	 * Adds an item to the report's internal lists
+	 * 
+	 * @param item
+	 */
 	public void addFoundItem(Artifact item){
 		if(item instanceof Pottery){
 			foundPottery.add((Pottery) item);
@@ -70,6 +80,9 @@ public class Report {
 		}
 	}
 	
+	/**
+	 * Sorts the found items lists, and creates the formated output
+	 */
 	public void generateReport(){
 		Collections.sort(foundPottery);
 		Collections.sort(foundCharcoal);
@@ -138,8 +151,13 @@ public class Report {
 		}
 	}
 	
+	/**
+	 * Prints the final report
+	 */
 	@Override
 	public String toString(){
-		return potteryReport + "\n\n" + charcoalReport + "\n\n" + metalReport + "\n";
+		return  "Pot\n" + potteryReport + "\n\n" + 
+				"Charcoal\n" + charcoalReport + "\n\n" + 
+				"Metal\n" + metalReport + "\n";
 	}
 }
