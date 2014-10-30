@@ -170,7 +170,7 @@ public class SubController {
 					int goldRow = gold.getGoldRow() - 1;
 					int goldColumn = Utilities.columnToIndex(gold.getGoldColumn());
 					current = map.getPlaneItem(goldRow, goldColumn);
-					JOptionPane.showMessageDialog(output, "Removing gold from row " + gold.getGoldRow() + " column " + gold.getGoldColumn());
+					JOptionPane.showMessageDialog(output, "Removing Gold from row " + gold.getGoldRow() + " column " + gold.getGoldColumn());
 					current.removeGold();
 					gold.setGoldRow(row);
 					gold.setGoldColumn(col);

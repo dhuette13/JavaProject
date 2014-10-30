@@ -1,7 +1,6 @@
 package archeologyp2.shared.map;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import archeologyp2.shared.finds.Artifact;
 import archeologyp2.shared.finds.Charcoal;

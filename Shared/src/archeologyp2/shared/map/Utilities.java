@@ -71,9 +71,10 @@ public class Utilities {
 	 * This method loads a map from file into memory. 
 	 * @param path
 	 * @return Map object
+	 * @throws Exception 
 	 * 
 	 */
-	public static Map<Coordinate> load(String path){
+	public static Map<Coordinate> load(String path) throws Exception{
 		int rowSize, colSize, r, c;
 		int row;
 		String column;
@@ -112,10 +113,11 @@ public class Utilities {
 				line = scan.nextLine();
 				dataArray = line.split(",");
 
-				/* Get integer index for row and column */ 
+				/* Get row and column from file */
 				column = dataArray[i++];
 				row = Integer.parseInt(dataArray[i++]) + 1;
-				
+
+				/* Get integer index for row and column */ 
 				c = columnToIndex(column);
 				r = row - 1;
 				current = new Coordinate(r, c);
@@ -182,8 +184,8 @@ public class Utilities {
 						metal = new NonFerrousMetal(date, metalType, row, column);
 						if(metalType.toLowerCase().equals("gold")){
 							((NonFerrousMetal) metal).setGoldExists(true);
-							((NonFerrousMetal) metal).setGoldRow(r + 1);
-							((NonFerrousMetal) metal).setGoldColumn(Utilities.indexToColumn(c));
+							((NonFerrousMetal) metal).setGoldRow(row);
+							((NonFerrousMetal) metal).setGoldColumn(column);
 						}
 						break;
 					case "Ferrous":
@@ -201,13 +203,10 @@ public class Utilities {
 			scan.close();
 			return map;
 		} catch (FileNotFoundException e) {
-			System.out.println("Invalid Path specified");
+			throw e;
 		} catch(Exception e) {
-			System.out.println("Invalid File");
-			e.printStackTrace();
+			throw e;
 		}
-
-		return null;
 	}
 
 	/**
@@ -218,11 +217,13 @@ public class Utilities {
 	 * 
 	 * @param path fileName to save to
 	 * @param m map to save
+	 * @throws Exception 
 	 * 
 	 */
-	public static void save(Map<Coordinate> map, String path){
+	public static void save(Map<Coordinate> map, String path) throws Exception{
 		PrintWriter out = null;
 		Artifact artifact;
+		if(map == null) throw new NullPointerException("Map is null");
 		try {
 			out = new PrintWriter(new File(path));
 			out.println(map.getNumColumns() + "," + map.getNumRows());
@@ -286,10 +287,10 @@ public class Utilities {
 				out.println();
 			}
 			out.close();
-		} catch (FileNotFoundException e) {
-			System.out.println("Error creating file");
-			e.printStackTrace();
-		} finally {
+		} catch (Exception e){
+			throw e;
+		}
+		finally {
 			if(out != null)
 				out.close();
 		}

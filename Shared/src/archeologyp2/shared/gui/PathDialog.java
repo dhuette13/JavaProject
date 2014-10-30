@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -45,7 +46,7 @@ public class PathDialog extends JDialog implements ActionListener, KeyListener {
 	private JButton cancelButton;
 	private Relay relay;
 	private JFrame frame;
-	
+
 	private Map<Coordinate> map;
 	private String title;
 
@@ -62,68 +63,68 @@ public class PathDialog extends JDialog implements ActionListener, KeyListener {
 	 */
 	public PathDialog(String title, Map<Coordinate> map){
 		try{
-		this.map = map;
-		this.title = title;
-		
-		setTitle(title);
-		setSize(380, 100);
-		setResizable(false);
-		addKeyListener(this);
+			this.map = map;
+			this.title = title;
 
-		Container pane = getContentPane();
-		pane.setLayout(new GridBagLayout());
+			setTitle(title);
+			setSize(380, 100);
+			setResizable(false);
+			addKeyListener(this);
 
-		label = new JLabel("Enter file to " + title.toLowerCase() + ": ");
-		textField = new JTextField(20);
-		textField.addKeyListener(this);
-		okButton = new JButton("OK");
-		okButton.addKeyListener(this);
-		cancelButton = new JButton("Cancel");
-		cancelButton.addKeyListener(new KeyAdapter(){
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_ENTER){
-					cancelButton.doClick();
+			Container pane = getContentPane();
+			pane.setLayout(new GridBagLayout());
+
+			label = new JLabel("Enter file to " + title.toLowerCase() + ": ");
+			textField = new JTextField(20);
+			textField.addKeyListener(this);
+			okButton = new JButton("OK");
+			okButton.addKeyListener(this);
+			cancelButton = new JButton("Cancel");
+			cancelButton.addKeyListener(new KeyAdapter(){
+				@Override
+				public void keyPressed(KeyEvent e) {
+					if(e.getKeyCode() == KeyEvent.VK_ENTER){
+						cancelButton.doClick();
+					}
 				}
-			}
-		});
-		
-		GridBagConstraints constraints = new GridBagConstraints();
-		constraints.insets = new Insets(3, 3, 3, 3);
-		
-		constraints.anchor = GridBagConstraints.CENTER;
-		constraints.gridx = 0;
-		constraints.gridy = 0;
-		add(label, constraints);
-		
-		
-		constraints.gridx = 1;
-		constraints.gridy = 0;
-		add(textField, constraints);
-		
-		constraints.anchor = GridBagConstraints.CENTER;
-		constraints.gridx = 1;
-		constraints.gridy = 1;
-		add(okButton, constraints);
+			});
 
-		constraints.anchor = GridBagConstraints.EAST;
-		constraints.gridx = 1;
-		constraints.gridy = 1;
-		add(cancelButton, constraints);
-		cancelButton.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-			}
-		});
-		
-		okButton.addActionListener(this);
+			GridBagConstraints constraints = new GridBagConstraints();
+			constraints.insets = new Insets(3, 3, 3, 3);
+
+			constraints.anchor = GridBagConstraints.CENTER;
+			constraints.gridx = 0;
+			constraints.gridy = 0;
+			add(label, constraints);
+
+
+			constraints.gridx = 1;
+			constraints.gridy = 0;
+			add(textField, constraints);
+
+			constraints.anchor = GridBagConstraints.CENTER;
+			constraints.gridx = 1;
+			constraints.gridy = 1;
+			add(okButton, constraints);
+
+			constraints.anchor = GridBagConstraints.EAST;
+			constraints.gridx = 1;
+			constraints.gridy = 1;
+			add(cancelButton, constraints);
+			cancelButton.addActionListener(new ActionListener(){
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					dispose();
+				}
+			});
+
+			okButton.addActionListener(this);
 		}
 		catch(NullPointerException n){
 			JOptionPane.showMessageDialog(frame,
-				    "This path cannot be done. Please try again.",
-				    "Error",
-				    JOptionPane.ERROR_MESSAGE);
+					"This path cannot be done. Please try again.",
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -137,38 +138,34 @@ public class PathDialog extends JDialog implements ActionListener, KeyListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		switch(title){
-		case "Load":
-			try{
+		try{
+			switch(title){
+			case "Load":
 				map = Utilities.load(textField.getText());
 				relay.fireMyEvent(new CompletionEvent(this));
-			}
-			catch(NullPointerException n){
-				JOptionPane.showMessageDialog(frame,
-					    "Uh oh! Looks like you typed in something wrong. Please try again.",
-					    "Error",
-					    JOptionPane.ERROR_MESSAGE);
-			}
-			break;
-		case "Save":
-			try{
+				break;
+			case "Save":
 				Utilities.save(map, textField.getText());
+				break;
+			case "Export":
+				Utilities.exportMap(map, textField.getText());
+				break;
+			default:
+				System.out.println("Not a valid path dialog");
 			}
-			catch(NullPointerException n)
-			{
-				JOptionPane.showMessageDialog(frame,
-					    "This path cannot be done. Please try again.",
-					    "Error",
-					    JOptionPane.ERROR_MESSAGE);
-			}
-			break;
-		case "Export":
-			Utilities.exportMap(map, textField.getText());
-			break;
-		default:
-			System.out.println("Not a valid path dialog");
+		} catch(NullPointerException n){
+			JOptionPane.showMessageDialog(frame, "No file available to save or export!", "Error", JOptionPane.ERROR_MESSAGE);
+		} catch(FileNotFoundException ex) {
+			JOptionPane.showMessageDialog(frame,
+					"Uh oh! Looks like you typed in something wrong. Please try again.",
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
+			
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(frame, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+		} finally {
+			dispose();
 		}
-		dispose();
 	}
 
 	/**
@@ -201,7 +198,7 @@ public class PathDialog extends JDialog implements ActionListener, KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 	}
-	
+
 	@Override
 	public void keyTyped(KeyEvent e) {
 	}
