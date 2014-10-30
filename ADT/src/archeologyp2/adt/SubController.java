@@ -61,7 +61,7 @@ public class SubController {
 				+ "Daniel Huette: 1000947178\n"
 				+ "Celine Soriano: 1000876277\n"
 				+ "Archaeological Dig Tool\n"
-				+ "Date: \n"
+				+ "Date: October 30, 2014\n"
 				+ "Version 0.2\n"
 				+ "\n";
 		output.setText(text);
