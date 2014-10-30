@@ -17,4 +17,14 @@ public abstract class Pottery extends Artifact {
 	public Pottery(int date){
 		super(date);
 	}
+
+	/**
+	 * For public Pottery
+	 * @param date
+	 * @param row
+	 * @param column
+	 */
+	public Pottery(int date, int row, String column) {
+		super(date, row, column);
+	}
 }

@@ -17,6 +17,16 @@ public class SubmergedPottery extends Pottery {
 	public SubmergedPottery(int date) {
 		super(date);
 	}
+
+	/**
+	 * For public SubmergedPottery
+	 * @param date
+	 * @param row
+	 * @param column
+	 */
+	public SubmergedPottery(int date, int row, String column) {
+		super(date, row, column);
+	}
 	
 	/**
 	 * For public SubmergedPottery
@@ -25,6 +35,18 @@ public class SubmergedPottery extends Pottery {
 	 */
 	public SubmergedPottery(int date, int depth) {
 		super(date);
+		this.depth = depth;
+	}
+	
+	/**
+	 * For public SubmergedPottery
+	 * @param date
+	 * @param depth
+	 * @param row
+	 * @param column
+	 */
+	public SubmergedPottery(int date, int depth, int row, String column) {
+		super(date, row, column);
 		this.depth = depth;
 	}
 

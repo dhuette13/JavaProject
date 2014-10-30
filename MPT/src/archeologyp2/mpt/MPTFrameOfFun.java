@@ -77,14 +77,13 @@ public class MPTFrameOfFun extends FrameOfFun {
 						MapEditor.updateView(map);
 						subController.setMap(map);
 						Utilities.printMap(map, textArea);
-						try{
+						try {
 							map = loadDialog.getMap();
 							subController.setMap(map);
 							MapEditor.updateView(map);
 							Utilities.printMap(map, textArea);
 						}
-						catch(NullPointerException n)
-						{
+						catch(NullPointerException n) {
 							JOptionPane.showMessageDialog(frame,
 								    "This path cannot be specified. Please try again.",
 								    "Error",

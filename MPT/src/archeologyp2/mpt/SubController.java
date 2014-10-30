@@ -39,7 +39,7 @@ import archeologyp2.shared.map.Utilities;
  *
  */
 public class SubController {
-	
+
 	private Map<Coordinate> map;
 	private JTextArea output;
 	String text;
@@ -136,34 +136,34 @@ public class SubController {
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col); 
 		switch(type){
-			/* Add to decorated pot collection */
+		/* Add to decorated pot collection */
 		case 1:
-			artifact = new DecoratedPottery(date, data);
+			artifact = new DecoratedPottery(date, data, row, col);
 			break;
 			/* Add to submerged pot collection */
 		case 2:
-			artifact = new SubmergedPottery(date, Integer.parseInt(data));
+			artifact = new SubmergedPottery(date, Integer.parseInt(data), row, col);
 			break;
 			/* Add to storage pot collection */
 		case 3:
-			artifact = new StoragePottery(date, Integer.parseInt(data));
+			artifact = new StoragePottery(date, Integer.parseInt(data), row, col);
 			break;
 			/* Add to kiln collection */
 		case 4:
-			artifact = new Kiln(date, Integer.parseInt(data));
+			artifact = new Kiln(date, Integer.parseInt(data), row, col);
 			break;
 			/* Add to hearth collection */
 		case 5:
 			String info[] = data.split(",");
-			artifact = new Hearth(date, Integer.parseInt(info[0]), Integer.parseInt(info[1]));
+			artifact = new Hearth(date, Integer.parseInt(info[0]), Integer.parseInt(info[1]), row, col);
 			break;
 			/* Add to ferrous collection */
 		case 6:
-			artifact = new FerrousMetal(date, Integer.parseInt(data));
+			artifact = new FerrousMetal(date, Integer.parseInt(data), row, col);
 			break;
 			/* Add to non-ferrous collection */
 		case 7:
-			artifact = new NonFerrousMetal(date, data);
+			artifact = new NonFerrousMetal(date, data, row, col);
 			if(data.toLowerCase().equals("gold")){
 				NonFerrousMetal gold = (NonFerrousMetal) artifact;
 				if(gold.goldExists()){
@@ -192,12 +192,10 @@ public class SubController {
 			for(int j = 0; j < map.getNumColumns(); j++){
 				current = map.getPlaneItem(r, j);
 				current.addFind(artifact);
-				current.sortDates();
 			}
 		} else {
 			current = map.getPlaneItem(r, c);
 			current.addFind(artifact);
-			current.sortDates();
 		}
 		MapEditor.updateView(map);
 	}

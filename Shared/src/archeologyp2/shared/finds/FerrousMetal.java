@@ -22,10 +22,30 @@ public class FerrousMetal extends MetalObject {
 	/**
 	 * For public FerrousMetal
 	 * @param date
+	 */
+	public FerrousMetal(int date, int row, String column) {
+		super(date, row, column);
+	}
+	
+	/**
+	 * For public FerrousMetal
+	 * @param date
 	 * @param signalStength
 	 */
 	public FerrousMetal(int date, int signalStength) {
 		super(date);
+		this.signalStrength = signalStength;
+	}
+	
+	/**
+	 * For public FerrousMetal
+	 * @param date
+	 * @param signalStength
+	 * @param row
+	 * @param column
+	 */
+	public FerrousMetal(int date, int signalStength, int row, String column) {
+		super(date, row, column);
 		this.signalStrength = signalStength;
 	}
 	

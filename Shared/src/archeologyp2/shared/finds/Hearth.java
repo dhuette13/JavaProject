@@ -19,6 +19,16 @@ public class Hearth extends Charcoal {
 	public Hearth(int date) {
 		super(date);
 	}
+
+	/**
+	 * For public Hearth
+	 * @param date
+	 * @param row
+	 * @param column
+	 */
+	public Hearth(int date, int row, String column) {
+		super(date, row, column);
+	}
 	
 	/**
 	 * For public Hearth
@@ -28,6 +38,20 @@ public class Hearth extends Charcoal {
 	 */
 	public Hearth(int date, double length, double width) {
 		super(date);
+		this.length = length;
+		this.width = width;
+	}
+	
+	/**
+	 * For public Hearth
+	 * @param date
+	 * @param length
+	 * @param width
+	 * @param row
+	 * @param column
+	 */
+	public Hearth(int date, double length, double width, int row, String column) {
+		super(date, row, column);
 		this.length = length;
 		this.width = width;
 	}

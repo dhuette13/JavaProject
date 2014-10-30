@@ -75,6 +75,8 @@ public class Utilities {
 	 */
 	public static Map<Coordinate> load(String path){
 		int rowSize, colSize, r, c;
+		int row;
+		String column;
 		Scanner scan;
 		Map<Coordinate> map;
 		String dataArray[];
@@ -111,8 +113,11 @@ public class Utilities {
 				dataArray = line.split(",");
 
 				/* Get integer index for row and column */ 
-				c = columnToIndex(dataArray[i++]);
-				r = Integer.parseInt(dataArray[i++]);
+				column = dataArray[i++];
+				row = Integer.parseInt(dataArray[i++]) + 1;
+				
+				c = columnToIndex(column);
+				r = row - 1;
 				current = new Coordinate(r, c);
 
 				/* Set the type of feature for coordinate, 
@@ -130,17 +135,17 @@ public class Utilities {
 					case "Storage":
 						volume = Double.parseDouble(dataArray[i++]);
 						date = Integer.parseInt(dataArray[i++]);
-						pot = new StoragePottery(date, volume);
+						pot = new StoragePottery(date, volume, row, column);
 						break;
 					case "Decorated":
 						decorationString = dataArray[i++];
 						date = Integer.parseInt(dataArray[i++]);
-						pot = new DecoratedPottery(date, decorationString);
+						pot = new DecoratedPottery(date, decorationString, row, column);
 						break;
 					case "Submerged":
 						depth = Integer.parseInt(dataArray[i++]);
 						date = Integer.parseInt(dataArray[i++]);
-						pot = new SubmergedPottery(date, depth);
+						pot = new SubmergedPottery(date, depth, row, column);
 						break;
 					}
 					current.addFind(pot);
@@ -154,13 +159,13 @@ public class Utilities {
 					case "Kiln":
 						radius = Double.parseDouble(dataArray[i++]);
 						date = Integer.parseInt(dataArray[i++]);
-						charcoal = new Kiln(date, radius);
+						charcoal = new Kiln(date, radius, row, column);
 						break;
 					case "Hearth":
 						length = Double.parseDouble(dataArray[i++]);
 						width = Double.parseDouble(dataArray[i++]);
 						date = Integer.parseInt(dataArray[i++]);
-						charcoal = new Hearth(date, length, width);
+						charcoal = new Hearth(date, length, width, row, column);
 						break;
 					}
 					current.addFind(charcoal);
@@ -174,7 +179,7 @@ public class Utilities {
 					case "Non-Ferrous":
 						metalType = dataArray[i++];
 						date = Integer.parseInt(dataArray[i++]);
-						metal = new NonFerrousMetal(date, metalType);
+						metal = new NonFerrousMetal(date, metalType, row, column);
 						if(metalType.toLowerCase().equals("gold")){
 							((NonFerrousMetal) metal).setGoldExists(true);
 							((NonFerrousMetal) metal).setGoldRow(r + 1);
@@ -184,13 +189,12 @@ public class Utilities {
 					case "Ferrous":
 						strength = Integer.parseInt(dataArray[i++]);
 						date = Integer.parseInt(dataArray[i++]);
-						metal = new FerrousMetal(date, strength);
+						metal = new FerrousMetal(date, strength, row, column);
 						break;
 					}
 					current.addFind(metal);
 				}
 
-				current.sortDates();
 				i = 0;
 				map.addPlaneItem(r, c, current);
 			}

@@ -229,6 +229,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 		viewReportMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				subController.printReport();
 			}
 		});
 		viewMenu.add(viewReportMenuItem);
