@@ -61,7 +61,7 @@ public class SubController {
 				+ "Daniel Huette: 1000947178\n"
 				+ "Celine Soriano: 1000876277\n"
 				+ "Archaeological Dig Tool\n"
-				+ "Date: \n"
+				+ "Date: October 30, 2014\n"
 				+ "Version 0.2\n"
 				+ "\n";
 		output.setText(text);
@@ -185,6 +185,34 @@ public class SubController {
 				current.setItemFound(true);
 			}
 		}
+	}
+	
+	/* Temporary Layout for Report
+
+	 -- TYPE -- ROW -- COLUMN -- DATE -- PROPERTY --
+	 -- -- -- --
+	 Average Date: -----
+	 
+	  */ 
+	public void makeReport(){
+		double average;
+		double std;
+		
+		System.out.println("-- TYPE -- ROW -- COLUMN -- DATE -- PROPERTY --");
+		
+		for(Coordinate coord : map){
+			if(coord.getExcavated() && coord.itemFound()){
+				//Do pottery table first, sorted by date
+				//Do charcoal finds, sorted by date
+				//Do metalwork finds, sorted by date
+			}
+		}
+		
+		//Calculates the average date of the site.
+		average=computeAverageDate();
+		std = computeStandardDeviation(average);
+		System.out.println("Average Date: "+average);
+		System.out.println("Standard Deviation: "+std);
 	}
 
 	/**
