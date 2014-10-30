@@ -186,20 +186,30 @@ public class SubController {
 	
 	/* Temporary Layout for Report
 
-	 -------------------------------------------------------------------
-	 ||   TYPE   ||   ROW   ||   COLUMN   ||   DATE   ||   PROPERTY   ||
-	 -------------------------------------------------------------------
-	 ||          ||         ||            ||          ||              ||
-	 -------------------------------------------------------------------
+	 -- TYPE -- ROW -- COLUMN -- DATE -- PROPERTY --
+	 -- -- -- --
 	 Average Date: -----
 	 
 	  */
 	public void makeReport(){
+		double average;
+		double std;
+		
+		System.out.println("-- TYPE -- ROW -- COLUMN -- DATE -- PROPERTY --");
+		
 		for(Coordinate coord : map){
 			if(coord.getExcavated() && coord.itemFound()){
-				
+				//Do pottery table first, sorted by date
+				//Do charcoal finds, sorted by date
+				//Do metalwork finds, sorted by date
 			}
 		}
+		
+		//Calculates the average date of the site.
+		average=computeAverageDate();
+		std = computeStandardDeviation(average);
+		System.out.println("Average Date: "+average);
+		System.out.println("Standard Deviation: "+std);
 	}
 
 	/**

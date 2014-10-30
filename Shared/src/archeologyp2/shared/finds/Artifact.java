@@ -2,7 +2,8 @@ package archeologyp2.shared.finds;
 
 /**
  * ARTIFACT FOR THE SHARED FINDS
- * This class is the parent class for all finds in a map. It is comparable based on dates.
+ * This class is the parent class for all finds in a map. 
+ * It is comparable based on dates.
  * 
  * @author Daniel
  * @author Celine
