@@ -190,7 +190,7 @@ public class SubController {
 	 -- -- -- --
 	 Average Date: -----
 	 
-	  */
+	  */ 
 	public void makeReport(){
 		double average;
 		double std;
