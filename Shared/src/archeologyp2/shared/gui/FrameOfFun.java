@@ -61,7 +61,7 @@ public abstract class FrameOfFun extends JFrame {
 	
 	final protected PathDialog loadDialog;
 	
-	protected Relay relay;
+
 	
 	private JFrame frame;
 	
@@ -79,7 +79,6 @@ public abstract class FrameOfFun extends JFrame {
 		createTextArea();
 		createMenuBar();
 		this.setSize(800, 700);
-		relay = new Relay();
 		loadDialog = new PathDialog("Load", map);
 	}
 	
@@ -176,6 +175,7 @@ public abstract class FrameOfFun extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				final ViewingDialog dialog = new ViewingDialog("Viewing Options", map);
+				Relay relay = new Relay();
 				dialog.setVisible(true);
 				relay.addMyEventListener(new CompletionEventListener(){
 					@Override

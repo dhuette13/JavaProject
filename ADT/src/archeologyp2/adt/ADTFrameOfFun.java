@@ -1,6 +1,6 @@
 package archeologyp2.adt;
 
-import java.awt.event.ActionEvent; 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import archeologyp2.shared.gui.CompletionEvent;
 import archeologyp2.shared.gui.CompletionEventListener;
 import archeologyp2.shared.gui.FrameOfFun;
+import archeologyp2.shared.gui.Relay;
 import archeologyp2.shared.map.MapEditor;
 import archeologyp2.shared.map.Utilities;
 import archeologyp2.shared.map.ViewingOption;
@@ -78,6 +79,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				loadDialog.setVisible(true);
+				Relay relay = new Relay();
 				relay.addMyEventListener(new CompletionEventListener(){
 					@Override
 					public void myEventOccurred(CompletionEvent evt) {
