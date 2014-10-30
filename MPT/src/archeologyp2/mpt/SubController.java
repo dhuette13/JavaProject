@@ -9,6 +9,7 @@
 
 package archeologyp2.mpt;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import archeologyp2.shared.finds.Artifact;
@@ -163,20 +164,22 @@ public class SubController {
 			/* Add to non-ferrous collection */
 		case 7:
 			artifact = new NonFerrousMetal(date, data);
-			if(data.toLowerCase().equals("Gold")){
+			if(data.toLowerCase().equals("gold")){
 				NonFerrousMetal gold = (NonFerrousMetal) artifact;
 				if(gold.goldExists()){
 					int goldRow = gold.getGoldRow() - 1;
 					int goldColumn = Utilities.columnToIndex(gold.getGoldColumn());
 					current = map.getPlaneItem(goldRow, goldColumn);
+					JOptionPane.showMessageDialog(output, "Removing gold from row " + gold.getGoldRow() + " column " + gold.getGoldColumn());
 					current.removeGold();
-					
 					gold.setGoldRow(row);
 					gold.setGoldColumn(col);
 					current = map.getPlaneItem(r, c);
 					current.addFind(artifact);
 				} else {
 					gold.setGoldExists(true);
+					gold.setGoldRow(row);
+					gold.setGoldColumn(col);
 				}
 				return;
 			}

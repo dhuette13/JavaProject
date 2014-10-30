@@ -145,7 +145,7 @@ public class DigDialog extends JDialog implements KeyListener {
 					subController.dig(row, column);
 					subController.updateMap();
 				} catch (HeritageException e) {
-					System.out.println("You cannot dig here!");
+					JOptionPane.showMessageDialog(frame, "This spot is heritage! You cannot dig here.", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 				catch(IndexOutOfBoundsException i){
 					JOptionPane.showMessageDialog(frame,
