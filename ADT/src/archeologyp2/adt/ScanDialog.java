@@ -43,7 +43,7 @@ public class ScanDialog extends JDialog implements ActionListener, KeyListener {
 	private JTextField colText;
 	private JButton confirmButton;
 	private JButton cancelButton;
-	
+
 	private JFrame frame;
 
 	//For Try-Catch: "Exception in thread "AWT-EventQueue-0" java.lang.NumberFormatException"
@@ -129,7 +129,7 @@ public class ScanDialog extends JDialog implements ActionListener, KeyListener {
 				dispose();
 			}
 		});
-		
+
 		cancelButton.addKeyListener(new KeyAdapter(){
 			@Override
 			public void keyPressed(KeyEvent e){
@@ -156,35 +156,53 @@ public class ScanDialog extends JDialog implements ActionListener, KeyListener {
 	 * 
 	 */
 	public void actionPerformed(ActionEvent e) {
-		int feature = comboBox.getSelectedIndex();
-		int row = Integer.parseInt(rowText.getText());
-		String col = colText.getText();
-		switch(feature)
-		{
-		case 0: //Magnetometer
-			try{
-				subController.magnetoMeter(row, col);
+		try{
+			int feature = comboBox.getSelectedIndex();
+			int row = Integer.parseInt(rowText.getText());
+			String col = colText.getText();
+			switch(feature){
+			/* Magnetometer */
+			case 0: 
+				boolean found = subController.magnetoMeter(row, col);
+				JOptionPane.showMessageDialog(frame, "Results of Magnetometer: " + found, "Detector Results", JOptionPane.INFORMATION_MESSAGE);
 				subController.updateMap();
+				break;
+			/* Metal Detector */
+			case 1:
+				int results = subController.metalDetector(row, col);
+				String find = "";
+				switch(results){
+				case 0:
+					find = "No metal found";
+					break;
+				case 2:
+					find = "Ferrous Metal found";
+					break;
+				case 4:
+					find = "NonFerrous Metal found";
+					break;
+				case 6:
+					find = "Ferrous and NonFerrous Metal found";
+					break;
+				}
+				JOptionPane.showMessageDialog(frame, "Results of Metal Detector: " + results + "\n" + find, "Detector Results", JOptionPane.INFORMATION_MESSAGE);
+				subController.updateMap();
+				break;
+			default:
+				break;
 			}
-			catch(IndexOutOfBoundsException i){
-				JOptionPane.showMessageDialog(frame,
-					    "Uh oh! Looks like the input you gave are out of range. Please try again.",
-					    "Error",
-					    JOptionPane.ERROR_MESSAGE);
-			}
-			catch(NullPointerException i){
-				JOptionPane.showMessageDialog(frame,
-					    "Uh oh! Looks like you forgot to load a map first. Please try again.",
-					    "Error",
-					    JOptionPane.ERROR_MESSAGE);
-			}
-			break;
-		case 1: //Metal Detector
-			subController.metalDetector(row, col);
-			subController.updateMap();
-			break;
-		default:
-			break;
+		}
+		catch(IndexOutOfBoundsException i){
+			JOptionPane.showMessageDialog(frame,
+					"Uh oh! Looks like the input you gave are out of range. Please try again.",
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		catch(NullPointerException i){
+			JOptionPane.showMessageDialog(frame,
+					"Uh oh! Looks like you forgot to load a map first. Please try again.",
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
 		dispose();
 	}

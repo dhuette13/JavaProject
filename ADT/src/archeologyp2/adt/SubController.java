@@ -77,16 +77,20 @@ public class SubController {
 	 * @param col
 	 * 
 	 */
-	public void magnetoMeter(int row, String col){
+	public boolean magnetoMeter(int row, String col){
 		Coordinate current;
 		int r = row - 1;
 		int c = Utilities.columnToIndex(col); 
 		current = map.getPlaneItem(r, c);
 		current.setCharcoalInspected(true);
-		if(current.getCharcoalCount() != 0)
+		if(current.getCharcoalCount() != 0){
 			current.setCharcoalHidden(true);
-		else
+			return true;
+		}
+		else {
 			current.setCharcoalHidden(false);
+			return false;
+		}
 	}
 
 	/**
@@ -129,7 +133,6 @@ public class SubController {
 				}
 			}
 		}
-		
 		else {
 			current.setMetalHidden(false);
 		}
@@ -344,6 +347,10 @@ public class SubController {
 		Utilities.printMap(map, output);
 	}
 	
+	/**
+	 * Fills the report with found items, gets the average and 
+	 * standard deviation, and shows finished report on text area
+	 */
 	public void printReport(){
 		Report report = new Report();
 		for(Coordinate coord : map){
@@ -357,6 +364,8 @@ public class SubController {
 			}
 		}
 		report.generateReport();
-		output.setText(report.toString());
+		double averageDate = computeAverageDate();
+		double standardDeviation = computeStandardDeviation(averageDate);
+		output.setText(report.toString() + "The average date is: " + averageDate + "\nThe Standard Deviation is: " + standardDeviation);
 	}
 }
