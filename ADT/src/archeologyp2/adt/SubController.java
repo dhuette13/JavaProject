@@ -9,6 +9,7 @@
 
 package archeologyp2.adt;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 import archeologyp2.shared.finds.Artifact;
@@ -50,7 +51,7 @@ public class SubController {
 		this.output = output;
 		map = null;
 	}
-	
+
 	/**
 	 * Prints the about information to text area
 	 */
@@ -77,20 +78,25 @@ public class SubController {
 	 * @param col
 	 * 
 	 */
-	public boolean magnetoMeter(int row, String col){
-		Coordinate current;
-		int r = row - 1;
-		int c = Utilities.columnToIndex(col); 
-		current = map.getPlaneItem(r, c);
-		current.setCharcoalInspected(true);
-		if(current.getCharcoalCount() != 0){
-			current.setCharcoalHidden(true);
-			return true;
+	public int magnetoMeter(int row, String col){
+		try{
+			Coordinate current;
+			int r = row - 1;
+			int c = Utilities.columnToIndex(col); 
+			current = map.getPlaneItem(r, c);
+			current.setCharcoalInspected(true);
+			if(current.getCharcoalCount() != 0){
+				current.setCharcoalHidden(true);
+				return 1;
+			}
+			else {
+				current.setCharcoalHidden(false);
+				return 0;
+			}
+		} catch(NullPointerException e){
+			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
-		else {
-			current.setCharcoalHidden(false);
-			return false;
-		}
+		return -1;
 	}
 
 	/**
@@ -105,38 +111,43 @@ public class SubController {
 	 * 
 	 */
 	public int metalDetector(int row, String col){
-		MetalObject metal;
-		Coordinate current;
 		int detectorResults = 0;
-		int r = row - 1;
-		int c = Utilities.columnToIndex(col);
-		current = map.getPlaneItem(r, c);
-		current.setMetalInspected(true);
-		if(current.getMetalCount() != 0) {
-			current.setMetalHidden(true);
-			
-			/* Look for first instance of Ferrous Metal, increment results */
-			for(int i = 0; i < current.getMetalCount(); i++){
-				metal = current.getMetal(i);
-				if(metal instanceof FerrousMetal){
-					detectorResults += metal.respondToMetalDetector();
-					break;
-				} 
-			}
-			
-			/* Look for first instance of NonFerrous Metal, increment results */
-			for(int i = 0; i < current.getMetalCount(); i++){
-				metal = current.getMetal(i);
-				if(metal instanceof NonFerrousMetal){
-					detectorResults += metal.respondToMetalDetector();
-					break;
+		try{
+			MetalObject metal;
+			Coordinate current;
+			int r = row - 1;
+			int c = Utilities.columnToIndex(col);
+			current = map.getPlaneItem(r, c);
+			current.setMetalInspected(true);
+			if(current.getMetalCount() != 0) {
+				current.setMetalHidden(true);
+				
+				/* Look for first instance of Ferrous Metal, increment results */
+				for(int i = 0; i < current.getMetalCount(); i++){
+					metal = current.getMetal(i);
+					if(metal instanceof FerrousMetal){
+						detectorResults += metal.respondToMetalDetector();
+						break;
+					} 
+				}
+				
+				/* Look for first instance of NonFerrous Metal, increment results */
+				for(int i = 0; i < current.getMetalCount(); i++){
+					metal = current.getMetal(i);
+					if(metal instanceof NonFerrousMetal){
+						detectorResults += metal.respondToMetalDetector();
+						break;
+					}
 				}
 			}
+			else {
+				current.setMetalHidden(false);
+			}
+		} catch(NullPointerException e){
+			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
+			detectorResults = -1;
 		}
-		else {
-			current.setMetalHidden(false);
-		}
-		
+
 		return detectorResults;
 	}
 
@@ -150,11 +161,15 @@ public class SubController {
 	 * 
 	 */
 	public void visibleSpectrum(int row, String col){
-		Coordinate current;
-		int r = row - 1;
-		int c = Utilities.columnToIndex(col);
-		current = map.getPlaneItem(r, c);
-		current.setPotInspected(true);
+		try{
+			Coordinate current;
+			int r = row - 1;
+			int c = Utilities.columnToIndex(col);
+			current = map.getPlaneItem(r, c);
+			current.setPotInspected(true);
+		} catch(NullPointerException e){
+			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**
@@ -173,46 +188,22 @@ public class SubController {
 	 * 
 	 */
 	public void dig(int row, String col) throws HeritageException {
-		Coordinate current;
-		int r = row - 1;
-		int c = Utilities.columnToIndex(col);
-		current = map.getPlaneItem(r, c);
-		if(current.isHeritage()){
-			throw new HeritageException("This coordinate is heritage!");
-		} else {
-			current.setExcavated(true);
-			if((current.getPotCount() != 0) || (current.getCharcoalCount() != 0) || (current.getMetalCount() != 0)){
-				current.setItemFound(true);
+		try{
+			Coordinate current;
+			int r = row - 1;
+			int c = Utilities.columnToIndex(col);
+			current = map.getPlaneItem(r, c);
+			if(current.isHeritage()){
+				throw new HeritageException("This coordinate is heritage!");
+			} else {
+				current.setExcavated(true);
+				if((current.getPotCount() != 0) || (current.getCharcoalCount() != 0) || (current.getMetalCount() != 0)){
+					current.setItemFound(true);
+				}
 			}
-		}
-	}
-	
-	/* Temporary Layout for Report
-
-	 -- TYPE -- ROW -- COLUMN -- DATE -- PROPERTY --
-	 -- -- -- --
-	 Average Date: -----
-	 
-	  */ 
-	public void makeReport(){
-		double average;
-		double std;
-		
-		System.out.println("-- TYPE -- ROW -- COLUMN -- DATE -- PROPERTY --");
-		
-		for(Coordinate coord : map){
-			if(coord.getExcavated() && coord.itemFound()){
-				//Do pottery table first, sorted by date
-				//Do charcoal finds, sorted by date
-				//Do metalwork finds, sorted by date
-			}
-		}
-		
-		//Calculates the average date of the site.
-		average=computeAverageDate();
-		std = computeStandardDeviation(average);
-		System.out.println("Average Date: "+average);
-		System.out.println("Standard Deviation: "+std);
+		} catch(NullPointerException e){
+			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
+		} 
 	}
 
 	/**
@@ -230,28 +221,32 @@ public class SubController {
 		int itemCount = 0;
 		double average = 0;
 		Artifact a;
-		for(Coordinate coord : map){
-			if(coord.getExcavated() && coord.itemFound()){
-				for(int k = 0; k < coord.getPotCount(); k++){
-					a = coord.getPot(k);
-					average += a.getDate();
-					itemCount++;
-				}
-				
-				for(int k = 0; k < coord.getCharcoalCount(); k++){
-					a = coord.getCharcoal(k);
-					average += a.getDate();
-					itemCount++;
-				}
-				
-				for(int k = 0; k < coord.getMetalCount(); k++){
-					a = coord.getMetal(k);
-					average += a.getDate();
-					itemCount++;
+		try{
+			for(Coordinate coord : map){
+				if(coord.getExcavated() && coord.itemFound()){
+					for(int k = 0; k < coord.getPotCount(); k++){
+						a = coord.getPot(k);
+						average += a.getDate();
+						itemCount++;
+					}
+
+					for(int k = 0; k < coord.getCharcoalCount(); k++){
+						a = coord.getCharcoal(k);
+						average += a.getDate();
+						itemCount++;
+					}
+
+					for(int k = 0; k < coord.getMetalCount(); k++){
+						a = coord.getMetal(k);
+						average += a.getDate();
+						itemCount++;
+					}
 				}
 			}
+			average = average / itemCount;
+		} catch(NullPointerException e){
+			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
-		average = average / itemCount;
 		return average;
 	}
 
@@ -271,60 +266,46 @@ public class SubController {
 		double power = 0;
 		double sub = 0;
 		double sum = 0;
-		
+		double variance = 0;
+		double sd = 0;
+
 		Artifact a;
-//		Computes the amount of things needed to divide by to get the variance
-//		for(Coordinate coord : map) {
-//			if(coord.getExcavated() && coord.itemFound()){ 
-//				for(int k = 0; k < coord.potCount.size() + coord.metalCount.size() + coord.charcoalCount.size(); k++)
-//					n++; 
-//				//If it's excavated and if there's an object inside it
-//				//then add to the amount of things variable
-//			}
-//		}
+		try{
+			for(Coordinate coord : map) {
+				if(coord.itemFound()){
+					for(int k = 0; k < coord.getPotCount(); k++) {
+						a = coord.getPot(k);
+						sub = a.getDate() - avg;
+						power = Math.pow(sub, 2);
+						sum += power;
+						n++;
+					}
 
+					for(int k = 0; k < coord.getCharcoalCount(); k++) {
+						a = coord.getCharcoal(k);
+						sub = a.getDate() - avg;
+						power = Math.pow(sub, 2);
+						sum += power;
+						n++;
+					}
 
-		/* The variance equation is 
-		 * s^2 = (x1-xbar)^2+(x2-xbar)^2+...+(xn-xbar)^2 / n-1
-		 * where n-1 is the degrees of freedom and represents the
-		 * amount of data points currently
-		 */
-		for(Coordinate coord : map) {
-			if(coord.itemFound()){
-				for(int k = 0; k < coord.getPotCount(); k++) {
-					a = coord.getPot(k);
-					sub = a.getDate() - avg;
-					power = Math.pow(sub, 2);
-					sum += power;
-					n++;
-				}
-				
-				for(int k = 0; k < coord.getCharcoalCount(); k++) {
-					a = coord.getCharcoal(k);
-					sub = a.getDate() - avg;
-					power = Math.pow(sub, 2);
-					sum += power;
-					n++;
-				}
-				
-				for(int k = 0; k < coord.getMetalCount(); k++) {
-					a = coord.getMetal(k);
-					sub = a.getDate() - avg;
-					power = Math.pow(sub, 2);
-					sum += power;
-					n++;
+					for(int k = 0; k < coord.getMetalCount(); k++) {
+						a = coord.getMetal(k);
+						sub = a.getDate() - avg;
+						power = Math.pow(sub, 2);
+						sum += power;
+						n++;
+					}
 				}
 			}
+			
+			n -= 1; //Degrees of freedom as per the variance equation
+			variance = sum / n;
+			sd = Math.sqrt(variance);
+			
+		} catch(NullPointerException e){
+			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
-		n -= 1; //Degrees of freedom as per the variance equation
-
-		double variance = 0;
-		variance = sum / n;
-
-		double sd = 0;
-		sd = Math.sqrt(variance);
-
-
 		return sd;
 	}
 
@@ -343,29 +324,38 @@ public class SubController {
 	 * Updates the maps viewing symbols
 	 */
 	public void updateMap() {
-		MapEditor.updateView(map);
-		Utilities.printMap(map, output);
+		try{
+			MapEditor.updateView(map);
+			Utilities.printMap(map, output);
+		} catch(NullPointerException e){
+		}
 	}
-	
+
 	/**
 	 * Fills the report with found items, gets the average and 
 	 * standard deviation, and shows finished report on text area
 	 */
 	public void printReport(){
-		Report report = new Report();
-		for(Coordinate coord : map){
-			if(coord.getExcavated() && coord.itemFound()){
-				for(int i = 0; i < coord.getPotCount(); i++)
-					report.addFoundItem(coord.getPot(i));
-				for(int i = 0; i < coord.getCharcoalCount(); i++)
-					report.addFoundItem(coord.getCharcoal(i));
-				for(int i = 0; i < coord.getMetalCount(); i++)
-					report.addFoundItem(coord.getMetal(i));
+		double averageDate;
+		double standardDeviation;
+		try{
+			Report report = new Report();
+			for(Coordinate coord : map){
+				if(coord.getExcavated() && coord.itemFound()){
+					for(int i = 0; i < coord.getPotCount(); i++)
+						report.addFoundItem(coord.getPot(i));
+					for(int i = 0; i < coord.getCharcoalCount(); i++)
+						report.addFoundItem(coord.getCharcoal(i));
+					for(int i = 0; i < coord.getMetalCount(); i++)
+						report.addFoundItem(coord.getMetal(i));
+				}
 			}
+			report.generateReport();
+			averageDate = computeAverageDate();
+			standardDeviation = computeStandardDeviation(averageDate);
+			output.setText(report.toString() + "The average date is: " + averageDate + "\nThe Standard Deviation is: " + standardDeviation);
+		} catch(NullPointerException e){
+			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
-		report.generateReport();
-		double averageDate = computeAverageDate();
-		double standardDeviation = computeStandardDeviation(averageDate);
-		output.setText(report.toString() + "The average date is: " + averageDate + "\nThe Standard Deviation is: " + standardDeviation);
 	}
 }

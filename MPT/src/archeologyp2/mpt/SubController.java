@@ -86,34 +86,38 @@ public class SubController {
 	 * 
 	 */
 	public void changeFeature(int row, String col, int feature, boolean loopFlag){
-		Coordinate current;
-		int r = row - 1;
-		Feature f = Feature.dirt;
-		switch(feature){
-		case 1:
-			f = Feature.dirt;
-			break;
-		case 2:
-			f = Feature.stone;
-			break;
-		case 3:
-			f = Feature.postHole;
-			break;
-		default:
-			return;
-		}
-
-		if(loopFlag) {
-			for(int j = 0; j < map.getNumColumns(); j++){
-				current = map.getPlaneItem(r, j);
+		try{
+			Coordinate current;
+			int r = row - 1;
+			Feature f = Feature.dirt;
+			switch(feature){
+			case 1:
+				f = Feature.dirt;
+				break;
+			case 2:
+				f = Feature.stone;
+				break;
+			case 3:
+				f = Feature.postHole;
+				break;
+			default:
+				return;
+			}
+			
+			if(loopFlag) {
+				for(int j = 0; j < map.getNumColumns(); j++){
+					current = map.getPlaneItem(r, j);
+					current.setFeature(f);
+				}
+			} else {
+				int c = Utilities.columnToIndex(col);
+				current = map.getPlaneItem(r, c);
 				current.setFeature(f);
 			}
-		} else {
-			int c = Utilities.columnToIndex(col);
-			current = map.getPlaneItem(r, c);
-			current.setFeature(f);
+			MapEditor.updateView(map);
+		} catch(NullPointerException e){
+			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
-		MapEditor.updateView(map);
 	}
 
 	/**
@@ -130,72 +134,76 @@ public class SubController {
 	 * 
 	 */
 	public void addFind(int row, String col, int type, int date, String data, boolean loopFlag){
-		Coordinate current;
-		Artifact artifact = null;
-		int r = row - 1;
-		int c = Utilities.columnToIndex(col); 
-		switch(type){
-		/* Add to decorated pot collection */
-		case 1:
-			artifact = new DecoratedPottery(date, data, row, col);
-			break;
-			/* Add to submerged pot collection */
-		case 2:
-			artifact = new SubmergedPottery(date, Integer.parseInt(data), row, col);
-			break;
-			/* Add to storage pot collection */
-		case 3:
-			artifact = new StoragePottery(date, Integer.parseInt(data), row, col);
-			break;
-			/* Add to kiln collection */
-		case 4:
-			artifact = new Kiln(date, Integer.parseInt(data), row, col);
-			break;
-			/* Add to hearth collection */
-		case 5:
-			String info[] = data.split(",");
-			artifact = new Hearth(date, Integer.parseInt(info[0]), Integer.parseInt(info[1]), row, col);
-			break;
-			/* Add to ferrous collection */
-		case 6:
-			artifact = new FerrousMetal(date, Integer.parseInt(data), row, col);
-			break;
-			/* Add to non-ferrous collection */
-		case 7:
-			artifact = new NonFerrousMetal(date, data, row, col);
-			if(data.toLowerCase().equals("gold")){
-				NonFerrousMetal gold = (NonFerrousMetal) artifact;
-				if(gold.goldExists()){
-					int goldRow = gold.getGoldRow() - 1;
-					int goldColumn = Utilities.columnToIndex(gold.getGoldColumn());
-					current = map.getPlaneItem(goldRow, goldColumn);
-					JOptionPane.showMessageDialog(output, "Removing Gold from row " + gold.getGoldRow() + " column " + gold.getGoldColumn());
-					current.removeGold();
-					gold.setGoldRow(row);
-					gold.setGoldColumn(col);
-					current = map.getPlaneItem(r, c);
-					current.addFind(artifact);
-				} else {
-					gold.setGoldExists(true);
-					gold.setGoldRow(row);
-					gold.setGoldColumn(col);
+		try {
+			Coordinate current;
+			Artifact artifact = null;
+			int r = row - 1;
+			int c = Utilities.columnToIndex(col); 
+			switch(type){
+			/* Add to decorated pot collection */
+			case 1:
+				artifact = new DecoratedPottery(date, data, row, col);
+				break;
+				/* Add to submerged pot collection */
+			case 2:
+				artifact = new SubmergedPottery(date, Integer.parseInt(data), row, col);
+				break;
+				/* Add to storage pot collection */
+			case 3:
+				artifact = new StoragePottery(date, Integer.parseInt(data), row, col);
+				break;
+				/* Add to kiln collection */
+			case 4:
+				artifact = new Kiln(date, Integer.parseInt(data), row, col);
+				break;
+				/* Add to hearth collection */
+			case 5:
+				String info[] = data.split(",");
+				artifact = new Hearth(date, Integer.parseInt(info[0]), Integer.parseInt(info[1]), row, col);
+				break;
+				/* Add to ferrous collection */
+			case 6:
+				artifact = new FerrousMetal(date, Integer.parseInt(data), row, col);
+				break;
+				/* Add to non-ferrous collection */
+			case 7:
+				artifact = new NonFerrousMetal(date, data, row, col);
+				if(data.toLowerCase().equals("gold")){
+					NonFerrousMetal gold = (NonFerrousMetal) artifact;
+					if(gold.goldExists()){
+						int goldRow = gold.getGoldRow() - 1;
+						int goldColumn = Utilities.columnToIndex(gold.getGoldColumn());
+						current = map.getPlaneItem(goldRow, goldColumn);
+						JOptionPane.showMessageDialog(output, "Removing Gold from row " + gold.getGoldRow() + " column " + gold.getGoldColumn());
+						current.removeGold();
+						gold.setGoldRow(row);
+						gold.setGoldColumn(col);
+						current = map.getPlaneItem(r, c);
+						current.addFind(artifact);
+					} else {
+						gold.setGoldExists(true);
+						gold.setGoldRow(row);
+						gold.setGoldColumn(col);
+					}
+					return;
 				}
+				break;
+			default:
 				return;
 			}
-			break;
-		default:
-			return;
-		}
-		if(loopFlag){
-			for(int j = 0; j < map.getNumColumns(); j++){
-				current = map.getPlaneItem(r, j);
+			if(loopFlag){
+				for(int j = 0; j < map.getNumColumns(); j++){
+					current = map.getPlaneItem(r, j);
+					current.addFind(artifact);
+				}
+			} else {
+				current = map.getPlaneItem(r, c);
 				current.addFind(artifact);
 			}
-		} else {
-			current = map.getPlaneItem(r, c);
-			current.addFind(artifact);
+			MapEditor.updateView(map);
+		} catch(NullPointerException e){
+			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
-		MapEditor.updateView(map);
 	}
 
 	/**
@@ -213,8 +221,11 @@ public class SubController {
 	 * Updates the maps viewing symbols
 	 */
 	public void updateMap(){
-		MapEditor.updateView(map);
-		Utilities.printMap(map, output);
+		try{
+			MapEditor.updateView(map);
+			Utilities.printMap(map, output);
+		} catch(NullPointerException e){
+		}
 	}
 
 	/**
@@ -226,9 +237,13 @@ public class SubController {
 	 * @param column
 	 */
 	public void markHeritage(int row, String column) {
-		int r = row - 1;
-		int c = Utilities.columnToIndex(column);
-		Coordinate current = map.getPlaneItem(r, c);
-		current.setHeritage(true);
+		try{
+			int r = row - 1;
+			int c = Utilities.columnToIndex(column);
+			Coordinate current = map.getPlaneItem(r, c);
+			current.setHeritage(true);
+		} catch(NullPointerException e){
+			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 }

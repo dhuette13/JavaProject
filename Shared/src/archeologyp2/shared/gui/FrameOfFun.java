@@ -1,7 +1,9 @@
 package archeologyp2.shared.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -62,8 +64,6 @@ public abstract class FrameOfFun extends JFrame {
 	
 	final protected PathDialog loadDialog;
 	
-
-	
 	private JFrame frame;
 	
 	/**
@@ -80,6 +80,14 @@ public abstract class FrameOfFun extends JFrame {
 		createTextArea();
 		createMenuBar();
 		this.setSize(800, 700);
+		
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		Dimension screenSize = toolkit.getScreenSize();
+		
+		int x = (screenSize.width - getWidth()) / 2;
+		int y = (screenSize.height - getHeight()) / 2;
+		
+		setLocation(x, y);
 		loadDialog = new PathDialog("Load", map);
 	}
 	

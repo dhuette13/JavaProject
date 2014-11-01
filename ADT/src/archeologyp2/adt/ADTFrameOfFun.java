@@ -234,5 +234,4 @@ public class ADTFrameOfFun extends FrameOfFun {
 		});
 		viewMenu.add(viewReportMenuItem);
 	}
-
 }

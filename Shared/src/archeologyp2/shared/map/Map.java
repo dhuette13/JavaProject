@@ -283,8 +283,4 @@ public class Map<E> implements Iterable<E> {
 		
 		return it;
 	}
-
-	public int size() {
-		return plane.size();
-	}
 }

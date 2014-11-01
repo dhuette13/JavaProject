@@ -345,16 +345,6 @@ public class Coordinate {
 	public boolean isHeritage(){
 		return heritage;
 	}
-	
-	/**
-	 * For public void sortDates
-	 * Sorts each of the artifact collections based on date
-	 */
-//	public void sortDates() {
-//		Collections.sort(potCount);
-//		Collections.sort(metalCount);
-//		Collections.sort(charcoalCount);
-//	}
 }
 
 
