@@ -56,8 +56,9 @@ public abstract class FrameOfFun extends JFrame {
 	private JMenuItem viewingMenuItem;
 	
 	/* Help Menu */
-	private JMenu helpMenu;
+	protected JMenu helpMenu;
 	protected JMenuItem aboutMenuItem;
+	private JMenuItem baseConverterMenuItem;
 	
 	protected JTextArea textArea;
 	private JScrollPane scrollPane;
@@ -227,6 +228,18 @@ public abstract class FrameOfFun extends JFrame {
 		aboutMenuItem = new JMenuItem("About");
 		aboutMenuItem.setMnemonic('A');
 		helpMenu.add(aboutMenuItem);
+		
+		baseConverterMenuItem = new JMenuItem("Base Converter");
+		baseConverterMenuItem.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				BaseConverterDialog converter = new BaseConverterDialog();
+				converter.setVisible(true);
+			}
+		});
+		
+		baseConverterMenuItem.setMnemonic('B');
+		helpMenu.add(baseConverterMenuItem);
 		menuBar.add(helpMenu);
 		
 		menuBar.setVisible(true);

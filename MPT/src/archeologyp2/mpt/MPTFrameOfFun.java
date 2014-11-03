@@ -37,6 +37,7 @@ public class MPTFrameOfFun extends FrameOfFun {
 	private JMenuItem addFindMenuItem;
 	private JMenuItem heritageMenuItem;
 	
+	
 	final protected GenerateDialog generateDialog;
 	
 	private JFrame frame;
@@ -160,6 +161,5 @@ public class MPTFrameOfFun extends FrameOfFun {
 				subController.aboutMPT();
 			}
 		});
-
 	}
 }
