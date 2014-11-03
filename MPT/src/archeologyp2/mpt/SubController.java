@@ -150,16 +150,16 @@ public class SubController {
 				break;
 				/* Add to storage pot collection */
 			case 3:
-				artifact = new StoragePottery(date, Integer.parseInt(data), row, col);
+				artifact = new StoragePottery(date, Double.parseDouble(data), row, col);
 				break;
 				/* Add to kiln collection */
 			case 4:
-				artifact = new Kiln(date, Integer.parseInt(data), row, col);
+				artifact = new Kiln(date, Double.parseDouble(data), row, col);
 				break;
 				/* Add to hearth collection */
 			case 5:
 				String info[] = data.split(",");
-				artifact = new Hearth(date, Integer.parseInt(info[0]), Integer.parseInt(info[1]), row, col);
+				artifact = new Hearth(date, Double.parseDouble(info[0]), Double.parseDouble(info[1]), row, col);
 				break;
 				/* Add to ferrous collection */
 			case 6:
