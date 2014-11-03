@@ -163,8 +163,10 @@ public class ScanDialog extends JDialog implements ActionListener, KeyListener {
 			switch(feature){
 			/* Magnetometer */
 			case 0: 
-				boolean found = subController.magnetoMeter(row, col);
-				JOptionPane.showMessageDialog(frame, "Results of Magnetometer: " + found, "Detector Results", JOptionPane.INFORMATION_MESSAGE);
+				int found = subController.magnetoMeter(row, col);
+				if(found != -1){
+					JOptionPane.showMessageDialog(frame, "Results of Magnetometer: " + ((found == 1) ? "True" : "False"), "Detector Results", JOptionPane.INFORMATION_MESSAGE);
+				}
 				subController.updateMap();
 				break;
 			/* Metal Detector */
@@ -184,6 +186,8 @@ public class ScanDialog extends JDialog implements ActionListener, KeyListener {
 				case 6:
 					find = "Ferrous and NonFerrous Metal found";
 					break;
+				default:
+					return;
 				}
 				JOptionPane.showMessageDialog(frame, "Results of Metal Detector: " + results + "\n" + find, "Detector Results", JOptionPane.INFORMATION_MESSAGE);
 				subController.updateMap();
@@ -197,10 +201,10 @@ public class ScanDialog extends JDialog implements ActionListener, KeyListener {
 					"Uh oh! Looks like the input you gave are out of range. Please try again.",
 					"Error",
 					JOptionPane.ERROR_MESSAGE);
-		}
-		catch(NullPointerException i){
+		} 
+		catch(NumberFormatException ex){
 			JOptionPane.showMessageDialog(frame,
-					"Uh oh! Looks like you forgot to load a map first. Please try again.",
+					"Uh oh! Looks like the input you gave couldn't be understood. Please try again.",
 					"Error",
 					JOptionPane.ERROR_MESSAGE);
 		}

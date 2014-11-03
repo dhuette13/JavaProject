@@ -38,14 +38,14 @@ public class Relay {
 	}
 
 	// This private class is used to fire MyEvents
-	public void fireMyEvent(CompletionEvent evt) {
+	public void fireMyEvent(CompletionEvent event) {
 		try{
 			Object[] listeners = listenerList.getListenerList();
 			// Each listener occupies two elements - the first is the listener class
 			// and the second is the listener instance
 			for (int i=0; i<listeners.length; i+=2) {
 				if (listeners[i] == CompletionEventListener.class) {
-					((CompletionEventListener)listeners[i+1]).myEventOccurred(evt);
+					((CompletionEventListener)listeners[i+1]).myEventOccurred(event);
 				}
 			}
 		}
