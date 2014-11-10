@@ -1,15 +1,15 @@
 <h1>JavaProject and Other Dates</h1>
 
 <ul>
-<li>Phase One due September 29th.</li>
-<li>CSE1325 Midterm on October 20th.</li>
-<li>Phase Two due November 3rd.</li>
-<li>Phase Three</li>
+<li><strike>Phase One due September 29th.</li>
+<li><strike>CSE1325 Midterm on October 20th.</li>
+<li><strike>Phase Two due November 3rd.</li>
+<li>Phase Three due November 24</li>
 <li>CSE1325 Final</li>
 </ul>
 
 
-<h1>To Do for Phase Two</h1>
+<h1>To Do for Phase Three</h1>
 <ul>
 <li>1. Subclasses for pottery </li>
   <ul>
