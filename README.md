@@ -12,9 +12,9 @@
 <h1>To Do for Phase Three</h1>
 <ul>
 <li>Sequency Diagram for ADT
-  <ul><li>"For the ADT, create a sequence diagram for digging in an area marked "Heritage"
+  <ul><li>"For the ADT, create a sequence diagram for digging in an area marked "Heritage"</ul>
 <li>Sequency Diagram for MPT
-  <ul><li>"For the MPT, create a sequence diagram for the adding of a second gold item.
+  <ul><li>"For the MPT, create a sequence diagram for the adding of a second gold item.</ul>
 <li>Instead of having text characters printed to the screen, a GridLayout of Components will be used instead.
-  <ul><li>"As a result, the three types of maps (Feature, Boolean, and Count) have changed."
+  <ul><li>"As a result, the three types of maps (Feature, Boolean, and Count) have changed."</ul>
 <li>-
