@@ -6,7 +6,9 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -130,14 +132,25 @@ public abstract class FrameOfFun extends JFrame {
 		loadMenuItem = new JMenuItem("Load");
 		loadMenuItem.setMnemonic('L');
 		
+		
 		// From "File" Menu, Save
 		saveMenuItem = new JMenuItem("Save");
 		saveMenuItem.setMnemonic('S');
 		saveMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PathDialog saveDialog = new PathDialog("Save", map);
-				saveDialog.setVisible(true);
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setCurrentDirectory(new File("./res"));
+				int returnVal = fileChooser.showSaveDialog(textArea);
+				if(returnVal == JFileChooser.APPROVE_OPTION){
+					try {
+						Utilities.save(map, fileChooser.getSelectedFile().getAbsolutePath());
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(textArea, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+//				PathDialog saveDialog = new PathDialog("Save", map);
+//				saveDialog.setVisible(true);
 			}
 		});
 		
@@ -147,8 +160,18 @@ public abstract class FrameOfFun extends JFrame {
 		exportMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				PathDialog exportDialog = new PathDialog("Export", map);
-				exportDialog.setVisible(true);
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setCurrentDirectory(new File("./res"));
+				int returnVal = fileChooser.showSaveDialog(textArea);
+				if(returnVal == JFileChooser.APPROVE_OPTION){
+					try {
+						Utilities.exportMap(map, fileChooser.getSelectedFile().getAbsolutePath());
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(textArea, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+//				PathDialog exportDialog = new PathDialog("Export", map);
+//				exportDialog.setVisible(true);
 			}
 		});
 		
