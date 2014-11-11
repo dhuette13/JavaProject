@@ -2,8 +2,9 @@ package archeologyp2.mpt;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
-import javax.swing.JFrame;
+import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
@@ -37,11 +38,7 @@ public class MPTFrameOfFun extends FrameOfFun {
 	private JMenuItem addFindMenuItem;
 	private JMenuItem heritageMenuItem;
 	
-	
 	final protected GenerateDialog generateDialog;
-	
-	private JFrame frame;
-	
 
 	/**
 	 * For public MPTFrameOfFun
@@ -69,30 +66,43 @@ public class MPTFrameOfFun extends FrameOfFun {
 		loadMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				loadDialog.setVisible(true);
-				Relay relay = new Relay();
-				relay.addMyEventListener(new CompletionEventListener(){
-					@Override
-					public void myEventOccurred(CompletionEvent evt) {
-						map = loadDialog.getMap();
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setCurrentDirectory(new File("./res"));
+				int error = fileChooser.showOpenDialog(textArea);
+				if(error == JFileChooser.APPROVE_OPTION){
+					try {
+						map = Utilities.load(fileChooser.getSelectedFile().getAbsolutePath());
 						MapEditor.updateView(map);
 						subController.setMap(map);
 						Utilities.printMap(map, textArea);
-						try {
-							map = loadDialog.getMap();
-							subController.setMap(map);
-							MapEditor.updateView(map);
-							Utilities.printMap(map, textArea);
-						}
-						catch(NullPointerException n) {
-							JOptionPane.showMessageDialog(frame,
-								    "This path cannot be specified. Please try again.",
-								    "Error",
-								    JOptionPane.ERROR_MESSAGE);
-						}
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(textArea, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
-				});
-				loadDialog.setRelay(relay);
+				} 
+//				loadDialog.setVisible(true);
+//				Relay relay = new Relay();
+//				relay.addMyEventListener(new CompletionEventListener(){
+//					@Override
+//					public void myEventOccurred(CompletionEvent evt) {
+//						map = loadDialog.getMap();
+//						MapEditor.updateView(map);
+//						subController.setMap(map);
+//						Utilities.printMap(map, textArea);
+//						try {
+//							map = loadDialog.getMap();
+//							subController.setMap(map);
+//							MapEditor.updateView(map);
+//							Utilities.printMap(map, textArea);
+//						}
+//						catch(NullPointerException n) {
+//							JOptionPane.showMessageDialog(frame,
+//								    "This path cannot be specified. Please try again.",
+//								    "Error",
+//								    JOptionPane.ERROR_MESSAGE);
+//						}
+//					}
+//				});
+//				loadDialog.setRelay(relay);
 			}
 		});
 		

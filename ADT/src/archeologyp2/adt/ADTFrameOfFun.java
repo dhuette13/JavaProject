@@ -2,15 +2,14 @@ package archeologyp2.adt;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import archeologyp2.shared.gui.CompletionEvent;
-import archeologyp2.shared.gui.CompletionEventListener;
 import archeologyp2.shared.gui.FrameOfFun;
-import archeologyp2.shared.gui.Relay;
 import archeologyp2.shared.map.MapEditor;
 import archeologyp2.shared.map.Utilities;
 import archeologyp2.shared.map.ViewingOption;
@@ -78,18 +77,32 @@ public class ADTFrameOfFun extends FrameOfFun {
 		loadMenuItem.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				loadDialog.setVisible(true);
-				Relay relay = new Relay();
-				relay.addMyEventListener(new CompletionEventListener(){
-					@Override
-					public void myEventOccurred(CompletionEvent evt) {
-						map = loadDialog.getMap();
-						subController.setMap(map);
+				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setCurrentDirectory(new File("./res"));
+				int error = fileChooser.showOpenDialog(textArea);
+				if(error == JFileChooser.APPROVE_OPTION){
+					try {
+						map = Utilities.load(fileChooser.getSelectedFile().getAbsolutePath());
 						MapEditor.updateView(map);
+						subController.setMap(map);
 						Utilities.printMap(map, textArea);
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(textArea, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
-				});
-				loadDialog.setRelay(relay);
+				}
+				
+//				loadDialog.setVisible(true);
+//				Relay relay = new Relay();
+//				relay.addMyEventListener(new CompletionEventListener(){
+//					@Override
+//					public void myEventOccurred(CompletionEvent evt) {
+//						map = loadDialog.getMap();
+//						subController.setMap(map);
+//						MapEditor.updateView(map);
+//						Utilities.printMap(map, textArea);
+//					}
+//				});
+//				loadDialog.setRelay(relay);
 			}
 		});
 		
