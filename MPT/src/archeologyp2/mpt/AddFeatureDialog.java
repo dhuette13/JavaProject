@@ -202,6 +202,7 @@ public class AddFeatureDialog extends JDialog implements ActionListener, KeyList
 //			String col = colText.getText();
 			int row = 5;
 			String col = "A";
+	
 			singleOrRow = false;
 			subController.changeFeature(row, col, feature, singleOrRow);
 			subController.updateMap();
