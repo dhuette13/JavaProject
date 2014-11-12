@@ -1,3 +1,13 @@
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+
 package archeologyp2.adt;
 
 import java.awt.GridBagConstraints; 
@@ -160,6 +170,9 @@ public class ScanDialog extends JDialog implements ActionListener, KeyListener {
 			int feature = comboBox.getSelectedIndex();
 //			int row = Integer.parseInt(rowText.getText());
 //			String col = colText.getText();
+			int row = 5;
+			String col = "A";
+			
 			switch(feature){
 			/* Magnetometer */
 			case 0: 

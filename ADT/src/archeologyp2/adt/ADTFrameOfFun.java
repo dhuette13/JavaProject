@@ -31,7 +31,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 	private static final long serialVersionUID = 1L;
 
 	/* Edit menu Items */
-	private JMenuItem digMenuItem;
+//	private JMenuItem digMenuItem;
 	private JMenuItem scanMenuItem;
 
 	/* Menu items for special maps */
@@ -106,18 +106,18 @@ public class ADTFrameOfFun extends FrameOfFun {
 			}
 		});
 		
-		digMenuItem = new JMenuItem("Dig");
-		digMenuItem.setMnemonic('D');
-		digMenuItem.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				DigDialog digDialog = new DigDialog("Dig", subController);
-				digDialog.setVisible(true);
-			}
-
-		});
-
-		editMenu.add(digMenuItem);
+//		digMenuItem = new JMenuItem("Dig");
+//		digMenuItem.setMnemonic('D');
+//		digMenuItem.addActionListener(new ActionListener(){
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				DigDialog digDialog = new DigDialog("Dig", subController);
+//				digDialog.setVisible(true);
+//			}
+//
+//		});
+//		editMenu.add(digMenuItem);
+		
 		scanMenuItem = new JMenuItem("Scan");
 		scanMenuItem.setMnemonic('S');
 		scanMenuItem.addActionListener(new ActionListener(){

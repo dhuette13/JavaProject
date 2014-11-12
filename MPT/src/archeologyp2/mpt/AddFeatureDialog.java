@@ -1,3 +1,13 @@
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
+
 package archeologyp2.mpt;
  
 import java.awt.GridBagConstraints; 
@@ -75,15 +85,15 @@ public class AddFeatureDialog extends JDialog implements ActionListener, KeyList
 		setLayout(new GridBagLayout());
 		setResizable(false);
 
-		checkBox = new JCheckBox();
-		checkBox.addKeyListener(this);
-		rowPromptLabel = new JLabel("Change an entire row? ");
-		rowLabel = new JLabel("Row: ");
-		rowText = new JTextField(5);
-		rowText.addKeyListener(this);
-		colLabel = new JLabel("Column: ");
-		colText = new JTextField(5);
-		colText.addKeyListener(this);
+//		checkBox = new JCheckBox();
+//		checkBox.addKeyListener(this);
+//		rowPromptLabel = new JLabel("Change an entire row? ");
+//		rowLabel = new JLabel("Row: ");
+//		rowText = new JTextField(5);
+//		rowText.addKeyListener(this);
+//		colLabel = new JLabel("Column: ");
+//		colText = new JTextField(5);
+//		colText.addKeyListener(this);
 		confirmButton = new JButton("OK");
 		cancelButton = new JButton("Cancel");
 
@@ -98,29 +108,29 @@ public class AddFeatureDialog extends JDialog implements ActionListener, KeyList
 		constraints.anchor = GridBagConstraints.WEST;
 		constraints.fill = GridBagConstraints.NONE;
 
-		constraints.gridx = 0;
-		constraints.gridy = 2;
-		add(rowLabel, constraints);
-
-		constraints.gridx = 0;
-		constraints.gridy = 3;
-		add(colLabel, constraints);
+//		constraints.gridx = 0;
+//		constraints.gridy = 2;
+//		add(rowLabel, constraints);
+//
+//		constraints.gridx = 0;
+//		constraints.gridy = 3;
+//		add(colLabel, constraints);
 
 		// ========== SECOND COLUMN ========== //
-		constraints.anchor = GridBagConstraints.CENTER;
-		constraints.gridx = 0;
-		constraints.gridy = 0;
-		constraints.gridwidth = 2;
-		add(rowPromptLabel, constraints);
-		constraints.gridwidth = 1;
-
-		constraints.gridx = 1;
-		constraints.gridy = 2;
-		add(rowText, constraints);
-
-		constraints.gridx = 1;
-		constraints.gridy = 3;
-		add(colText, constraints);
+//		constraints.anchor = GridBagConstraints.CENTER;
+//		constraints.gridx = 0;
+//		constraints.gridy = 0;
+//		constraints.gridwidth = 2;
+//		add(rowPromptLabel, constraints);
+//		constraints.gridwidth = 1;
+//
+//		constraints.gridx = 1;
+//		constraints.gridy = 2;
+//		add(rowText, constraints);
+//
+//		constraints.gridx = 1;
+//		constraints.gridy = 3;
+//		add(colText, constraints);
 
 
 		constraints.anchor = GridBagConstraints.EAST;
@@ -134,22 +144,22 @@ public class AddFeatureDialog extends JDialog implements ActionListener, KeyList
 		constraints.anchor = GridBagConstraints.WEST;
 		constraints.gridx = 2;
 		constraints.gridy = 0;
-		add(checkBox, constraints);
-		checkBox.addChangeListener(new ChangeListener(){
-			@Override
-			public void stateChanged(ChangeEvent arg0) {
-				if(checkBox.isSelected()){
-					singleOrRow = true;
-					colText.setEnabled(false);
-					colLabel.setEnabled(false);
-				} else {
-					singleOrRow = false;
-					colText.setEnabled(true);
-					colLabel.setEnabled(true);
-				}
-			}
-		});
-		checkBox.addKeyListener(this);
+//		add(checkBox, constraints);
+//		checkBox.addChangeListener(new ChangeListener(){
+//			@Override
+//			public void stateChanged(ChangeEvent arg0) {
+//				if(checkBox.isSelected()){
+//					singleOrRow = true;
+//					colText.setEnabled(false);
+//					colLabel.setEnabled(false);
+//				} else {
+//					singleOrRow = false;
+//					colText.setEnabled(true);
+//					colLabel.setEnabled(true);
+//				}
+//			}
+//		});
+//		checkBox.addKeyListener(this);
 
 		constraints.gridx = 2;
 		constraints.gridy = 2; 
@@ -188,8 +198,11 @@ public class AddFeatureDialog extends JDialog implements ActionListener, KeyList
 	public void actionPerformed(ActionEvent e) {
 		try{
 			int feature = comboBox.getSelectedIndex() + 1;
-			int row = Integer.parseInt(rowText.getText());
-			String col = colText.getText();
+//			int row = Integer.parseInt(rowText.getText());
+//			String col = colText.getText();
+			int row = 5;
+			String col = "A";
+			singleOrRow = false;
 			subController.changeFeature(row, col, feature, singleOrRow);
 			subController.updateMap();
 		}
