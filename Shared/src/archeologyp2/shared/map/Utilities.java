@@ -10,7 +10,6 @@
 
 package archeologyp2.shared.map;
 
-import java.awt.GridLayout;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -28,7 +27,6 @@ import archeologyp2.shared.finds.NonFerrousMetal;
 import archeologyp2.shared.finds.Pottery;
 import archeologyp2.shared.finds.StoragePottery;
 import archeologyp2.shared.finds.SubmergedPottery;
-import archeologyp2.shared.gui.TileComponent;
 
 /**
  * UTILITIES IN THE SHARED RESOURCES
@@ -43,16 +41,6 @@ import archeologyp2.shared.gui.TileComponent;
  */
 
 public class Utilities {
-	
-
-	public static void updateImages(Map<Coordinate> map, GridLayout layout) {
-		TileComponent imageMap[][] = map.getImageMap();
-		for(int r = 0; r < map.getNumRows(); r++){
-			for(int c = 0; c < map.getNumColumns(); c++){
-				layout.addLayoutComponent(String.valueOf(r + c), imageMap[r][c]);
-			}
-		}
-	}
 
 	/**
 	 * For the public static Map generateMap method

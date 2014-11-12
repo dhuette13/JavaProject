@@ -11,7 +11,6 @@ package archeologyp2.mpt;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 import archeologyp2.shared.finds.Artifact;
 import archeologyp2.shared.finds.DecoratedPottery;
@@ -51,6 +50,10 @@ public class SubController {
 	 * @param imagePanel
 	 */
 	public SubController(JPanel imagePanel){
+		this.imagePanel = imagePanel;
+	}
+	
+	public void setImagePanel(JPanel imagePanel){
 		this.imagePanel = imagePanel;
 	}
 
@@ -219,11 +222,12 @@ public class SubController {
 	 * For public void updateMap
 	 * 
 	 * Updates the maps viewing symbols
+	 * @param imagePanel2 
 	 */
 	public void updateMap(){
 		try{
 			MapEditor.updateView(map);
-//			Utilities.printMap(map, imagePanel);
+			MapEditor.updateImages(map, imagePanel);
 		} catch(NullPointerException e){
 		}
 	}

@@ -9,7 +9,6 @@ package archeologyp2.shared.map;
  */
 public enum ViewingOption {
 	natural,
-	userModified,
 	potCount,
 	metalCount,
 	charcoalCount,

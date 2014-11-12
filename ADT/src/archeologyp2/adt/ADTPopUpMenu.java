@@ -22,6 +22,8 @@ Dig Map Square
  */
 public class ADTPopUpMenu extends JPopupMenu implements ActionListener {
 	
+	private static final long serialVersionUID = 1L;
+	
 	private JMenuItem magnetoMeter;
 	private JMenuItem metalDetector;
 	private JMenuItem dig;
@@ -46,7 +48,6 @@ public class ADTPopUpMenu extends JPopupMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 

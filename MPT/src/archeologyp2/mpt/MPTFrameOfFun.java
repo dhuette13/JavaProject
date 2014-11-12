@@ -12,7 +12,6 @@ import archeologyp2.shared.gui.CompletionEvent;
 import archeologyp2.shared.gui.CompletionEventListener;
 import archeologyp2.shared.gui.FrameOfFun;
 import archeologyp2.shared.gui.Relay;
-import archeologyp2.shared.map.MapEditor;
 import archeologyp2.shared.map.Utilities;
 
 /**
@@ -72,39 +71,15 @@ public class MPTFrameOfFun extends FrameOfFun {
 				if(error == JFileChooser.APPROVE_OPTION){
 					try {
 						map = Utilities.load(fileChooser.getSelectedFile().getAbsolutePath());
-						setPanelDimensions(map.getNumColumns(), map.getNumRows());
-						MapEditor.updateView(map);
+						setPanelDimensions(map.getNumRows(), map.getNumColumns());
+						setSize(map.getNumRows() * 10, map.getNumColumns() * 5);
 						subController.setMap(map);
-						Utilities.updateImages(map, layout);
-//						Utilities.printMap(map, textArea);
+						subController.setImagePanel(imagePanel);
+						subController.updateMap();
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				} 
-//				loadDialog.setVisible(true);
-//				Relay relay = new Relay();
-//				relay.addMyEventListener(new CompletionEventListener(){
-//					@Override
-//					public void myEventOccurred(CompletionEvent evt) {
-//						map = loadDialog.getMap();
-//						MapEditor.updateView(map);
-//						subController.setMap(map);
-//						Utilities.printMap(map, textArea);
-//						try {
-//							map = loadDialog.getMap();
-//							subController.setMap(map);
-//							MapEditor.updateView(map);
-//							Utilities.printMap(map, textArea);
-//						}
-//						catch(NullPointerException n) {
-//							JOptionPane.showMessageDialog(frame,
-//								    "This path cannot be specified. Please try again.",
-//								    "Error",
-//								    JOptionPane.ERROR_MESSAGE);
-//						}
-//					}
-//				});
-//				loadDialog.setRelay(relay);
 			}
 		});
 		
@@ -120,9 +95,11 @@ public class MPTFrameOfFun extends FrameOfFun {
 					@Override
 					public void myEventOccurred(CompletionEvent evt) {
 						map = generateDialog.getMap();
+						setPanelDimensions(map.getNumRows(), map.getNumColumns());
+						setSize(map.getNumRows() * 10, map.getNumColumns() * 5);
 						subController.setMap(map);
-						MapEditor.updateView(map);
-//						Utilities.printMap(map, textArea);
+						subController.setImagePanel(imagePanel);
+						subController.updateMap();
 					}
 				});
 				generateDialog.setRelay(relay);

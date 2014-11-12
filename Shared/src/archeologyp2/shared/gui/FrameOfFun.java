@@ -21,7 +21,6 @@ import archeologyp2.shared.map.Coordinate;
 import archeologyp2.shared.map.Map;
 import archeologyp2.shared.map.MapEditor;
 import archeologyp2.shared.map.Utilities;
-import archeologyp2.shared.map.ViewingOption;
 
 /**
  * FRAME OF FUN - THE GUI FOR THE SHARED ITEMS
@@ -55,22 +54,17 @@ public abstract class FrameOfFun extends JFrame {
 	/* View Menu */
 	protected JMenu viewMenu;
 	private JMenuItem showMapMenuItem;
-	private JMenuItem viewingMenuItem;
 	
 	/* Help Menu */
 	protected JMenu helpMenu;
 	protected JMenuItem aboutMenuItem;
 	private JMenuItem baseConverterMenuItem;
 	
-//	protected JTextArea textArea;
 	protected JPanel imagePanel;
 	private JScrollPane scrollPane;
 	
-	final protected PathDialog loadDialog;
-	
 	
 	protected GridLayout layout;
-	private JFrame frame;
 	
 	/**
 	 * For public FrameOfFun
@@ -83,7 +77,6 @@ public abstract class FrameOfFun extends JFrame {
 	public FrameOfFun(String title) {
 		super(title);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		createTextArea();
 		createImagePanel();
 		createMenuBar();
 		this.setSize(800, 700);
@@ -95,7 +88,6 @@ public abstract class FrameOfFun extends JFrame {
 		int y = (screenSize.height - getHeight()) / 2;
 		
 		setLocation(x, y);
-		loadDialog = new PathDialog("Load", map);
 	}
 	
 	/**
@@ -106,24 +98,22 @@ public abstract class FrameOfFun extends JFrame {
 		return map;
 	}
 	
-	/**
-	 * For private void createTextArea
-	 * 
-	 * Initializes the text area and scroll pane, placing it on the
-	 * Frame. Text area is passed to Utilities for printing and exporting.
-	 */
-//	private void createTextArea(){
-//		textArea = new JTextArea();
-//		textArea.setFont(new Font("Courier New", 0, 15));
-//		textArea.setEditable(false);
-//		scrollPane = new JScrollPane(textArea);
-//		this.add(scrollPane, BorderLayout.CENTER);
-//	}
-	
 	public void setPanelDimensions(int width, int height){
-		layout.setColumns(width);
-		layout.setRows(height);
+		this.remove(scrollPane);
+		this.remove(imagePanel);
+		
+		imagePanel = new JPanel();
+//		imagePanel.setSize(width * 5, height * 10);
+		layout = new GridLayout(width, height);
 		imagePanel.setLayout(layout);
+		scrollPane = new JScrollPane(imagePanel);
+		
+		this.add(scrollPane, BorderLayout.CENTER);
+		this.add(imagePanel);
+	}
+	
+	public void addTileComponent(TileComponent component){
+		imagePanel.add(component);
 	}
 	
 	private void createImagePanel(){
@@ -132,6 +122,7 @@ public abstract class FrameOfFun extends JFrame {
 		imagePanel.setLayout(layout);
 		scrollPane = new JScrollPane(imagePanel);
 		this.add(scrollPane, BorderLayout.CENTER);
+		this.add(imagePanel);
 	}
 	
 	/**
@@ -167,8 +158,6 @@ public abstract class FrameOfFun extends JFrame {
 						JOptionPane.showMessageDialog(null, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
-//				PathDialog saveDialog = new PathDialog("Save", map);
-//				saveDialog.setVisible(true);
 			}
 		});
 		
@@ -184,12 +173,11 @@ public abstract class FrameOfFun extends JFrame {
 				if(returnVal == JFileChooser.APPROVE_OPTION){
 					try {
 //						Utilities.exportMap(map, fileChooser.getSelectedFile().getAbsolutePath());
+						JOptionPane.showMessageDialog(null, "Disabled.", "Notice", JOptionPane.INFORMATION_MESSAGE);
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
-//				PathDialog exportDialog = new PathDialog("Export", map);
-//				exportDialog.setVisible(true);
 			}
 		});
 		
@@ -218,20 +206,20 @@ public abstract class FrameOfFun extends JFrame {
 		viewMenu = new JMenu("View");
 		viewMenu.setMnemonic('V');
 		
-		showMapMenuItem = new JMenuItem("View Current Symbol Map");
+		showMapMenuItem = new JMenuItem("View Current Image Map");
 		showMapMenuItem.setMnemonic('V');
 		showMapMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(map != null){
-					map.setViewingOption(ViewingOption.userModified);
 					MapEditor.updateView(map);
-//					Utilities.printMap(map, null);
+					MapEditor.updateImages(map, imagePanel);
 				}
 			}
 		});
 		viewMenu.add(showMapMenuItem);
 		
+<<<<<<< HEAD
 //		viewingMenuItem = new JMenuItem("Viewing Options");
 //		viewingMenuItem.setMnemonic('O');
 //		viewingMenuItem.addActionListener(new ActionListener(){
@@ -260,6 +248,8 @@ public abstract class FrameOfFun extends JFrame {
 //		});
 //		viewMenu.add(viewingMenuItem);
 		
+=======
+>>>>>>> ab94310b129f8c713b92136d0a9123d20986bf08
 		menuBar.add(viewMenu);
 		
 		helpMenu = new JMenu("Help");
