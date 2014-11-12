@@ -138,7 +138,7 @@ public class ViewingDialog extends JDialog implements KeyListener {
 				try{
 					symbol = charField.getText().charAt(0);
 					selection = comboBox.getSelectedItem().toString();
-					map.setViewingOption(ViewingOption.userModified);
+//					map.setViewingOption(ViewingOption.userModified);
 //					MapEditor.changeViewingSymbol(map, selection, symbol);
 					MapEditor.updateView(map);
 					relay.fireMyEvent(new CompletionEvent(this));

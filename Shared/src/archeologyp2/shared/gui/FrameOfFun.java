@@ -219,7 +219,6 @@ public abstract class FrameOfFun extends JFrame {
 		});
 		viewMenu.add(showMapMenuItem);
 		
-<<<<<<< HEAD
 //		viewingMenuItem = new JMenuItem("Viewing Options");
 //		viewingMenuItem.setMnemonic('O');
 //		viewingMenuItem.addActionListener(new ActionListener(){
@@ -248,8 +247,6 @@ public abstract class FrameOfFun extends JFrame {
 //		});
 //		viewMenu.add(viewingMenuItem);
 		
-=======
->>>>>>> ab94310b129f8c713b92136d0a9123d20986bf08
 		menuBar.add(viewMenu);
 		
 		helpMenu = new JMenu("Help");
