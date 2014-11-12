@@ -40,12 +40,12 @@ public class AddFeatureDialog extends JDialog implements ActionListener, KeyList
 	private SubController subController;
 
 	private JComboBox<String> comboBox;
-	private JCheckBox checkBox;
-	private JLabel rowLabel;
-	private JLabel colLabel;
-	private JLabel rowPromptLabel;
-	private JTextField rowText;
-	private JTextField colText;
+//	private JCheckBox checkBox;
+//	private JLabel rowLabel;
+//	private JLabel colLabel;
+//	private JLabel rowPromptLabel;
+//	private JTextField rowText;
+//	private JTextField colText;
 	private JButton confirmButton;
 	private JButton cancelButton;
 	private boolean singleOrRow;

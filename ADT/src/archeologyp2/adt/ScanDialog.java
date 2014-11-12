@@ -37,10 +37,10 @@ public class ScanDialog extends JDialog implements ActionListener, KeyListener {
 	private SubController subController;
 
 	private JComboBox<String> comboBox;
-	private JLabel rowLabel;
-	private JLabel colLabel;
-	private JTextField rowText;
-	private JTextField colText;
+//	private JLabel rowLabel;
+//	private JLabel colLabel;
+//	private JTextField rowText;
+//	private JTextField colText;
 	private JButton confirmButton;
 	private JButton cancelButton;
 
@@ -67,10 +67,10 @@ public class ScanDialog extends JDialog implements ActionListener, KeyListener {
 		setLayout(new GridBagLayout());
 		setResizable(false);
 
-		rowLabel = new JLabel("Row: ");
-		rowText = new JTextField(5);
-		colLabel = new JLabel("Column: ");
-		colText = new JTextField(5);
+//		rowLabel = new JLabel("Row: ");
+//		rowText = new JTextField(5);
+//		colLabel = new JLabel("Column: ");
+//		colText = new JTextField(5);
 		confirmButton = new JButton("OK");
 		cancelButton = new JButton("Cancel");
 
@@ -84,26 +84,26 @@ public class ScanDialog extends JDialog implements ActionListener, KeyListener {
 		constraints.anchor = GridBagConstraints.WEST;
 		constraints.fill = GridBagConstraints.NONE;
 
-		constraints.gridx = 0;
-		constraints.gridy = 0;
-		add(rowLabel, constraints);
+//		constraints.gridx = 0;
+//		constraints.gridy = 0;
+//		add(rowLabel, constraints);
 
-		constraints.gridx = 0;
-		constraints.gridy = 1;
-		add(colLabel, constraints);
+//		constraints.gridx = 0;
+//		constraints.gridy = 1;
+//		add(colLabel, constraints);
 
 		// ========== SECOND COLUMN ========== //
 		constraints.anchor = GridBagConstraints.CENTER;
 		constraints.gridx = 1;
 		constraints.gridy = 0;
 
-		add(rowText, constraints);
-		rowText.addKeyListener(this);
-
-		constraints.gridx = 1;
-		constraints.gridy = 1;
-		add(colText, constraints);
-		colText.addKeyListener(this);
+//		add(rowText, constraints);
+//		rowText.addKeyListener(this);
+//
+//		constraints.gridx = 1;
+//		constraints.gridy = 1;
+//		add(colText, constraints);
+//		colText.addKeyListener(this);
 
 		constraints.anchor = GridBagConstraints.EAST;
 		constraints.gridx = 1;
@@ -158,8 +158,8 @@ public class ScanDialog extends JDialog implements ActionListener, KeyListener {
 	public void actionPerformed(ActionEvent e) {
 		try{
 			int feature = comboBox.getSelectedIndex();
-			int row = Integer.parseInt(rowText.getText());
-			String col = colText.getText();
+//			int row = Integer.parseInt(rowText.getText());
+//			String col = colText.getText();
 			switch(feature){
 			/* Magnetometer */
 			case 0: 
