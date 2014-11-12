@@ -44,7 +44,7 @@
     <li>Scan Map Square with Metal Detector
     <li>Dig Map Square</ul>
   </ul>
-<li>Update Previous Features
+<li><strike>Update Previous Features
   <ul><li>MPT
     <ul><li>Load File: Must use the Swing JFileDialog
     <li>Save File: Must use the Swing JFileDialog
@@ -57,5 +57,5 @@
     <li>Heritage Exception: A message dialog must report the attempt to dig a heritage area
     <li>Age-Of-Site Report: A dialog box with a text area should now show the Finds report
     <li>The About Button: The About button must open a message dialog with the same information
-    </ul>
+    </ul></strike>
   </ul>
