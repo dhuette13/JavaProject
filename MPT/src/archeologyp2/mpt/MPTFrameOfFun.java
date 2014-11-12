@@ -50,7 +50,7 @@ public class MPTFrameOfFun extends FrameOfFun {
 	public MPTFrameOfFun(String title) {
 		super(title);
 		addMenuItems();
-		subController = new SubController(textArea);
+		subController = new SubController(imagePanel);
 		generateDialog = new GenerateDialog("Generate Map");
 	}
 
@@ -68,15 +68,15 @@ public class MPTFrameOfFun extends FrameOfFun {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setCurrentDirectory(new File("./res"));
-				int error = fileChooser.showOpenDialog(textArea);
+				int error = fileChooser.showOpenDialog(null);
 				if(error == JFileChooser.APPROVE_OPTION){
 					try {
 						map = Utilities.load(fileChooser.getSelectedFile().getAbsolutePath());
 						MapEditor.updateView(map);
 						subController.setMap(map);
-						Utilities.printMap(map, textArea);
+//						Utilities.printMap(map, textArea);
 					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(textArea, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				} 
 //				loadDialog.setVisible(true);
@@ -120,7 +120,7 @@ public class MPTFrameOfFun extends FrameOfFun {
 						map = generateDialog.getMap();
 						subController.setMap(map);
 						MapEditor.updateView(map);
-						Utilities.printMap(map, textArea);
+//						Utilities.printMap(map, textArea);
 					}
 				});
 				generateDialog.setRelay(relay);

@@ -10,7 +10,7 @@
 package archeologyp2.adt;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
+import javax.swing.JPanel;
 
 import archeologyp2.shared.finds.Artifact;
 import archeologyp2.shared.finds.FerrousMetal;
@@ -38,7 +38,7 @@ import archeologyp2.shared.map.Utilities;
 public class SubController {
 
 	private Map<Coordinate> map;
-	private JTextArea output;
+	private JPanel imagePanel;
 	String text;
 
 	/**
@@ -47,8 +47,8 @@ public class SubController {
 	 * @param map
 	 * 
 	 */
-	public SubController(JTextArea output){
-		this.output = output;
+	public SubController(JPanel imagePanel){
+		this.imagePanel = imagePanel;
 		map = null;
 	}
 
@@ -56,7 +56,6 @@ public class SubController {
 	 * Prints the about information to text area
 	 */
 	public void aboutADT(){
-		text = output.getText();
 		text = "\n"
 				+ "Team What's The Meaning Of Stonehenge!\n"
 				+ "Daniel Huette: 1000947178\n"
@@ -65,7 +64,7 @@ public class SubController {
 				+ "Date: October 30, 2014\n"
 				+ "Version 0.2\n"
 				+ "\n";
-		output.setText(text);
+		JOptionPane.showMessageDialog(null, text);
 	}
 
 	/**
@@ -326,7 +325,7 @@ public class SubController {
 	public void updateMap() {
 		try{
 			MapEditor.updateView(map);
-			Utilities.printMap(map, output);
+//			Utilities.printMap(map, imagePanel);
 		} catch(NullPointerException e){
 		}
 	}
@@ -353,7 +352,7 @@ public class SubController {
 			report.generateReport();
 			averageDate = computeAverageDate();
 			standardDeviation = computeStandardDeviation(averageDate);
-			output.setText(report.toString() + "The average date is: " + averageDate + "\nThe Standard Deviation is: " + standardDeviation);
+			JOptionPane.showMessageDialog(null, report.toString() + "The average date is: " + averageDate + "\nThe Standard Deviation is: " + standardDeviation);
 		} catch(NullPointerException e){
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}

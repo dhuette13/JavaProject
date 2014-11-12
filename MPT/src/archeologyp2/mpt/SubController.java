@@ -10,6 +10,7 @@
 package archeologyp2.mpt;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import archeologyp2.shared.finds.Artifact;
@@ -41,16 +42,16 @@ import archeologyp2.shared.map.Utilities;
 public class SubController {
 
 	private Map<Coordinate> map;
-	private JTextArea output;
+	private JPanel imagePanel;
 	String text;
 
 	/**
 	 * For public SubController
 	 * 
-	 * @param output
+	 * @param imagePanel
 	 */
-	public SubController(JTextArea output){
-		this.output = output;
+	public SubController(JPanel imagePanel){
+		this.imagePanel = imagePanel;
 	}
 
 	/**
@@ -59,7 +60,6 @@ public class SubController {
 	 * Prints the about information to text area
 	 */
 	public void aboutMPT(){
-		text = output.getText();
 		text = "\n"
 				+ "Team What's The Meaning Of Stonehenge!\n"
 				+ "Daniel Huette: 1000947178\n"
@@ -68,7 +68,7 @@ public class SubController {
 				+ "Date: October 30, 2014\n"
 				+ "Version 0.2\n"
 				+ "\n";
-		output.setText(text);
+		JOptionPane.showMessageDialog(null, text);
 	}
 
 	/**
@@ -174,7 +174,7 @@ public class SubController {
 						int goldRow = gold.getGoldRow() - 1;
 						int goldColumn = Utilities.columnToIndex(gold.getGoldColumn());
 						current = map.getPlaneItem(goldRow, goldColumn);
-						JOptionPane.showMessageDialog(output, "Removing Gold from row " + gold.getGoldRow() + " column " + gold.getGoldColumn());
+						JOptionPane.showMessageDialog(imagePanel, "Removing Gold from row " + gold.getGoldRow() + " column " + gold.getGoldColumn());
 						current.removeGold();
 						gold.setGoldRow(row);
 						gold.setGoldColumn(col);
@@ -223,7 +223,7 @@ public class SubController {
 	public void updateMap(){
 		try{
 			MapEditor.updateView(map);
-			Utilities.printMap(map, output);
+//			Utilities.printMap(map, imagePanel);
 		} catch(NullPointerException e){
 		}
 	}

@@ -14,6 +14,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -62,7 +63,8 @@ public abstract class FrameOfFun extends JFrame {
 	protected JMenuItem aboutMenuItem;
 	private JMenuItem baseConverterMenuItem;
 	
-	protected JTextArea textArea;
+//	protected JTextArea textArea;
+	protected JPanel imagePanel;
 	private JScrollPane scrollPane;
 	
 	final protected PathDialog loadDialog;
@@ -80,7 +82,8 @@ public abstract class FrameOfFun extends JFrame {
 	public FrameOfFun(String title) {
 		super(title);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		createTextArea();
+//		createTextArea();
+		createImagePanel();
 		createMenuBar();
 		this.setSize(800, 700);
 		
@@ -108,11 +111,17 @@ public abstract class FrameOfFun extends JFrame {
 	 * Initializes the text area and scroll pane, placing it on the
 	 * Frame. Text area is passed to Utilities for printing and exporting.
 	 */
-	private void createTextArea(){
-		textArea = new JTextArea();
-		textArea.setFont(new Font("Courier New", 0, 15));
-		textArea.setEditable(false);
-		scrollPane = new JScrollPane(textArea);
+//	private void createTextArea(){
+//		textArea = new JTextArea();
+//		textArea.setFont(new Font("Courier New", 0, 15));
+//		textArea.setEditable(false);
+//		scrollPane = new JScrollPane(textArea);
+//		this.add(scrollPane, BorderLayout.CENTER);
+//	}
+	
+	private void createImagePanel(){
+		imagePanel = new JPanel();
+		scrollPane = new JScrollPane(imagePanel);
 		this.add(scrollPane, BorderLayout.CENTER);
 	}
 	
@@ -141,12 +150,12 @@ public abstract class FrameOfFun extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setCurrentDirectory(new File("./res"));
-				int returnVal = fileChooser.showSaveDialog(textArea);
+				int returnVal = fileChooser.showSaveDialog(null);
 				if(returnVal == JFileChooser.APPROVE_OPTION){
 					try {
 						Utilities.save(map, fileChooser.getSelectedFile().getAbsolutePath());
 					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(textArea, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 //				PathDialog saveDialog = new PathDialog("Save", map);
@@ -162,12 +171,12 @@ public abstract class FrameOfFun extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setCurrentDirectory(new File("./res"));
-				int returnVal = fileChooser.showSaveDialog(textArea);
+				int returnVal = fileChooser.showSaveDialog(null);
 				if(returnVal == JFileChooser.APPROVE_OPTION){
 					try {
-						Utilities.exportMap(map, fileChooser.getSelectedFile().getAbsolutePath());
+//						Utilities.exportMap(map, fileChooser.getSelectedFile().getAbsolutePath());
 					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(textArea, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 //				PathDialog exportDialog = new PathDialog("Export", map);
@@ -208,7 +217,7 @@ public abstract class FrameOfFun extends JFrame {
 				if(map != null){
 					map.setViewingOption(ViewingOption.userModified);
 					MapEditor.updateView(map);
-					Utilities.printMap(map, textArea);
+//					Utilities.printMap(map, null);
 				}
 			}
 		});
@@ -227,7 +236,7 @@ public abstract class FrameOfFun extends JFrame {
 					public void myEventOccurred(CompletionEvent evt) {
 						try{
 							map = dialog.getMap();
-							Utilities.printMap(map, textArea);
+//							Utilities.printMap(map, null);
 						}
 						catch(NullPointerException n){
 							JOptionPane.showMessageDialog(frame,
