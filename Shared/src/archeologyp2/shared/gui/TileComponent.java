@@ -20,7 +20,10 @@ public class TileComponent extends JComponent implements MouseListener {
 	
 	public TileComponent(String path){
 		try {
-			image = ImageIO.read(new File(path));
+//			image = ImageIO.read(getClass().getResourceAsStream(path));
+			File file = new File(path);
+			image = ImageIO.read(file);
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

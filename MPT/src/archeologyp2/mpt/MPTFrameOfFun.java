@@ -72,8 +72,10 @@ public class MPTFrameOfFun extends FrameOfFun {
 				if(error == JFileChooser.APPROVE_OPTION){
 					try {
 						map = Utilities.load(fileChooser.getSelectedFile().getAbsolutePath());
+						setPanelDimensions(map.getNumColumns(), map.getNumRows());
 						MapEditor.updateView(map);
 						subController.setMap(map);
+						Utilities.updateImages(map, layout);
 //						Utilities.printMap(map, textArea);
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);

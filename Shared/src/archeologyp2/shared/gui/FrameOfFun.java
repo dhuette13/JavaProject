@@ -2,7 +2,7 @@ package archeologyp2.shared.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +16,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 import archeologyp2.shared.map.Coordinate;
 import archeologyp2.shared.map.Map;
@@ -69,6 +68,8 @@ public abstract class FrameOfFun extends JFrame {
 	
 	final protected PathDialog loadDialog;
 	
+	
+	protected GridLayout layout;
 	private JFrame frame;
 	
 	/**
@@ -119,8 +120,16 @@ public abstract class FrameOfFun extends JFrame {
 //		this.add(scrollPane, BorderLayout.CENTER);
 //	}
 	
+	public void setPanelDimensions(int width, int height){
+		layout.setColumns(width);
+		layout.setRows(height);
+		imagePanel.setLayout(layout);
+	}
+	
 	private void createImagePanel(){
 		imagePanel = new JPanel();
+		layout = new GridLayout();
+		imagePanel.setLayout(layout);
 		scrollPane = new JScrollPane(imagePanel);
 		this.add(scrollPane, BorderLayout.CENTER);
 	}
