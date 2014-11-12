@@ -61,7 +61,9 @@ public class MPTPopUpMenu extends JPopupMenu implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		
-	}	
+	public void actionPerformed(ActionEvent e) {
+		JMenuItem item = (JMenuItem) e.getSource();
+		JPopupMenu popItem = (JPopupMenu) item.getParent();
+		int i = popItem.getComponentIndex(item);
+	}
 }

@@ -219,6 +219,34 @@ public abstract class FrameOfFun extends JFrame {
 		});
 		viewMenu.add(showMapMenuItem);
 		
+//		viewingMenuItem = new JMenuItem("Viewing Options");
+//		viewingMenuItem.setMnemonic('O');
+//		viewingMenuItem.addActionListener(new ActionListener(){
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				final ViewingDialog dialog = new ViewingDialog("Viewing Options", map);
+//				Relay relay = new Relay();
+//				dialog.setVisible(true);
+//				relay.addMyEventListener(new CompletionEventListener(){
+//					@Override
+//					public void myEventOccurred(CompletionEvent evt) {
+//						try{
+//							map = dialog.getMap();
+////							Utilities.printMap(map, null);
+//						}
+//						catch(NullPointerException n){
+//							JOptionPane.showMessageDialog(frame,
+//								    "Uh oh! Looks like you typed in something wrong. Please try again.",
+//								    "Error",
+//								    JOptionPane.ERROR_MESSAGE);
+//						}
+//					}
+//				});
+//				dialog.setRelay(relay);
+//			}
+//		});
+//		viewMenu.add(viewingMenuItem);
+		
 		menuBar.add(viewMenu);
 		
 		helpMenu = new JMenu("Help");
