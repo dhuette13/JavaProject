@@ -162,7 +162,7 @@ public class PathDialog extends JDialog implements ActionListener, KeyListener {
 				Utilities.save(map, textField.getText());
 				break;
 			case "Export":
-				Utilities.exportMap(map, textField.getText());
+//				Utilities.exportMap(map, textField.getText());
 				break;
 			default:
 				System.out.println("Not a valid path dialog");

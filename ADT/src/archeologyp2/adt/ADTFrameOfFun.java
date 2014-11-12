@@ -55,7 +55,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 	public ADTFrameOfFun(String title) {
 		super(title);
 		addMenuItems();
-		subController = new SubController(textArea);
+		subController = new SubController(imagePanel);
 	}
 
 	/**
@@ -79,15 +79,15 @@ public class ADTFrameOfFun extends FrameOfFun {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setCurrentDirectory(new File("./res"));
-				int error = fileChooser.showOpenDialog(textArea);
+				int error = fileChooser.showOpenDialog(null);
 				if(error == JFileChooser.APPROVE_OPTION){
 					try {
 						map = Utilities.load(fileChooser.getSelectedFile().getAbsolutePath());
 						MapEditor.updateView(map);
 						subController.setMap(map);
-						Utilities.printMap(map, textArea);
+//						Utilities.printMap(map, textArea);
 					} catch (Exception e1) {
-						JOptionPane.showMessageDialog(textArea, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 				
@@ -138,7 +138,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 				try{
 				map.setViewingOption(ViewingOption.magnetometerResult);
 				MapEditor.updateView(map);
-				Utilities.printMap(map, textArea);
+//				Utilities.printMap(map, textArea);
 				}
 				catch(NullPointerException n){
 					JOptionPane.showMessageDialog(frame,
@@ -158,7 +158,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 				try{
 					map.setViewingOption(ViewingOption.metalDetectorResult);
 					MapEditor.updateView(map);
-					Utilities.printMap(map, textArea);
+//					Utilities.printMap(map, textArea);
 				}
 				catch(NullPointerException n){
 					JOptionPane.showMessageDialog(frame,
@@ -178,7 +178,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 				try{
 					map.setViewingOption(ViewingOption.potCount);
 					MapEditor.updateView(map);
-					Utilities.printMap(map, textArea);
+//					Utilities.printMap(map, textArea);
 				}
 				catch(NullPointerException n){
 					JOptionPane.showMessageDialog(frame,
@@ -198,7 +198,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 				try{
 				map.setViewingOption(ViewingOption.charcoalCount);
 				MapEditor.updateView(map);
-				Utilities.printMap(map, textArea);
+//				Utilities.printMap(map, textArea);
 				}
 				catch(NullPointerException n){
 					JOptionPane.showMessageDialog(frame,
@@ -218,7 +218,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 				try{
 				map.setViewingOption(ViewingOption.metalCount);
 				MapEditor.updateView(map);
-				Utilities.printMap(map, textArea);
+//				Utilities.printMap(map, textArea);
 				}
 				catch(NullPointerException n){
 					JOptionPane.showMessageDialog(frame,
