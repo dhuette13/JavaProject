@@ -27,23 +27,23 @@ public class MapEditor {
 	public static final String excavatedStoneToken = "Excavated Stone";
 	public static final String excavatedPostHoleToken = "Excavated Post Hole";
 
-	
+
 	public static void updateImages(Map<Coordinate> map, JPanel panel) {
-//		Tile imageMap[][] = map.getImageMap();
-//		for(int r = 0; r < map.getNumRows(); r++){
-//			for(int c = 0; c < map.getNumColumns(); c++){
-//				panel.add(imageMap[r][c]);
-//				imageMap[r][c].repaint();
-//			}
-//		}
+		//		Tile imageMap[][] = map.getImageMap();
+		//		for(int r = 0; r < map.getNumRows(); r++){
+		//			for(int c = 0; c < map.getNumColumns(); c++){
+		//				panel.add(imageMap[r][c]);
+		//				imageMap[r][c].repaint();
+		//			}
+		//		}
 		panel.repaint();
-		
+
 		for(Coordinate coord : map){
 			panel.add(coord.getTileComponent());
 			coord.getTileComponent().repaint();
 		}
 	}
-	
+
 	/**
 	 * For public static void updateView
 	 * This method updates the passed map's view.

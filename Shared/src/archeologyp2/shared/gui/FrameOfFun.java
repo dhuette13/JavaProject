@@ -99,16 +99,16 @@ public abstract class FrameOfFun extends JFrame {
 	}
 	
 	public void setPanelDimensions(int width, int height){
-		this.remove(scrollPane);
+//		this.remove(scrollPane);
 		this.remove(imagePanel);
 		
 		imagePanel = new JPanel();
 //		imagePanel.setSize(width * 5, height * 10);
 		layout = new GridLayout(width, height);
 		imagePanel.setLayout(layout);
-		scrollPane = new JScrollPane(imagePanel);
+//		scrollPane = new JScrollPane(imagePanel);
 		
-		this.add(scrollPane, BorderLayout.CENTER);
+//		this.add(scrollPane, BorderLayout.CENTER);
 		this.add(imagePanel);
 	}
 	
@@ -120,8 +120,8 @@ public abstract class FrameOfFun extends JFrame {
 		imagePanel = new JPanel();
 		layout = new GridLayout();
 		imagePanel.setLayout(layout);
-		scrollPane = new JScrollPane(imagePanel);
-		this.add(scrollPane, BorderLayout.CENTER);
+//		scrollPane = new JScrollPane(imagePanel);
+//		this.add(scrollPane, BorderLayout.CENTER);
 		this.add(imagePanel);
 	}
 	

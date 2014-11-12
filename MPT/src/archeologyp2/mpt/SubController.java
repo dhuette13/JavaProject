@@ -222,13 +222,13 @@ public class SubController {
 	 * For public void updateMap
 	 * 
 	 * Updates the maps viewing symbols
-	 * @param imagePanel2 
 	 */
 	public void updateMap(){
 		try{
 			MapEditor.updateView(map);
 			MapEditor.updateImages(map, imagePanel);
 		} catch(NullPointerException e){
+			e.printStackTrace();
 		}
 	}
 

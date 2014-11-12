@@ -113,6 +113,8 @@ public class MPTFrameOfFun extends FrameOfFun {
 		addFeatureMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				setPanelDimensions(map.getNumRows(), map.getNumColumns());
+				subController.setImagePanel(imagePanel);
 				AddFeatureDialog addFeature = new AddFeatureDialog("Add Feature", subController);
 				addFeature.setVisible(true);
 			}

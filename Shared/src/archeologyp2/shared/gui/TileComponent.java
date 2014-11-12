@@ -17,6 +17,7 @@ public class TileComponent extends JComponent implements MouseListener {
 	public TileComponent(Tile tile){
 		this.tile = tile;
 		setSize(tile.getWidth(), tile.getHeight());
+		addMouseListener(this);
 	}
 	
 	public void setTile(Tile tile){
@@ -37,8 +38,9 @@ public class TileComponent extends JComponent implements MouseListener {
 	}
 	
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		
+	public void mouseClicked(MouseEvent e) {
+		popUpMenu.setLocation(e.getX(), e.getY());
+		popUpMenu.setVisible(true);
 	}
 
 	@Override
