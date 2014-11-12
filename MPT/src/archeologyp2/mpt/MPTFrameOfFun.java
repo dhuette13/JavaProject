@@ -12,7 +12,6 @@ import archeologyp2.shared.gui.CompletionEvent;
 import archeologyp2.shared.gui.CompletionEventListener;
 import archeologyp2.shared.gui.FrameOfFun;
 import archeologyp2.shared.gui.Relay;
-import archeologyp2.shared.map.MapEditor;
 import archeologyp2.shared.map.Utilities;
 
 /**
@@ -72,11 +71,11 @@ public class MPTFrameOfFun extends FrameOfFun {
 				if(error == JFileChooser.APPROVE_OPTION){
 					try {
 						map = Utilities.load(fileChooser.getSelectedFile().getAbsolutePath());
-						setPanelDimensions(map.getNumColumns(), map.getNumRows());
+						setPanelDimensions(map.getNumRows(), map.getNumColumns());
 						setSize(map.getNumRows() * 10, map.getNumColumns() * 5);
 						subController.setMap(map);
+						subController.setImagePanel(imagePanel);
 						subController.updateMap();
-						Utilities.updateImages(map, imagePanel);
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
@@ -96,9 +95,11 @@ public class MPTFrameOfFun extends FrameOfFun {
 					@Override
 					public void myEventOccurred(CompletionEvent evt) {
 						map = generateDialog.getMap();
+						setPanelDimensions(map.getNumRows(), map.getNumColumns());
+						setSize(map.getNumRows() * 10, map.getNumColumns() * 5);
 						subController.setMap(map);
-						MapEditor.updateView(map);
-//						Utilities.printMap(map, textArea);
+						subController.setImagePanel(imagePanel);
+						subController.updateMap();
 					}
 				});
 				generateDialog.setRelay(relay);

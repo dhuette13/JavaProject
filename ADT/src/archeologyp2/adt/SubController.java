@@ -51,6 +51,10 @@ public class SubController {
 		this.imagePanel = imagePanel;
 		map = null;
 	}
+	
+	public void setImagePanel(JPanel imagePanel) {
+		this.imagePanel = imagePanel;
+	}
 
 	/**
 	 * Prints the about information to text area
@@ -325,8 +329,9 @@ public class SubController {
 	public void updateMap() {
 		try{
 			MapEditor.updateView(map);
-//			Utilities.printMap(map, imagePanel);
+			MapEditor.updateImages(map, imagePanel);
 		} catch(NullPointerException e){
+			e.printStackTrace();
 		}
 	}
 
@@ -357,4 +362,6 @@ public class SubController {
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+
+
 }

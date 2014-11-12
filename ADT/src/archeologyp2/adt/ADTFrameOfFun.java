@@ -83,11 +83,11 @@ public class ADTFrameOfFun extends FrameOfFun {
 				if(error == JFileChooser.APPROVE_OPTION){
 					try {
 						map = Utilities.load(fileChooser.getSelectedFile().getAbsolutePath());
-						setPanelDimensions(map.getNumColumns(), map.getNumRows());
+						setPanelDimensions(map.getNumRows(), map.getNumColumns());
 						setSize(map.getNumRows() * 10, map.getNumColumns() * 5);
 						subController.setMap(map);
+						subController.setImagePanel(imagePanel);
 						subController.updateMap();
-						Utilities.updateImages(map, imagePanel);
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
 					}

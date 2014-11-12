@@ -16,8 +16,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.swing.JPanel;
-
 import archeologyp2.shared.finds.Artifact;
 import archeologyp2.shared.finds.Charcoal;
 import archeologyp2.shared.finds.DecoratedPottery;
@@ -29,7 +27,6 @@ import archeologyp2.shared.finds.NonFerrousMetal;
 import archeologyp2.shared.finds.Pottery;
 import archeologyp2.shared.finds.StoragePottery;
 import archeologyp2.shared.finds.SubmergedPottery;
-import archeologyp2.shared.gui.TileComponent;
 
 /**
  * UTILITIES IN THE SHARED RESOURCES
@@ -44,17 +41,6 @@ import archeologyp2.shared.gui.TileComponent;
  */
 
 public class Utilities {
-
-	public static void updateImages(Map<Coordinate> map, JPanel panel) {
-		TileComponent imageMap[][] = map.getImageMap();
-		for(int r = 0; r < map.getNumRows(); r++){
-			for(int c = 0; c < map.getNumColumns(); c++){
-				panel.add(imageMap[r][c]);
-				imageMap[r][c].repaint();
-			}
-		}
-		panel.repaint();
-	}
 
 	/**
 	 * For the public static Map generateMap method

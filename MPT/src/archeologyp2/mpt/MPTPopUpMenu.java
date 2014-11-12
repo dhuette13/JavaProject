@@ -24,6 +24,8 @@ Add Charcoal Find
  */
 public class MPTPopUpMenu extends JPopupMenu implements ActionListener {
 	
+	private static final long serialVersionUID = 1L;
+	
 	private JMenuItem setFeature;
 	private JMenuItem toggleExcavated;
 	private JMenuItem toggleHeritage;
@@ -60,7 +62,6 @@ public class MPTPopUpMenu extends JPopupMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}	
 }
