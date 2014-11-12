@@ -10,12 +10,13 @@
 
 package archeologyp2.shared.map;
 
-import java.awt.GridLayout;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.swing.JPanel;
 
 import archeologyp2.shared.finds.Artifact;
 import archeologyp2.shared.finds.Charcoal;
@@ -43,15 +44,16 @@ import archeologyp2.shared.gui.TileComponent;
  */
 
 public class Utilities {
-	
 
-	public static void updateImages(Map<Coordinate> map, GridLayout layout) {
+	public static void updateImages(Map<Coordinate> map, JPanel panel) {
 		TileComponent imageMap[][] = map.getImageMap();
 		for(int r = 0; r < map.getNumRows(); r++){
 			for(int c = 0; c < map.getNumColumns(); c++){
-				layout.addLayoutComponent(String.valueOf(r + c), imageMap[r][c]);
+				panel.add(imageMap[r][c]);
+				imageMap[r][c].repaint();
 			}
 		}
+		panel.repaint();
 	}
 
 	/**

@@ -73,38 +73,14 @@ public class MPTFrameOfFun extends FrameOfFun {
 					try {
 						map = Utilities.load(fileChooser.getSelectedFile().getAbsolutePath());
 						setPanelDimensions(map.getNumColumns(), map.getNumRows());
-						MapEditor.updateView(map);
+						setSize(map.getNumRows() * 10, map.getNumColumns() * 5);
 						subController.setMap(map);
-						Utilities.updateImages(map, layout);
-//						Utilities.printMap(map, textArea);
+						subController.updateMap();
+						Utilities.updateImages(map, imagePanel);
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
 				} 
-//				loadDialog.setVisible(true);
-//				Relay relay = new Relay();
-//				relay.addMyEventListener(new CompletionEventListener(){
-//					@Override
-//					public void myEventOccurred(CompletionEvent evt) {
-//						map = loadDialog.getMap();
-//						MapEditor.updateView(map);
-//						subController.setMap(map);
-//						Utilities.printMap(map, textArea);
-//						try {
-//							map = loadDialog.getMap();
-//							subController.setMap(map);
-//							MapEditor.updateView(map);
-//							Utilities.printMap(map, textArea);
-//						}
-//						catch(NullPointerException n) {
-//							JOptionPane.showMessageDialog(frame,
-//								    "This path cannot be specified. Please try again.",
-//								    "Error",
-//								    JOptionPane.ERROR_MESSAGE);
-//						}
-//					}
-//				});
-//				loadDialog.setRelay(relay);
 			}
 		});
 		

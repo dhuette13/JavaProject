@@ -1,6 +1,6 @@
 package archeologyp2.shared.map;
 
-import archeologyp2.shared.gui.TileComponent;
+import archeologyp2.shared.gui.Tile;
 
 
 
@@ -76,16 +76,16 @@ public class MapEditor {
 			for(Coordinate coord : map){
 				switch(coord.getFeature()){
 				case stone:
-					if(coord.getExcavated()) map.setMapImage(coord.getRow(), coord.getColumn(), Map.stoneImage);
-					else map.setMapImage(coord.getRow(), coord.getColumn(), Map.deadGrassImage);
+					if(coord.getExcavated()) map.setMapTile(coord.getRow(), coord.getColumn(), Tile.stoneImage);
+					else map.setMapTile(coord.getRow(), coord.getColumn(), Tile.deadGrassImage);
 					break;
 				case postHole:
-					if(coord.getExcavated()) map.setMapImage(coord.getRow(), coord.getColumn(), Map.pitImage);
-					else map.setMapImage(coord.getRow(), coord.getColumn(), Map.chlorophyllImage);
+					if(coord.getExcavated()) map.setMapTile(coord.getRow(), coord.getColumn(), Tile.pitImage);
+					else map.setMapTile(coord.getRow(), coord.getColumn(), Tile.chlorophyllImage);
 					break;
 				case dirt:
-					if(coord.getExcavated()) map.setMapImage(coord.getRow(), coord.getColumn(), Map.dirtImage);
-					else map.setMapImage(coord.getRow(), coord.getColumn(), Map.naturalImage);
+					if(coord.getExcavated()) map.setMapTile(coord.getRow(), coord.getColumn(), Tile.dirtImage);
+					else map.setMapTile(coord.getRow(), coord.getColumn(), Tile.naturalImage);
 					break;
 				}
 			}
@@ -94,16 +94,16 @@ public class MapEditor {
 //			for(Coordinate coord : map){
 //				switch(coord.getFeature()){
 //				case stone:
-//					if(coord.getExcavated()) map.setMapImage(coord.getRow(), coord.getColumn(), map.getStoneSymbol());
-//					else map.setMapImage(coord.getRow(), coord.getColumn(), map.getStoneAlias());
+//					if(coord.getExcavated()) map.setMapTile(coord.getRow(), coord.getColumn(), map.getStoneSymbol());
+//					else map.setMapTile(coord.getRow(), coord.getColumn(), map.getStoneAlias());
 //					break;
 //				case postHole:
-//					if(coord.getExcavated()) map.setMapImage(coord.getRow(), coord.getColumn(), map.getPostHoleSymbol());
-//					else map.setMapImage(coord.getRow(), coord.getColumn(), map.getPostHoleAlias());
+//					if(coord.getExcavated()) map.setMapTile(coord.getRow(), coord.getColumn(), map.getPostHoleSymbol());
+//					else map.setMapTile(coord.getRow(), coord.getColumn(), map.getPostHoleAlias());
 //					break;
 //				case dirt:
-//					if(coord.getExcavated()) map.setMapImage(coord.getRow(), coord.getColumn(), map.getDirtSymbol());
-//					else map.setMapImage(coord.getRow(), coord.getColumn(), map.getDirtAlias());
+//					if(coord.getExcavated()) map.setMapTile(coord.getRow(), coord.getColumn(), map.getDirtSymbol());
+//					else map.setMapTile(coord.getRow(), coord.getColumn(), map.getDirtAlias());
 //					break;
 //				}
 //			}
@@ -111,87 +111,87 @@ public class MapEditor {
 		case potCount:
 			for(Coordinate coord : map){
 				if(coord.getExcavated())
-					map.setMapImage(coord.getRow(), coord.getColumn(), setCount(coord.getPotCount()));
+					map.setMapTile(coord.getRow(), coord.getColumn(), setCount(coord.getPotCount()));
 				else
-					map.setMapImage(coord.getRow(), coord.getColumn(), Map.unknownImage);
+					map.setMapTile(coord.getRow(), coord.getColumn(), Tile.unknownImage);
 			}
 			break;
 		case metalCount:
 			for(Coordinate coord : map){
 				if(coord.getExcavated())
-					map.setMapImage(coord.getRow(), coord.getColumn(), setCount(coord.getMetalCount()));
+					map.setMapTile(coord.getRow(), coord.getColumn(), setCount(coord.getMetalCount()));
 				else
-					map.setMapImage(coord.getRow(), coord.getColumn(), Map.unknownImage);
+					map.setMapTile(coord.getRow(), coord.getColumn(), Tile.unknownImage);
 			}
 			break;
 		case charcoalCount:
 			for(Coordinate coord : map){
 				if(coord.getExcavated())
-					map.setMapImage(coord.getRow(), coord.getColumn(), setCount(coord.getCharcoalCount()));
+					map.setMapTile(coord.getRow(), coord.getColumn(), setCount(coord.getCharcoalCount()));
 				else
-					map.setMapImage(coord.getRow(), coord.getColumn(), Map.unknownImage);
+					map.setMapTile(coord.getRow(), coord.getColumn(), Tile.unknownImage);
 			}
 			break;
 		case magnetometerResult:
 			for(Coordinate coord : map) {
 				if(coord.getCharcoalInspected()){
 					if(coord.charcoalHidden())
-						map.setMapImage(coord.getRow(), coord.getColumn(), Map.trueImage);
+						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.trueImage);
 					else
-						map.setMapImage(coord.getRow(), coord.getColumn(), Map.falseImage);
+						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.falseImage);
 				}
 				else
-					map.setMapImage(coord.getRow(), coord.getColumn(), Map.unknownImage);
+					map.setMapTile(coord.getRow(), coord.getColumn(), Tile.unknownImage);
 			}
 			break;
 		case metalDetectorResult:
 			for(Coordinate coord : map) {
 				if(coord.getMetalInspected()){
 					if(coord.metalHidden())
-						map.setMapImage(coord.getRow(), coord.getColumn(), Map.trueImage);
+						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.trueImage);
 					else
-						map.setMapImage(coord.getRow(), coord.getColumn(), Map.falseImage);
+						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.falseImage);
 				}
 				else
-					map.setMapImage(coord.getRow(), coord.getColumn(), Map.unknownImage);
+					map.setMapTile(coord.getRow(), coord.getColumn(), Tile.unknownImage);
 			}
 			break;
 		}
 	}
 
-	private static TileComponent setCount(int count) {
-		TileComponent image;
-		image = Map.zeroImage;
+	private static Tile setCount(int count) {
+		Tile image;
+		image = Tile.zeroImage;
 		switch(count){
 		case 0:
-			image = Map.zeroImage;
+			image = Tile.zeroImage;
 			break;
 		case 1:
-			image = Map.oneImage;
+			image = Tile.oneImage;
 			break;
 		case 2:
-			image = Map.twoImage;
+			image = Tile.twoImage;
 			break;
 		case 3:
-			image = Map.threeImage;
+			image = Tile.threeImage;
 			break;
 		case 4:
-			image = Map.fourImage;
+			image = Tile.fourImage;
 			break;
 		case 5:
-			image = Map.fiveImage;
+			image = Tile.fiveImage;
 			break;
 		case 6:
-			image = Map.sixImage;
+			image = Tile.sixImage;
 			break;
 		case 7:
-			image = Map.sevenImage;
+			image = Tile.sevenImage;
 			break;
 		case 8:
-			image = Map.eightImage;
+			image = Tile.eightImage;
 			break;
 		case 9:
-			image = Map.nineImage;
+			image = Tile.nineImage;
 			break;
 		}
 		return image;

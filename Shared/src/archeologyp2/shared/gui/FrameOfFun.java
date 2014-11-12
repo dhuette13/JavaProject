@@ -126,12 +126,17 @@ public abstract class FrameOfFun extends JFrame {
 		imagePanel.setLayout(layout);
 	}
 	
+	public void addTileComponent(TileComponent component){
+		imagePanel.add(component);
+	}
+	
 	private void createImagePanel(){
 		imagePanel = new JPanel();
-		layout = new GridLayout();
+		layout = new GridLayout(24, 24);
 		imagePanel.setLayout(layout);
 		scrollPane = new JScrollPane(imagePanel);
 		this.add(scrollPane, BorderLayout.CENTER);
+		this.add(imagePanel);
 	}
 	
 	/**

@@ -3,6 +3,7 @@ package archeologyp2.shared.map;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import archeologyp2.shared.gui.Tile;
 import archeologyp2.shared.gui.TileComponent;
 
 /**
@@ -20,40 +21,11 @@ import archeologyp2.shared.gui.TileComponent;
  */
 public class Map<E> implements Iterable<E> {
 
-	/* Default symbols to use */
-//	public static final char defaultDirtSymbol = 'D';
-//	public static final char defaultStoneSymbol = 'R';
-//	public static final char defaultPostHoleSymbol = 'H';
-//	public static final char defaultDirtAlias = 'g';
-//	public static final char defaultStoneAlias = 'Y';
-//	public static final char defaultPostHoleAlias = 'G';
-	
-	public static final TileComponent naturalImage = new TileComponent("Tiles/NATURAL.png");
-	public static final TileComponent deadGrassImage = new TileComponent("Tiles/YELLOW.png");
-	public static final TileComponent chlorophyllImage = new TileComponent("Tiles/BRIGHTGREEN.png");
-	public static final TileComponent dirtImage = new TileComponent("Tiles/DIRT.png");
-	public static final TileComponent stoneImage = new TileComponent("Tiles/STONE.png");
-	public static final TileComponent pitImage = new TileComponent("Tiles/PIT.png");
-	public static final TileComponent trueImage = new TileComponent("Tiles/TRUE.png");
-	public static final TileComponent falseImage = new TileComponent("Tiles/FALSE.png");
-	public static final TileComponent unknownImage = new TileComponent("Tiles/UNKNOWN.png");
-	
-	public static final TileComponent zeroImage = new TileComponent("Tiles/0.png");
-	public static final TileComponent oneImage = new TileComponent("Tiles/1.png");
-	public static final TileComponent twoImage = new TileComponent("Tiles/2.png");
-	public static final TileComponent threeImage = new TileComponent("Tiles/3.png");
-	public static final TileComponent fourImage = new TileComponent("Tiles/4.png");
-	public static final TileComponent fiveImage = new TileComponent("Tiles/5.png");
-	public static final TileComponent sixImage = new TileComponent("Tiles/6.png");
-	public static final TileComponent sevenImage = new TileComponent("Tiles/7.png");
-	public static final TileComponent eightImage = new TileComponent("Tiles/8.png");
-	public static final TileComponent nineImage = new TileComponent("Tiles/9.png");
-	
 
 	/* For Excavated Coordinates */
-//	private char stoneSymbol, postHoleSymbol, dirtSymbol;
+	private char stoneSymbol, postHoleSymbol, dirtSymbol;
 	/* For Not Excavated Coordinates */
-//	private char stoneAlias, postHoleAlias, dirtAlias;
+	private char stoneAlias, postHoleAlias, dirtAlias;
 	
 //	private char charMap[][];
 	private TileComponent imageMap[][];
@@ -83,7 +55,7 @@ public class Map<E> implements Iterable<E> {
 		/* Initialize character map */
 		for(int r = 0; r < rows; r++)
 			for(int c = 0; c < columns; c++)
-				imageMap[r][c] = naturalImage;
+				imageMap[r][c] = new TileComponent(Tile.naturalImage);
 	}
 	
 	/**
@@ -170,8 +142,8 @@ public class Map<E> implements Iterable<E> {
 	 * @param c
 	 * @param symbol 
 	 */
-	public void setMapImage(int row, int column, TileComponent image){
-		imageMap[row][column] = image;
+	public void setMapTile(int row, int column, Tile image){
+		imageMap[row][column].setTile(image);
 	}
 
 //	/**

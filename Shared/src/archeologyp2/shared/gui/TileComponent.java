@@ -15,50 +15,30 @@ public class TileComponent extends JComponent implements MouseListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private BufferedImage image;
+	private Tile tile;
 	private JPopupMenu popUpMenu;
 	
-	public TileComponent(String path){
-		try {
-//			image = ImageIO.read(getClass().getResourceAsStream(path));
-			File file = new File(path);
-			image = ImageIO.read(file);
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		setSize(image.getWidth(), image.getHeight());
+	public TileComponent(Tile tile){
+		this.tile = tile;
+		setSize(tile.getWidth(), tile.getHeight());
 	}
 	
+	public void setTile(Tile tile){
+		this.tile = tile;
+	}
+	
+	public Tile getTile(){
+		return tile;
+	}
 	
 	@Override
 	public void paint(Graphics g){
-		g.drawImage(image, 0, 0, null);
+		g.drawImage(tile.getImage(), 0, 0, null);
 	}
 	
 	public void setPopupMenu(JPopupMenu menu){
 		popUpMenu = menu;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
