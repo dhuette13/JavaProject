@@ -4,7 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
+
+import archeologyp2.shared.gui.PopupMenuParent;
 
 /**
  * THE MPT POP UP MENU
@@ -22,7 +23,7 @@ Add Metal Find
 Add Pottery Find
 Add Charcoal Find
  */
-public class MPTPopUpMenu extends JPopupMenu implements ActionListener {
+public class MPTPopUpMenu extends PopupMenuParent implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -33,7 +34,10 @@ public class MPTPopUpMenu extends JPopupMenu implements ActionListener {
 	private JMenuItem addPottery;
 	private JMenuItem addCharcoal;
 	
-	public MPTPopUpMenu(){
+	private SubController subController;
+	
+	public MPTPopUpMenu(SubController subController){
+		this.subController = subController;
 		
 		// Making pop-up menu items
 		setFeature = new JMenuItem("Set Feature");
@@ -62,8 +66,21 @@ public class MPTPopUpMenu extends JPopupMenu implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JMenuItem item = (JMenuItem) e.getSource();
-		JPopupMenu popItem = (JPopupMenu) item.getParent();
-		int i = popItem.getComponentIndex(item);
+		setVisible(false);
+		switch(e.getActionCommand()){
+		case "Set Feature":
+//			AddFeatureDialog featureDialog = new AddFeatureDialog("Add Feature", null);
+			break;
+		case "Toggle Excavated":
+			break;
+		case "Toggle Heritage":
+			break;
+		case "Add Metal Find":
+			break;
+		case "Add Pottery Find":
+			break;
+		case "Add Charcoal Find":
+			break;
+		}
 	}
 }

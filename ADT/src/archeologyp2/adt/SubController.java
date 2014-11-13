@@ -78,22 +78,24 @@ public class SubController {
 	 * for that square to equal true. 
 	 * 
 	 * @param row
-	 * @param col
+	 * @param column
 	 * 
 	 */
-	public int magnetoMeter(int row, String col){
+	public int magnetoMeter(int row, int column){
 		try{
 			Coordinate current;
-			int r = row - 1;
-			int c = Utilities.columnToIndex(col); 
-			current = map.getPlaneItem(r, c);
+//			int r = row - 1;
+//			int c = Utilities.columnToIndex(column); 
+			current = map.getPlaneItem(row, column);
 			current.setCharcoalInspected(true);
 			if(current.getCharcoalCount() != 0){
 				current.setCharcoalHidden(true);
+				updateMap();
 				return 1;
 			}
 			else {
 				current.setCharcoalHidden(false);
+				updateMap();
 				return 0;
 			}
 		} catch(NullPointerException e){
@@ -110,17 +112,17 @@ public class SubController {
 	 * detector equal to true.
 	 * 
 	 * @param row
-	 * @param col
+	 * @param column
 	 * 
 	 */
-	public int metalDetector(int row, String col){
+	public int metalDetector(int row, int column){
 		int detectorResults = 0;
 		try{
 			MetalObject metal;
 			Coordinate current;
-			int r = row - 1;
-			int c = Utilities.columnToIndex(col);
-			current = map.getPlaneItem(r, c);
+//			int r = row - 1;
+//			int c = Utilities.columnToIndex(column);
+			current = map.getPlaneItem(row, column);
 			current.setMetalInspected(true);
 			if(current.getMetalCount() != 0) {
 				current.setMetalHidden(true);
@@ -150,7 +152,8 @@ public class SubController {
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 			detectorResults = -1;
 		}
-
+		
+		updateMap();
 		return detectorResults;
 	}
 
@@ -185,17 +188,17 @@ public class SubController {
 	 * a new heritage exception will be thrown
 	 * 
 	 * @param row
-	 * @param col
+	 * @param column
 	 * 
 	 * @throws HeritageException 
 	 * 
 	 */
-	public void dig(int row, String col) throws HeritageException {
+	public void dig(int row, int column) throws HeritageException {
 		try{
 			Coordinate current;
-			int r = row - 1;
-			int c = Utilities.columnToIndex(col);
-			current = map.getPlaneItem(r, c);
+//			int r = row - 1;
+//			int c = Utilities.columnToIndex(column);
+			current = map.getPlaneItem(row, column);
 			if(current.isHeritage()){
 				throw new HeritageException("This coordinate is heritage!");
 			} else {
@@ -204,6 +207,7 @@ public class SubController {
 					current.setItemFound(true);
 				}
 			}
+			updateMap();
 		} catch(NullPointerException e){
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		} 
@@ -357,7 +361,7 @@ public class SubController {
 			report.generateReport();
 			averageDate = computeAverageDate();
 			standardDeviation = computeStandardDeviation(averageDate);
-			JOptionPane.showMessageDialog(null, report.toString() + "The average date is: " + averageDate + "\nThe Standard Deviation is: " + standardDeviation);
+			new ReportDialog(report, averageDate, standardDeviation).setVisible(true);
 		} catch(NullPointerException e){
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}

@@ -7,11 +7,11 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
 
 import archeologyp2.shared.gui.CompletionEvent;
 import archeologyp2.shared.gui.CompletionEventListener;
 import archeologyp2.shared.gui.FrameOfFun;
+import archeologyp2.shared.gui.PopupMenuParent;
 import archeologyp2.shared.gui.Relay;
 import archeologyp2.shared.gui.Tile;
 import archeologyp2.shared.map.Coordinate;
@@ -42,7 +42,7 @@ public class MPTFrameOfFun extends FrameOfFun {
 	
 	final protected GenerateDialog generateDialog;
 
-	private JPopupMenu popupMenu;
+	private PopupMenuParent popupMenu;
 
 	/**
 	 * For public MPTFrameOfFun
@@ -56,7 +56,7 @@ public class MPTFrameOfFun extends FrameOfFun {
 		addMenuItems();
 		subController = new SubController(imagePanel);
 		generateDialog = new GenerateDialog("Generate Map");
-		popupMenu = new MPTPopUpMenu();
+		popupMenu = new MPTPopUpMenu(subController);
 	}
 
 	/**

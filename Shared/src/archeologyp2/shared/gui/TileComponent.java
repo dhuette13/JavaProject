@@ -13,8 +13,8 @@ public class TileComponent extends JComponent implements MouseListener {
 
 	private int row, column;
 	private Tile tile;
-	private JPopupMenu popUpMenu;
-	
+	private PopupMenuParent popUpMenu;
+
 	public TileComponent(Tile tile, int row, int column){
 		this.tile = tile;
 		this.row = row;
@@ -22,52 +22,57 @@ public class TileComponent extends JComponent implements MouseListener {
 		setSize(tile.getWidth(), tile.getHeight());
 		addMouseListener(this);
 	}
-	
+
 	@Override
 	public void paint(Graphics g){
 		g.drawImage(tile.getImage(), 0, 0, null);
 	}
-	
-		
-	public void setPopupMenu(JPopupMenu menu){
+
+
+	public void setPopupMenu(PopupMenuParent menu){
 		popUpMenu = menu;
 	}
-	
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		System.out.println("Mouse clicked at: " + e.getXOnScreen() + " " + e.getYOnScreen());
-		popUpMenu.setLocation(e.getXOnScreen(), e.getYOnScreen());
-		popUpMenu.setVisible(true);
+		if(e.getButton() == 3){
+			popUpMenu.setLocation(e.getXOnScreen(), e.getYOnScreen());
+			popUpMenu.setRowAndColumn(row, column);
+			popUpMenu.setVisible(true);
+		} else if(e.getButton() == 1){
+			popUpMenu.setVisible(false);
+		}
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		
+
 	}
 
 	public void setTile(Tile tile){
 		this.tile = tile;
 	}
-	
+
 	public Tile getTile(){
 		return tile;
 	}
-	
+
 
 	public int getRow() {
 		return row;

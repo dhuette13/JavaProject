@@ -7,9 +7,9 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
 
 import archeologyp2.shared.gui.FrameOfFun;
+import archeologyp2.shared.gui.PopupMenuParent;
 import archeologyp2.shared.gui.Tile;
 import archeologyp2.shared.map.Coordinate;
 import archeologyp2.shared.map.Utilities;
@@ -32,8 +32,6 @@ public class ADTFrameOfFun extends FrameOfFun {
 	private static final long serialVersionUID = 1L;
 
 	/* Edit menu Items */
-	//	private JMenuItem digMenuItem;
-	private JMenuItem scanMenuItem;
 
 	/* Menu items for special maps */
 	private JMenuItem viewMagnetoMeterMenuItem;
@@ -45,7 +43,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 
 	private SubController subController;
 
-	private JPopupMenu popupMenu;
+	private PopupMenuParent popupMenu;
 	/**
 	 * For the public ADTFrameOfFun
 	 * This method adds the ADT specific menu items and creates subController.
@@ -56,7 +54,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 		super(title);
 		addMenuItems();
 		subController = new SubController(imagePanel);
-		popupMenu = new ADTPopUpMenu();
+		popupMenu = new ADTPopUpMenu(subController);
 	}
 
 	/**
@@ -99,30 +97,6 @@ public class ADTFrameOfFun extends FrameOfFun {
 				}
 			}
 		});
-
-		//		digMenuItem = new JMenuItem("Dig");
-		//		digMenuItem.setMnemonic('D');
-		//		digMenuItem.addActionListener(new ActionListener(){
-		//			@Override
-		//			public void actionPerformed(ActionEvent e) {
-		//				DigDialog digDialog = new DigDialog("Dig", subController);
-		//				digDialog.setVisible(true);
-		//			}
-		//
-		//		});
-		//		editMenu.add(digMenuItem);
-
-		scanMenuItem = new JMenuItem("Scan");
-		scanMenuItem.setMnemonic('S');
-		scanMenuItem.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				ScanDialog scanDialog = new ScanDialog("Scan",subController);
-				scanDialog.setVisible(true);
-			}
-		});
-
-		editMenu.add(scanMenuItem);
 
 		viewMagnetoMeterMenuItem = new JMenuItem("View Magnetometer Map");
 		viewMagnetoMeterMenuItem.setMnemonic('g');

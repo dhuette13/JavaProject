@@ -3,7 +3,6 @@ package archeologyp2.shared.map;
 import javax.swing.JPanel;
 
 import archeologyp2.shared.gui.Tile;
-import archeologyp2.shared.gui.TileComponent;
 
 
 
