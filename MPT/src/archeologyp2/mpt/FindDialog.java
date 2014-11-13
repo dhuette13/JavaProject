@@ -47,25 +47,18 @@ public class FindDialog extends JDialog implements KeyListener {
 	private static final long serialVersionUID = 1L;
 
 
-//	private JLabel rowLabel;
-//	private JLabel columnLabel;
-//	private JTextField rowTextField;
-//	private JTextField columnTextField;
 	private JButton confirmButton;
 	private JButton cancelButton;
 	private JComboBox<String> comboBox;
 	private JTextField dateTextField;
 	private JLabel dateLabel;
-//	private JLabel rowPromptLabel;
-//	private JCheckBox rowCheckBox;
 	private JLabel dataLabel;
 	private JTextField dataTextField;
 	private JFrame frame;
 
 	private GridBagConstraints constraints;
 
-	private int row;
-	private String column;
+	private int row, column;
 	private int date;
 	private boolean entireRow;
 	private String data;
@@ -80,8 +73,10 @@ public class FindDialog extends JDialog implements KeyListener {
 	 * @param title
 	 * @param subController
 	 */
-	public FindDialog(String title, SubController subController){
+	public FindDialog(String title, SubController subController, int row, int column){
 		this.subController = subController;
+		this.row = row;
+		this.column = column;
 		
 		setTitle(title);
 		setLayout(new GridBagLayout());
@@ -89,15 +84,11 @@ public class FindDialog extends JDialog implements KeyListener {
 		setResizable(false);
 		addKeyListener(this);
 
-//		createTextFields();
+		createTextFields();
 		createButton();
 		createComboBox();
-//		createCheckBox();
 
-//		rowLabel = new JLabel("Row: ");
-//		columnLabel = new JLabel("Column: ");
 		dateLabel = new JLabel("Date: ");
-//		rowPromptLabel = new JLabel("Change an entire row? ");
 		dataLabel = new JLabel("Description: ");
 		constraints = new GridBagConstraints();
 		constraints.insets = new Insets(3, 3, 3, 3);
@@ -107,18 +98,11 @@ public class FindDialog extends JDialog implements KeyListener {
 
 		constraints.anchor = GridBagConstraints.WEST;
 		constraints.fill = GridBagConstraints.NONE;
-//		addComponent(rowPromptLabel, 0, 0, 2, 1);
-//		addComponent(rowCheckBox, 2, 0, 1, 1);
-//		addComponent(rowLabel, 0, 1, 1, 1);
-//		addComponent(columnLabel, 0, 2, 1, 1);
 		addComponent(dateLabel, 0, 3, 1, 1);
 		addComponent(dataLabel, 0, 4, 1, 1);
 		
 		constraints.anchor = GridBagConstraints.CENTER;
-		addComponent(comboBox, 2, 1, 2, 1);
 		constraints.anchor = GridBagConstraints.EAST;
-//		addComponent(rowTextField, 1, 1, 1, 1);
-//		addComponent(columnTextField, 1, 2, 1, 1);
 		addComponent(dateTextField, 1, 3, 1, 1);
 		addComponent(dataTextField, 1, 4, 1, 1);
 		
@@ -128,35 +112,6 @@ public class FindDialog extends JDialog implements KeyListener {
 		addComponent(confirmButton, 2, 5, 1, 1);
 		addComponent(cancelButton, 3, 5, 1, 1);
 	}
-
-	/**
-	 * For the private void createCheckBox
-	 * 
-	 * This method creates a check box for when the
-	 * user wants to specify they want to change
-	 * and entire row in their map. It checks to see
-	 * if the check box has been clicked, and if so, 
-	 * then it grays out the column option so the user
-	 * won't get confused. 
-	 */
-//	private void createCheckBox() {
-//		rowCheckBox = new JCheckBox();
-//		rowCheckBox.addChangeListener(new ChangeListener(){
-//			@Override
-//			public void stateChanged(ChangeEvent arg0) {
-//				if(rowCheckBox.isSelected()){
-//					columnTextField.setEnabled(false);
-//					columnLabel.setEnabled(false);
-//				} else {
-//					columnTextField.setEnabled(true);
-//					columnLabel.setEnabled(true);
-//				}
-//			}
-//
-//		});
-//		rowCheckBox.addKeyListener(this);
-//
-//	}
 
 	/**
 	 * For public void addComponent
@@ -185,17 +140,13 @@ public class FindDialog extends JDialog implements KeyListener {
 	 * This creates the four text fields the user will use
 	 * to input their information.
 	 */
-//	private void createTextFields() {
-//		rowTextField = new JTextField(5);
-//		columnTextField = new JTextField(5);
-//		dateTextField = new JTextField(5);
-//		dataTextField = new JTextField(5);
-//		
-//		rowTextField.addKeyListener(this);
-//		columnTextField.addKeyListener(this);
-//		dateTextField.addKeyListener(this);
-//		dataTextField.addKeyListener(this);
-//	}
+	private void createTextFields() {
+		dateTextField = new JTextField(5);
+		dataTextField = new JTextField(5);
+		
+		dateTextField.addKeyListener(this);
+		dataTextField.addKeyListener(this);
+	}
 
 	/**
 	 * For private void createButton
@@ -212,10 +163,7 @@ public class FindDialog extends JDialog implements KeyListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
-//					row = Integer.parseInt(rowTextField.getText());
-//					column = columnTextField.getText();
 					date = Integer.parseInt(dateTextField.getText());
-//					entireRow = rowCheckBox.isSelected();
 					data = dataTextField.getText();
 					subController.addFind(row, column, comboBox.getSelectedIndex() + 1, date, data, entireRow);
 				}

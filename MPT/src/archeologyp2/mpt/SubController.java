@@ -84,14 +84,14 @@ public class SubController {
 	 * map view.
 	 * 
 	 * @param row
-	 * @param col
+	 * @param column
 	 * @param feature they'd like to change to
 	 * 
 	 */
-	public void changeFeature(int row, String col, int feature, boolean loopFlag){
+	public void changeFeature(int row, int column, int feature, boolean loopFlag){
 		try{
 			Coordinate current;
-			int r = row - 1;
+//			int r = row - 1;
 			Feature f = Feature.dirt;
 			switch(feature){
 			case 1:
@@ -109,15 +109,15 @@ public class SubController {
 			
 			if(loopFlag) {
 				for(int j = 0; j < map.getNumColumns(); j++){
-					current = map.getPlaneItem(r, j);
+					current = map.getPlaneItem(row, j);
 					current.setFeature(f);
 				}
 			} else {
-				int c = Utilities.columnToIndex(col);
-				current = map.getPlaneItem(r, c);
+//				int c = Utilities.columnToIndex(column);
+				current = map.getPlaneItem(row, column);
 				current.setFeature(f);
 			}
-			MapEditor.updateView(map);
+			updateMap();
 		} catch(NullPointerException e){
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -203,7 +203,7 @@ public class SubController {
 				current = map.getPlaneItem(r, c);
 				current.addFind(artifact);
 			}
-			MapEditor.updateView(map);
+			updateMap();
 		} catch(NullPointerException e){
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -240,12 +240,26 @@ public class SubController {
 	 * @param row
 	 * @param column
 	 */
-	public void markHeritage(int row, String column) {
+	public void markHeritage(int row, int column) {
 		try{
-			int r = row - 1;
-			int c = Utilities.columnToIndex(column);
-			Coordinate current = map.getPlaneItem(r, c);
+//			int r = row - 1;
+//			int c = Utilities.columnToIndex(column);
+			Coordinate current = map.getPlaneItem(row, column);
 			current.setHeritage(true);
+		} catch(NullPointerException e){
+			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	/**
+	 * @param row
+	 * @param column
+	 */
+	public void markExcavated(int row, int column) {
+		try{
+			Coordinate current = map.getPlaneItem(row, column);
+			current.setExcavated(true);
+			updateMap();
 		} catch(NullPointerException e){
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}

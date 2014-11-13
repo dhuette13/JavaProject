@@ -37,7 +37,6 @@ public class MPTFrameOfFun extends FrameOfFun {
 	private SubController subController;
 	/* Edit Menu Items */
 	private JMenuItem generateMapMenuItem;
-	private JMenuItem addFeatureMenuItem;
 	private JMenuItem addFindMenuItem;
 //	private JMenuItem heritageMenuItem;
 	
@@ -123,18 +122,6 @@ public class MPTFrameOfFun extends FrameOfFun {
 			
 		});
 		editMenu.add(generateMapMenuItem);
-		
-		addFeatureMenuItem = new JMenuItem("Add Feature");
-		addFeatureMenuItem.setMnemonic('e');
-		addFeatureMenuItem.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				AddFeatureDialog addFeature = new AddFeatureDialog("Add Feature", subController);
-				addFeature.setVisible(true);
-			}
-			
-		});
-		editMenu.add(addFeatureMenuItem);
 		
 		addFindMenuItem = new JMenuItem("Add Find");
 		addFindMenuItem.setMnemonic('i');

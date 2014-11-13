@@ -5,6 +5,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -120,6 +122,27 @@ public class GenerateDialog extends JDialog implements KeyListener {
 		
 		widthTextField.addKeyListener(this);
 		heightTextField.addKeyListener(this);
+		
+		widthTextField.addFocusListener(new FocusListener(){
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				widthTextField.setText("");
+			}
+			
+			@Override
+			public void focusLost(FocusEvent arg0) {
+			}
+		});
+		heightTextField.addFocusListener(new FocusListener(){
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				heightTextField.setText("");
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+			}
+		});
 	}
 	
 	/**

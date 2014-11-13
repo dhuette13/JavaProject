@@ -35,7 +35,6 @@ public class TileComponent extends JComponent implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("Mouse clicked at: " + e.getXOnScreen() + " " + e.getYOnScreen());
 		if(e.getButton() == 3){
 			popUpMenu.setLocation(e.getXOnScreen(), e.getYOnScreen());
 			popUpMenu.setRowAndColumn(row, column);

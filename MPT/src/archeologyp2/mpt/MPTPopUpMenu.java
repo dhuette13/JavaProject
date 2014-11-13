@@ -28,11 +28,9 @@ public class MPTPopUpMenu extends PopupMenuParent implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	
 	private JMenuItem setFeature;
+	private JMenuItem addFind;
 	private JMenuItem toggleExcavated;
 	private JMenuItem toggleHeritage;
-	private JMenuItem addMetal;
-	private JMenuItem addPottery;
-	private JMenuItem addCharcoal;
 	
 	private SubController subController;
 	
@@ -41,27 +39,21 @@ public class MPTPopUpMenu extends PopupMenuParent implements ActionListener {
 		
 		// Making pop-up menu items
 		setFeature = new JMenuItem("Set Feature");
+		addFind = new JMenuItem("Add Find");
 		toggleExcavated = new JMenuItem("Toggle Excavated");
 		toggleHeritage = new JMenuItem("Toggle Heritage");
-		addMetal = new JMenuItem("Add Metal Find");
-		addPottery = new JMenuItem("Add Pottery Find");
-		addCharcoal = new JMenuItem("Add Charcoal Find");
 		
 		// Adds menu items to the pop-up menu
 		this.add(setFeature);
 		this.add(toggleExcavated);
 		this.add(toggleHeritage);
-		this.add(addMetal);
-		this.add(addPottery);
-		this.add(addCharcoal);
+		this.add(addFind);
 		
 		// Waits for what the user clicks
 		setFeature.addActionListener(this);
 		toggleExcavated.addActionListener(this);
 		toggleHeritage.addActionListener(this);
-		addMetal.addActionListener(this);
-		addPottery.addActionListener(this);
-		addCharcoal.addActionListener(this);
+		addFind.addActionListener(this);
 	}
 
 	@Override
@@ -69,17 +61,18 @@ public class MPTPopUpMenu extends PopupMenuParent implements ActionListener {
 		setVisible(false);
 		switch(e.getActionCommand()){
 		case "Set Feature":
-//			AddFeatureDialog featureDialog = new AddFeatureDialog("Add Feature", null);
+			AddFeatureDialog featureDialog = new AddFeatureDialog("Add Feature", subController, row, column);
+			featureDialog.setVisible(true);
 			break;
 		case "Toggle Excavated":
+			subController.markExcavated(row, column);
 			break;
 		case "Toggle Heritage":
+			subController.markHeritage(row, column);
 			break;
-		case "Add Metal Find":
-			break;
-		case "Add Pottery Find":
-			break;
-		case "Add Charcoal Find":
+		case "Add Find":
+			FindDialog dialog = new FindDialog("Add Finds", subController);
+			dialog.setVisible(true);
 			break;
 		}
 	}
