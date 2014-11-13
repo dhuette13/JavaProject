@@ -28,10 +28,10 @@
 <li><strike>Count Map
   <ul><li>Characters for number of finds replaced with colored tile
   <li>An unknown symbol must exist to replace the whitespace on the character map.</strike></ul>
-<li>The Mouse Update
-  <ul><li><strike>"Your program can select an area on the map, and then a right-click will open a pop-up menu. This can be done by working out co-ordinate systems, or by having eac TileComponent be a GUI component that can listen for a mouse-click."</strike></strike>
+<li><strike>The Mouse Update
+  <ul><li>"Your program can select an area on the map, and then a right-click will open a pop-up menu. This can be done by working out co-ordinate systems, or by having eac TileComponent be a GUI component that can listen for a mouse-click."
   <li>Row and column should come from the calculations from the mouse instead of a dialog box.
-  <li> MPT POP-UP TOOL
+  <li>MPT POP-UP TOOL
     <ul><li>Set Feature
     <li>Toggle Excavated
     <li>Toggle Heritage
@@ -39,10 +39,10 @@
     <li>Add Pottery Find
     <li>Add Charcoal Find
     </ul>
-  <li> ADT POP-UP TOOL
+  <li>ADT POP-UP TOOL
     <ul><li>Scan Map Square with Magnetometer
     <li>Scan Map Square with Metal Detector
-    <li>Dig Map Square</ul>
+    <li>Dig Map Square</strike></ul>
   </ul>
 <li><strike>Update Previous Features</strike>
   <ul><li><strike>MPT</strike>
