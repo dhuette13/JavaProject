@@ -44,18 +44,18 @@
     <li>Scan Map Square with Metal Detector
     <li>Dig Map Square</ul>
   </ul>
-<li><strike>Update Previous Features
-  <ul><li>MPT
-    <ul><li>Load File: Must use the Swing JFileDialog
-    <li>Save File: Must use the Swing JFileDialog
-    <li>Single Item of Gold: A message dialog must report that the gold item has been replaced
-    <li>The About Button: The About button must open a message dialog with the same information
+<li><strike>Update Previous Features</strike>
+  <ul><li><strike>MPT</strike>
+    <ul><li><strike>Load File: Must use the Swing JFileDialog</strike>
+    <li><strike>Save File: Must use the Swing JFileDialog</strike>
+    <li><strike>Single Item of Gold: A message dialog must report that the gold item has been replaced</strike>
+    <li><strike>The About Button: The About button must open a message dialog with the same information</strike>
     </ul>
   <li>ADT
-    <ul><li>Load File: Must use the Swing JFileDialog
-    <li>Save File: Must use the Swing JFileDialog
-    <li>Heritage Exception: A message dialog must report the attempt to dig a heritage area
-    <li>Age-Of-Site Report: A dialog box with a text area should now show the Finds report
-    <li>The About Button: The About button must open a message dialog with the same information
-    </ul></strike>
+    <ul><li><strike>Load File: Must use the Swing JFileDialog</strike>
+    <li><strike>Save File: Must use the Swing JFileDialog</strike>
+    <li><strike>Heritage Exception: A message dialog must report the attempt to dig a heritage area</strike>
+    <li><strike>Age-Of-Site Report: A dialog box with a text area should now show the Finds report</strike>
+    <li><strike>The About Button: The About button must open a message dialog with the same information</strike>
+    </ul>
   </ul>
