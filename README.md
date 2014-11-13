@@ -27,7 +27,7 @@
   <li>An unknown symbol must exist to replace the whitespace on the character map.</ul>
 <li>Count Map
   <ul><li>Characters for number of finds replaced with colored tile
-  <li>An unknown symbol must exist to replace the whitespace on the character map.</ul></strike>
+  <li>An unknown symbol must exist to replace the whitespace on the character map.</strike></ul>
 <li>The Mouse Update
   <ul><li>"Your program can select an area on the map, and then a right-click will open a pop-up menu. This can be done by working out co-ordinate systems, or by having eac TileComponent be a GUI component that can listen for a mouse-click."
   <li>Row and column should come from the calculations from the mouse instead of a dialog box.
