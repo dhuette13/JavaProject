@@ -12,7 +12,7 @@
 <h1>To Do for Phase Three</h1>
 <ul>
 <li>Sequency Diagram for ADT
-  <ul><li>"For the ADT, create a sequence diagram for digging in an area marked "Heritage"</ul>
+  <ul><li>"For the ADT, create a sequence diagram for digging in an area marked "Heritage"</li></ul>
 <li>Sequency Diagram for MPT
   <ul><li>"For the MPT, create a sequence diagram for the adding of a second gold item.</ul>
 <li><strike>Instead of having text characters printed to the screen, a GridLayout of Components will be used instead.
