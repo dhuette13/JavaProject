@@ -15,13 +15,13 @@
   <ul><li>"For the ADT, create a sequence diagram for digging in an area marked "Heritage"</ul>
 <li>Sequency Diagram for MPT
   <ul><li>"For the MPT, create a sequence diagram for the adding of a second gold item.</ul>
-<strike><li>Instead of having text characters printed to the screen, a GridLayout of Components will be used instead.
+<li><strike>Instead of having text characters printed to the screen, a GridLayout of Components will be used instead.
   <ul>
   <li>TileComponent is your best friend
   <li>"As a result, the three types of maps (Feature, Boolean, and Count) have changed."</strike></ul>
 <li><strike>Feature Map
   <ul><li>Changes text to colored tile</ul>
-<li>Boolean map
+<li><strike>Boolean map
   <ul><li>White = True, Black = False, Gray = Unscanned
   <li>"A gray tile marks an area as being unscanned with a Geophysical instrument.
   <li>An unknown symbol must exist to replace the whitespace on the character map.</strike></ul>
@@ -29,7 +29,7 @@
   <ul><li>Characters for number of finds replaced with colored tile
   <li>An unknown symbol must exist to replace the whitespace on the character map.</strike></ul>
 <li>The Mouse Update
-  <ul><li>"Your program can select an area on the map, and then a right-click will open a pop-up menu. This can be done by working out co-ordinate systems, or by having eac TileComponent be a GUI component that can listen for a mouse-click."
+  <ul><li><strike>"Your program can select an area on the map, and then a right-click will open a pop-up menu. This can be done by working out co-ordinate systems, or by having eac TileComponent be a GUI component that can listen for a mouse-click."</strike>
   <li>Row and column should come from the calculations from the mouse instead of a dialog box.
   <li> MPT POP-UP TOOL
     <ul><li>Set Feature
