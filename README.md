@@ -18,14 +18,14 @@
 <li><strike>Instead of having text characters printed to the screen, a GridLayout of Components will be used instead.
   <ul>
   <li>TileComponent is your best friend
-  <li>"As a result, the three types of maps (Feature, Boolean, and Count) have changed."</ul>
-<li>Feature Map
+  <li>"As a result, the three types of maps (Feature, Boolean, and Count) have changed."</strike></ul>
+<li><strike>Feature Map
   <ul><li>Changes text to colored tile</ul>
 <li>Boolean map
   <ul><li>White = True, Black = False, Gray = Unscanned
   <li>"A gray tile marks an area as being unscanned with a Geophysical instrument.
-  <li>An unknown symbol must exist to replace the whitespace on the character map.</ul>
-<li>Count Map
+  <li>An unknown symbol must exist to replace the whitespace on the character map.</strike></ul>
+<li><strike>Count Map
   <ul><li>Characters for number of finds replaced with colored tile
   <li>An unknown symbol must exist to replace the whitespace on the character map.</strike></ul>
 <li>The Mouse Update
