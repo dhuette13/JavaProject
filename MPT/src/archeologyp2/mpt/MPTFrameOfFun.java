@@ -14,6 +14,7 @@ import archeologyp2.shared.gui.FrameOfFun;
 import archeologyp2.shared.gui.PopupMenuParent;
 import archeologyp2.shared.gui.Relay;
 import archeologyp2.shared.gui.Tile;
+import archeologyp2.shared.gui.TileComponent;
 import archeologyp2.shared.map.Coordinate;
 import archeologyp2.shared.map.Utilities;
 
@@ -109,8 +110,11 @@ public class MPTFrameOfFun extends FrameOfFun {
 						setSize(map.getNumColumns() * Tile.naturalImage.getWidth(), map.getNumRows() * Tile.naturalImage.getHeight());
 						subController.setMap(map);
 						subController.setImagePanel(imagePanel);
-						for(Coordinate coord : map)
-							imagePanel.add(coord.getTileComponent());
+						TileComponent component;
+						for(Coordinate coord : map){
+							component = coord.getTileComponent();
+							imagePanel.add(component);
+						}
 						subController.updateMap();
 					}
 				});

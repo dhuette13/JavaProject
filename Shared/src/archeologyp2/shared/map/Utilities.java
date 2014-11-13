@@ -57,10 +57,15 @@ public class Utilities {
 	 */
 	public static Map<Coordinate> generateMap(int width, int height){
 		Map<Coordinate> map = new Map<>(width, height);
-		int r, c;
-		for(r = 0; r < map.getNumRows(); r++)
-			for(c = 0; c < map.getNumColumns(); c++)
-				map.addPlaneItem(r, c, new Coordinate(r, c));
+		int row, column;
+		Coordinate current;
+		for(row = 0; row < map.getNumRows(); row++){
+			for(column = 0; column < map.getNumColumns(); column++){
+				current =  new Coordinate(row, column);
+				current.setTileComponent(new TileComponent(Tile.naturalImage, row, column));
+				map.addPlaneItem(row, column, current);
+			}
+		}
 
 		return map;
 	}
