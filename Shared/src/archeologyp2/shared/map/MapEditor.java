@@ -36,12 +36,14 @@ public class MapEditor {
 		//				imageMap[r][c].repaint();
 		//			}
 		//		}
-		panel.repaint();
 
 		for(Coordinate coord : map){
-			panel.add(coord.getTileComponent());
+//			panel.add(coord.getTileComponent());
 			coord.getTileComponent().repaint();
 		}
+		
+		panel.validate();
+		panel.repaint();
 	}
 
 	/**
@@ -60,31 +62,31 @@ public class MapEditor {
 				case stone:
 					if(coord.getExcavated()){
 						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.stoneImage);
-						coord.setTileComponent(new TileComponent(Tile.stoneImage));
+						coord.getTileComponent().setTile(Tile.stoneImage);
 					}
 					else {
 						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.deadGrassImage);
-						coord.setTileComponent(new TileComponent(Tile.deadGrassImage));
+						coord.getTileComponent().setTile(Tile.deadGrassImage);
 					}
 					break;
 				case postHole:
 					if(coord.getExcavated()) {
 						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.pitImage);
-						coord.setTileComponent(new TileComponent(Tile.pitImage));
+						coord.getTileComponent().setTile(Tile.pitImage);
 					}
 					else {
 						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.chlorophyllImage);
-						coord.setTileComponent(new TileComponent(Tile.chlorophyllImage));
+						coord.getTileComponent().setTile(Tile.chlorophyllImage);
 					}
 					break;
 				case dirt:
 					if(coord.getExcavated()) {
 						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.dirtImage);
-						coord.setTileComponent(new TileComponent(Tile.dirtImage));
+						coord.getTileComponent().setTile(Tile.dirtImage);
 					}
 					else {
 						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.naturalImage);
-						coord.setTileComponent(new TileComponent(Tile.naturalImage));
+						coord.getTileComponent().setTile(Tile.naturalImage);
 					}
 					break;
 				}
@@ -94,11 +96,11 @@ public class MapEditor {
 			for(Coordinate coord : map){
 				if(coord.getExcavated()){
 					map.setMapTile(coord.getRow(), coord.getColumn(), setCount(coord.getPotCount()));
-					coord.setTileComponent(new TileComponent(setCount(coord.getPotCount())));
+					coord.getTileComponent().setTile(setCount(coord.getPotCount()));
 				}
 				else{
 					map.setMapTile(coord.getRow(), coord.getColumn(), Tile.unknownImage);
-					coord.setTileComponent(new TileComponent(Tile.unknownImage));
+					coord.getTileComponent().setTile(Tile.unknownImage);
 				}
 			}
 			break;
@@ -106,11 +108,11 @@ public class MapEditor {
 			for(Coordinate coord : map){
 				if(coord.getExcavated()){
 					map.setMapTile(coord.getRow(), coord.getColumn(), setCount(coord.getMetalCount()));
-					coord.setTileComponent(new TileComponent(setCount(coord.getMetalCount())));
+					coord.getTileComponent().setTile(setCount(coord.getMetalCount()));
 				}
 				else{
 					map.setMapTile(coord.getRow(), coord.getColumn(), Tile.unknownImage);
-					coord.setTileComponent(new TileComponent(Tile.unknownImage));
+					coord.getTileComponent().setTile(Tile.unknownImage);
 				}
 			}
 			break;
@@ -118,11 +120,11 @@ public class MapEditor {
 			for(Coordinate coord : map){
 				if(coord.getExcavated()){
 					map.setMapTile(coord.getRow(), coord.getColumn(), setCount(coord.getCharcoalCount()));
-					coord.setTileComponent(new TileComponent(setCount(coord.getCharcoalCount())));
+					coord.getTileComponent().setTile(setCount(coord.getCharcoalCount()));
 				}
 				else{
 					map.setMapTile(coord.getRow(), coord.getColumn(), Tile.unknownImage);
-					coord.setTileComponent(new TileComponent(Tile.unknownImage));
+					coord.getTileComponent().setTile(Tile.unknownImage);
 				}
 			}
 			break;
@@ -131,16 +133,16 @@ public class MapEditor {
 				if(coord.getCharcoalInspected()){
 					if(coord.charcoalHidden()){
 						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.trueImage);
-						coord.setTileComponent(new TileComponent(Tile.trueImage));
+						coord.getTileComponent().setTile(Tile.trueImage);
 					}
 					else {
 						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.falseImage);
-						coord.setTileComponent(new TileComponent(Tile.falseImage));
+						coord.getTileComponent().setTile(Tile.falseImage);
 					}
 				}
 				else{
 					map.setMapTile(coord.getRow(), coord.getColumn(), Tile.unknownImage);
-					coord.setTileComponent(new TileComponent(Tile.unknownImage));
+					coord.getTileComponent().setTile(Tile.unknownImage);
 				}
 			}
 			break;
@@ -149,16 +151,16 @@ public class MapEditor {
 				if(coord.getMetalInspected()){
 					if(coord.metalHidden()){
 						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.trueImage);
-						coord.setTileComponent(new TileComponent(Tile.trueImage));
+						coord.getTileComponent().setTile(Tile.trueImage);
 					}
 					else {
 						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.falseImage);
-						coord.setTileComponent(new TileComponent(Tile.falseImage));
+						coord.getTileComponent().setTile(Tile.falseImage);
 					}
 				}
 				else {
 					map.setMapTile(coord.getRow(), coord.getColumn(), Tile.unknownImage);
-					coord.setTileComponent(new TileComponent(Tile.unknownImage));
+					coord.getTileComponent().setTile(Tile.unknownImage);
 				}
 			}
 			break;

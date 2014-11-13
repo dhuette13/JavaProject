@@ -7,7 +7,6 @@ import archeologyp2.shared.finds.Charcoal;
 import archeologyp2.shared.finds.MetalObject;
 import archeologyp2.shared.finds.NonFerrousMetal;
 import archeologyp2.shared.finds.Pottery;
-import archeologyp2.shared.gui.Tile;
 import archeologyp2.shared.gui.TileComponent;
 
 /**
@@ -50,7 +49,6 @@ public class Coordinate {
 		itemFound = false;
 		charcoalHidden = false; metalHidden = false;
 		charcoalInspected = false; metalInspected = false; potInspected = false;
-		tileComponent = new TileComponent(Tile.naturalImage);
 	}
 	
 	public void setTileComponent(TileComponent component){

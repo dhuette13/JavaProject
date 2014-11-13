@@ -7,11 +7,14 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 
 import archeologyp2.shared.gui.CompletionEvent;
 import archeologyp2.shared.gui.CompletionEventListener;
 import archeologyp2.shared.gui.FrameOfFun;
 import archeologyp2.shared.gui.Relay;
+import archeologyp2.shared.gui.Tile;
+import archeologyp2.shared.map.Coordinate;
 import archeologyp2.shared.map.Utilities;
 
 /**
@@ -39,6 +42,8 @@ public class MPTFrameOfFun extends FrameOfFun {
 	
 	final protected GenerateDialog generateDialog;
 
+	private JPopupMenu popupMenu;
+
 	/**
 	 * For public MPTFrameOfFun
 	 * 
@@ -51,6 +56,7 @@ public class MPTFrameOfFun extends FrameOfFun {
 		addMenuItems();
 		subController = new SubController(imagePanel);
 		generateDialog = new GenerateDialog("Generate Map");
+		popupMenu = new MPTPopUpMenu();
 	}
 
 	/**
@@ -70,11 +76,15 @@ public class MPTFrameOfFun extends FrameOfFun {
 				int error = fileChooser.showOpenDialog(null);
 				if(error == JFileChooser.APPROVE_OPTION){
 					try {
-						map = Utilities.load(fileChooser.getSelectedFile().getAbsolutePath());
-						setPanelDimensions(map.getNumRows(), map.getNumColumns());
-						setSize(map.getNumRows() * 10, map.getNumColumns() * 5);
+ 						map = Utilities.load(fileChooser.getSelectedFile().getAbsolutePath());
+						replacePanel(map.getNumColumns(), map.getNumRows());
+						setSize(map.getNumColumns() * Tile.naturalImage.getWidth(), map.getNumRows() * Tile.naturalImage.getHeight());
 						subController.setMap(map);
 						subController.setImagePanel(imagePanel);
+						for(Coordinate coord : map){
+							coord.getTileComponent().setPopupMenu(popupMenu);
+							imagePanel.add(coord.getTileComponent());
+						}
 						subController.updateMap();
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -95,10 +105,12 @@ public class MPTFrameOfFun extends FrameOfFun {
 					@Override
 					public void myEventOccurred(CompletionEvent evt) {
 						map = generateDialog.getMap();
-						setPanelDimensions(map.getNumRows(), map.getNumColumns());
-						setSize(map.getNumRows() * 10, map.getNumColumns() * 5);
+						replacePanel(map.getNumColumns(), map.getNumRows());
+						setSize(map.getNumColumns() * Tile.naturalImage.getWidth(), map.getNumRows() * Tile.naturalImage.getHeight());
 						subController.setMap(map);
 						subController.setImagePanel(imagePanel);
+						for(Coordinate coord : map)
+							imagePanel.add(coord.getTileComponent());
 						subController.updateMap();
 					}
 				});
@@ -113,8 +125,6 @@ public class MPTFrameOfFun extends FrameOfFun {
 		addFeatureMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setPanelDimensions(map.getNumRows(), map.getNumColumns());
-				subController.setImagePanel(imagePanel);
 				AddFeatureDialog addFeature = new AddFeatureDialog("Add Feature", subController);
 				addFeature.setVisible(true);
 			}

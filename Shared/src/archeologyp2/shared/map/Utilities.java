@@ -27,6 +27,8 @@ import archeologyp2.shared.finds.NonFerrousMetal;
 import archeologyp2.shared.finds.Pottery;
 import archeologyp2.shared.finds.StoragePottery;
 import archeologyp2.shared.finds.SubmergedPottery;
+import archeologyp2.shared.gui.Tile;
+import archeologyp2.shared.gui.TileComponent;
 
 /**
  * UTILITIES IN THE SHARED RESOURCES
@@ -126,6 +128,20 @@ public class Utilities {
 				current.setFeature(dataArray[i++].charAt(0));
 				current.setExcavated(Boolean.parseBoolean(dataArray[i++]));
 				current.setHeritage(Boolean.parseBoolean(dataArray[i++]));
+				switch(current.getFeature()){
+				case dirt:
+					current.setTileComponent(new TileComponent(Tile.naturalImage, r, c));
+					break;
+				case postHole:
+					current.setTileComponent(new TileComponent(Tile.chlorophyllImage, r, c));
+					break;
+				case stone:
+					current.setTileComponent(new TileComponent(Tile.deadGrassImage, r, c));
+					break;
+				default:
+					break;
+				
+				}
 
 				/* Iterate through pot input */
 				numPots = Integer.parseInt(dataArray[i++]);
@@ -194,6 +210,7 @@ public class Utilities {
 					}
 					current.addFind(metal);
 				}
+				
 
 				i = 0;
 				map.addPlaneItem(r, c, current);

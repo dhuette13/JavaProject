@@ -10,26 +10,26 @@ public class Tile {
 	
 	private BufferedImage image;
 	
-	public static final Tile naturalImage = new Tile("Tiles/NATURAL.png");
-	public static final Tile deadGrassImage = new Tile("Tiles/YELLOW.png");
-	public static final Tile chlorophyllImage = new Tile("Tiles/BRIGHTGREEN.png");
-	public static final Tile dirtImage = new Tile("Tiles/DIRT.png");
-	public static final Tile stoneImage = new Tile("Tiles/STONE.png");
-	public static final Tile pitImage = new Tile("Tiles/PIT.png");
-	public static final Tile trueImage = new Tile("Tiles/TRUE.png");
-	public static final Tile falseImage = new Tile("Tiles/FALSE.png");
-	public static final Tile unknownImage = new Tile("Tiles/UNKNOWN.png");
+	public static final Tile naturalImage = new Tile("ScaledTiles/NATURAL.png");
+	public static final Tile deadGrassImage = new Tile("ScaledTiles/YELLOW.png");
+	public static final Tile chlorophyllImage = new Tile("ScaledTiles/BRIGHTGREEN.png");
+	public static final Tile dirtImage = new Tile("ScaledTiles/DIRT.png");
+	public static final Tile stoneImage = new Tile("ScaledTiles/STONE.png");
+	public static final Tile pitImage = new Tile("ScaledTiles/PIT.png");
+	public static final Tile trueImage = new Tile("ScaledTiles/TRUE.png");
+	public static final Tile falseImage = new Tile("ScaledTiles/FALSE.png");
+	public static final Tile unknownImage = new Tile("ScaledTiles/UNKNOWN.png");
 	
-	public static final Tile zeroImage = new Tile("Tiles/0.png");
-	public static final Tile oneImage = new Tile("Tiles/1.png");
-	public static final Tile twoImage = new Tile("Tiles/2.png");
-	public static final Tile threeImage = new Tile("Tiles/3.png");
-	public static final Tile fourImage = new Tile("Tiles/4.png");
-	public static final Tile fiveImage = new Tile("Tiles/5.png");
-	public static final Tile sixImage = new Tile("Tiles/6.png");
-	public static final Tile sevenImage = new Tile("Tiles/7.png");
-	public static final Tile eightImage = new Tile("Tiles/8.png");
-	public static final Tile nineImage = new Tile("Tiles/9.png");
+	public static final Tile zeroImage = new Tile("ScaledTiles/0.png");
+	public static final Tile oneImage = new Tile("ScaledTiles/1.png");
+	public static final Tile twoImage = new Tile("ScaledTiles/2.png");
+	public static final Tile threeImage = new Tile("ScaledTiles/3.png");
+	public static final Tile fourImage = new Tile("ScaledTiles/4.png");
+	public static final Tile fiveImage = new Tile("ScaledTiles/5.png");
+	public static final Tile sixImage = new Tile("ScaledTiles/6.png");
+	public static final Tile sevenImage = new Tile("ScaledTiles/7.png");
+	public static final Tile eightImage = new Tile("ScaledTiles/8.png");
+	public static final Tile nineImage = new Tile("ScaledTiles/9.png");
 	
 	public Tile(String path) {
 		try {

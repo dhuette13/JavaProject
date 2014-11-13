@@ -11,21 +11,16 @@ public class TileComponent extends JComponent implements MouseListener {
 
 	private static final long serialVersionUID = 1L;
 
+	private int row, column;
 	private Tile tile;
 	private JPopupMenu popUpMenu;
 	
-	public TileComponent(Tile tile){
+	public TileComponent(Tile tile, int row, int column){
 		this.tile = tile;
+		this.row = row;
+		this.column = column;
 		setSize(tile.getWidth(), tile.getHeight());
 		addMouseListener(this);
-	}
-	
-	public void setTile(Tile tile){
-		this.tile = tile;
-	}
-	
-	public Tile getTile(){
-		return tile;
 	}
 	
 	@Override
@@ -33,13 +28,15 @@ public class TileComponent extends JComponent implements MouseListener {
 		g.drawImage(tile.getImage(), 0, 0, null);
 	}
 	
+		
 	public void setPopupMenu(JPopupMenu menu){
 		popUpMenu = menu;
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		popUpMenu.setLocation(e.getX(), e.getY());
+		System.out.println("Mouse clicked at: " + e.getXOnScreen() + " " + e.getYOnScreen());
+		popUpMenu.setLocation(e.getXOnScreen(), e.getYOnScreen());
 		popUpMenu.setVisible(true);
 	}
 
@@ -61,5 +58,30 @@ public class TileComponent extends JComponent implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		
+	}
+
+	public void setTile(Tile tile){
+		this.tile = tile;
+	}
+	
+	public Tile getTile(){
+		return tile;
+	}
+	
+
+	public int getRow() {
+		return row;
+	}
+
+	public void setRow(int row) {
+		this.row = row;
+	}
+
+	public int getColumn() {
+		return column;
+	}
+
+	public void setColumn(int column) {
+		this.column = column;
 	}
 }

@@ -5,12 +5,13 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 
 import archeologyp2.shared.gui.FrameOfFun;
-import archeologyp2.shared.map.MapEditor;
+import archeologyp2.shared.gui.Tile;
+import archeologyp2.shared.map.Coordinate;
 import archeologyp2.shared.map.Utilities;
 import archeologyp2.shared.map.ViewingOption;
 
@@ -31,7 +32,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 	private static final long serialVersionUID = 1L;
 
 	/* Edit menu Items */
-//	private JMenuItem digMenuItem;
+	//	private JMenuItem digMenuItem;
 	private JMenuItem scanMenuItem;
 
 	/* Menu items for special maps */
@@ -43,9 +44,8 @@ public class ADTFrameOfFun extends FrameOfFun {
 	private JMenuItem viewReportMenuItem;
 
 	private SubController subController;
-	
-	private JFrame frame;
 
+	private JPopupMenu popupMenu;
 	/**
 	 * For the public ADTFrameOfFun
 	 * This method adds the ADT specific menu items and creates subController.
@@ -56,6 +56,7 @@ public class ADTFrameOfFun extends FrameOfFun {
 		super(title);
 		addMenuItems();
 		subController = new SubController(imagePanel);
+		popupMenu = new ADTPopUpMenu();
 	}
 
 	/**
@@ -83,10 +84,14 @@ public class ADTFrameOfFun extends FrameOfFun {
 				if(error == JFileChooser.APPROVE_OPTION){
 					try {
 						map = Utilities.load(fileChooser.getSelectedFile().getAbsolutePath());
-						setPanelDimensions(map.getNumRows(), map.getNumColumns());
-						setSize(map.getNumRows() * 10, map.getNumColumns() * 5);
+						replacePanel(map.getNumColumns(), map.getNumRows());
+						setSize(map.getNumColumns() * Tile.naturalImage.getWidth(), map.getNumRows() * Tile.naturalImage.getHeight());
 						subController.setMap(map);
 						subController.setImagePanel(imagePanel);
+						for(Coordinate coord : map){
+							coord.getTileComponent().setPopupMenu(popupMenu);
+							imagePanel.add(coord.getTileComponent());
+						}
 						subController.updateMap();
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -94,19 +99,19 @@ public class ADTFrameOfFun extends FrameOfFun {
 				}
 			}
 		});
-		
-//		digMenuItem = new JMenuItem("Dig");
-//		digMenuItem.setMnemonic('D');
-//		digMenuItem.addActionListener(new ActionListener(){
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				DigDialog digDialog = new DigDialog("Dig", subController);
-//				digDialog.setVisible(true);
-//			}
-//
-//		});
-//		editMenu.add(digMenuItem);
-		
+
+		//		digMenuItem = new JMenuItem("Dig");
+		//		digMenuItem.setMnemonic('D');
+		//		digMenuItem.addActionListener(new ActionListener(){
+		//			@Override
+		//			public void actionPerformed(ActionEvent e) {
+		//				DigDialog digDialog = new DigDialog("Dig", subController);
+		//				digDialog.setVisible(true);
+		//			}
+		//
+		//		});
+		//		editMenu.add(digMenuItem);
+
 		scanMenuItem = new JMenuItem("Scan");
 		scanMenuItem.setMnemonic('S');
 		scanMenuItem.addActionListener(new ActionListener(){
@@ -125,15 +130,14 @@ public class ADTFrameOfFun extends FrameOfFun {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
-				map.setViewingOption(ViewingOption.magnetometerResult);
-				MapEditor.updateView(map);
-//				Utilities.printMap(map, textArea);
+					map.setViewingOption(ViewingOption.magnetometerResult);
+					subController.updateMap();
 				}
 				catch(NullPointerException n){
-					JOptionPane.showMessageDialog(frame,
-						    "Uh oh! Looks like you forgot to load a map first. Please try again.",
-						    "Error",
-						    JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,
+							"Uh oh! Looks like you forgot to load a map first. Please try again.",
+							"Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -146,14 +150,13 @@ public class ADTFrameOfFun extends FrameOfFun {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					map.setViewingOption(ViewingOption.metalDetectorResult);
-					MapEditor.updateView(map);
-//					Utilities.printMap(map, textArea);
+					subController.updateMap();
 				}
 				catch(NullPointerException n){
-					JOptionPane.showMessageDialog(frame,
-						    "Uh oh! Looks like you forgot to load a map first. Please try again.",
-						    "Error",
-						    JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,
+							"Uh oh! Looks like you forgot to load a map first. Please try again.",
+							"Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -166,14 +169,13 @@ public class ADTFrameOfFun extends FrameOfFun {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					map.setViewingOption(ViewingOption.potCount);
-					MapEditor.updateView(map);
-//					Utilities.printMap(map, textArea);
+					subController.updateMap();
 				}
 				catch(NullPointerException n){
-					JOptionPane.showMessageDialog(frame,
-						    "Uh oh! Looks like you forgot to load a map first. Please try again.",
-						    "Error",
-						    JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,
+							"Uh oh! Looks like you forgot to load a map first. Please try again.",
+							"Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -185,15 +187,14 @@ public class ADTFrameOfFun extends FrameOfFun {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
-				map.setViewingOption(ViewingOption.charcoalCount);
-				MapEditor.updateView(map);
-//				Utilities.printMap(map, textArea);
+					map.setViewingOption(ViewingOption.charcoalCount);
+					subController.updateMap();
 				}
 				catch(NullPointerException n){
-					JOptionPane.showMessageDialog(frame,
-						    "Uh oh! Looks like you forgot to load a map first. Please try again.",
-						    "Error",
-						    JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,
+							"Uh oh! Looks like you forgot to load a map first. Please try again.",
+							"Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -205,15 +206,14 @@ public class ADTFrameOfFun extends FrameOfFun {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
-				map.setViewingOption(ViewingOption.metalCount);
-				MapEditor.updateView(map);
-//				Utilities.printMap(map, textArea);
+					map.setViewingOption(ViewingOption.metalCount);
+					subController.updateMap();
 				}
 				catch(NullPointerException n){
-					JOptionPane.showMessageDialog(frame,
-						    "Uh oh! Looks like you forgot to load a map first. Please try again.",
-						    "Error",
-						    JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null,
+							"Uh oh! Looks like you forgot to load a map first. Please try again.",
+							"Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

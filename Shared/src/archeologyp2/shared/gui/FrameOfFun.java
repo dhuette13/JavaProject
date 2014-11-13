@@ -1,6 +1,5 @@
 package archeologyp2.shared.gui;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -15,12 +14,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 import archeologyp2.shared.map.Coordinate;
 import archeologyp2.shared.map.Map;
 import archeologyp2.shared.map.MapEditor;
 import archeologyp2.shared.map.Utilities;
+import archeologyp2.shared.map.ViewingOption;
 
 /**
  * FRAME OF FUN - THE GUI FOR THE SHARED ITEMS
@@ -34,38 +33,36 @@ import archeologyp2.shared.map.Utilities;
  * @author Celine
  */
 public abstract class FrameOfFun extends JFrame {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	protected Map<Coordinate> map;
-	
+
 	protected JMenuBar menuBar;
-	
+
 	/* File Menu */
 	protected JMenu fileMenu;
 	protected JMenuItem loadMenuItem;
 	private JMenuItem saveMenuItem;
 	private JMenuItem exportMenuItem;
 	private JMenuItem exitMenuItem;
-	
+
 	/* Edit Menu */
 	protected JMenu editMenu;
-	
+
 	/* View Menu */
 	protected JMenu viewMenu;
 	private JMenuItem showMapMenuItem;
-	
+
 	/* Help Menu */
 	protected JMenu helpMenu;
 	protected JMenuItem aboutMenuItem;
 	private JMenuItem baseConverterMenuItem;
-	
+
 	protected JPanel imagePanel;
-	private JScrollPane scrollPane;
-	
-	
+
 	protected GridLayout layout;
-	
+
 	/**
 	 * For public FrameOfFun
 	 * 
@@ -80,16 +77,16 @@ public abstract class FrameOfFun extends JFrame {
 		createImagePanel();
 		createMenuBar();
 		this.setSize(800, 700);
-		
+
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = toolkit.getScreenSize();
-		
+
 		int x = (screenSize.width - getWidth()) / 2;
 		int y = (screenSize.height - getHeight()) / 2;
-		
+
 		setLocation(x, y);
 	}
-	
+
 	/**
 	 * 
 	 * @return map
@@ -97,34 +94,28 @@ public abstract class FrameOfFun extends JFrame {
 	public Map<Coordinate> getMap(){
 		return map;
 	}
-	
-	public void setPanelDimensions(int width, int height){
-//		this.remove(scrollPane);
+
+	public void replacePanel(int width, int height){
 		this.remove(imagePanel);
-		
+
 		imagePanel = new JPanel();
-//		imagePanel.setSize(width * 5, height * 10);
-		layout = new GridLayout(width, height);
+		layout = new GridLayout(height, width);
 		imagePanel.setLayout(layout);
-//		scrollPane = new JScrollPane(imagePanel);
-		
-//		this.add(scrollPane, BorderLayout.CENTER);
+
 		this.add(imagePanel);
 	}
-	
+
 	public void addTileComponent(TileComponent component){
 		imagePanel.add(component);
 	}
-	
+
 	private void createImagePanel(){
 		imagePanel = new JPanel();
 		layout = new GridLayout();
 		imagePanel.setLayout(layout);
-//		scrollPane = new JScrollPane(imagePanel);
-//		this.add(scrollPane, BorderLayout.CENTER);
 		this.add(imagePanel);
 	}
-	
+
 	/**
 	 * For private void createMenuBar
 	 * 
@@ -132,16 +123,16 @@ public abstract class FrameOfFun extends JFrame {
 	 */
 	private void createMenuBar(){
 		menuBar = new JMenuBar();
-		
+
 		/* File Menu */
 		fileMenu = new JMenu("File");
 		fileMenu.setMnemonic('F');
-		
+
 		// From "File" Menu, Load
 		loadMenuItem = new JMenuItem("Load");
 		loadMenuItem.setMnemonic('L');
-		
-		
+
+
 		// From "File" Menu, Save
 		saveMenuItem = new JMenuItem("Save");
 		saveMenuItem.setMnemonic('S');
@@ -160,7 +151,7 @@ public abstract class FrameOfFun extends JFrame {
 				}
 			}
 		});
-		
+
 		//From "File" Menu, Export
 		exportMenuItem = new JMenuItem("Export");
 		exportMenuItem.setMnemonic('x');
@@ -172,7 +163,7 @@ public abstract class FrameOfFun extends JFrame {
 				int returnVal = fileChooser.showSaveDialog(null);
 				if(returnVal == JFileChooser.APPROVE_OPTION){
 					try {
-//						Utilities.exportMap(map, fileChooser.getSelectedFile().getAbsolutePath());
+						//						Utilities.exportMap(map, fileChooser.getSelectedFile().getAbsolutePath());
 						JOptionPane.showMessageDialog(null, "Disabled.", "Notice", JOptionPane.INFORMATION_MESSAGE);
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -180,7 +171,7 @@ public abstract class FrameOfFun extends JFrame {
 				}
 			}
 		});
-		
+
 		// From "File" Menu, Exit
 		exitMenuItem = new JMenuItem("Exit");
 		exitMenuItem.setMnemonic('E');
@@ -190,73 +181,72 @@ public abstract class FrameOfFun extends JFrame {
 				Utilities.exit();
 			}
 		});
-		
+
 		fileMenu.add(loadMenuItem);
 		fileMenu.add(saveMenuItem);
 		fileMenu.add(exportMenuItem);
 		fileMenu.add(exitMenuItem);
 		menuBar.add(fileMenu);
-		
+
 		/* Edit Menu */
 		editMenu = new JMenu("Edit");
 		editMenu.setMnemonic('E');
 		menuBar.add(editMenu);
-		
+
 		/* View Menu */
 		viewMenu = new JMenu("View");
 		viewMenu.setMnemonic('V');
-		
+
 		showMapMenuItem = new JMenuItem("View Current Image Map");
 		showMapMenuItem.setMnemonic('V');
 		showMapMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(map != null){
-					MapEditor.updateView(map);
-					MapEditor.updateImages(map, imagePanel);
-				}
+				map.setViewingOption(ViewingOption.natural);
+				MapEditor.updateView(map);
+				MapEditor.updateImages(map, imagePanel);
 			}
 		});
 		viewMenu.add(showMapMenuItem);
-		
-//		viewingMenuItem = new JMenuItem("Viewing Options");
-//		viewingMenuItem.setMnemonic('O');
-//		viewingMenuItem.addActionListener(new ActionListener(){
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				final ViewingDialog dialog = new ViewingDialog("Viewing Options", map);
-//				Relay relay = new Relay();
-//				dialog.setVisible(true);
-//				relay.addMyEventListener(new CompletionEventListener(){
-//					@Override
-//					public void myEventOccurred(CompletionEvent evt) {
-//						try{
-//							map = dialog.getMap();
-////							Utilities.printMap(map, null);
-//						}
-//						catch(NullPointerException n){
-//							JOptionPane.showMessageDialog(frame,
-//								    "Uh oh! Looks like you typed in something wrong. Please try again.",
-//								    "Error",
-//								    JOptionPane.ERROR_MESSAGE);
-//						}
-//					}
-//				});
-//				dialog.setRelay(relay);
-//			}
-//		});
-//		viewMenu.add(viewingMenuItem);
-		
+
+		//		viewingMenuItem = new JMenuItem("Viewing Options");
+		//		viewingMenuItem.setMnemonic('O');
+		//		viewingMenuItem.addActionListener(new ActionListener(){
+		//			@Override
+		//			public void actionPerformed(ActionEvent e) {
+		//				final ViewingDialog dialog = new ViewingDialog("Viewing Options", map);
+		//				Relay relay = new Relay();
+		//				dialog.setVisible(true);
+		//				relay.addMyEventListener(new CompletionEventListener(){
+		//					@Override
+		//					public void myEventOccurred(CompletionEvent evt) {
+		//						try{
+		//							map = dialog.getMap();
+		////							Utilities.printMap(map, null);
+		//						}
+		//						catch(NullPointerException n){
+		//							JOptionPane.showMessageDialog(frame,
+		//								    "Uh oh! Looks like you typed in something wrong. Please try again.",
+		//								    "Error",
+		//								    JOptionPane.ERROR_MESSAGE);
+		//						}
+		//					}
+		//				});
+		//				dialog.setRelay(relay);
+		//			}
+		//		});
+		//		viewMenu.add(viewingMenuItem);
+
 		menuBar.add(viewMenu);
-		
+
 		helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic('H');
-		
+
 		// From "Help" Menu, About
 		aboutMenuItem = new JMenuItem("About");
 		aboutMenuItem.setMnemonic('A');
 		helpMenu.add(aboutMenuItem);
-		
+
 		baseConverterMenuItem = new JMenuItem("Base Converter");
 		baseConverterMenuItem.addActionListener(new ActionListener(){
 			@Override
@@ -265,11 +255,11 @@ public abstract class FrameOfFun extends JFrame {
 				converter.setVisible(true);
 			}
 		});
-		
+
 		baseConverterMenuItem.setMnemonic('B');
 		helpMenu.add(baseConverterMenuItem);
 		menuBar.add(helpMenu);
-		
+
 		menuBar.setVisible(true);
 		this.setJMenuBar(menuBar);
 	}

@@ -30,6 +30,8 @@ import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import archeologyp2.shared.map.MapEditor;
+
 /**
  * THE ADD FEATURE DIALOG OF THE MPT GUI
  * 
