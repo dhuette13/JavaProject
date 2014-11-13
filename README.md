@@ -15,7 +15,7 @@
   <ul><li>"For the ADT, create a sequence diagram for digging in an area marked "Heritage"</ul>
 <li>Sequency Diagram for MPT
   <ul><li>"For the MPT, create a sequence diagram for the adding of a second gold item.</ul>
-<li><strike>Instead of having text characters printed to the screen, a GridLayout of Components will be used instead.
+<strike><li>Instead of having text characters printed to the screen, a GridLayout of Components will be used instead.
   <ul>
   <li>TileComponent is your best friend
   <li>"As a result, the three types of maps (Feature, Boolean, and Count) have changed."</strike></ul>
