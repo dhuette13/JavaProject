@@ -65,13 +65,13 @@ public class MPTPopUpMenu extends PopupMenuParent implements ActionListener {
 			featureDialog.setVisible(true);
 			break;
 		case "Toggle Excavated":
-			subController.markExcavated(row, column);
+			subController.toggleExcavated(row, column);
 			break;
 		case "Toggle Heritage":
-			subController.markHeritage(row, column);
+			subController.toggleHeritage(row, column);
 			break;
 		case "Add Find":
-			FindDialog dialog = new FindDialog("Add Finds", subController);
+			FindDialog dialog = new FindDialog("Add Finds", subController, row, column);
 			dialog.setVisible(true);
 			break;
 		}

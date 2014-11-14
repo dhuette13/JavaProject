@@ -9,18 +9,14 @@ import javax.swing.JOptionPane;
 import archeologyp2.shared.gui.PopupMenuParent;
 
 /**
- * THE ADT POP UP MENU
+ * ADT POP-UP MENU
+ * Scan Map Square with Magnetometer
+ * Scan Map Square with Metal Detector
+ * Dig Map Square
  * 
  * @author Daniel
  * @author Celine
- *
- */
-
-/*
-ADT POP-UP TOOL
-Scan Map Square with Magnetometer
-Scan Map Square with Metal Detector
-Dig Map Square
+ * 
  */
 public class ADTPopUpMenu extends PopupMenuParent implements ActionListener {
 	
@@ -74,6 +70,4 @@ public class ADTPopUpMenu extends PopupMenuParent implements ActionListener {
 			break;
 		}
 	}
-
-	
 }

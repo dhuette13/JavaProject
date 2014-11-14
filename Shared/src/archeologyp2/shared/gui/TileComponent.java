@@ -5,7 +5,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JComponent;
-import javax.swing.JPopupMenu;
 
 public class TileComponent extends JComponent implements MouseListener {
 

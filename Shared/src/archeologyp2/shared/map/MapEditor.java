@@ -28,16 +28,7 @@ public class MapEditor {
 
 
 	public static void updateImages(Map<Coordinate> map, JPanel panel) {
-		//		Tile imageMap[][] = map.getImageMap();
-		//		for(int r = 0; r < map.getNumRows(); r++){
-		//			for(int c = 0; c < map.getNumColumns(); c++){
-		//				panel.add(imageMap[r][c]);
-		//				imageMap[r][c].repaint();
-		//			}
-		//		}
-
 		for(Coordinate coord : map){
-//			panel.add(coord.getTileComponent());
 			coord.getTileComponent().repaint();
 		}
 		

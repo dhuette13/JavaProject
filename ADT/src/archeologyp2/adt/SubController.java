@@ -196,8 +196,6 @@ public class SubController {
 	public void dig(int row, int column) throws HeritageException {
 		try{
 			Coordinate current;
-//			int r = row - 1;
-//			int c = Utilities.columnToIndex(column);
 			current = map.getPlaneItem(row, column);
 			if(current.isHeritage()){
 				throw new HeritageException("This coordinate is heritage!");

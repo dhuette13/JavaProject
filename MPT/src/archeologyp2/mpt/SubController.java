@@ -136,12 +136,12 @@ public class SubController {
 	 * @param date(s) for the find
 	 * 
 	 */
-	public void addFind(int row, String col, int type, int date, String data, boolean loopFlag){
+	public void addFind(int r, int c, int type, int date, String data, boolean loopFlag){
 		try {
 			Coordinate current;
 			Artifact artifact = null;
-			int r = row - 1;
-			int c = Utilities.columnToIndex(col); 
+			int row = r + 1;
+			String col = Utilities.indexToColumn(c);
 			switch(type){
 			/* Add to decorated pot collection */
 			case 1:
@@ -240,12 +240,10 @@ public class SubController {
 	 * @param row
 	 * @param column
 	 */
-	public void markHeritage(int row, int column) {
+	public void toggleHeritage(int row, int column) {
 		try{
-//			int r = row - 1;
-//			int c = Utilities.columnToIndex(column);
 			Coordinate current = map.getPlaneItem(row, column);
-			current.setHeritage(true);
+			current.setHeritage(!current.isHeritage());
 		} catch(NullPointerException e){
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -255,10 +253,10 @@ public class SubController {
 	 * @param row
 	 * @param column
 	 */
-	public void markExcavated(int row, int column) {
+	public void toggleExcavated(int row, int column) {
 		try{
 			Coordinate current = map.getPlaneItem(row, column);
-			current.setExcavated(true);
+			current.setExcavated(!current.getExcavated());
 			updateMap();
 		} catch(NullPointerException e){
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
