@@ -68,8 +68,8 @@ public class SubController {
 				+ "Daniel Huette: 1000947178\n"
 				+ "Celine Soriano: 1000876277\n"
 				+ "Map Population Tool\n"
-				+ "Date: October 30, 2014\n"
-				+ "Version 0.2\n"
+				+ "Date: November 13, 2014\n"
+				+ "Version 0.3\n"
 				+ "\n";
 		JOptionPane.showMessageDialog(null, text);
 	}

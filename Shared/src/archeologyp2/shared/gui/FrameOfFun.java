@@ -59,8 +59,8 @@ public abstract class FrameOfFun extends JFrame {
 	protected JMenuItem aboutMenuItem;
 	private JMenuItem baseConverterMenuItem;
 
+	/* Panel and layout for displaying images */
 	protected JPanel imagePanel;
-
 	protected GridLayout layout;
 
 	/**
@@ -77,6 +77,7 @@ public abstract class FrameOfFun extends JFrame {
 		createImagePanel();
 		createMenuBar();
 		this.setSize(800, 700);
+		this.setResizable(false);
 
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension screenSize = toolkit.getScreenSize();
@@ -95,6 +96,15 @@ public abstract class FrameOfFun extends JFrame {
 		return map;
 	}
 
+	/**
+	 * When a new map is loaded or generated, the current panel
+	 * must be replaced to account for a new map width and height.
+	 * This method removes the old image panel, and creates a new
+	 * one with a Grid Layout of the given width and height.
+	 * 
+	 * @param width
+	 * @param height
+	 */
 	public void replacePanel(int width, int height){
 		this.remove(imagePanel);
 
@@ -105,10 +115,9 @@ public abstract class FrameOfFun extends JFrame {
 		this.add(imagePanel);
 	}
 
-	public void addTileComponent(TileComponent component){
-		imagePanel.add(component);
-	}
-
+	/**
+	 * Creates a default image panel when the frame is first instantiated.
+	 */
 	private void createImagePanel(){
 		imagePanel = new JPanel();
 		layout = new GridLayout();
@@ -208,34 +217,6 @@ public abstract class FrameOfFun extends JFrame {
 			}
 		});
 		viewMenu.add(showMapMenuItem);
-
-		//		viewingMenuItem = new JMenuItem("Viewing Options");
-		//		viewingMenuItem.setMnemonic('O');
-		//		viewingMenuItem.addActionListener(new ActionListener(){
-		//			@Override
-		//			public void actionPerformed(ActionEvent e) {
-		//				final ViewingDialog dialog = new ViewingDialog("Viewing Options", map);
-		//				Relay relay = new Relay();
-		//				dialog.setVisible(true);
-		//				relay.addMyEventListener(new CompletionEventListener(){
-		//					@Override
-		//					public void myEventOccurred(CompletionEvent evt) {
-		//						try{
-		//							map = dialog.getMap();
-		////							Utilities.printMap(map, null);
-		//						}
-		//						catch(NullPointerException n){
-		//							JOptionPane.showMessageDialog(frame,
-		//								    "Uh oh! Looks like you typed in something wrong. Please try again.",
-		//								    "Error",
-		//								    JOptionPane.ERROR_MESSAGE);
-		//						}
-		//					}
-		//				});
-		//				dialog.setRelay(relay);
-		//			}
-		//		});
-		//		viewMenu.add(viewingMenuItem);
 
 		menuBar.add(viewMenu);
 

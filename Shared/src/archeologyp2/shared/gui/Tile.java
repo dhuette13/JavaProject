@@ -6,10 +6,21 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * Represents a graphical image to be drawn
+ * onto a tile component. Has a Buffered Image
+ * and a number of static final pre-instantiated 
+ * tiles for use by the program.
+ * 
+ * @author Daniel
+ * @author Celine
+ *
+ */
 public class Tile {
 	
 	private BufferedImage image;
 	
+	/* Main tiles to be used by program */
 	public static final Tile naturalImage = new Tile("ScaledTiles/NATURAL.png");
 	public static final Tile deadGrassImage = new Tile("ScaledTiles/YELLOW.png");
 	public static final Tile chlorophyllImage = new Tile("ScaledTiles/BRIGHTGREEN.png");
@@ -31,6 +42,11 @@ public class Tile {
 	public static final Tile eightImage = new Tile("ScaledTiles/8.png");
 	public static final Tile nineImage = new Tile("ScaledTiles/9.png");
 	
+	/**
+	 * Reads the image specifed by given path
+	 * 
+	 * @param path
+	 */
 	public Tile(String path) {
 		try {
 			image = ImageIO.read(new File(path));
@@ -39,14 +55,29 @@ public class Tile {
 		}
 	}
 
+	/**
+	 * Returns width of the read Buffered Image.
+	 * 
+	 * @return width
+	 */
 	public int getWidth() {
 		return image.getWidth();
 	}
 	
+	/**
+	 * Returns height of the read Buffered Image.
+	 * 
+	 * @return height
+	 */
 	public int getHeight() {
 		return image.getHeight();
 	}
 	
+	/**
+	 * Returns the Tiles Buffered Image for drawing.
+	 * 
+	 * @return image
+	 */
 	public BufferedImage getImage(){
 		return image;
 	}

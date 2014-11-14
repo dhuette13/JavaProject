@@ -15,17 +15,6 @@ import archeologyp2.shared.finds.Pottery;
 import archeologyp2.shared.finds.StoragePottery;
 import archeologyp2.shared.finds.SubmergedPottery;
 
-/* Temporary Layout for Report
-
- -------------------------------------------------------------------
- ||   TYPE   ||   ROW   ||   COLUMN   ||   DATE   ||   PROPERTY   ||
- -------------------------------------------------------------------
- ||          ||         ||            ||          ||              ||
- -------------------------------------------------------------------
- Average Date: -----
- 
-  */
-
 /**
  * REPORT FOR THE ADT
  * 
@@ -37,7 +26,6 @@ import archeologyp2.shared.finds.SubmergedPottery;
  * @author Daniel
  * @author Celine
  */
-
 public class Report {
 	
 	private ArrayList<Pottery> foundPottery;
@@ -53,7 +41,8 @@ public class Report {
 								  "---------------------------------------------------\n";
 	
 	/**
-	 * 
+	 * Creates new Lists to contain found pottery, charcoal, and metal
+	 * respectively.
 	 */
 	public Report(){
 		potteryReport = "";
@@ -78,6 +67,22 @@ public class Report {
 		} else if (item instanceof MetalObject){
 			foundMetal.add((MetalObject) item);
 		}
+	}
+	
+	public ArrayList<Artifact> getFoundItems(){
+		ArrayList<Artifact> foundItems = new ArrayList<>();
+		for(Pottery p : foundPottery){
+			foundItems.add(p);
+		}
+		
+		for(Charcoal c : foundCharcoal){
+			foundItems.add(c);
+		}
+		for(MetalObject m : foundMetal){
+			foundItems.add(m);
+		}
+		
+		return foundItems;
 	}
 	
 	/**
