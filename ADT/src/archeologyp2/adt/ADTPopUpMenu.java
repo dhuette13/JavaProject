@@ -2,9 +2,10 @@ package archeologyp2.adt;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 
 import archeologyp2.shared.gui.PopupMenuParent;
 
@@ -62,11 +63,8 @@ public class ADTPopUpMenu extends PopupMenuParent implements ActionListener {
 			subController.metalDetector(row, column);
 			break;
 		case "Dig":
-			try{
-				subController.dig(row, column);
-			} catch(HeritageException he){
-				JOptionPane.showMessageDialog(null, "This spot is heritage, you can not dig here!", "Error", JOptionPane.ERROR_MESSAGE);
-			}
+			ExecutorService executorService = Executors.newFixedThreadPool(5);
+			executorService.execute(new DigThread(subController, row, column));
 			break;
 		}
 	}

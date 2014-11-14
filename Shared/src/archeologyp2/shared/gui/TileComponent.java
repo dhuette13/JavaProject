@@ -11,6 +11,7 @@ public class TileComponent extends JComponent implements MouseListener {
 	private static final long serialVersionUID = 1L;
 
 	private int row, column;
+	private static int startRow, startColumn, endRow, endColumn;
 	private Tile tile;
 	private PopupMenuParent popUpMenu;
 
@@ -55,12 +56,16 @@ public class TileComponent extends JComponent implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-
+		startRow = this.row;
+		startColumn = this.column;
+		System.out.println("Start row and column: " + startRow + " " + startColumn);
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-
+		endRow = this.row;
+		endColumn = this.column;
+		System.out.println("End row and column: " + endRow + " " + endColumn);
 	}
 
 	public void setTile(Tile tile){

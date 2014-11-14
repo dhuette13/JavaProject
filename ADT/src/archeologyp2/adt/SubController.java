@@ -205,7 +205,6 @@ public class SubController {
 					current.setItemFound(true);
 				}
 			}
-			updateMap();
 		} catch(NullPointerException e){
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		} 
