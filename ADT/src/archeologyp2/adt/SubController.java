@@ -86,8 +86,6 @@ public class SubController {
 	public int magnetoMeter(int row, int column){
 		try{
 			Coordinate current;
-			//			int r = row - 1;
-			//			int c = Utilities.columnToIndex(column); 
 			current = map.getPlaneItem(row, column);
 			current.setCharcoalInspected(true);
 			if(current.getCharcoalCount() != 0){
@@ -122,8 +120,6 @@ public class SubController {
 		try{
 			MetalObject metal;
 			Coordinate current;
-			//			int r = row - 1;
-			//			int c = Utilities.columnToIndex(column);
 			current = map.getPlaneItem(row, column);
 			current.setMetalInspected(true);
 			if(current.getMetalCount() != 0) {
@@ -243,8 +239,7 @@ public class SubController {
 	 */
 	public void updateMap() {
 		try{
-			MapEditor.updateView(map);
-			MapEditor.updateImages(map, imagePanel);
+			MapEditor.updateView(map, imagePanel);
 		} catch(NullPointerException e){
 			e.printStackTrace();
 		}

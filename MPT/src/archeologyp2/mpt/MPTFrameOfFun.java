@@ -35,11 +35,11 @@ public class MPTFrameOfFun extends FrameOfFun {
 	private static final long serialVersionUID = 1L;
 	
 	private SubController subController;
+	
 	/* Edit Menu Items */
 	private JMenuItem generateMapMenuItem;
 	
 	final protected GenerateDialog generateDialog;
-
 	private PopupMenuParent popupMenu;
 
 	/**

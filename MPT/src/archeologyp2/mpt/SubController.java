@@ -91,7 +91,6 @@ public class SubController {
 	public void changeFeature(int row, int column, int feature, boolean loopFlag){
 		try{
 			Coordinate current;
-//			int r = row - 1;
 			Feature f = Feature.dirt;
 			switch(feature){
 			case 1:
@@ -113,7 +112,6 @@ public class SubController {
 					current.setFeature(f);
 				}
 			} else {
-//				int c = Utilities.columnToIndex(column);
 				current = map.getPlaneItem(row, column);
 				current.setFeature(f);
 			}
@@ -225,8 +223,7 @@ public class SubController {
 	 */
 	public void updateMap(){
 		try{
-			MapEditor.updateView(map);
-			MapEditor.updateImages(map, imagePanel);
+			MapEditor.updateView(map, imagePanel);
 		} catch(NullPointerException e){
 			e.printStackTrace();
 		}
