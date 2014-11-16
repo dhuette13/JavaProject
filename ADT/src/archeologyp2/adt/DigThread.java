@@ -1,8 +1,9 @@
 package archeologyp2.adt;
 
-import java.util.concurrent.Callable;
+import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
 
 /**
  * Represents an independent thread of execution for digging
@@ -16,12 +17,14 @@ import javax.swing.JOptionPane;
  * @author Celine
  *
  */
-public class DigThread implements Callable<String> {
+public class DigThread extends SwingWorker<String, Integer> {
 
 	private SubController subController;
+	private ProgressFrame progressFrame;
 	private int row, column;
 	private String name;
 	private double averageDate, standardDeviation;
+	private Report foundReport;
 	
 	/**
 	 * Initializes variables
@@ -31,29 +34,30 @@ public class DigThread implements Callable<String> {
 	 * @param row
 	 * @param column
 	 */
-	public DigThread(String name, SubController subController, int row, int column){
+	public DigThread(String name, SubController subController, int row, int column, ProgressFrame progressFrame){
 		this.name = name;
 		this.subController = subController;
+		this.progressFrame = progressFrame;
 		this.row = row;
 		this.column = column;
 	}
 	
 	/**
-	 *  This method calls the dig subroutine, sleeps for 10 seconds,
-	 *  updates the map, and displays a report for found artifacts.
+	 *  This method calls the dig subroutine, sleeps for 10 seconds
+	 *  while publishing progress.
 	 */
 	@Override
-	public String call() throws Exception {
+	protected String doInBackground() throws Exception {
 		try {
-			Report foundReport = subController.dig(row, column);
-			Thread.sleep(10000);
-			subController.updateMap();
+			foundReport = subController.dig(row, column);
+			for(int i = 0; i < 100; i++){
+				Thread.sleep(100);
+				publish(i);
+			}
 			
 			averageDate = subController.computeAverageDate(foundReport.getFoundItems());
 			standardDeviation = subController.computeStandardDeviation(averageDate, foundReport.getFoundItems());
 			
-			ReportDialog reportMessage = new ReportDialog(name, foundReport, averageDate, standardDeviation);
-			reportMessage.setVisible(true);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (HeritageException e) {
@@ -62,5 +66,27 @@ public class DigThread implements Callable<String> {
 		}
 		
 		return name;
+	}
+	
+	/**
+	 * Handles update to progress bar, thread safe method
+	 */
+	@Override
+	protected void process(List<Integer> publishedVals){
+		for(Integer val : publishedVals){
+			progressFrame.setProgress(name, val);
+		}
+	}
+	
+	/**
+	 * Called on completion of thread, updates the map,
+	 * updates the progress bar to zero, and displays a report dialog.
+	 */
+	@Override
+	protected void done() {
+		subController.updateMap();
+		progressFrame.setProgress(name, 0);
+		ReportDialog reportMessage = new ReportDialog(name, foundReport, averageDate, standardDeviation);
+		reportMessage.setVisible(true);
 	}
 }

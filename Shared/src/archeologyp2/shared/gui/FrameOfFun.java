@@ -211,8 +211,10 @@ public abstract class FrameOfFun extends JFrame {
 		showMapMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				map.setViewingOption(ViewingOption.natural);
-				MapEditor.updateView(map, imagePanel);
+				if(map != null){
+					map.setViewingOption(ViewingOption.natural);
+					MapEditor.updateView(map, imagePanel);
+				}
 			}
 		});
 		viewMenu.add(showMapMenuItem);

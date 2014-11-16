@@ -41,8 +41,11 @@ public class ADTPopUpMenu extends PopupMenuParent implements ActionListener {
 	/* Three collections are used to keep track of digging threads */
 	private String[] diggerNames = {"Schilemann", "Carter", "Bingham", "Thompson", "Robinson"};
 	private ArrayList<String> availableDiggers = new ArrayList<String>();
-	private HashMap<String, Future<String>> diggers;
+	private HashMap<String, DigThread> diggers;
+	private DigThread digThread;
 	ExecutorService executorService = Executors.newFixedThreadPool(5);
+	
+	private ProgressFrame progressFrame;
 
 	/**
 	 * Initializes variables, instantiates menu item components,
@@ -73,6 +76,8 @@ public class ADTPopUpMenu extends PopupMenuParent implements ActionListener {
 			diggers.put(name, null);
 			availableDiggers.add(name);
 		}
+		
+		progressFrame = new ProgressFrame(diggerNames);
 	}
 
 	/**
@@ -115,8 +120,11 @@ public class ADTPopUpMenu extends PopupMenuParent implements ActionListener {
 			} 
 			/* Otherwise, get a new digger and allocate him to spot */
 			else {
+				progressFrame.setVisible(true);
 				String newDigger = availableDiggers.get(0);
-				diggers.put(newDigger, executorService.submit(new DigThread(newDigger, subController, row, column)));
+				digThread = new DigThread(newDigger, subController, row, column, progressFrame);
+				diggers.put(newDigger, digThread);
+				executorService.execute(digThread);
 				availableDiggers.remove(0);
 			}
 

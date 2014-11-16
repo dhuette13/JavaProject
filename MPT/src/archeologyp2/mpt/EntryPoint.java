@@ -1,5 +1,7 @@
 package archeologyp2.mpt;
 
+import javax.swing.SwingUtilities;
+
 import archeologyp2.shared.gui.FrameOfFun;
 
 /**
@@ -43,8 +45,13 @@ public class EntryPoint {
 	 * 
 	 */
 	public static void main(String[] args) {
-		EntryPoint entry = new EntryPoint();
-		entry.go();
+		SwingUtilities.invokeLater(new Runnable(){
+			@Override
+			public void run() {
+				EntryPoint entry = new EntryPoint();
+				entry.go();
+			}
+		});
 	}
 
 }
