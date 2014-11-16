@@ -41,7 +41,7 @@ public class ProgressFrame extends JFrame {
 			add(progressBars.get(names[i]), constraints);
 		}
 		
-		setResizable(true);
+		setResizable(false);
 	}
 	
 	public void setProgress(String name, int value){

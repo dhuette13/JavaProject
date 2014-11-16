@@ -25,6 +25,7 @@ public class DigThread extends SwingWorker<String, Integer> {
 	private String name;
 	private double averageDate, standardDeviation;
 	private Report foundReport;
+	private ReportDialog reportMessage;
 	
 	/**
 	 * Initializes variables
@@ -40,6 +41,7 @@ public class DigThread extends SwingWorker<String, Integer> {
 		this.progressFrame = progressFrame;
 		this.row = row;
 		this.column = column;
+		foundReport = null;
 	}
 	
 	/**
@@ -84,9 +86,11 @@ public class DigThread extends SwingWorker<String, Integer> {
 	 */
 	@Override
 	protected void done() {
-		subController.updateMap();
 		progressFrame.setProgress(name, 0);
-		ReportDialog reportMessage = new ReportDialog(name, foundReport, averageDate, standardDeviation);
-		reportMessage.setVisible(true);
+		if(foundReport != null){
+			subController.updateMap();
+			reportMessage = new ReportDialog(name, foundReport, averageDate, standardDeviation);
+			reportMessage.setVisible(true);
+		}
 	}
 }
