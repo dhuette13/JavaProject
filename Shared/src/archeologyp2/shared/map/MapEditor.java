@@ -26,6 +26,7 @@ public class MapEditor {
 	 * the current version of their working map. 
 	 *  
 	 * @param map
+	 * @param panel
 	 */
 	public static void updateView(final Map<Coordinate> map, JPanel panel){
 		TileComponent tileComponent;
@@ -135,7 +136,121 @@ public class MapEditor {
 			}
 			break;
 		}
-		
+
+		panel.validate();
+		panel.repaint();
+	}
+
+	/**
+	 * For public static void updateView
+	 * This method updates the passed map's view.
+	 * We call it to make sure the user can always see
+	 * the current version of their working map. 
+	 * This version will update only the given row and column.
+	 *  
+	 * @param map
+	 * @param panel
+	 * @param row
+	 * @param column
+	 */
+	public static void updateView(final Map<Coordinate> map, JPanel panel, int row, int column){
+		TileComponent tileComponent;
+		Coordinate coord = map.getPlaneItem(row, column);
+		switch(map.getViewingOption()){
+		case natural:
+			tileComponent = coord.getTileComponent();
+			switch(coord.getFeature()){
+			case stone:
+				if(coord.getExcavated()){
+					tileComponent.setTile(Tile.stoneImage);
+				}
+				else {
+					tileComponent.setTile(Tile.deadGrassImage);
+				}
+				tileComponent.repaint();
+				break;
+			case postHole:
+				if(coord.getExcavated()) {
+					tileComponent.setTile(Tile.pitImage);
+				}
+				else {
+					tileComponent.setTile(Tile.chlorophyllImage);
+				}
+				tileComponent.repaint();
+				break;
+			case dirt:
+				if(coord.getExcavated()) {
+					tileComponent.setTile(Tile.dirtImage);
+				}
+				else {
+					tileComponent.setTile(Tile.naturalImage);
+				}
+				tileComponent.repaint();
+				break;
+			}
+			break;
+		case potCount:
+			tileComponent = coord.getTileComponent();
+			if(coord.getExcavated()){
+				tileComponent.setTile(setCount(coord.getPotCount()));
+			}
+			else{
+				tileComponent.setTile(Tile.unknownImage);
+			}
+			tileComponent.repaint();
+			break;
+		case metalCount:
+			tileComponent = coord.getTileComponent();
+			if(coord.getExcavated()){
+				tileComponent.setTile(setCount(coord.getMetalCount()));
+			}
+			else{
+				tileComponent.setTile(Tile.unknownImage);
+			}
+			tileComponent.repaint();
+			break;
+		case charcoalCount:
+			tileComponent = coord.getTileComponent();
+			if(coord.getExcavated()){
+				tileComponent.setTile(setCount(coord.getCharcoalCount()));
+			}
+			else{
+				tileComponent.setTile(Tile.unknownImage);
+			}
+			tileComponent.repaint();
+			break;
+		case magnetometerResult:
+			tileComponent = coord.getTileComponent();
+			if(coord.getCharcoalInspected()){
+				if(coord.charcoalHidden()){
+					tileComponent.setTile(Tile.trueImage);
+				}
+				else {
+					tileComponent.setTile(Tile.falseImage);
+				}
+			}
+			else{
+				tileComponent.setTile(Tile.unknownImage);
+			}
+			tileComponent.repaint();
+			break;
+		case metalDetectorResult:
+			tileComponent = coord.getTileComponent();
+			if(coord.getMetalInspected()){
+				if(coord.metalHidden()){
+					tileComponent.setTile(Tile.trueImage);
+				}
+				else {
+					tileComponent.setTile(Tile.falseImage);
+				}
+			}
+			else {
+				tileComponent.setTile(Tile.unknownImage);
+			}
+			tileComponent.repaint();
+			break;
+		}
+
 		panel.validate();
 		panel.repaint();
 	}

@@ -90,12 +90,12 @@ public class SubController {
 			current.setCharcoalInspected(true);
 			if(current.getCharcoalCount() != 0){
 				current.setCharcoalHidden(true);
-				updateMap();
+				updateMap(row, column);
 				return 1;
 			}
 			else {
 				current.setCharcoalHidden(false);
-				updateMap();
+				updateMap(row, column);
 				return 0;
 			}
 		} catch(NullPointerException e){
@@ -151,7 +151,7 @@ public class SubController {
 			detectorResults = -1;
 		}
 
-		updateMap();
+		updateMap(row, column);
 		return detectorResults;
 	}
 
@@ -240,6 +240,20 @@ public class SubController {
 	public void updateMap() {
 		try{
 			MapEditor.updateView(map, imagePanel);
+		} catch(NullPointerException e){
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Updates a single map coordinate
+	 * 
+	 * @param row
+	 * @param column
+	 */
+	public void updateMap(int row, int column) {
+		try{
+			MapEditor.updateView(map, imagePanel, row, column);
 		} catch(NullPointerException e){
 			e.printStackTrace();
 		}
@@ -434,4 +448,5 @@ public class SubController {
 
 		return sd;
 	}
+
 }

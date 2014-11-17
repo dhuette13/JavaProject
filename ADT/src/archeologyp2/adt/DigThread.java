@@ -88,7 +88,7 @@ public class DigThread extends SwingWorker<String, Integer> {
 	protected void done() {
 		progressFrame.setProgress(name, 0);
 		if(foundReport != null){
-			subController.updateMap();
+			subController.updateMap(row, column);
 			reportMessage = new ReportDialog(name, foundReport, averageDate, standardDeviation);
 			reportMessage.setVisible(true);
 		}

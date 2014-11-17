@@ -1,5 +1,6 @@
 package archeologyp2.adt;
 
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -26,9 +27,14 @@ public class ProgressFrame extends JFrame {
 		labels = new JLabel[names.length];
 		progressBars = new HashMap<>();
 		
+		JProgressBar temp;
 		for(int i = 0; i < names.length; i++){
 			labels[i] = new JLabel(names[i]);
-			progressBars.put(names[i], new JProgressBar());
+			temp = new JProgressBar();
+			temp.setStringPainted(true);
+			temp.setForeground(Color.ORANGE);
+			
+			progressBars.put(names[i], temp);
 			
 			constraints.anchor = GridBagConstraints.WEST;
 			constraints.gridx = 0;

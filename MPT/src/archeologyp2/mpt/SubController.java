@@ -115,7 +115,7 @@ public class SubController {
 				current = map.getPlaneItem(row, column);
 				current.setFeature(f);
 			}
-			updateMap();
+			updateMap(row, column);
 		} catch(NullPointerException e){
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -201,7 +201,7 @@ public class SubController {
 				current = map.getPlaneItem(r, c);
 				current.addFind(artifact);
 			}
-			updateMap();
+			updateMap(r, c);
 		} catch(NullPointerException e){
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -224,6 +224,20 @@ public class SubController {
 	public void updateMap(){
 		try{
 			MapEditor.updateView(map, imagePanel);
+		} catch(NullPointerException e){
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Updates a single map coordinate
+	 * 
+	 * @param row
+	 * @param column
+	 */
+	public void updateMap(int row, int column){
+		try{
+			MapEditor.updateView(map, imagePanel, row, column);
 		} catch(NullPointerException e){
 			e.printStackTrace();
 		}
@@ -254,7 +268,7 @@ public class SubController {
 		try{
 			Coordinate current = map.getPlaneItem(row, column);
 			current.setExcavated(!current.getExcavated());
-			updateMap();
+			updateMap(row, column);
 		} catch(NullPointerException e){
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
