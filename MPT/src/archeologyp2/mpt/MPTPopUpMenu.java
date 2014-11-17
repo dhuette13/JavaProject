@@ -9,19 +9,19 @@ import archeologyp2.shared.gui.PopupMenuParent;
 
 /**
  * THE MPT POP UP MENU
+ * Set Feature
+ * Toggle Excavated
+ * Toggle Heritage
+ * Add Metal Find
+ * Add Pottery Find
+ * Add Charcoal Find
+ * 
+ * Represents a popup menu that the user can access with a right click.
+ * Allows the user to modify the clicked plot.
  * 
  * @author Daniel
  * @author Celine
  *
- */
-
-/*
-Set Feature
-Toggle Excavated
-Toggle Heritage
-Add Metal Find
-Add Pottery Find
-Add Charcoal Find
  */
 public class MPTPopUpMenu extends PopupMenuParent implements ActionListener {
 	
@@ -34,6 +34,12 @@ public class MPTPopUpMenu extends PopupMenuParent implements ActionListener {
 	
 	private SubController subController;
 	
+	/**
+	 * Initializes variables, instantiates menu item components,
+	 * adds components to popup menu, and assigns actionlisteners.
+	 * 
+	 * @param subController
+	 */
 	public MPTPopUpMenu(SubController subController){
 		this.subController = subController;
 		
@@ -56,6 +62,10 @@ public class MPTPopUpMenu extends PopupMenuParent implements ActionListener {
 		addFind.addActionListener(this);
 	}
 
+	/**
+	 * Determines the menu item selected, and calls the appropriate subController
+	 * method or dialog box.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		setVisible(false);
@@ -65,13 +75,13 @@ public class MPTPopUpMenu extends PopupMenuParent implements ActionListener {
 			featureDialog.setVisible(true);
 			break;
 		case "Toggle Excavated":
-			subController.markExcavated(row, column);
+			subController.toggleExcavated(row, column);
 			break;
 		case "Toggle Heritage":
-			subController.markHeritage(row, column);
+			subController.toggleHeritage(row, column);
 			break;
 		case "Add Find":
-			FindDialog dialog = new FindDialog("Add Finds", subController);
+			FindDialog dialog = new FindDialog("Add Finds", subController, row, column);
 			dialog.setVisible(true);
 			break;
 		}

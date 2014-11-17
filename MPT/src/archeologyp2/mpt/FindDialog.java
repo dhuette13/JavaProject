@@ -1,13 +1,3 @@
-/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
-/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
-/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
-/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
-/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
-/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
-/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
-/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
-/////////// ROWS AND COLUMNS NEED TO BE SET UP!!!!!!!!!!!!
-
 package archeologyp2.mpt;
 
 import java.awt.GridBagConstraints;
@@ -80,7 +70,7 @@ public class FindDialog extends JDialog implements KeyListener {
 		
 		setTitle(title);
 		setLayout(new GridBagLayout());
-		setSize(360, 220);
+		setSize(340, 160);
 		setResizable(false);
 		addKeyListener(this);
 
@@ -91,26 +81,30 @@ public class FindDialog extends JDialog implements KeyListener {
 		dateLabel = new JLabel("Date: ");
 		dataLabel = new JLabel("Description: ");
 		constraints = new GridBagConstraints();
-		constraints.insets = new Insets(3, 3, 3, 3);
+		constraints.insets = new Insets(5, 5, 5, 5);
 
 		dataLabel.setEnabled(false);
 		dataTextField.setEnabled(false);
 
 		constraints.anchor = GridBagConstraints.WEST;
 		constraints.fill = GridBagConstraints.NONE;
-		addComponent(dateLabel, 0, 3, 1, 1);
-		addComponent(dataLabel, 0, 4, 1, 1);
+		addComponent(dateLabel, 0, 0, 1, 1);
+		addComponent(dataLabel, 1, 0, 1, 1);
 		
 		constraints.anchor = GridBagConstraints.CENTER;
 		constraints.anchor = GridBagConstraints.EAST;
-		addComponent(dateTextField, 1, 3, 1, 1);
-		addComponent(dataTextField, 1, 4, 1, 1);
+		addComponent(dateTextField, 0, 1, 1, 1);
+		addComponent(dataTextField, 1, 1, 1, 1);
 		
-		constraints.anchor = GridBagConstraints.CENTER;
+		constraints.anchor = GridBagConstraints.EAST;
+		addComponent(comboBox, 0, 2, 1, 1);
+		
 		constraints.fill = GridBagConstraints.NONE;
 		constraints.weightx = 1;
-		addComponent(confirmButton, 2, 5, 1, 1);
-		addComponent(cancelButton, 3, 5, 1, 1);
+		constraints.anchor = GridBagConstraints.WEST;
+		addComponent(confirmButton, 2, 2, 1, 1);
+		constraints.anchor = GridBagConstraints.EAST;
+		addComponent(cancelButton, 2, 2, 1, 1);
 	}
 
 	/**
@@ -126,7 +120,7 @@ public class FindDialog extends JDialog implements KeyListener {
 	 * @param width
 	 * @param height
 	 */
-	public void addComponent(JComponent component, int column, int row, int width, int height){
+	public void addComponent(JComponent component, int row, int column, int width, int height){
 		constraints.gridx = column;
 		constraints.gridy = row;
 		constraints.gridwidth = width;

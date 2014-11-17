@@ -3,6 +3,7 @@ package archeologyp2.shared.map;
 import javax.swing.JPanel;
 
 import archeologyp2.shared.gui.Tile;
+import archeologyp2.shared.gui.TileComponent;
 
 
 
@@ -16,31 +17,126 @@ import archeologyp2.shared.gui.Tile;
  * @author Celine
  *
  */
-
 public class MapEditor {
 
-	public static final String naturalToken = "Natural";
-	public static final String stoneToken = "Stone";
-	public static final String postHoleToken = "Post Hole";
-	public static final String excavatedNaturalToken = "Excavated Natural";
-	public static final String excavatedStoneToken = "Excavated Stone";
-	public static final String excavatedPostHoleToken = "Excavated Post Hole";
-
-
-	public static void updateImages(Map<Coordinate> map, JPanel panel) {
-		//		Tile imageMap[][] = map.getImageMap();
-		//		for(int r = 0; r < map.getNumRows(); r++){
-		//			for(int c = 0; c < map.getNumColumns(); c++){
-		//				panel.add(imageMap[r][c]);
-		//				imageMap[r][c].repaint();
-		//			}
-		//		}
-
-		for(Coordinate coord : map){
-//			panel.add(coord.getTileComponent());
-			coord.getTileComponent().repaint();
+	/**
+	 * For public static void updateView
+	 * This method updates the passed map's view.
+	 * We call it to make sure the user can always see
+	 * the current version of their working map. 
+	 *  
+	 * @param map
+	 * @param panel
+	 */
+	public static void updateView(final Map<Coordinate> map, JPanel panel){
+		TileComponent tileComponent;
+		switch(map.getViewingOption()){
+		case natural:
+			for(Coordinate coord : map){
+				tileComponent = coord.getTileComponent();
+				switch(coord.getFeature()){
+				case stone:
+					if(coord.getExcavated()){
+						tileComponent.setTile(Tile.stoneImage);
+					}
+					else {
+						tileComponent.setTile(Tile.deadGrassImage);
+					}
+					tileComponent.repaint();
+					break;
+				case postHole:
+					if(coord.getExcavated()) {
+						tileComponent.setTile(Tile.pitImage);
+					}
+					else {
+						tileComponent.setTile(Tile.chlorophyllImage);
+					}
+					tileComponent.repaint();
+					break;
+				case dirt:
+					if(coord.getExcavated()) {
+						tileComponent.setTile(Tile.dirtImage);
+					}
+					else {
+						tileComponent.setTile(Tile.naturalImage);
+					}
+					tileComponent.repaint();
+					break;
+				}
+			}
+			break;
+		case potCount:
+			for(Coordinate coord : map){
+				tileComponent = coord.getTileComponent();
+				if(coord.getExcavated()){
+					tileComponent.setTile(setCount(coord.getPotCount()));
+				}
+				else{
+					tileComponent.setTile(Tile.unknownImage);
+				}
+				tileComponent.repaint();
+			}
+			break;
+		case metalCount:
+			for(Coordinate coord : map){
+				tileComponent = coord.getTileComponent();
+				if(coord.getExcavated()){
+					tileComponent.setTile(setCount(coord.getMetalCount()));
+				}
+				else{
+					tileComponent.setTile(Tile.unknownImage);
+				}
+				tileComponent.repaint();
+			}
+			break;
+		case charcoalCount:
+			for(Coordinate coord : map){
+				tileComponent = coord.getTileComponent();
+				if(coord.getExcavated()){
+					tileComponent.setTile(setCount(coord.getCharcoalCount()));
+				}
+				else{
+					tileComponent.setTile(Tile.unknownImage);
+				}
+				tileComponent.repaint();
+			}
+			break;
+		case magnetometerResult:
+			for(Coordinate coord : map) {
+				tileComponent = coord.getTileComponent();
+				if(coord.getCharcoalInspected()){
+					if(coord.charcoalHidden()){
+						tileComponent.setTile(Tile.trueImage);
+					}
+					else {
+						tileComponent.setTile(Tile.falseImage);
+					}
+				}
+				else{
+					tileComponent.setTile(Tile.unknownImage);
+				}
+				tileComponent.repaint();
+			}
+			break;
+		case metalDetectorResult:
+			for(Coordinate coord : map) {
+				tileComponent = coord.getTileComponent();
+				if(coord.getMetalInspected()){
+					if(coord.metalHidden()){
+						tileComponent.setTile(Tile.trueImage);
+					}
+					else {
+						tileComponent.setTile(Tile.falseImage);
+					}
+				}
+				else {
+					tileComponent.setTile(Tile.unknownImage);
+				}
+				tileComponent.repaint();
+			}
+			break;
 		}
-		
+
 		panel.validate();
 		panel.repaint();
 	}
@@ -50,122 +146,121 @@ public class MapEditor {
 	 * This method updates the passed map's view.
 	 * We call it to make sure the user can always see
 	 * the current version of their working map. 
+	 * This version will update only the given row and column.
 	 *  
 	 * @param map
+	 * @param panel
+	 * @param row
+	 * @param column
 	 */
-	public static void updateView(final Map<Coordinate> map){
+	public static void updateView(final Map<Coordinate> map, JPanel panel, int row, int column){
+		TileComponent tileComponent;
+		Coordinate coord = map.getPlaneItem(row, column);
 		switch(map.getViewingOption()){
 		case natural:
-			for(Coordinate coord : map){
-				switch(coord.getFeature()){
-				case stone:
-					if(coord.getExcavated()){
-						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.stoneImage);
-						coord.getTileComponent().setTile(Tile.stoneImage);
-					}
-					else {
-						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.deadGrassImage);
-						coord.getTileComponent().setTile(Tile.deadGrassImage);
-					}
-					break;
-				case postHole:
-					if(coord.getExcavated()) {
-						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.pitImage);
-						coord.getTileComponent().setTile(Tile.pitImage);
-					}
-					else {
-						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.chlorophyllImage);
-						coord.getTileComponent().setTile(Tile.chlorophyllImage);
-					}
-					break;
-				case dirt:
-					if(coord.getExcavated()) {
-						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.dirtImage);
-						coord.getTileComponent().setTile(Tile.dirtImage);
-					}
-					else {
-						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.naturalImage);
-						coord.getTileComponent().setTile(Tile.naturalImage);
-					}
-					break;
+			tileComponent = coord.getTileComponent();
+			switch(coord.getFeature()){
+			case stone:
+				if(coord.getExcavated()){
+					tileComponent.setTile(Tile.stoneImage);
 				}
+				else {
+					tileComponent.setTile(Tile.deadGrassImage);
+				}
+				tileComponent.repaint();
+				break;
+			case postHole:
+				if(coord.getExcavated()) {
+					tileComponent.setTile(Tile.pitImage);
+				}
+				else {
+					tileComponent.setTile(Tile.chlorophyllImage);
+				}
+				tileComponent.repaint();
+				break;
+			case dirt:
+				if(coord.getExcavated()) {
+					tileComponent.setTile(Tile.dirtImage);
+				}
+				else {
+					tileComponent.setTile(Tile.naturalImage);
+				}
+				tileComponent.repaint();
+				break;
 			}
 			break;
 		case potCount:
-			for(Coordinate coord : map){
-				if(coord.getExcavated()){
-					map.setMapTile(coord.getRow(), coord.getColumn(), setCount(coord.getPotCount()));
-					coord.getTileComponent().setTile(setCount(coord.getPotCount()));
-				}
-				else{
-					map.setMapTile(coord.getRow(), coord.getColumn(), Tile.unknownImage);
-					coord.getTileComponent().setTile(Tile.unknownImage);
-				}
+			tileComponent = coord.getTileComponent();
+			if(coord.getExcavated()){
+				tileComponent.setTile(setCount(coord.getPotCount()));
 			}
+			else{
+				tileComponent.setTile(Tile.unknownImage);
+			}
+			tileComponent.repaint();
 			break;
 		case metalCount:
-			for(Coordinate coord : map){
-				if(coord.getExcavated()){
-					map.setMapTile(coord.getRow(), coord.getColumn(), setCount(coord.getMetalCount()));
-					coord.getTileComponent().setTile(setCount(coord.getMetalCount()));
-				}
-				else{
-					map.setMapTile(coord.getRow(), coord.getColumn(), Tile.unknownImage);
-					coord.getTileComponent().setTile(Tile.unknownImage);
-				}
+			tileComponent = coord.getTileComponent();
+			if(coord.getExcavated()){
+				tileComponent.setTile(setCount(coord.getMetalCount()));
 			}
+			else{
+				tileComponent.setTile(Tile.unknownImage);
+			}
+			tileComponent.repaint();
 			break;
 		case charcoalCount:
-			for(Coordinate coord : map){
-				if(coord.getExcavated()){
-					map.setMapTile(coord.getRow(), coord.getColumn(), setCount(coord.getCharcoalCount()));
-					coord.getTileComponent().setTile(setCount(coord.getCharcoalCount()));
-				}
-				else{
-					map.setMapTile(coord.getRow(), coord.getColumn(), Tile.unknownImage);
-					coord.getTileComponent().setTile(Tile.unknownImage);
-				}
+			tileComponent = coord.getTileComponent();
+			if(coord.getExcavated()){
+				tileComponent.setTile(setCount(coord.getCharcoalCount()));
 			}
+			else{
+				tileComponent.setTile(Tile.unknownImage);
+			}
+			tileComponent.repaint();
 			break;
 		case magnetometerResult:
-			for(Coordinate coord : map) {
-				if(coord.getCharcoalInspected()){
-					if(coord.charcoalHidden()){
-						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.trueImage);
-						coord.getTileComponent().setTile(Tile.trueImage);
-					}
-					else {
-						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.falseImage);
-						coord.getTileComponent().setTile(Tile.falseImage);
-					}
-				}
-				else{
-					map.setMapTile(coord.getRow(), coord.getColumn(), Tile.unknownImage);
-					coord.getTileComponent().setTile(Tile.unknownImage);
-				}
-			}
-			break;
-		case metalDetectorResult:
-			for(Coordinate coord : map) {
-				if(coord.getMetalInspected()){
-					if(coord.metalHidden()){
-						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.trueImage);
-						coord.getTileComponent().setTile(Tile.trueImage);
-					}
-					else {
-						map.setMapTile(coord.getRow(), coord.getColumn(), Tile.falseImage);
-						coord.getTileComponent().setTile(Tile.falseImage);
-					}
+			tileComponent = coord.getTileComponent();
+			if(coord.getCharcoalInspected()){
+				if(coord.charcoalHidden()){
+					tileComponent.setTile(Tile.trueImage);
 				}
 				else {
-					map.setMapTile(coord.getRow(), coord.getColumn(), Tile.unknownImage);
-					coord.getTileComponent().setTile(Tile.unknownImage);
+					tileComponent.setTile(Tile.falseImage);
 				}
 			}
+			else{
+				tileComponent.setTile(Tile.unknownImage);
+			}
+			tileComponent.repaint();
+			break;
+		case metalDetectorResult:
+			tileComponent = coord.getTileComponent();
+			if(coord.getMetalInspected()){
+				if(coord.metalHidden()){
+					tileComponent.setTile(Tile.trueImage);
+				}
+				else {
+					tileComponent.setTile(Tile.falseImage);
+				}
+			}
+			else {
+				tileComponent.setTile(Tile.unknownImage);
+			}
+			tileComponent.repaint();
 			break;
 		}
+
+		panel.validate();
+		panel.repaint();
 	}
 
+	/**
+	 * Returns appropriate Tile for given find count
+	 * 
+	 * @param count
+	 * @return tile
+	 */
 	private static Tile setCount(int count) {
 		Tile image;
 		image = Tile.zeroImage;
@@ -219,5 +314,4 @@ public class MapEditor {
 		}
 		return count;
 	}
-
 }

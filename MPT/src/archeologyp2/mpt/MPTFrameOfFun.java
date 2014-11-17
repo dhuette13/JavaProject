@@ -35,13 +35,11 @@ public class MPTFrameOfFun extends FrameOfFun {
 	private static final long serialVersionUID = 1L;
 	
 	private SubController subController;
+	
 	/* Edit Menu Items */
 	private JMenuItem generateMapMenuItem;
-	private JMenuItem addFindMenuItem;
-//	private JMenuItem heritageMenuItem;
 	
 	final protected GenerateDialog generateDialog;
-
 	private PopupMenuParent popupMenu;
 
 	/**
@@ -122,30 +120,6 @@ public class MPTFrameOfFun extends FrameOfFun {
 			
 		});
 		editMenu.add(generateMapMenuItem);
-		
-		addFindMenuItem = new JMenuItem("Add Find");
-		addFindMenuItem.setMnemonic('i');
-		addFindMenuItem.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				FindDialog findDialog = new FindDialog("Add Finds", subController);
-				findDialog.setVisible(true);
-			}
-			
-		});
-		editMenu.add(addFindMenuItem);
-		
-//		heritageMenuItem = new JMenuItem("Mark Heritage");
-//		heritageMenuItem.setMnemonic('M');
-//		heritageMenuItem.addActionListener(new ActionListener(){
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				HeritageDialog heritage = new HeritageDialog("Heritage", subController);
-//				heritage.setVisible(true);
-//			}
-//			
-//		});
-//		editMenu.add(heritageMenuItem);
 		
 		aboutMenuItem.addActionListener(new ActionListener(){
 			@Override

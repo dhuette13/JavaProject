@@ -68,8 +68,8 @@ public class SubController {
 				+ "Daniel Huette: 1000947178\n"
 				+ "Celine Soriano: 1000876277\n"
 				+ "Map Population Tool\n"
-				+ "Date: October 30, 2014\n"
-				+ "Version 0.2\n"
+				+ "Date: November 13, 2014\n"
+				+ "Version 0.3\n"
 				+ "\n";
 		JOptionPane.showMessageDialog(null, text);
 	}
@@ -91,7 +91,6 @@ public class SubController {
 	public void changeFeature(int row, int column, int feature, boolean loopFlag){
 		try{
 			Coordinate current;
-//			int r = row - 1;
 			Feature f = Feature.dirt;
 			switch(feature){
 			case 1:
@@ -113,11 +112,10 @@ public class SubController {
 					current.setFeature(f);
 				}
 			} else {
-//				int c = Utilities.columnToIndex(column);
 				current = map.getPlaneItem(row, column);
 				current.setFeature(f);
 			}
-			updateMap();
+			updateMap(row, column);
 		} catch(NullPointerException e){
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -136,12 +134,12 @@ public class SubController {
 	 * @param date(s) for the find
 	 * 
 	 */
-	public void addFind(int row, String col, int type, int date, String data, boolean loopFlag){
+	public void addFind(int r, int c, int type, int date, String data, boolean loopFlag){
 		try {
 			Coordinate current;
 			Artifact artifact = null;
-			int r = row - 1;
-			int c = Utilities.columnToIndex(col); 
+			int row = r + 1;
+			String col = Utilities.indexToColumn(c);
 			switch(type){
 			/* Add to decorated pot collection */
 			case 1:
@@ -203,7 +201,7 @@ public class SubController {
 				current = map.getPlaneItem(r, c);
 				current.addFind(artifact);
 			}
-			updateMap();
+			updateMap(r, c);
 		} catch(NullPointerException e){
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -225,8 +223,21 @@ public class SubController {
 	 */
 	public void updateMap(){
 		try{
-			MapEditor.updateView(map);
-			MapEditor.updateImages(map, imagePanel);
+			MapEditor.updateView(map, imagePanel);
+		} catch(NullPointerException e){
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Updates a single map coordinate
+	 * 
+	 * @param row
+	 * @param column
+	 */
+	public void updateMap(int row, int column){
+		try{
+			MapEditor.updateView(map, imagePanel, row, column);
 		} catch(NullPointerException e){
 			e.printStackTrace();
 		}
@@ -240,12 +251,10 @@ public class SubController {
 	 * @param row
 	 * @param column
 	 */
-	public void markHeritage(int row, int column) {
+	public void toggleHeritage(int row, int column) {
 		try{
-//			int r = row - 1;
-//			int c = Utilities.columnToIndex(column);
 			Coordinate current = map.getPlaneItem(row, column);
-			current.setHeritage(true);
+			current.setHeritage(!current.isHeritage());
 		} catch(NullPointerException e){
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -255,11 +264,11 @@ public class SubController {
 	 * @param row
 	 * @param column
 	 */
-	public void markExcavated(int row, int column) {
+	public void toggleExcavated(int row, int column) {
 		try{
 			Coordinate current = map.getPlaneItem(row, column);
-			current.setExcavated(true);
-			updateMap();
+			current.setExcavated(!current.getExcavated());
+			updateMap(row, column);
 		} catch(NullPointerException e){
 			JOptionPane.showMessageDialog(null, "There is no loaded map, you can't do this!", "Error", JOptionPane.ERROR_MESSAGE);
 		}

@@ -3,8 +3,6 @@ package archeologyp2.shared.map;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import archeologyp2.shared.gui.Tile;
-
 /**
  * MAP IN THE SHARED RESOURCES
  * @author Daniel
@@ -20,7 +18,6 @@ import archeologyp2.shared.gui.Tile;
  */
 public class Map<E> implements Iterable<E> {
 
-	private Tile imageMap[][];
 	private ArrayList<E> plane;
 	private int rows, columns;
 	private ViewingOption viewingOption;
@@ -34,13 +31,7 @@ public class Map<E> implements Iterable<E> {
 		this.rows = rows;
 		this.columns = columns;
 		viewingOption = ViewingOption.natural;
-		imageMap = new Tile[rows][columns];
 		plane = new ArrayList<E>(rows * columns);
-
-		/* Initialize character map */
-		for(int r = 0; r < rows; r++)
-			for(int c = 0; c < columns; c++)
-				imageMap[r][c] = Tile.naturalImage;
 	}
 	
 	/**
@@ -93,44 +84,6 @@ public class Map<E> implements Iterable<E> {
 		return plane.get(row * columns + col);
 	}
 	
-	/**
-	 * For public TileComponent[][] getImageMap
-	 * Returns a copy of the map's current image map
-	 * 
-	 * @return imageMap
-	 */
-	public Tile[][] getImageMap(){
-		Tile[][] copy = new Tile[rows][columns];
-		for(int r = 0; r < rows; r++)
-			for(int c = 0; c < columns; c++)
-				copy[r][c] = imageMap[r][c];
-		return copy;
-	}
-
-	/**
-	 * For public TileComponent getMapTile
-	 * Gets the image map symbol at given row and column
-	 * 
-	 * @param r
-	 * @param c
-	 * @return tile at row and column
-	 */
-	public Tile getMapTile(int row, int column){
-		return imageMap[row][column];
-	}
-
-	/**
-	 * For public void setMapTile
-	 * Sets the image map symbol at given row and column
-	 * 
-	 * @param r
-	 * @param c
-	 * @param image 
-	 */
-	public void setMapTile(int row, int column, Tile image){
-		imageMap[row][column] = image;
-	}
-
 	/**
 	 * For public ViewingOption getViewingOption
 	 * Returns the map's current viewing option
