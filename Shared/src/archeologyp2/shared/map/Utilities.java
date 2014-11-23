@@ -69,9 +69,25 @@ public class Utilities {
 			for(column = 0; column < map.getNumColumns(); column++){
 				current =  new Coordinate(row, column);
 				current.setTileComponent(new TileComponent(Tile.naturalImage, row, column));
+				
+				switch(current.getFeature()){
+				case dirt:
+					current.setTileComponent(new TileComponent(Tile.naturalImage, row, column));
+					break;
+				case postHole:
+					current.setTileComponent(new TileComponent(Tile.chlorophyllImage, row, column));
+					break;
+				case stone:
+					current.setTileComponent(new TileComponent(Tile.deadGrassImage, row, column));
+					break;
+				default:
+					break;
+				}
+				
 				map.addPlaneItem(row, column, current);
 			}
 		}
+		
 
 		return map;
 	}
@@ -151,7 +167,6 @@ public class Utilities {
 					break;
 				default:
 					break;
-				
 				}
 
 				/* Iterate through pot input */

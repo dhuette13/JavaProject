@@ -211,9 +211,15 @@ public abstract class FrameOfFun extends JFrame {
 		showMapMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(map != null){
+				try{
 					map.setViewingOption(ViewingOption.natural);
 					MapEditor.updateView(map, imagePanel);
+				}
+				catch(NullPointerException n){
+					JOptionPane.showMessageDialog(null,
+							"Uh oh! Looks like you forgot to load a map first. Please try again.",
+							"Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
