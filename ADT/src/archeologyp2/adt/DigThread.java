@@ -6,6 +6,8 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 /**
+ * DIG THREAD FOR THE ADT
+ * 
  * Represents an independent thread of execution for digging
  * a plot on the map. Each task is intended to take 10 seconds
  * to complete. Each thread is given a name, SubController to 
@@ -28,6 +30,7 @@ public class DigThread extends SwingWorker<String, Integer> {
 	private ReportDialog reportMessage;
 	
 	/**
+	 * For public DigThread
 	 * Initializes variables
 	 * 
 	 * @param name
@@ -45,8 +48,9 @@ public class DigThread extends SwingWorker<String, Integer> {
 	}
 	
 	/**
+	 * For protected String doInBackGround
 	 *  This method calls the dig subroutine, sleeps for 10 seconds
-	 *  while publishing progress.
+	 *  while publishing progress. Throws Exception.
 	 */
 	@Override
 	protected String doInBackground() throws Exception {
@@ -71,7 +75,9 @@ public class DigThread extends SwingWorker<String, Integer> {
 	}
 	
 	/**
+	 * For protected void process
 	 * Handles update to progress bar, thread safe method
+	 * @param publishedVals
 	 */
 	@Override
 	protected void process(List<Integer> publishedVals){
@@ -81,6 +87,7 @@ public class DigThread extends SwingWorker<String, Integer> {
 	}
 	
 	/**
+	 * For protected void done
 	 * Called on completion of thread, updates the map,
 	 * updates the progress bar to zero, and displays a report dialog.
 	 */

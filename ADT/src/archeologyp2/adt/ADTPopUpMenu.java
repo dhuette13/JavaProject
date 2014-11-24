@@ -48,6 +48,7 @@ public class ADTPopUpMenu extends PopupMenuParent implements ActionListener {
 	private ProgressFrame progressFrame;
 
 	/**
+	 * For public ADTPopUpMenu
 	 * Initializes variables, instantiates menu item components,
 	 * adds components to popup menu, and assigns actionlisteners.
 	 * 
@@ -81,6 +82,7 @@ public class ADTPopUpMenu extends PopupMenuParent implements ActionListener {
 	}
 
 	/**
+	 * For public void actionPerformed
 	 * Determines menu item selected, and calls respective subController
 	 * subroutine. In the event of a dig action, the program must ensure
 	 * that a digger thread is currently available. If it is, then it will

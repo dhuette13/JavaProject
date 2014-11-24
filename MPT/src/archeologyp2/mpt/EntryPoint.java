@@ -6,11 +6,12 @@ import archeologyp2.shared.gui.FrameOfFun;
 
 /**
  * ENTRY POINT FOR THE MAP POPULATION TOOL
- * @author Daniel
- * @author Celine
  * 
  * This class includes the main method for the MPT, as well
  * as the initial user menu. 
+ * 
+ * @author Daniel
+ * @author Celine
  *
  */
 

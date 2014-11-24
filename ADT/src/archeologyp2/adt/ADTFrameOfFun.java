@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import archeologyp2.shared.gui.FrameOfFun;
 import archeologyp2.shared.gui.PopupMenuParent;
 import archeologyp2.shared.gui.Tile;
+import archeologyp2.shared.gui.TileComponent;
 import archeologyp2.shared.map.Coordinate;
 import archeologyp2.shared.map.Utilities;
 import archeologyp2.shared.map.ViewingOption;
@@ -86,9 +87,11 @@ public class ADTFrameOfFun extends FrameOfFun {
 						setSize(map.getNumColumns() * Tile.naturalImage.getWidth(), map.getNumRows() * Tile.naturalImage.getHeight());
 						subController.setMap(map);
 						subController.setImagePanel(imagePanel);
+						TileComponent component;
 						for(Coordinate coord : map){
-							coord.getTileComponent().setPopupMenu(popupMenu);
-							imagePanel.add(coord.getTileComponent());
+							component = coord.getTileComponent();
+							component.setPopupMenu(popupMenu);
+							imagePanel.add(component);
 						}
 						subController.updateMap();
 					} catch (Exception e1) {

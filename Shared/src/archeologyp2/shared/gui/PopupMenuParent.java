@@ -3,6 +3,8 @@ package archeologyp2.shared.gui;
 import javax.swing.JPopupMenu;
 
 /**
+ * POP UP MENU PARENT FOR THE SHARED GUI 
+ * 
  * Parent PopupMenu for the ADT and MPT PopupMenus. Gives
  * both menus access to a row and column field.
  * 

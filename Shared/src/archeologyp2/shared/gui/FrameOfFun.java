@@ -168,12 +168,12 @@ public abstract class FrameOfFun extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				JFileChooser fileChooser = new JFileChooser();
+				fileChooser.setDialogTitle("Export");
 				fileChooser.setCurrentDirectory(new File("./res"));
-				int returnVal = fileChooser.showSaveDialog(null);
+				int returnVal = fileChooser.showDialog(null, "Export");
 				if(returnVal == JFileChooser.APPROVE_OPTION){
 					try {
-						//						Utilities.exportMap(map, fileChooser.getSelectedFile().getAbsolutePath());
-						JOptionPane.showMessageDialog(null, "Disabled.", "Notice", JOptionPane.INFORMATION_MESSAGE);
+						Utilities.exportMap(map, fileChooser.getSelectedFile().getAbsolutePath());
 					} catch (Exception e1) {
 						JOptionPane.showMessageDialog(null, "Invalid file. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
 					}
@@ -211,9 +211,15 @@ public abstract class FrameOfFun extends JFrame {
 		showMapMenuItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(map != null){
+				try{
 					map.setViewingOption(ViewingOption.natural);
 					MapEditor.updateView(map, imagePanel);
+				}
+				catch(NullPointerException n){
+					JOptionPane.showMessageDialog(null,
+							"Uh oh! Looks like you forgot to load a map first. Please try again.",
+							"Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

@@ -6,8 +6,6 @@ import archeologyp2.shared.gui.FrameOfFun;
 
 /**
  * ENTRY POINT OF THE ARCHAEOLOGICAL DIG TOOL 
- * @author Daniel
- * @author Celine
  * 
  * This class contains the Main method for the ADT. It runs the 
  * user input menu, which asks the user if they'd like to 
@@ -15,6 +13,9 @@ import archeologyp2.shared.gui.FrameOfFun;
  * if they'd like to excavate, if they'd like to see the date
  * average (with the bonus of standard deviation) of the finds 
  * they have, change the viewing option, print, or export. 
+ * 
+ * @author Daniel
+ * @author Celine
  *
  */
 

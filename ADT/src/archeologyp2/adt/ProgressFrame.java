@@ -1,5 +1,12 @@
 package archeologyp2.adt;
 
+/**
+ * PROGRESS FRAME FOR THE ADT
+ * 
+ * @author Daniel
+ * @author Celine
+ */
+
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -17,6 +24,10 @@ public class ProgressFrame extends JFrame {
 	private JLabel[] labels;
 	private HashMap<String, JProgressBar> progressBars;
 	
+	/**
+	 * For public ProgressFrame
+	 * @param names
+	 */
 	public ProgressFrame(String[] names){
 		GridBagLayout layout = new GridBagLayout();
 		GridBagConstraints constraints = new GridBagConstraints();
@@ -50,6 +61,11 @@ public class ProgressFrame extends JFrame {
 		setResizable(false);
 	}
 	
+	/**
+	 * For public void setProgress
+	 * @param name
+	 * @param value
+	 */
 	public void setProgress(String name, int value){
 		progressBars.get(name).setValue(value);
 	}

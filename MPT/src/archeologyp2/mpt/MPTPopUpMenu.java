@@ -35,6 +35,7 @@ public class MPTPopUpMenu extends PopupMenuParent implements ActionListener {
 	private SubController subController;
 	
 	/**
+	 * For public MPTPopUpMenu
 	 * Initializes variables, instantiates menu item components,
 	 * adds components to popup menu, and assigns actionlisteners.
 	 * 
@@ -63,6 +64,7 @@ public class MPTPopUpMenu extends PopupMenuParent implements ActionListener {
 	}
 
 	/**
+	 * For public void actionPerformed
 	 * Determines the menu item selected, and calls the appropriate subController
 	 * method or dialog box.
 	 */

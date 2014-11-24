@@ -7,6 +7,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
+ * TILE FOR SHARED GUI
+ * 
  * Represents a graphical image to be drawn
  * onto a tile component. Has a Buffered Image
  * and a number of static final pre-instantiated 

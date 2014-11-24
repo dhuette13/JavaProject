@@ -12,6 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
+ * THE REPORT DIALOG FOR THE ADT
+ * 
  * Represents a dialog window to display report data such as
  * found items, average date, and standard deviation. Can optionally
  * receive an archaeologist name to display as well.
@@ -31,6 +33,8 @@ public class ReportDialog extends JDialog {
 	private JButton confirmButton;
 	
 	/**
+	 * For public ReportDialog
+	 * 
 	 * Receives a report, average date, and standard deviation to 
 	 * display. Creates dialog window with confirm button and text
 	 * area to display information.
@@ -64,6 +68,8 @@ public class ReportDialog extends JDialog {
 	}
 
 	/**
+	 * For public ReportDialog
+	 * 
 	 * Receives a name, report, average date, and standard deviation to 
 	 * display. Creates dialog window with confirm button and text
 	 * area to display information and archaeologist name.

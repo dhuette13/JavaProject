@@ -10,11 +10,17 @@
 
 package archeologyp2.shared.map;
 
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
+import java.awt.image.Raster;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import javax.imageio.ImageIO;
 
 import archeologyp2.shared.finds.Artifact;
 import archeologyp2.shared.finds.Charcoal;
@@ -63,9 +69,25 @@ public class Utilities {
 			for(column = 0; column < map.getNumColumns(); column++){
 				current =  new Coordinate(row, column);
 				current.setTileComponent(new TileComponent(Tile.naturalImage, row, column));
+				
+				switch(current.getFeature()){
+				case dirt:
+					current.setTileComponent(new TileComponent(Tile.naturalImage, row, column));
+					break;
+				case postHole:
+					current.setTileComponent(new TileComponent(Tile.chlorophyllImage, row, column));
+					break;
+				case stone:
+					current.setTileComponent(new TileComponent(Tile.deadGrassImage, row, column));
+					break;
+				default:
+					break;
+				}
+				
 				map.addPlaneItem(row, column, current);
 			}
 		}
+		
 
 		return map;
 	}
@@ -145,7 +167,6 @@ public class Utilities {
 					break;
 				default:
 					break;
-				
 				}
 
 				/* Iterate through pot input */
@@ -316,89 +337,58 @@ public class Utilities {
 		}
 	}
 
-//	/**
-//	 * For public static void exportMap
-//	 * This method exports the current map to the given path name
-//	 * the user specifies.
-//	 * 
-//	 * @param map map to print or export
-//	 * @param output stream to output to
-//	 * 
-//	 */
-//	public static void exportMap(Map<Coordinate> map, String path) {
-//		char columnCharacter = 'A';
-//		/* Print the Column labels 
-//		 * 
-//		 * If there are more than 26 columns, a second row
-//		 * will be needed for the ruler.
-//		 */
-//
-//		PrintWriter output = null;
-//		try {
-//			output = new PrintWriter(new File(path));
-//			if(map.getNumColumns() > 26){
-//				output.println();
-//				output.format("  |");
-//				/* Print 0's as a buffer for first iteration of the alphabet */
-//				for(int k = 0; k < 26; k++) output.print(0);
-//
-//				/* Print a sequence common characters for every
-//				 * 26 characters.
-//				 */
-//				for(int k = 1; k <= map.getNumColumns() - 26; k++){
-//					if((k % 26) == 0) columnCharacter = (char) (columnCharacter + 1);
-//					output.print(columnCharacter);
-//				}
-//				output.println();
-//				output.format("  |");
-//
-//				/* Print the second row of full alphabets */
-//				for(int k = 0; k < map.getNumColumns() / 26; k++){
-//					for(int p = 0; p < 26; p++){
-//						output.print((char) ('A' + p));
-//					}
-//				}
-//
-//				/* Print the remaining characters for the last alphabet */
-//				for(int k = 0; k < map.getNumColumns() % 26; k++){
-//					output.print((char) ('A' + k));
-//				}
-//
-//			} else {
-//				/* If the number of columns is less than 26,
-//				 * a second row is not needed.
-//				 */
-//				output.format("  |");
-//				for(int c = 0; c < map.getNumColumns(); c++){
-//					output.format("%c", (char) (c + 65));
-//				}
-//			}
-//
-//
-//			output.println();
-//			output.format("--+");
-//			for(int c = 0; c < map.getNumColumns(); c++){
-//				output.format("-");
-//			}
-//			output.println();
-//
-//			/* Print the current viewable symbol for each row */
-//			char charMap[][] = map.getCharMap();
-//			for(int r = 0; r < map.getNumRows(); r++){
-//				output.format("%02d|", r + 1);
-//				for(int c = 0; c < map.getNumColumns(); c++){
-//					output.format("%c", charMap[r][c]);
-//				}
-//				output.println();
-//			}
-//		} catch (FileNotFoundException e) {
-//			System.out.println("Invalid path");
-//		} finally {
-//			if(output != null)
-//				output.close();
-//		}
-//	}
-//
+	/**
+	 * For public static void exportMap
+	 * This method exports the current map to the given path name
+	 * the user specifies.
+	 * 
+	 * @param map to export
+	 * @param path to export to
+	 * 
+	 */
+	public static void exportMap(Map<Coordinate> map, String path) {
+		int tileWidth = Tile.naturalImage.getWidth();
+		int tileHeight = Tile.naturalImage.getHeight();
+		
+		int outputImageWidth = map.getNumColumns() * tileWidth;
+		int outputImageHeight = map.getNumRows() * tileHeight;
+		
+		BufferedImage outputImage = new BufferedImage(outputImageWidth, outputImageHeight, BufferedImage.TYPE_INT_RGB);
+		Raster outputRaster = outputImage.getRaster();
+		DataBufferInt dataBuffer = (DataBufferInt) outputRaster.getDataBuffer();
+		int[] imageData = dataBuffer.getData();
+		
+		Coordinate current;
+		int[] buffer;
+		BufferedImage tileImage;
+		int absoluteRow, absoluteColumn;
+		/* Loop through map getting each coordinate */
+		for(int r = 0; r < map.getNumRows(); r++){
+			for(int c = 0; c < map.getNumColumns(); c++){
+				current = map.getPlaneItem(r, c);
+				tileImage = current.getTileComponent().getTile().getImage();
+				buffer = tileImage.getRGB(0, 0, tileWidth, tileHeight, null, 0, tileWidth);
+				/* Loop through each tile image, write it to output image */
+				for(int tr = 0; tr < tileHeight; tr++){
+					for(int tc = 0; tc < tileWidth; tc++){
+						absoluteRow = tr + (r * tileHeight);
+						absoluteColumn = tc + (c * tileWidth);
+						imageData[absoluteRow * outputImageWidth + absoluteColumn] = buffer[tr * tileWidth + tc];
+					}
+				}
+			}
+		}
+		
+		/* Write image to file when done */
+		try {
+			String[] splitPath = path.split("\\.");
+			String formatName = splitPath[1];
+			File outputFile = new File(path);
+			ImageIO.write(outputImage, formatName, outputFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	/**
 	 * For public static int columnToIndex

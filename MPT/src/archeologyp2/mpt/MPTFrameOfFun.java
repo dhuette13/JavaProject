@@ -110,6 +110,7 @@ public class MPTFrameOfFun extends FrameOfFun {
 						TileComponent component;
 						for(Coordinate coord : map){
 							component = coord.getTileComponent();
+							component.setPopupMenu(popupMenu);
 							imagePanel.add(component);
 						}
 						subController.updateMap();
