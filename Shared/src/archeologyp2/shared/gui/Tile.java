@@ -23,26 +23,27 @@ public class Tile {
 	private BufferedImage image;
 	
 	/* Main tiles to be used by program */
-	public static final Tile naturalImage = new Tile("ScaledTiles/NATURAL.png");
-	public static final Tile deadGrassImage = new Tile("ScaledTiles/YELLOW.png");
-	public static final Tile chlorophyllImage = new Tile("ScaledTiles/BRIGHTGREEN.png");
-	public static final Tile dirtImage = new Tile("ScaledTiles/DIRT.png");
-	public static final Tile stoneImage = new Tile("ScaledTiles/STONE.png");
-	public static final Tile pitImage = new Tile("ScaledTiles/PIT.png");
-	public static final Tile trueImage = new Tile("ScaledTiles/TRUE.png");
-	public static final Tile falseImage = new Tile("ScaledTiles/FALSE.png");
-	public static final Tile unknownImage = new Tile("ScaledTiles/UNKNOWN.png");
 	
-	public static final Tile zeroImage = new Tile("ScaledTiles/0.png");
-	public static final Tile oneImage = new Tile("ScaledTiles/1.png");
-	public static final Tile twoImage = new Tile("ScaledTiles/2.png");
-	public static final Tile threeImage = new Tile("ScaledTiles/3.png");
-	public static final Tile fourImage = new Tile("ScaledTiles/4.png");
-	public static final Tile fiveImage = new Tile("ScaledTiles/5.png");
-	public static final Tile sixImage = new Tile("ScaledTiles/6.png");
-	public static final Tile sevenImage = new Tile("ScaledTiles/7.png");
-	public static final Tile eightImage = new Tile("ScaledTiles/8.png");
-	public static final Tile nineImage = new Tile("ScaledTiles/9.png");
+	public static final Tile naturalImage = new Tile("FancyTiles/NATURAL.png");
+	public static final Tile deadGrassImage = new Tile("FancyTiles/YELLOW.png");
+	public static final Tile chlorophyllImage = new Tile("FancyTiles/BRIGHTGREEN.png");
+	public static final Tile dirtImage = new Tile("FancyTiles/DIRT.png");
+	public static final Tile stoneImage = new Tile("FancyTiles/STONE.png");
+	public static final Tile pitImage = new Tile("FancyTiles/PIT.png");
+	public static final Tile trueImage = new Tile("FancyTiles/TRUE.png");
+	public static final Tile falseImage = new Tile("FancyTiles/FALSE.png");
+	public static final Tile unknownImage = new Tile("FancyTiles/UNKNOWN.png");
+	
+	public static final Tile zeroImage = new Tile("FancyTiles/0.png");
+	public static final Tile oneImage = new Tile("FancyTiles/1.png");
+	public static final Tile twoImage = new Tile("FancyTiles/2.png");
+	public static final Tile threeImage = new Tile("FancyTiles/3.png");
+	public static final Tile fourImage = new Tile("FancyTiles/4.png");
+	public static final Tile fiveImage = new Tile("FancyTiles/5.png");
+	public static final Tile sixImage = new Tile("FancyTiles/6.png");
+	public static final Tile sevenImage = new Tile("FancyTiles/7.png");
+	public static final Tile eightImage = new Tile("FancyTiles/8.png");
+	public static final Tile nineImage = new Tile("FancyTiles/9.png");
 	
 	/**
 	 * Reads the image specifed by given path
