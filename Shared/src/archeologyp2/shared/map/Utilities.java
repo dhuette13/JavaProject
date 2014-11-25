@@ -88,7 +88,8 @@ public class Utilities {
 			}
 		}
 		
-
+		NonFerrousMetal metal = new NonFerrousMetal(0);
+		metal.setGoldExists(false);
 		return map;
 	}
 
